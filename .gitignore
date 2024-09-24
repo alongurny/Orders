@@ -1,0 +1,13 @@
+*
+
+# Source
+!Ordinals.tex
+
+# Output
+!Ordinals.pdf
+
+# Build script
+!build.sh
+
+# README
+!README.md
