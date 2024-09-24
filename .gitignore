@@ -1,10 +1,10 @@
 *
 
 # Source
-!Ordinals.tex
+!Orders.tex
 
 # Output
-!Ordinals.pdf
+!Orders.pdf
 
 # Build script
 !build.sh

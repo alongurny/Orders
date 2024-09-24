@@ -1,0 +1,332 @@
+% I want to write a letter about proving things of ordinals.
+
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+% Theorems
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+
+% Definitions
+\newtheorem{definition}{Definition}
+\newtheorem{notation}{Notation}
+\newtheorem{notations}{Notations}
+
+% Delimiters
+\newcommand{\parens}[1]{\left( {#1} \right)}
+\newcommand{\brackets}[1]{\left[ {#1} \right]}
+\newcommand{\braces}[1]{\left\{ {#1} \right\}}
+\newcommand{\iv}[1]{\left[ #1 \right)}
+
+% Macros
+\newcommand{\setcomp}[1]{\braces{#1}}
+\newcommand{\ii}[1]{{\iota}_{#1}}
+\newcommand{\kk}[1]{{\kappa}_{#1}}
+\newcommand{\pp}[1]{{\pi}_{#1}}
+\newcommand{\CC}{\mathcal{C}}
+
+\begin{document}
+
+\section{Ordinals}
+
+In this section the logic is always MSO, and the structures are ordinals.
+
+\begin{notations}
+    Let $\ii{\alpha} \parens{X}$ denote
+    that the set $X$ is a left-closed, right-open interval isomorphic to $\omega^\alpha$.
+
+    Let $\pp{\alpha} \parens{X}$ denote
+    that the set $X$ is a finite union of intervals and is isomorphic to $\omega^\alpha$.
+
+    Let $\kk{\alpha} \parens{x}$ denote
+    that $x$ is a multiple of $\omega^\alpha$.
+\end{notations}
+
+
+\begin{proposition}
+    Let $\beta = \omega^\alpha$ be an ordinals
+    and $x, y$ some ordinals.
+
+    Then,
+    $\iv{x, y}$ is isomorphic to $\omega^\alpha$
+    iff there exists some $z$ which is a multiple of $\omega^\alpha$,
+    such that $y$ is the least greater multiple of $\omega^\alpha$ s.t. $z \le x < y$.
+\end{proposition}
+
+\begin{proof}
+    Divide $x = \gamma \cdot \beta + \delta$ where $\delta < \beta$, and as $x + \beta = y$,
+    $y = \gamma \cdot \beta + \delta + \beta$.
+
+    Now, as $\omega^\alpha$ is additively indecomposable, $\delta + \beta = \beta$,
+    so $y = \gamma \cdot \beta + \beta = \parens{\gamma + 1} \cdot \beta$.
+    Choosing $z = \gamma + 1$, indeed $y$ is the least greter multiple of $\omega^\alpha$,
+    and $z \le x < y$, as we need.
+\end{proof}
+
+\begin{corollary}
+    Over ordinals, $\ii{\alpha}$ is expressible via $\kk{\alpha}$.
+\end{corollary}
+
+\begin{proof}
+    By the previous lemma,
+    $$\ii{\alpha} \parens{X}
+    \iff
+    \exists x, y, z. 
+           X = \brackets{x, y}
+    \wedge \kk{\alpha} \parens{z}
+    \wedge y = \min_b \setcomp{a : z < b \wedge \kk{\alpha} \parens{b}}$$
+\end{proof}
+
+\begin{proposition}
+    Let $\beta = \omega^\alpha$.
+    Then, a set $X$ satisfies $\pp{\alpha}$ iff it is a finite sum
+    $X = \sum_{i=1}^m X_i$ where for $i<m$, $X_i$ is a strict prefix
+    of some interval satisfying $\ii{\alpha}$, and
+    for $i = m$, $X_i$ satisfies $\ii{\alpha}$.
+\end{proposition}
+
+\begin{proof}
+    Suppose $X_i$ is indeed an interval which is less then $\omega^\alpha$ for $i < m$
+    and equals $\omega^\alpha$ for $i = m$.
+    Since $\omega^\alpha$ is additively indecomposable,
+    the sum $\sum_{i=1}^m X_i$ is indeed $\omega^\alpha$.
+    Therefore, $X$ is a disjoint sum of intervals isomorphic to $\omega^\alpha$.
+
+    For the other direction,
+    suppose $X$ is a disjoint sum of intervals isomorphic to $\omega^\alpha$.
+    Let the intervals be $X_i$ for $i = 1, ..., m$.
+    Since $\omega^\alpha$ is additively indecomposable,
+    nessessarily $X_i < \beta$ for $i < m$ and $X_m = \beta$.
+    
+    Also, note that for $i < m$, the interval from the left end of $X_i$ to the
+    right end of $X_m$ is at least $\omega^\alpha$,
+    since it contains $X_i \cup X_m$ which is isomorphic to $\omega^\alpha$,
+    and thus there is an interval in which $X_i$ is contained
+    which is isomorphic to $\omega^\alpha$.
+\end{proof}
+
+\begin{corollary}
+    Over ordinals, $\pp{\alpha}$ is expressible via $\ii{\alpha}$.
+\end{corollary}
+
+\begin{proof}
+    By the previous corollary,
+    it is enough to formulate that there
+    exists a finite set of left endpoints and right endpoints,
+    such that except for the last ones,
+    All the intervals are strictly the prefix of
+    an interval isomorphic to $\omega^\alpha$,
+    and such that the last interval is
+    isomorphic to $\omega^\alpha$.
+
+    \begin{equation}
+        \begin{split}
+            \pp{\alpha} \parens{X}  \iff & \exists L \exists R.
+        \\        & finite \parens{L}
+        \\ \wedge & finite \parens{R}
+        \\ \wedge & \min \parens{L \cup R} \in L
+        \\ \wedge & \max \parens{L \cup R} \in R
+        \\ \wedge &
+        \forall x, y \in L. x < y \implies \exists z \in R. x < z < y
+        \\ \wedge &
+        \forall x, y \in R. x < y \implies \exists z \in L. x < z < y
+        \\ \wedge &
+        {
+            \forall x \in L - \braces{\max L}
+            \forall y \in R - \braces{\max R}
+            \exists z. y < z \wedge \ii{\brackets{x, z}}
+        }
+        \\ \wedge & \ii{\braces{\max L, \max R}}
+        \end{split}
+    \end{equation}
+
+\end{proof}
+
+\begin{proposition}
+    Let $\omega^\alpha$ be any ordinal.
+    Let the Cantor normal form be
+    $$\beta = \sum_{i=1}^k \beta_i$$ where $\beta_i = \omega^{\alpha_i}$.
+
+    Then, a set $X$ satisfies $\pp{\alpha}$ iff it is an ordered sum
+    $X = \sum_{i=1}^k X_i$ where $X_i$ satisfies $\pp{\alpha_i}$.
+\end{proposition}
+
+\begin{proof}
+    Obviously a disjoint sum of such
+    intervals satisfies $\pp{\alpha}$.
+
+    For the other direction, suppose $X$ is a union
+    of closed intervals and
+    is isomorphic to $\omega^\alpha$.
+    Let $\varphi : X \to \beta$ be the isomorphism map.
+    Recall that $\beta = \sum_{i=1}^k Y_i$ where
+    $Y_i \cong \beta_i$.
+    
+    Let $X_i := \varphi^{-1}(Y_i)$ for $i = 1, ..., k$.
+    Then it can easily be seen that $X_i$ is
+    a disjoint sum of closed intervals.
+\end{proof}
+
+\begin{corollary}
+    Let $\omega^\alpha$ be any ordinal.
+    Then $\pp{\alpha}$ is expressible via $\pp{\alpha_1}, ..., \pp{\alpha_k}$
+    for some ordinals
+    $\beta_1 = \omega^{\alpha_1}, ..., \beta_k = \omega^{\alpha_k}$.
+\end{corollary}
+
+\begin{proof}
+    This is pretty much the same trick as the previous corrollary,
+    but is very tedious to write down.
+\end{proof}
+
+\begin{theorem}
+    Let $\omega^\alpha$ be any ordinal.
+
+    Over ordinals, $\pp{\alpha}$ is expressible via
+    $\kk{\alpha_1}, ..., \kk{\alpha_k}$
+    where $\beta_1 = \omega^{\alpha_1}, ..., \beta_k = \omega^{\alpha_k}$.
+\end{theorem}
+
+\begin{proof}
+    Combine the three previous corollaries.
+\end{proof}
+
+\begin{definition}
+    Let $\beta > 0$ be a nonzero ordinal.
+
+    Let $\xi$ be any ordinal.
+    Let $\gamma$ and $\delta$ be the unique ordinals
+    such that $\xi = \gamma \beta + \delta$.
+
+    Then, define $\xi / \beta := \gamma$ and $\xi \% \beta := \delta$.
+
+    That is, $\xi / \beta$ is the quotient of $\xi$ by $\omega^\alpha$, "rounded down".
+
+    Now, suppose $\CC$ be a class of ordinals.
+
+    Define $\CC_{/\beta} := \setcomp{\xi / \beta : \xi \in \CC}$
+    Define $\CC_{\% \beta} := \setcomp{\xi \% \beta : \xi \in \CC}$
+
+\end{definition}
+
+\begin{theorem}
+    Let $\CC$ be a class of ordinals,
+    and let $\beta_1=\omega^{\alpha_1}, ..., \beta_k=\omega^{\alpha_k}$ be ordinals,
+    where $\alpha_1 \ge \cdots \ge \alpha_k$, that is, $\beta_k \mid \cdots \mid \beta_1$.
+    
+    Then the logic $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_k}}$
+    is decidable over $\CC$,
+
+    using oracles to decide $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_{k-1}}}$
+    over $\omega^\alpha$ and over $\CC_{\% \beta_k}$ and
+    decide $MSO$ over $\CC_{/\beta_k}$.
+\end{theorem}
+
+\begin{proof}
+    Denote $\beta := \beta_k$.
+
+    By the composition theorem, given $\varphi$ of quantifier rank $\rho$,
+    we can compute $\psi'$,
+    with free variables $\braces{X_\tau}_\tau$,
+    where $\tau$ is a $\rho$-type.
+
+    such that for any $\xi = \sum_{i \in \xi / \beta} \xi_i + \delta$,
+    for $\delta < \beta$,
+    
+    (denoting $\xi_{\xi / \beta} := \delta$ we get $\xi = \sum_{i \in \xi / \beta + 1} \xi_i$),
+    
+    $$
+    \xi \vDash \varphi \iff \xi/\beta + 1, Q_1, ..., Q_r\vDash \psi'
+    $$
+
+    where $Q_\tau = \setcomp{\xi_i \vDash \tau : i \in \xi / \beta + 1}$
+
+    Now, since the $Q_\tau$ are all (except maybe the last index) or
+    nothing (except including maybe last the index),
+    we can actually describe them with two propositional/boolean variables.
+    That is, we can replace each time $X_\tau$ appears in $\psi'$,
+    by $\setcomp{i < \max : y_\tau} \cup \setcomp{\max : z_\tau}$
+    where $y_\tau$ and $z_\tau$ are two new propositional variables, and then:
+
+    $$
+    \xi \vDash \varphi \iff \xi/\beta + 1, Y_1, Z_1, ..., Y_r, Z_r\vDash \psi''
+    $$
+
+    where $Y_\tau := \beta \vDash \tau$,
+    and $Z_\tau := \delta \vDash \tau$,
+    and $\psi''$ is $\psi'$ after the replacement.
+
+    Therefore, given a class $\CC$ of ordinals,
+    we first determine for each $\tau$ what $Y_\tau$ is,
+    using the fact that $\omega^\alpha$ is decidable over $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_{k-1}}}$,
+    and that over $\omega^\alpha$ we can replace $\kk{\alpha_k}$ with $=0$.
+
+    Now, we calculate all the possible values of $Z_\tau$: for that,
+    we check if $\tau$ holds in all of $\CC_{\% \beta}$, and if
+    $\neg \tau$ holds in all of $\CC_{\% \beta}$.
+
+    This is possible since $\CC_{\% \beta}$ is decidable over $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_{k-1}}}$,
+    and again, we can replace $\kk{\alpha_k}$ with $=0$.
+
+    Finally, for each possible combination of values
+    $Y_1, Z_1, ..., Y_r, Z_r$, we calculate whether $\psi''$ holds over
+    $\CC_{/\beta}$. This is possible since $MSO$ is decidable over $\CC_{/\beta}$.
+    
+
+    Then, suppose that $\varphi$ holds over all $\xi \in \CC$.
+
+    Then, it must be the case that
+    $\psi''$ holds for any such combination. 
+
+    And also for the contrary, every ordinal $\xi \in \CC$ gives rise to some combination.
+\end{proof}
+
+\begin{corollary}
+    Suppose in the previous theorem that $\CC$ is either:
+    \begin{enumerate}
+        \item a \textbf{single countable} ordinal: $\CC = \setcomp{\xi}$
+        \item the class of \textbf{all countable} ordinals
+    \end{enumerate}
+    Then $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_k}}$ is decidable.
+\end{corollary}
+
+\begin{proof}
+    For a single countable ordinal $\xi$:
+    $\omega^\alpha$ over $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_{k-1}}}$
+    is decidable by induction on $k$ (for the induction step),
+    since $MSO$ is decidable over a single countable ordinal (for the base case)
+
+    $\CC_{/\beta} = \setcomp{\xi/\beta}$ again is decidable for the same reason.
+
+    and $\CC_{\% \beta} = \setcomp{\xi \% \beta}$ 
+    is a single countable ordinal and so $MSO$ is decidable over it.
+
+
+    Now, suppose $\CC$ is the class of all countable ordinals,
+    then $\CC_{/ \beta} = \CC$,
+    so $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_{k-1}}}$ is decidable
+    over it by induction on $k$, or since $MSO$ is decidable over
+    the class of all countable ordinals (in the base case),
+
+    and $\CC_{\% \beta} = \setcomp{\delta : \delta < \beta}$.
+    $MSO$ is decidable over it, since a formula
+    $\varphi$ is true over $\setcomp{\delta : \delta < \beta}$
+    iff $\varphi \vee \exists X. \kk{\alpha}$ is true over the class
+    of all countable ordinals, and we have already established that
+    this $MSO \brackets{\kk{\alpha}}$ is decidable over a single countable ordinal.
+\end{proof}
+
+\begin{theorem}
+    Under the same conditions, $MSO \brackets{\pp{\alpha_1}, ..., \pp{\alpha_k}}$ is decidable.
+\end{theorem}
+
+\begin{proof}
+    Combine all the results we have had so far.
+\end{proof}
+
+\end{document}
