@@ -1,4 +1,4 @@
-% I want to write a letter about proving things of ordinals.
+% I want to write a letter about proving things of orders.
 
 \documentclass{article}
 
@@ -11,6 +11,7 @@
 \newtheorem{corollary}{Corollary}
 \newtheorem{lemma}{Lemma}
 \newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
 
 % Definitions
 \newtheorem{definition}{Definition}
@@ -21,312 +22,223 @@
 \newcommand{\parens}[1]{\left( {#1} \right)}
 \newcommand{\brackets}[1]{\left[ {#1} \right]}
 \newcommand{\braces}[1]{\left\{ {#1} \right\}}
-\newcommand{\iv}[1]{\left[ #1 \right)}
 
 % Macros
 \newcommand{\setcomp}[1]{\braces{#1}}
-\newcommand{\ii}[1]{{\iota}_{#1}}
-\newcommand{\kk}[1]{{\kappa}_{#1}}
-\newcommand{\pp}[1]{{\pi}_{#1}}
-\newcommand{\CC}{\mathcal{C}}
+\newcommand{\rankm}{\mathbf{rank^-}}
+\newcommand{\rankp}{\mathbf{rank}}
+
+% Letters
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\agemo}{-\omega}
+\newcommand{\otp}{\mathbf{otp}}
+
+% Sets
+\newcommand{\ZZ}{\mathbb{Z}}
 
 \begin{document}
 
-\section{Ordinals}
+\section{Orders}
 
-In this section the logic is always MSO, and the structures are ordinals.
+In this section the logic is always MSO, and the structures are orders.
+When we mention a linear order $\LL$, we assume implicitly that it is countable.
+When we mention an ordinal $\alpha$, we assume implicitly that it is a limit ordinal.
+We shall write this as CLO (countable linear order).
 
-\begin{notations}
-    Let $\ii{\alpha} \parens{X}$ denote
-    that the set $X$ is a left-closed, right-open interval isomorphic to $\omega^\alpha$.
+% Definition of $\sim_\alpha$
+\begin{definition}
+    Let $\LL$ be a CLO.
+    We define two relation $\rankm \LL \le \alpha$ and $\rankp \LL \le \alpha$
+    by transfinite induction on $\alpha$ as follows:
 
-    Let $\pp{\alpha} \parens{X}$ denote
-    that the set $X$ is a finite union of intervals and is isomorphic to $\omega^\alpha$.
+    $\rankm \LL \le 0$ iff $\LL$ is $1$.
 
-    Let $\kk{\alpha} \parens{x}$ denote
-    that $x$ is a multiple of $\omega^\alpha$.
-\end{notations}
+    $\rankp \LL \le \alpha$ iff $\LL$ is a finite sum of CLOs $\LL_i$ such that
+    $\rankm \LL_i < \alpha$ for all $i$.
 
+    For $\alpha>0$, $\rankm \LL \le \alpha$ iff $\LL = \sum_{i \in I} \LL_i$
+    where $I$ is either finite or $\pm \omega$ or $\eta$.
+    and $\rankp \LL_i < \alpha$ for all $i \in I$.
 
-\begin{proposition}
-    Let $\beta = \omega^\alpha$ be an ordinals
-    and $x, y$ some ordinals.
+    Now, we define $\rankm \LL$, if it exists, as the minimal $\alpha$
+    such that $\rankm \LL \le \alpha$, and similarly we (partially) define
+    $\rankp \LL$.
+\end{definition}
 
-    Then,
-    $\iv{x, y}$ is isomorphic to $\omega^\alpha$
-    iff there exists some $z$ which is a multiple of $\omega^\alpha$,
-    such that $y$ is the least greater multiple of $\omega^\alpha$ s.t. $z \le x < y$.
-\end{proposition}
+% Closesness under finite sums
+\begin{lemma}
+    For every $\alpha$,
+        \begin{enumerate}
+            \item
+            Let $\LL_1$ and $\LL_2$ be CLOs such that $\rankp \LL_i = \alpha_i$.
 
+            Then $\rankp \parens{\LL_1 + \LL_2} = \max \setcomp{\alpha_1, \alpha_2}$.
+            \item
+            Let $\LL_1$ and $\LL_2$ be CLOs such that $\rankm \LL_1 = \rankm \LL_2 = \alpha$.
+
+            Then $\rankm \parens{\LL_1 + \LL_2} = \alpha + 1$.
+        \end{enumerate}
+\end{lemma}
+
+% Proof
 \begin{proof}
-    Divide $x = \gamma \cdot \beta + \delta$ where $\delta < \beta$, and as $x + \beta = y$,
-    $y = \gamma \cdot \beta + \delta + \beta$.
-
-    Now, as $\omega^\alpha$ is additively indecomposable, $\delta + \beta = \beta$,
-    so $y = \gamma \cdot \beta + \beta = \parens{\gamma + 1} \cdot \beta$.
-    Choosing $z = \gamma + 1$, indeed $y$ is the least greter multiple of $\omega^\alpha$,
-    and $z \le x < y$, as we need.
+    This is obvious from the definition.
 \end{proof}
 
-\begin{corollary}
-    Over ordinals, $\ii{\alpha}$ is expressible via $\kk{\alpha}$.
-\end{corollary}
+% CLO good 2-colorability
+\begin{definition}[Good 2-coloring]
+    Let $\LL$ be a CLO. A good $2$-coloring of $\LL$ is a coloring of $\LL$ with two colors, such that:
+    * If there is only a single endpoint, it is red.
+    * If there are two endpoints, the leftmost one is red.
+\end{definition}
+
+% Existence and uniqueness of good 2-coloring
+\begin{lemma}[Existence and uniqueness]
+    Every CLO has a good $2$-coloring.
+    All such $2$-colorings are isomorphic.
+\end{lemma}
 
 \begin{proof}
-    By the previous lemma,
-    $$\ii{\alpha} \parens{X}
-    \iff
-    \exists x, y, z. 
-           X = \brackets{x, y}
-    \wedge \kk{\alpha} \parens{z}
-    \wedge y = \min_b \setcomp{a : z < b \wedge \kk{\alpha} \parens{b}}$$
+    Every rank-$1$ equivalence class is obviously $2$-colorable this way, since it either has an endpoint or is isomorphic
+    to $\eta := \agemo + \omega = \otp \parens{\ZZ}$
+
+    The coloring is obviously unique, except for the case of $\eta$, where the two possible good colorings are isomorphic.
+
+    Since the rank-$1$ equivalence classes have no edges between them, the proof is done. 
+
+    \qed
 \end{proof}
 
-\begin{proposition}
-    Let $\beta = \omega^\alpha$.
-    Then, a set $X$ satisfies $\pp{\alpha}$ iff it is a finite sum
-    $X = \sum_{i=1}^m X_i$ where for $i<m$, $X_i$ is a strict prefix
-    of some interval satisfying $\ii{\alpha}$, and
-    for $i = m$, $X_i$ satisfies $\ii{\alpha}$.
-\end{proposition}
+\begin{lemma}
+    The fact that $R$ is a good $2$-coloring is expressible in MSO over CLOs. 
+\end{lemma}
 
 \begin{proof}
-    Suppose $X_i$ is indeed an interval which is less then $\omega^\alpha$ for $i < m$
-    and equals $\omega^\alpha$ for $i = m$.
-    Since $\omega^\alpha$ is additively indecomposable,
-    the sum $\sum_{i=1}^m X_i$ is indeed $\omega^\alpha$.
-    Therefore, $X$ is a disjoint sum of intervals isomorphic to $\omega^\alpha$.
+    Obvious.
 
-    For the other direction,
-    suppose $X$ is a disjoint sum of intervals isomorphic to $\omega^\alpha$.
-    Let the intervals be $X_i$ for $i = 1, ..., m$.
-    Since $\omega^\alpha$ is additively indecomposable,
-    nessessarily $X_i < \beta$ for $i < m$ and $X_m = \beta$.
-    
-    Also, note that for $i < m$, the interval from the left end of $X_i$ to the
-    right end of $X_m$ is at least $\omega^\alpha$,
-    since it contains $X_i \cup X_m$ which is isomorphic to $\omega^\alpha$,
-    and thus there is an interval in which $X_i$ is contained
-    which is isomorphic to $\omega^\alpha$.
+    \qed
 \end{proof}
 
-\begin{corollary}
-    Over ordinals, $\pp{\alpha}$ is expressible via $\ii{\alpha}$.
-\end{corollary}
+% The relation $\sim_\alpha$
+\begin{definition}
+    Let $\LL$ be a CLO and let $\alpha$ be an ordinal.
+    We define the relation $\sim_\alpha$ on $\LL$ as follows:
+    $x \sim_\alpha y$ iff $\rankp (x, y) < \alpha$
+\end{definition}
+
+\begin{lemma}
+    Let $\alpha$ be a limit ordinal.
+    Then, the following are equivalent:
+    \begin{enumerate}
+        \item $x \sim_\alpha y$
+        \item the interval $(x, y)$ is of $\rankp < \alpha$
+        \item the interval $[x, y)$ is of $\rankp < \alpha$
+        \item the interval $(x, y]$ is of $\rankp < \alpha$
+        \item the interval $[x, y]$ is of $\rankp < \alpha$
+    \end{enumerate}
+\end{lemma}
 
 \begin{proof}
-    By the previous corollary,
-    it is enough to formulate that there
-    exists a finite set of left endpoints and right endpoints,
-    such that except for the last ones,
-    All the intervals are strictly the prefix of
-    an interval isomorphic to $\omega^\alpha$,
-    and such that the last interval is
-    isomorphic to $\omega^\alpha$.
-
-    \begin{equation}
-        \begin{split}
-            \pp{\alpha} \parens{X}  \iff & \exists L \exists R.
-        \\        & finite \parens{L}
-        \\ \wedge & finite \parens{R}
-        \\ \wedge & \min \parens{L \cup R} \in L
-        \\ \wedge & \max \parens{L \cup R} \in R
-        \\ \wedge &
-        \forall x, y \in L. x < y \implies \exists z \in R. x < z < y
-        \\ \wedge &
-        \forall x, y \in R. x < y \implies \exists z \in L. x < z < y
-        \\ \wedge &
-        {
-            \forall x \in L - \braces{\max L}
-            \forall y \in R - \braces{\max R}
-            \exists z. y < z \wedge \ii{\brackets{x, z}}
-        }
-        \\ \wedge & \ii{\braces{\max L, \max R}}
-        \end{split}
-    \end{equation}
-
+    Follows easily from the definition of $\rankp$.
 \end{proof}
 
-\begin{proposition}
-    Let $\omega^\alpha$ be any ordinal.
-    Let the Cantor normal form be
-    $$\beta = \sum_{i=1}^k \beta_i$$ where $\beta_i = \omega^{\alpha_i}$.
-
-    Then, a set $X$ satisfies $\pp{\alpha}$ iff it is an ordered sum
-    $X = \sum_{i=1}^k X_i$ where $X_i$ satisfies $\pp{\alpha_i}$.
-\end{proposition}
+\begin{lemma}
+    The relation $\sim_\alpha$ is an equivalence relation.
+\end{lemma}
 
 \begin{proof}
-    Obviously a disjoint sum of such
-    intervals satisfies $\pp{\alpha}$.
-
-    For the other direction, suppose $X$ is a union
-    of closed intervals and
-    is isomorphic to $\omega^\alpha$.
-    Let $\varphi : X \to \beta$ be the isomorphism map.
-    Recall that $\beta = \sum_{i=1}^k Y_i$ where
-    $Y_i \cong \beta_i$.
-    
-    Let $X_i := \varphi^{-1}(Y_i)$ for $i = 1, ..., k$.
-    Then it can easily be seen that $X_i$ is
-    a disjoint sum of closed intervals.
-\end{proof}
-
-\begin{corollary}
-    Let $\omega^\alpha$ be any ordinal.
-    Then $\pp{\alpha}$ is expressible via $\pp{\alpha_1}, ..., \pp{\alpha_k}$
-    for some ordinals
-    $\beta_1 = \omega^{\alpha_1}, ..., \beta_k = \omega^{\alpha_k}$.
-\end{corollary}
-
-\begin{proof}
-    This is pretty much the same trick as the previous corrollary,
-    but is very tedious to write down.
-\end{proof}
-
-\begin{theorem}
-    Let $\omega^\alpha$ be any ordinal.
-
-    Over ordinals, $\pp{\alpha}$ is expressible via
-    $\kk{\alpha_1}, ..., \kk{\alpha_k}$
-    where $\beta_1 = \omega^{\alpha_1}, ..., \beta_k = \omega^{\alpha_k}$.
-\end{theorem}
-
-\begin{proof}
-    Combine the three previous corollaries.
+    Reflexivity and symmetry are obvious.
+    Trnasitivity follows easily from the fact that $\alpha$ is a limit ordinal and the previous lemma.
+    \qed
 \end{proof}
 
 \begin{definition}
-    Let $\beta > 0$ be a nonzero ordinal.
+    Let $\LL$ be a CLO together with a good coloring $C$ of $\LL / \sim_\alpha$, from which
+    there is an induced coloring of $\LL$ (which is valid with regard to $\alpha$-classes).
 
-    Let $\xi$ be any ordinal.
-    Let $\gamma$ and $\delta$ be the unique ordinals
-    such that $\xi = \gamma \beta + \delta$.
-
-    Then, define $\xi / \beta := \gamma$ and $\xi \% \beta := \delta$.
-
-    That is, $\xi / \beta$ is the quotient of $\xi$ by $\omega^\alpha$, "rounded down".
-
-    Now, suppose $\CC$ be a class of ordinals.
-
-    Define $\CC_{/\beta} := \setcomp{\xi / \beta : \xi \in \CC}$
-    Define $\CC_{\% \beta} := \setcomp{\xi \% \beta : \xi \in \CC}$
-
+    We denote by $R_C \parens{x}$ the formula expressing the fact that
+    the $\alpha$-class of $x$ is red in $C$.
 \end{definition}
 
-\begin{theorem}
-    Let $\CC$ be a class of ordinals,
-    and let $\beta_1=\omega^{\alpha_1}, ..., \beta_k=\omega^{\alpha_k}$ be ordinals,
-    where $\alpha_1 \ge \cdots \ge \alpha_k$, that is, $\beta_k \mid \cdots \mid \beta_1$.
-    
-    Then the logic $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_k}}$
-    is decidable over $\CC$,
-
-    using oracles to decide $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_{k-1}}}$
-    over $\omega^\alpha$ and over $\CC_{\% \beta_k}$ and
-    decide $MSO$ over $\CC_{/\beta_k}$.
-\end{theorem}
+\begin{lemma}
+    An interval $X$ is of $\rankp < \alpha$ iff it is contained in an equivalence class of $\sim_\alpha$.
+\end{lemma}
 
 \begin{proof}
-    Denote $\beta := \beta_k$.
+    Both directions are obvious. 
 
-    By the composition theorem, given $\varphi$ of quantifier rank $\rho$,
-    we can compute $\psi'$,
-    with free variables $\braces{X_\tau}_\tau$,
-    where $\tau$ is a $\rho$-type.
+    \qed
+\end{proof}
 
-    such that for any $\xi = \sum_{i \in \xi / \beta} \xi_i + \delta$,
-    for $\delta < \beta$,
-    
-    (denoting $\xi_{\xi / \beta} := \delta$ we get $\xi = \sum_{i \in \xi / \beta + 1} \xi_i$),
-    
-    $$
-    \xi \vDash \varphi \iff \xi/\beta + 1, Q_1, ..., Q_r\vDash \psi'
-    $$
+\begin{lemma}
+    $X$ is an equivalence class of $\sim_\alpha$ iff $X$ is a maximal subset
+    such that it is connected and every subinterval of $X$ is of $\rankp < \alpha$.
+\end{lemma}
 
-    where $Q_\tau = \setcomp{\xi_i \vDash \tau : i \in \xi / \beta + 1}$
+\begin{proof}
+    It is enough to show that every set with this property is contained in an equivalence class of $\sim_\alpha$,
+    and that the equivalence classes possess this property.
 
-    Now, since the $Q_\tau$ are all (except maybe the last index) or
-    nothing (except including maybe last the index),
-    we can actually describe them with two propositional/boolean variables.
-    That is, we can replace each time $X_\tau$ appears in $\psi'$,
-    by $\setcomp{i < \max : y_\tau} \cup \setcomp{\max : z_\tau}$
-    where $y_\tau$ and $z_\tau$ are two new propositional variables, and then:
+    Clearly, every nonempty set $X$ with this property is contained in a single equivalence class: 
+    Let $x \in X$ be a specific choice, and let $y \in X$ be another point.
+    Then $[x, y]$ is contained in $X$ since $X$ is connected, and therefore is of $\rankp < \alpha$.
+    Therefore, $x \sim_\alpha y$.
 
-    $$
-    \xi \vDash \varphi \iff \xi/\beta + 1, Y_1, Z_1, ..., Y_r, Z_r\vDash \psi''
-    $$
+    That is, $X = [x]_{\sim_\alpha}$.
 
-    where $Y_\tau := \beta \vDash \tau$,
-    and $Z_\tau := \delta \vDash \tau$,
-    and $\psi''$ is $\psi'$ after the replacement.
+    Now, let $X = [x]_{\sim_\alpha}$.
+    Since $\alpha$ is a limit ordinal, every subinterval of $X$ is of $\rankp < \alpha$.
+    And also clearly it is connected.
 
-    Therefore, given a class $\CC$ of ordinals,
-    we first determine for each $\tau$ what $Y_\tau$ is,
-    using the fact that $\omega^\alpha$ is decidable over $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_{k-1}}}$,
-    and that over $\omega^\alpha$ we can replace $\kk{\alpha_k}$ with $=0$.
-
-    Now, we calculate all the possible values of $Z_\tau$: for that,
-    we check if $\tau$ holds in all of $\CC_{\% \beta}$, and if
-    $\neg \tau$ holds in all of $\CC_{\% \beta}$.
-
-    This is possible since $\CC_{\% \beta}$ is decidable over $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_{k-1}}}$,
-    and again, we can replace $\kk{\alpha_k}$ with $=0$.
-
-    Finally, for each possible combination of values
-    $Y_1, Z_1, ..., Y_r, Z_r$, we calculate whether $\psi''$ holds over
-    $\CC_{/\beta}$. This is possible since $MSO$ is decidable over $\CC_{/\beta}$.
-    
-
-    Then, suppose that $\varphi$ holds over all $\xi \in \CC$.
-
-    Then, it must be the case that
-    $\psi''$ holds for any such combination. 
-
-    And also for the contrary, every ordinal $\xi \in \CC$ gives rise to some combination.
+    \qed
 \end{proof}
 
 \begin{corollary}
-    Suppose in the previous theorem that $\CC$ is either:
-    \begin{enumerate}
-        \item a \textbf{single countable} ordinal: $\CC = \setcomp{\xi}$
-        \item the class of \textbf{all countable} ordinals
-    \end{enumerate}
-    Then $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_k}}$ is decidable.
+    Let $\LL$ be a CLO and let $C$ be a good coloring of $\LL / \sim_\alpha$.
+    The fact that $X$ is an interval of $\rankp < \alpha$ is expressible in MSO over CLOs using $R_C$.
 \end{corollary}
 
 \begin{proof}
-    For a single countable ordinal $\xi$:
-    $\omega^\alpha$ over $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_{k-1}}}$
-    is decidable by induction on $k$ (for the induction step),
-    since $MSO$ is decidable over a single countable ordinal (for the base case)
+    Since an $\alpha$-class of $\LL$ is just a maximal homochromatic connected subset this is clear from the previous lemma.
 
-    $\CC_{/\beta} = \setcomp{\xi/\beta}$ again is decidable for the same reason.
-
-    and $\CC_{\% \beta} = \setcomp{\xi \% \beta}$ 
-    is a single countable ordinal and so $MSO$ is decidable over it.
-
-
-    Now, suppose $\CC$ is the class of all countable ordinals,
-    then $\CC_{/ \beta} = \CC$,
-    so $MSO \brackets{\kk{\alpha_1}, ..., \kk{\alpha_{k-1}}}$ is decidable
-    over it by induction on $k$, or since $MSO$ is decidable over
-    the class of all countable ordinals (in the base case),
-
-    and $\CC_{\% \beta} = \setcomp{\delta : \delta < \beta}$.
-    $MSO$ is decidable over it, since a formula
-    $\varphi$ is true over $\setcomp{\delta : \delta < \beta}$
-    iff $\varphi \vee \exists X. \kk{\alpha}$ is true over the class
-    of all countable ordinals, and we have already established that
-    this $MSO \brackets{\kk{\alpha}}$ is decidable over a single countable ordinal.
+    \qed
 \end{proof}
 
 \begin{theorem}
-    Under the same conditions, $MSO \brackets{\pp{\alpha_1}, ..., \pp{\alpha_k}}$ is decidable.
+    MSO extended by $R_C$ is decidable over all CLOs with a good coloring.
 \end{theorem}
 
 \begin{proof}
-    Combine all the results we have had so far.
+    Let $\LL$ be a CLO of rank $\nu$ and let $\alpha$ be a limit ordinal.
+
+    Let $\gamma := \LL / \sim_\alpha $. Then $\gamma$ is of rank $\nu - \alpha$.
+
+    Let $C$ be a good coloring of $\gamma$.
+
+    Then we can write $\LL = \sum_{i \in \gamma} L_i$ where each $L_i$ is an $\alpha$-class.
+    
+    Moreover, over each $L_i$, the coloring is monochromatic.
+
+    Let $\varphi$ be a formula of qd rank $r$ over $R_C$.
+    
+    Then, by the composition theorem, there exists a formula $\psi$ such that
+
+    $$
+    \LL \vDash \varphi
+    \iff
+    \gamma, \setcomp{Q_\tau}_\tau \vDash \psi 
+    $$
+
+    where $Q_\tau := \setcomp{L_i : L_i \vDash \tau}$, where $\tau$ is an $r$-rank.
+
+    To decide $\varphi$ over all $\LL$, we need to decide $\psi$ over all the possible combinations of
+    $\gamma$ and $\setcomp{Q_\tau}_\tau$ that arise from $\LL$.
+
+    Now clearly, the possible values of $\gamma$ are all the CLOs.
+    
+    Now, we need to calculate all the values of $\tau$ for which there exists some equivalence class of some $\LL$
+    that satisfies $\tau$.
 \end{proof}
+
 
 \end{document}

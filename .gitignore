@@ -1,10 +1,14 @@
 *
 
+# Homework
+!*.txt
+
 # Source
-!Orders.tex
+!*.tex
+!*.inc
 
 # Output
-!Orders.pdf
+*.pdf
 
 # Build script
 !build.sh

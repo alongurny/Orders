@@ -1,0 +1,200 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{blindtext}
+\usepackage{hyperref}
+%\hypersetup{hidelinks,breaklinks}
+\usepackage{mathcommand}
+\usepackage{amssymb,amsfonts,amsmath,amsthm,mdwlist,verbatim}
+\usepackage{cleveref}
+\usepackage[notion,quotation]{knowledge}
+\usepackage{marginnote}
+\usepackage{paralist}
+\knowledgeconfigure{anchor point shape=tiny corner,anchor point color=blue}
+\bibliographystyle{plainurl}
+
+\newcommand{\MSO}{\mathit{MSO}}
+\def\Int{\Gamma}
+\def\fS{\mathbb{S}}
+\def\nat{\mathbb{N}}
+
+\def\MM{\mathit{MM}}
+\def\NM{\mathit{NM}}
+\def\M{\mathit{M}}
+\def\W{\mathit{W}}
+\def\Mn{\mathit{MNx}}
+\def\L{\mathcal{L}}
+%\input{macros.tex}
+\usepackage{mathtools}   % This package is used only to declare \osum.
+\DeclareMathOperator*{\osum}{\mathrlap{\hspace{1ex}\circ}{\sum}}
+\def\om{\omega}
+\def\Chom{\mathit{Cof}_\om}
+\def\Dcof{\mathit{DCof}_\om}
+\def\WN{\mathit{\Omega\mathit{-Nested}}}
+\def\cM{{\mathcal{M}}}
+\def\Cofcl{\mathit{Class_{Cof}}}
+\def\Nats{\mathbb{N}}
+\def\aN{a^{new}}
+\def\bN{b^{new}}
+\def\stp{\Rightarrow_{FS}}
+\def\stpb{\Rightarrow^!_{FS}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+
+\newcommand{\reso}[1]{|_{({#1}]}}
+\newcommand{\resc}[1]{|_{[{#1}]}}
+
+\newcommand{\rresc}[1]{|_{[{#1})}}
+\newcommand{\resO}[1]{|_{({#1})}}
+\def\Cl{\mathit{CL}}
+\def\vp{\varphi}
+\def\vrho{\varrho}
+\def\vtheta{\vartheta}
+\def\CB{\mathit{CB}}
+\def\Hr{\mathit{HR}}
+\def\Mhr{\mathit{MHR}}
+
+\def\mM{{\mathcal{M}}}
+\def\cN{{\mathcal{N}}}
+\def\cL{{\mathcal{L}}}
+\def\cF{{\mathcal{F}}}
+\def\cS{{\mathcal{S}}}
+\def\cW{{\mathcal{W}}}
+\def\cU{{\mathcal{U}}}
+\def\cT{{\mathcal{T}}}
+
+\def\yield{{\mathit{yield}}}
+\def\type{{\mathit{type}}}
+
+\def\MTh{\mathit{MTH}}
+\def\Th{\mathit{Th}}
+\def\CoP{\mathit{Cof}_\om}
+ \def\cl{\mathit{Cl}}
+ \def\Intpr{\mathit{Intr}}
+  \def\FS{\mathit{FS}}
+    \def\SBP{\mathit{SBS}}
+      \def\GSBS{\mathit{GSBS}}
+       \def\BP{\mathit{BS}}
+      \def\OTP{\mathit{OTP}}
+         \def\Col{\mathit{Collapse}}
+\def\RELIM{{\mathrm{REPLACELIMIT}}}
+\newrobustcmd\alex[1]{\textcolor{teal}{A: #1}}
+\let\ALEX\alex
+\newrobustcmd\thomas[1]{\textcolor{violet}{T: #1}}
+\let\THOMAS\thomas
+
+%\input{knowledge-main}
+
+%\def\restr{\downharpoonright}
+\def\restr{|_}
+
+\newcommand{\N}{\mathbb{N}}
+\usepackage{cleveref,thm-restate}
+\def\Rt{\mathit{RightT}}
+\def\lang{\langle}
+\def\rang{\rangle}
+\def\B{\mathit{Big}}
+\def\SBS{\mathit{SBS}}
+\def\BSL{\mathit{BSL}}
+\def\BS{\mathit{BS}}
+\def\sub{\subseteq}
+
+\def\hsuc{\mathit{Hsuc}}
+\def\vsuc{\mathit{Vsuc}}
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{thm}[lemma]{Theorem}
+\newtheorem{dfn}[lemma]{Definition}
+\newtheorem{cor}[lemma]{Corollary}
+\newtheorem{definition}[lemma]{Definition}
+\newtheorem{theorem}[lemma]{Theorem }
+\newtheorem{examp}[lemma]{Example}
+\newtheorem{remark}[lemma]{Remark}
+\newtheorem*{nota}{Notations}
+\newtheorem{prop}[lemma]{Proposition}
+%\newtheorem{example}[theorem]{Example}
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newenvironment{claimproof}[1]{\par\noindent\underline{Proof:}\space#1}{\hfill $\blacksquare$}
+
+\newcommand{\intreebs}{\mathit{Int} _{tree\rightarrow bs}}
+
+\def\vp{\varphi}
+\def\rar{\rightarrow}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\T}{{\mathfrak T}}
+\def\Ntriv{\mathit{Non-singl}}
+\def\Def{\mathit{Im}}
+\def\Im{\mathit{Im}}
+\def\otp{\mathit{otp}}
+\def\pIm{\mathit{Im}^{-1}}
+\newcommand{\dom}{\partial}
+\newcommand{\Power}{{\mathbb P}}
+\newcommand{\A}{{\mathfrak A}}
+\newcommand{\qr}{{\mathrm{qr}}}
+\newcommand{\Formula}[2]{{\mathfrak{Form}^{#1}_{#2}}}
+\newcommand{\Hint}[2]{H^{#1}_{#2}}
+\newcommand{\tup}[1]{\mbox{$\overline {#1}$}}
+\newcommand{\Typ}[2]{{\mathrm{type}^{#1}_{#2}}}
+\newcommand{\typ}[1]{{\mathrm{type}^{#1}}}
+\newcommand{\frakB}{\mathfrak{B}}
+\def\BWT{\mathit{{BWT}}}
+\def\vX{\overline{X}}
+\def\sm{\mathit{small}}
+ 
+\knowledgenewcommand\hrank[1]{\cmdkl{\mathsf{Hrank}}_{#1}}
+
+\knowledgenewcommand\OTp{\mathit{\cmdkl{OTP}}} % For trees
+\knowledgenewcommand\subtree[2]{#1^{#2\cmdkl{\uparrow}}}
+\knowledgenewcommand\downclosure[1]{#1{\cmdkl{\downarrow}}}
+\knowledgenewcommand\llex{\mathbin{\cmdkl{<_{\mathrm{lex}}}}}
+
+%\knowledgenewcommand\BWT{\mathit{\cmdkl{BWT}}}
+\knowledgenewcommand\pcbrank[1]{\cmdkl{\mathsf{CBrank}}_{#1}}
+\knowledgenewcommand\otP[1]{\cmdkl{\mathsf{otp}_{#1}}}
+\knowledgenewcommand\cbrank{\cmdkl{\mathsf{CBrank}}}
+%\knowledgenewcommand\hrank{\cmdkl{\mathsf{Hrank}}}
+
+\def\Big{\mathit{Big}}
+\def\P{\mathit{P}}
+\def\D{\mathit{D}}
+\title{$\MSO$ of with Hausdorff rank of intervals}
+%\author{Thomas Colcombet and Alexander Rabinovich}
+\begin{document}
+\maketitle
+\begin{abstract}
+%   Ordinal fundamental sequences are crucial in set theory and   logic. 
+% We investigate the Monadic Second-Order theory   of systems of fundamental sequences.
+\end{abstract}
+\tableofcontents
+\input{intro-hr.inc}
+
+
+ 
+%\input{trees}
+ 
+ 
+%\input{appendix}
+
+ \bibliography{ref}
+
+
+\end{document}
+\input{introduction}
+ \input{prel-mso-sbs}
+\input{sect-undecidability}
+
+\input{sect-elements-of-composition}
+\input{sect-decidability-definability}
+ %\section{Decidability and Definable Model Property for $\SBS$}\label{sect:decid-definability}
+\input{canonical}
+ %\section{Monadic Theory of $SBS[\alpha]$ and $\BS[\alpha]$}
+\input{code}
+\input{sect-invariant}\label{sect:invariant}
+ % \section{Bi-Interpretations  of Simple  Bachmann Systems  in  Trees}\label{sect:bi-inter}
+\input{uniformization}
+\input{section-bi-interpretation}
+\input{unif-sbs-rt}
+\input{sect-from-sbs-bs}
+
+ \bibliography{ref}
+\end{document}

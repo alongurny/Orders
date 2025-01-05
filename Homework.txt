@@ -1,0 +1,39 @@
+
+1. Calculate the effective bound M(n)
+for which the following is true:
+
+If \phi is true in a
+structure of rank > M(n),
+it is true for infinitely many ranks.
+
+2. Prove that if satisfiable in
+order of rank omega,
+it is satisfiable in order of 
+every infinite rank.
+
+3. Prove/disprove
+the same thing, but for maximal left-right sets.
+
+4. Fix the definition such that $\omega^\omega$ is NOT
+an annoying edge case.
+Probably should be closed under finite sums.
+
+
+
+# Solution
+The definition is:
+For a finite $\zeta$ the rank is $0$.
+a finite sum of $\omega$ and $-\omega$ of rank $< \alpha$ has rank $\le \alpha$.
+
+
+1. \phi satisfiable in C+[alpha]_{R/L/R+L} decidable.
+2. The same, but in finite sums of the obove.
+3. The same, but omega sum of the above.
+
+4. Claim:
+Let L be an order.
+Then L = \sum L_i where
+rk+ L_i <= \alpha + 1
+and there exist no non-maximal L_i, L_i+1
+such that L_i is non-maximal on the right, and
+L_i+1 is non-maximal on the left.
