@@ -1,11 +1,10 @@
-*
+**/*
 
 # Homework
 !*.txt
 
 # Source
-!*.tex
-!*.inc
+!src/*.tex
 
 # Output
 *.pdf
