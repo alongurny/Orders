@@ -1,0 +1,347 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{todonotes}
+
+% Theorems
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{observation}{Observation}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{claim}{Claim}
+
+% Definitions
+\newtheorem{definition}{Definition}
+\newtheorem{definitions}{Definitions}
+\newtheorem{notation}{Notation}
+\newtheorem{notations}{Notations}
+
+% Delimiters
+\newcommand{\parens}[1]{\left( {#1} \right)}
+\newcommand{\brackets}[1]{\left[ {#1} \right]}
+\newcommand{\braces}[1]{\left\{ {#1} \right\}}
+
+% Macros
+\newcommand{\setcomp}[1]{\braces{#1}}
+\newcommand{\hrank}[1]{\mathbf{hrank}\left( #1 \right)}
+\newcommand{\bigforall}{\mbox{\Large $\mathsurround0pt\forall$}} 
+
+% Letters
+\newcommand{\agemo}{-\omega}
+\newcommand{\otp}{\mathbf{otp}}
+\newcommand{\fso}{\mathbf{FSO}}
+\newcommand{\mso}{\mathbf{MSO}}
+\newcommand{\bounded}{\mathbf{bounded}}
+\newcommand{\pp}{\mathbf{P}}
+\newcommand{\qq}{\mathbf{Q}}
+
+% Sets
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\author{Alon Gurny}
+\title{Orders}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% Definition of the Hausdorff rank
+\begin{definition}
+  Let $L$ be a linear order.
+
+  We define $\hrank{L} \le 0$ iff $L$ is finite.
+
+  Let $\alpha > 0$ be an ordinal.
+
+  We define $\hrank{L} \le \alpha$
+  iff $L = \sum_{i \in I} L_i$ for some linear order $I$,
+  where $\hrank{L_i} < \alpha$ and $I$ is a finite sum of $1$, $\omega$ and
+  $\agemo$.
+
+  We write $\hrank{L} = \alpha$ iff $\alpha$ is the
+  least ordinal such that $\hrank{L} \le \alpha$.
+
+  We write $\hrank{L} = \bot$ iff there is no ordinal $\alpha$ such that
+  $\hrank{L} \le \alpha$.
+\end{definition}
+
+We will be working with scattered linear orders.
+
+\begin{claim}
+  Let $L$ be a countable linear order.
+
+  Then $\hrank{L}$ is defined iff $L$ is scattered.
+\end{claim}
+
+\begin{proof}
+  To prove $\implies$ is easy, as a scattered sum of scattered linear orders is scattered.
+
+  For the other direction... TODO.
+\end{proof}
+
+\begin{notations}
+  Let $\mathcal{H}_{< \alpha}$ be the class of linear orders of Hausdorff rank
+  $< \alpha$ and $\mathcal{H}_{=\alpha}$ be the class of linear orders of
+  Hausdorff rank $= \alpha$.
+
+  Let $\mathcal{B}_{< \alpha}$ be the class of linear orders
+  of Hausdorff rank $< \alpha$ on bounded subintervals.
+
+  Let $\mathcal{Q}_{< \alpha} = \setcomp{L : 1 + L \in \mathcal{B}_{< \alpha}}$.
+
+  Let $\mathcal{R}_{< \alpha} = \setcomp{L : L + 1 \in \mathcal{B}_{< \alpha}}$.
+
+  Clearly,
+  $\mathcal{H}_{< \alpha}, \mathcal{Q}_{< \alpha}, \mathcal{R}_{< \alpha} \subseteq \mathcal{B}_{< \alpha}$.
+\end{notations}
+
+\begin{claim}
+  $ \mathcal{Q}_{< \alpha} \cap \mathcal{R}_{< \alpha} = \setcomp{L : 1 + L + 1 \in \mathcal{B}_{< \alpha}}$.
+\end{claim}
+
+\begin{proof}
+  The $\supseteq$ direction is obvious. The $\subseteq$ direction follows
+  from the star property of $\mathcal{B}_{< \alpha}$.
+\end{proof}
+
+\begin{lemma}
+  Let $L$ be a linear order. Then there exists a largest subinterval $M \subseteq L$ such that
+  $x \in M$ and $M \in \mathcal{B}_{< \alpha}$.
+\end{lemma}
+
+\begin{definition}
+  Let $L$ be a linear order. Let $x \in L$. We define $M_{\alpha}[x]$ to be the largest subinterval
+  $M \subseteq L$ such that $x \in M$ and $M \in \mathcal{B}_{< \alpha}$.
+
+  We define $\sim_{\alpha}$ to be the equivalence relation on $L$ such that $x \sim_{\alpha} y$ iff
+  $M_{\alpha}[x] = M_{\alpha}[y]$.
+\end{definition}
+
+\begin{lemma}
+  Let $L$ be a linear order. Let $P, Q, R \subseteq L$ be relations, such that:
+
+  \begin{itemize}
+    \item $P$ represents $\sim_{\alpha}$ on $L$.
+    \item $Q$ is such that $x \in Q$ iff $M_{\alpha}[x] \in \mathcal{Q}_{< \alpha}$.
+    \item $R$ is such that $x \in R$ iff $M_{\alpha}[x] \in \mathcal{R}_{< \alpha}$.
+  \end{itemize}
+
+  Then for some linear order $I$ there exists a decomposition
+  $L = \sum_{i \in I} L_i$ such that $L_i \in \mathcal{B}_{< \alpha}$ for all $i \in I$,
+  $L_i$ is monochromatic with respect to $P$, $Q$ and $R$.
+
+  Furthermore, let $\tau_i$ be the $n$-type of $L_i, p_i, q_i, r_i$ in $\mso[p, q, r]$,
+  where $p_i = 1_{L_i \subseteq P}$, $q_i = 1_{L_i \subseteq Q}$ and $r_i = 1_{L_i \subseteq R}$.
+  Then the following hold
+  \begin{itemize}
+    \item if $i$ has a successor, $p(\tau_i) \ne p(\tau_{i+1})$
+    \item if $i$ has a successor, either $r(\tau_i) = 0$ or $q(\tau_{i+1}) = 0$
+  \end{itemize}
+\end{lemma}
+\begin{proof}
+  Take $I = L / \sim_{\alpha}$.
+
+  Then $L = \sum_{i \in I} L_i$ where $L_i$ is the $\sim_{\alpha}$-equivalence class of $i$.
+
+  Then $L_i$ is monochromatic with respect to $P$, $Q$ and $R$.
+
+  The only thing left to prove is the last two conditions. The first follows from
+  the fact that $P$ represents $\sim_{\alpha}$.
+
+  The second follows because if it were not the case, then $L_i$ and $L_{i+1}$ would
+  be the same $\sim_{\alpha}$-equivalence class.
+\end{proof}
+
+\begin{lemma}
+  Let $I$ be a linear order. Let $n \in \NN$. Let $p, q, r$ be boolean variables.
+
+  Let $\tau_i$ be an assignment of satisfiable $n$-types in $\mso[p, q, r]$ for all $i \in I$. Assume that
+  \begin{itemize}
+    \item if $i$ has a successor, $p(\tau_i) \ne p(\tau_{i+1})$
+    \item if $i$ has a successor, either $r(\tau_i) = 0$ or $q(\tau_{i+1}) = 0$
+  \end{itemize}
+
+  Then there exists a linear order $L$ and $P, Q, R \subseteq L$ such that:
+  \begin{itemize}
+    \item $P$ represents $\sim_{\alpha}$ on $L$.
+    \item $Q$ is such that $x \in Q$ iff $M_{\alpha}[x] \in \mathcal{Q}_{< \alpha}$.
+    \item $R$ is such that $x \in R$ iff $M_{\alpha}[x] \in \mathcal{R}_{< \alpha}$.
+  \end{itemize}
+
+  such that for all $i \in I$, $L_i$ is a $\sim_{\alpha}$-equivalence class of $L$,
+  and is thus monochromatic with respect to $P$, $Q$ and $R$.
+
+  Furthermore, the $n$-type of $L_i, p_i, q_i, r_i$ in $\mso[p, q, r]$ is $\tau_i$, where
+  $p_i = 1_{L_i \subseteq P}$, $q_i = 1_{L_i \subseteq Q}$ and $r_i = 1_{L_i \subseteq R}$,
+\end{lemma}
+
+\begin{proof}
+  Since $\tau_i$ is satisfiable, we can take $L_i$ to be a linear order of $n$-type
+  $\tau_i$ such that:
+
+  \begin{itemize}
+    \item If $q(\tau_i) = r(\tau_i) = 1$, then $L_i \in \mathcal{Q}_{< \alpha} \cap \mathcal{R}_{< \alpha}$.
+    \item If $q(\tau_i) = 1$ and $r(\tau_i) = 0$, then $L_i \in \mathcal{Q}_{< \alpha} - \mathcal{R}_{< \alpha}$.
+    \item If $q(\tau_i) = 0$ and $r(\tau_i) = 1$, then $L_i \in \mathcal{R}_{< \alpha} - \mathcal{Q}_{< \alpha}$.
+    \item If $q(\tau_i) = r(\tau_i) = 0$, then $L_i \in \mathcal{B}_{< \alpha} - (\mathcal{Q}_{< \alpha} \cup \mathcal{R}_{< \alpha})$.
+  \end{itemize}
+
+  Let $L = \sum_{i \in I} L_i$.
+  
+  By definition each $L_i$ is in $\mathcal{B}_{< \alpha}$. We need to prove
+  that each $L_i$ is a largest $\mathcal{B}_{< \alpha}$-subinterval in $L$.
+
+  On the contrary, suppose that there exist $i' \ne i$ such that $[L_i, L_{i'}] \in \mathcal{B}_{< \alpha}$.
+  WLOG, $L_i < L_{i'}$.
+  
+  Since $I$ is scattered, take some $i \le a < b \le i'$ such that 
+  there is no element between $a$ and $b$ in $I$.
+
+  Then $L_a \in \mathcal{R}_{< \alpha}$ and $L_b \in \mathcal{Q}_{< \alpha}$, in contradiction.
+\end{proof}
+
+\begin{lemma}
+  Let $L$ be a scattered countable linear order.
+
+  Let $J \subseteq L$ be some subinterval in $\mathcal{B}_{< \alpha}$.
+
+  Then $\hrank{J} \le \alpha$.
+
+  Furthermore, $\hrank{J} < \alpha$ iff $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
+\end{lemma}
+
+\begin{proof}
+  Let $\setcomp{x_i}_{i \in I} \subseteq J$ be a bidirectional, cofinal, weakly monotone $I$-sequence in $J$, i.e,
+  $x_i \le x_j$ if $i \le j$ for $I \subseteq \ZZ$.
+
+  Write $J = \sum_{i \in I} [x_i, x_{i+1}]$. Then every $[x_i, x_{i+1}]$ is of Hausdorff rank $< \alpha$.
+
+  Thus, $\hrank{J} \le \alpha$.
+
+  Suppose $\hrank{J} < \alpha$, then obviously $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
+
+  Conversely, suppose $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
+
+  Then $1 + J + 1 \in \mathcal{B}_{< \alpha}$. But it is a bounded interval,
+  so $\hrank{1 + J + 1} < \alpha$ and thus $\hrank{J} < \alpha$.
+\end{proof}
+
+
+\begin{lemma}
+  Let $J \subseteq L$ be a subinterval.
+
+  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals.
+\end{lemma}
+
+\begin{proof}
+  From the previous lemma, it is clear that if $J$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals,
+  then $\hrank{J} \le \alpha$, since the rank bound is preserved under finite sums.
+
+  Conversely, suppose $\hrank{J} \le \alpha$.
+
+  If $J = \sum_{i \in \ZZ} J_i$ for some $J_i$ of Hausdorff rank $< \alpha$,
+  take $x, y \in J$. Then let $x \in J_{i_1}$ and $y \in J_{i_2}$.
+  
+  Then $[x, y] \subseteq \sum_{i \in [i_1, i_2]} J_i$. But the last sum is of rank $< \alpha$
+  and thus $[x, y]$ is of rank $< \alpha$. That is, $J \in \mathcal{B}_{< \alpha}$.
+
+  Since every subinterval of rank $\le \alpha$ is a finite sum of $\ZZ$-sums of intervals of rank $< \alpha$,
+  we are done.
+\end{proof}
+
+\begin{corollary}
+  Let $J \subseteq L$ be a subinterval.
+
+  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of largest $\mathcal{B}_{< \alpha}$-subintervals in $L$
+\end{corollary}
+
+
+\begin{lemma}
+  Let $\mathcal{C} \in \setcomp{\mathcal{Q}_{< \alpha}, \mathcal{R}_{< \alpha}}$.
+
+  There exists a computable function $f : \NN \to \NN$ such that for all $n \in \NN$,
+  for every ordinal $\alpha \ge f(n)$,
+  and for every linear order $L$ with $\hrank{L} \ge f(n)$,
+  there exists some linear order $L' \in \mathcal{C}$ such that
+  $L \equiv_n L'$.
+\end{lemma}
+
+\begin{corollary}
+  Over scattered with interpretations of $P$, $Q$ and $R$ as above, the properties
+  $\hrank{\cdot} \le \alpha$, $\hrank{\cdot} < \alpha$ and $\hrank{\cdot} = \alpha$
+  over subintervals are all expressible in $\mso[P, Q, R]$.
+\end{corollary}
+
+\begin{proof}
+  For $\hrank{\cdot} \le \alpha$ and $\hrank{\cdot} < \alpha$, we can use the previous lemmas.
+
+  For $\hrank{\cdot} = \alpha$, we can use the previous two.
+\end{proof}
+
+\begin{theorem}
+  There is a an algorithm solving satisfiability for $\mso[P, Q, R]$ over scattered linear orders,
+  given an oracle which solves the satisfiability problem for $\mso$ over scattered linear orders.
+\end{theorem}
+
+\begin{proof}
+  By the decomposition theorem, there exists a translation,
+  that given an $\mso[P, Q, R]$ formula $\varphi$ of quantifier-depth $n$.
+  outputs an $\mso[\setcomp{X_\tau}_\tau]$ formula $\psi$.
+
+  Let $P_L, Q_L, R_L$ be the interpretations of $P, Q, R$ on $L$.
+
+  Then
+
+  $$
+    L, P := P_L, Q := Q_L, R := R_L \models \varphi \iff I, \setcomp{X_\tau := I_\tau}_\tau \models \psi
+  $$
+
+  Where $I_\tau = \setcomp{i \in I : L_i \models \tau}$ for every $n$-type $\tau$.
+
+  Let $T$ be the set of $n$-types in $\mso[p, q, r]$ which satisfy
+  $q(\tau) = 1 \iff \tau \in \mathcal{Q}_{< \alpha}$ and $r(\tau) = 1 \iff \tau \in \mathcal{R}_{< \alpha}$.
+
+  Let $S = \setcomp{(\tau_1, \tau_2) : p(\tau_1) \ne p(\tau_2) \land (r(\tau_1) = 0 \lor q(\tau_2) = 0)}$.
+
+  Then $T$ and $S$ can be calculated using the oracle.
+
+  Then $\psi$ is an $\mso[T, S]$ formula.
+
+  Then we define an $\mso[p, q, r]$ formula $\psi'$ as follows:
+
+  $\psi'$ claims that there exists a partition (with possible empty sets) $\setcomp{Y_\tau}_{\tau}$ of $I$ such that
+  \begin{itemize}
+    \item Every $i \in I$ is in some $Y_\tau$ for $\tau \in T$.
+    \item If $i' = i+1$ in $I$, then for some $(\tau_1, \tau_2) \in S$, $i \in Y_{\tau_1}$ and $i' \in Y_{\tau_2}$.
+  \end{itemize}
+
+  Now we claim that $\varphi$ is satisfiable in some linear order, iff $\psi'$ is satisfiable in some
+  linear order.
+  
+  Suppose $\varphi$ is satisfiable in some linear order $L$.
+
+  Take a decomposition $L = \sum_{i \in I} L_i$ as in lemma 2.
+
+  Then $\psi$ holds over the assignment $X_\tau := I_\tau$. But by lemma 2, this assignment
+  satisfies the condition required for $\psi'$ to hold. Then $\psi'$ holds over $I$.
+
+  Conversely, suppose $psi'$ holds in $I$.
+
+  Let $X_\tau := Z_\tau$ be the assignment that is guaranteed by $psi'$.
+
+  Let $tau_i$ be the unique $\tau$ such that $i \in Z_\tau$.
+
+  Then the conditions for lemma 3 are guaranteed.
+
+  Thus, take $L$ as in lemma 3. Then $\psi$ holds over $I$ when we set $X_i := Z_\tau$.
+  But $Z_\tau = I_\tau$ for all $\tau$, so $\varphi$ holds over $L$.
+\end{proof}
+
+\end{document}
