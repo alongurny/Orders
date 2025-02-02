@@ -52,6 +52,15 @@
 
 \maketitle
 
+\section{Properties}
+\begin{lemma}
+  Let $\pp$ be an additive property of linear orders.
+
+  Then the property $\bounded-\pp$ is has the star property.
+\end{lemma}
+
+\section{Hausdorff Rank}
+
 % Definition of the Hausdorff rank
 \begin{definition}
   Let $L$ be a linear order.
@@ -67,9 +76,6 @@
 
   We write $\hrank{L} = \alpha$ iff $\alpha$ is the
   least ordinal such that $\hrank{L} \le \alpha$.
-
-  We write $\hrank{L} = \bot$ iff there is no ordinal $\alpha$ such that
-  $\hrank{L} \le \alpha$.
 \end{definition}
 
 We will be working with scattered linear orders.
@@ -100,15 +106,28 @@ We will be working with scattered linear orders.
 
   Clearly,
   $\mathcal{H}_{< \alpha}, \mathcal{Q}_{< \alpha}, \mathcal{R}_{< \alpha} \subseteq \mathcal{B}_{< \alpha}$.
+
+  Clearly,
+  $\mathcal{H}_{< \alpha + 1} = \setcomp{L : \hrank{L} \le \alpha}$.
 \end{notations}
 
 \begin{claim}
-  $ \mathcal{Q}_{< \alpha} \cap \mathcal{R}_{< \alpha} = \setcomp{L : 1 + L + 1 \in \mathcal{B}_{< \alpha}}$.
+  The following are equal:
+  
+  \begin{enumerate}
+    \item $\mathcal{H}_{< \alpha}$
+    \item $\setcomp{L : 1 + L + 1 \in \mathcal{B}_{< \alpha}}$.
+    \item $\mathcal{Q}_{< \alpha} \cap \mathcal{R}_{< \alpha}$
+  \end{enumerate}
+  
 \end{claim}
 
 \begin{proof}
-  The $\supseteq$ direction is obvious. The $\subseteq$ direction follows
-  from the star property of $\mathcal{B}_{< \alpha}$.
+  The equivalence of 1 and 2 is clear, and obviously 
+  2 implies 3.
+
+  The other direction (3 implies 2) follows from the star property
+  of $\mathcal{B}_{< \alpha}$.
 \end{proof}
 
 \begin{lemma}
@@ -233,11 +252,12 @@ We will be working with scattered linear orders.
   so $\hrank{1 + J + 1} < \alpha$ and thus $\hrank{J} < \alpha$.
 \end{proof}
 
-
 \begin{lemma}
   Let $J \subseteq L$ be a subinterval.
 
   Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals.
+
+  Note: this lemma does not work if we take a general $\qq$ property.
 \end{lemma}
 
 \begin{proof}
@@ -262,16 +282,77 @@ We will be working with scattered linear orders.
   Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of largest $\mathcal{B}_{< \alpha}$-subintervals in $L$
 \end{corollary}
 
+\begin{lemma}
+  There exists a global computable function $f : \NN \to \NN$ such that for all $n \in \NN$,
+  The ordinal-sequence $A_\beta$ of all $n$-types satisfiable 
+  in $\mathcal{H}_{< \beta}$ stabilizes at $f(n)$,
+  i.e, $A_{\beta} = A_{f(n)}$ for all $\beta \ge f(n)$.
+\end{lemma}
+
+\begin{proof}
+  Let $\tau$ be an $n$-type. We prove by induction
+  on $\beta \ge f(n)$ that $\tau \in A_{f(n)}$.
+
+  The base clear is clear as $\beta = f(n)$ implies $\tau \in A_{f(n)+1}$,
+  that is $\tau \in A_{f(n)}$.
+
+  The induction step is also clear, because if $\beta > f(n)$,
+  then we can write $\tau = \sum_{i \in I} \tau_i$ where $\tau_i$
+  of rank $< \beta$, and thus by induction $\tau_i \in A_{f(n)}$,
+  thus $\tau \in A_{f(n)+1}=A_{f(n)}$.
+\end{proof}
 
 \begin{lemma}
-  Let $\mathcal{C} \in \setcomp{\mathcal{Q}_{< \alpha}, \mathcal{R}_{< \alpha}}$.
-
-  There exists a computable function $f : \NN \to \NN$ such that for all $n \in \NN$,
-  for every ordinal $\alpha \ge f(n)$,
+  For every ordinal $\alpha \ge f(n)$,
   and for every linear order $L$ with $\hrank{L} \ge f(n)$,
+  and for every class $\mathcal{C}$ which is one of:
+  \begin{enumerate}
+    \item $\mathcal{H}_{< \alpha}$,
+    \item $\mathcal{Q}_{< \alpha} - \mathcal{R}_{< \alpha}$,
+    \item $\mathcal{R}_{< \alpha} - \mathcal{Q}_{< \alpha}$,
+    \item $\mathcal{B}_{< \alpha} - (\mathcal{Q}_{< \alpha} \cup \mathcal{R}_{< \alpha})$.
+  \end{enumerate}
   there exists some linear order $L' \in \mathcal{C}$ such that
   $L \equiv_n L'$.
 \end{lemma}
+
+\begin{proof}
+  Let $A_k$ be the set of all satisfiable $n$-types of rank $< k$.
+  Then $A_{k+1}$ is the closure of $A_k$ under finite sums
+  of $\subseteq \ZZ$-sums.
+
+  The sequence $A_0 \subseteq A_1 \subseteq \ldots$ stabilizes at some point.
+  Suppose $A_{f(n)} = A_{f(n) + 1}$.
+
+  Suppose $L$ has rank $\beta \ge f(n)$.
+
+  Write $L = \sum_{i \in I} L_i$ where $\hrank{L_i} < \beta$, and 
+  $I$ is a finite sum of $\subseteq \ZZ$.
+
+  If $\beta$ is a limit ordinal, then there must be
+  a bi-cofinal sequence $i_{k}$ such that $\hrank{L_{i_k}} \to \beta$.
+
+  If $\beta$ is a successor ordinal, then $\hrank{L_i} = \beta - 1$ must hold
+  infinitely many times.
+
+  Now we proceed by induction on $\alpha \ge f(n)$.
+
+  \begin{enumerate}
+    \item If $\mathcal{C} = \mathcal{H}_{< \alpha}$, we take $L' \in A_{f(n)}$,
+          which necessarily has rank $< f(n) \le \alpha$.
+    \item If $\mathcal{C} = \mathcal{Q}_{< \alpha} - \mathcal{R}_{< \alpha}$,
+          we take an $\omega$-sequence $\alpha_k$ such that $\alpha_k \to \alpha$
+          (if $\alpha$ is a limit ordinal) or $\alpha_k = \alpha-1$
+          (if $\alpha$ is a successor ordinal).
+
+          Then we take $L' = \sum_{i \in \omega} L'_i$ where $\hrank{L'_{i_k}} = \alpha_k$
+          (and $\hrank{L'_i} = \hrank{L_i}$ for every other $i$).
+          Then $L' \in \mathcal{Q}_{< \alpha} - \mathcal{R}_{< \alpha}$,
+          but also $L' \equiv_n L$.
+    \item This is just the same with $\agemo$ instead of $\omega$.
+    \item This is just the same with $\ZZ$ instead of $\agemo$.
+  \end{enumerate}
+\end{proof}
 
 \begin{corollary}
   Over scattered with interpretations of $P$, $Q$ and $R$ as above, the properties
