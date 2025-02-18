@@ -10,6 +10,7 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
 \newtheorem{observation}{Observation}
+\newtheorem{observations}{Observations}
 \newtheorem{lemma}{Lemma}
 \newtheorem{proposition}{Proposition}
 \newtheorem{conjecture}{Conjecture}
@@ -102,6 +103,12 @@
   $L \in \pp$ and $L^R \in \pp$ imply that $L$ is finite.
 \end{definition}
 
+% Definition of a good property
+\begin{definition}
+  A property $\pp$ of linear orders is \emph{good} if it is 
+  monotone, additive and contains at least one infinite linear order.
+\end{definition}
+  
 % Lemma: $\bounded-\pp$ is a star property
 \begin{lemma}
   Let $\pp$ be an additive property of linear orders.
@@ -113,38 +120,31 @@
 
 % Definition of the Hausdorff rank
 \begin{definition}
-  Let $\qq$ be a property of linear orders.
+  Let $\qq$ be a good property of linear orders.
 
   We define a property $\qq^\alpha$ for every ordinal $\alpha$ as follows:
+  
+  \begin{itemize}
+    \item $\qq^0$ is the class of finite linear orders.
+    \item For $\alpha > 0$, $\qq^\alpha$ is the class of linear orders $L$ such that
+          $L = \sum_{i \in I} L_i$ for some $I \in \qq$ where 
+          for all $i \in I$, $L_i \in \qq^{\beta_i}$ for some $\beta_i < \alpha$
+  \end{itemize}
 
-  Let $L$ be a linear order.
-
-  We define $\hrank{L} \le 0$ iff $L$ is finite.
-
-  Let $\alpha > 0$ be an ordinal.
-
-  We define $\hrank{L} \le \alpha$
-  iff $L = \sum_{i \in I} L_i$ for some linear order $I$,
-  where $\hrank{L_i} < \alpha$ and $I$ is a finite sum of $1$, $\omega$ and
-  $\agemo$.
-
-  We write $\hrank{L} = \alpha$ iff $\alpha$ is the
-  least ordinal such that $\hrank{L} \le \alpha$.
+  We define $\hrank{L} = \alpha$ iff $\alpha$ is the
+  least ordinal such that $L \in \qq^\alpha$. This is a \emph{partial} map
+  from linear orders to ordinals.
 \end{definition}
 
-We will be working with countable linear orders.
+\begin{observations}
+  We claim the following without proof:
 
-\begin{claim}
-  Let $L$ be a countable linear order.
-
-  Then $\hrank{L}$ is defined iff $L$ is scattered.
-\end{claim}
-
-\begin{proof}
-  To prove $\implies$ is easy, as a scattered sum of scattered linear orders is scattered.
-
-  For the other direction... TODO.
-\end{proof}
+  \begin{itemize}
+    \item $\qq^1 = \qq$.
+    \item For all $\alpha$, $\qq^\alpha$ is a good property.
+    \item $\qq^\alpha \subsetneq \qq^\beta$ iff $\alpha < \beta$.
+  \end{itemize}
+\end{observations}
 
 \begin{notations}
   Let $\mathcal{H}_{\alpha}$ be the class of linear orders of Hausdorff rank
