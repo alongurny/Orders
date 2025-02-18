@@ -28,7 +28,7 @@
 
 % Macros
 \newcommand{\setcomp}[1]{\braces{#1}}
-\newcommand{\hrank}[1]{\mathbf{hrank}\left( #1 \right)}
+\newcommand{\hrank}[1]{\mathbf{hrank}_{\qq}\left( #1 \right)}
 \newcommand{\bigforall}{\mbox{\Large $\mathsurround0pt\forall$}} 
 
 % Letters
@@ -44,6 +44,9 @@
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\ZZ}{\mathbb{Z}}
 
+% Types
+\newcommand{\type}[2]{\mathbf{type}_{#1} \brackets{#2}}
+
 \author{Alon Gurny}
 \title{Orders}
 \date{\today}
@@ -53,6 +56,53 @@
 \maketitle
 
 \section{Properties}
+% Definition of a property
+\begin{definition}
+  A \emph{property} $\pp$ of linear orders is a class of linear orders which
+  is closed under isomorphism.
+\end{definition}
+
+% Definition of a monotone property
+\begin{definition}
+  A property $\pp$ of linear orders is \emph{monotone} if for every linear order $L$,
+  $L \in \pp$ implies that every suborder of $L$ is in $\pp$.
+\end{definition}
+
+% Definition of a symmetric property
+\begin{definition}
+  A property $\pp$ of linear orders is \emph{symmetric} if for every linear order $L$,
+  $L \in \pp$ iff $L^R \in \pp$.
+\end{definition}
+
+% Definition of an additive property
+\begin{definition}
+  A property $\pp$ of linear orders is an \emph{additive property} if for every linear orders $L_1$ and $L_2$,
+  $L_1 + L_2 \in \pp$ iff $L_1, L_2 \in \pp$.
+\end{definition}
+
+% Definition of a star property
+\begin{definition}
+  A property $\pp$ of linear orders is a \emph{star property} if for every family
+  $\mathcal{F}$ of linear orders in $\pp$ such that $\bigcap \mathcal{F} \ne \emptyset$,
+  $\bigcup \mathcal{F} \in \pp$.
+\end{definition}
+
+% Definition of $\bounded-\pp$
+\begin{definition}
+  Let $\pp$ be a property of linear orders.
+
+  We define $\bounded-\pp$ to be the class of linear orders $L$ such that for every $x, y \in L$,
+  the bounded subinterval $[x, y]$ is in $\pp$.
+\end{definition}
+
+% Definition of an almost anti-symmetric property
+\begin{definition}
+  A property $\pp$ of linear orders is \emph{almost anti-symmetric}
+  if for every linear order $L$,
+  $L \in \pp$ and $L^R \in \pp$ imply that $L$ is finite.
+\end{definition}
+
+% Lemma: $\bounded-\pp$ is a star property
 \begin{lemma}
   Let $\pp$ be an additive property of linear orders.
 
@@ -63,6 +113,10 @@
 
 % Definition of the Hausdorff rank
 \begin{definition}
+  Let $\qq$ be a property of linear orders.
+
+  We define a property $\qq^\alpha$ for every ordinal $\alpha$ as follows:
+
   Let $L$ be a linear order.
 
   We define $\hrank{L} \le 0$ iff $L$ is finite.
@@ -78,7 +132,7 @@
   least ordinal such that $\hrank{L} \le \alpha$.
 \end{definition}
 
-We will be working with scattered linear orders.
+We will be working with countable linear orders.
 
 \begin{claim}
   Let $L$ be a countable linear order.
@@ -93,51 +147,51 @@ We will be working with scattered linear orders.
 \end{proof}
 
 \begin{notations}
-  Let $\mathcal{H}_{< \alpha}$ be the class of linear orders of Hausdorff rank
+  Let $\mathcal{H}_{\alpha}$ be the class of linear orders of Hausdorff rank
   $< \alpha$ and $\mathcal{H}_{=\alpha}$ be the class of linear orders of
   Hausdorff rank $= \alpha$.
 
-  Let $\mathcal{B}_{< \alpha}$ be the class of linear orders
+  Let $\mathcal{B}_{\alpha}$ be the class of linear orders
   of Hausdorff rank $< \alpha$ on bounded subintervals.
 
-  Let $\mathcal{Q}_{< \alpha} = \setcomp{L : 1 + L \in \mathcal{B}_{< \alpha}}$.
+  Let $\mathcal{Q}_{\alpha} = \setcomp{L : 1 + L \in \mathcal{B}_{\alpha}}$.
 
-  Let $\mathcal{R}_{< \alpha} = \setcomp{L : L + 1 \in \mathcal{B}_{< \alpha}}$.
-
-  Clearly,
-  $\mathcal{H}_{< \alpha}, \mathcal{Q}_{< \alpha}, \mathcal{R}_{< \alpha} \subseteq \mathcal{B}_{< \alpha}$.
+  Let $\mathcal{R}_{\alpha} = \setcomp{L : L + 1 \in \mathcal{B}_{\alpha}}$.
 
   Clearly,
-  $\mathcal{H}_{< \alpha + 1} = \setcomp{L : \hrank{L} \le \alpha}$.
+  $\mathcal{H}_{\alpha}, \mathcal{Q}_{\alpha}, \mathcal{R}_{\alpha} \subseteq \mathcal{B}_{\alpha}$.
+
+  Clearly,
+  $\mathcal{H}_{\alpha + 1} = \setcomp{L : \hrank{L} \le \alpha}$.
 \end{notations}
 
 \begin{claim}
   The following are equal:
-  
+
   \begin{enumerate}
-    \item $\mathcal{H}_{< \alpha}$
-    \item $\setcomp{L : 1 + L + 1 \in \mathcal{B}_{< \alpha}}$.
-    \item $\mathcal{Q}_{< \alpha} \cap \mathcal{R}_{< \alpha}$
+    \item $\mathcal{H}_{\alpha}$
+    \item $\setcomp{L : 1 + L + 1 \in \mathcal{B}_{\alpha}}$.
+    \item $\mathcal{Q}_{\alpha} \cap \mathcal{R}_{\alpha}$
   \end{enumerate}
-  
+
 \end{claim}
 
 \begin{proof}
-  The equivalence of 1 and 2 is clear, and obviously 
+  The equivalence of 1 and 2 is clear, and obviously
   2 implies 3.
 
   The other direction (3 implies 2) follows from the star property
-  of $\mathcal{B}_{< \alpha}$.
+  of $\mathcal{B}_{\alpha}$.
 \end{proof}
 
 \begin{lemma}
   Let $L$ be a linear order. Then there exists a largest subinterval $M \subseteq L$ such that
-  $x \in M$ and $M \in \mathcal{B}_{< \alpha}$.
+  $x \in M$ and $M \in \mathcal{B}_{\alpha}$.
 \end{lemma}
 
 \begin{definition}
   Let $L$ be a linear order. Let $x \in L$. We define $M_{\alpha}[x]$ to be the largest subinterval
-  $M \subseteq L$ such that $x \in M$ and $M \in \mathcal{B}_{< \alpha}$.
+  $M \subseteq L$ such that $x \in M$ and $M \in \mathcal{B}_{\alpha}$.
 
   We define $\sim_{\alpha}$ to be the equivalence relation on $L$ such that $x \sim_{\alpha} y$ iff
   $M_{\alpha}[x] = M_{\alpha}[y]$.
@@ -148,12 +202,12 @@ We will be working with scattered linear orders.
 
   \begin{itemize}
     \item $P$ represents $\sim_{\alpha}$ on $L$.
-    \item $Q$ is such that $x \in Q$ iff $M_{\alpha}[x] \in \mathcal{Q}_{< \alpha}$.
-    \item $R$ is such that $x \in R$ iff $M_{\alpha}[x] \in \mathcal{R}_{< \alpha}$.
+    \item $Q$ is such that $x \in Q$ iff $M_{\alpha}[x] \in \mathcal{Q}_{\alpha}$.
+    \item $R$ is such that $x \in R$ iff $M_{\alpha}[x] \in \mathcal{R}_{\alpha}$.
   \end{itemize}
 
   Then for some linear order $I$ there exists a decomposition
-  $L = \sum_{i \in I} L_i$ such that $L_i \in \mathcal{B}_{< \alpha}$ for all $i \in I$,
+  $L = \sum_{i \in I} L_i$ such that $L_i \in \mathcal{B}_{\alpha}$ for all $i \in I$,
   $L_i$ is monochromatic with respect to $P$, $Q$ and $R$.
 
   Furthermore, let $\tau_i$ be the $n$-type of $L_i, p_i, q_i, r_i$ in $\mso[p, q, r]$,
@@ -190,8 +244,8 @@ We will be working with scattered linear orders.
   Then there exists a linear order $L$ and $P, Q, R \subseteq L$ such that:
   \begin{itemize}
     \item $P$ represents $\sim_{\alpha}$ on $L$.
-    \item $Q$ is such that $x \in Q$ iff $M_{\alpha}[x] \in \mathcal{Q}_{< \alpha}$.
-    \item $R$ is such that $x \in R$ iff $M_{\alpha}[x] \in \mathcal{R}_{< \alpha}$.
+    \item $Q$ is such that $x \in Q$ iff $M_{\alpha}[x] \in \mathcal{Q}_{\alpha}$.
+    \item $R$ is such that $x \in R$ iff $M_{\alpha}[x] \in \mathcal{R}_{\alpha}$.
   \end{itemize}
 
   such that for all $i \in I$, $L_i$ is a $\sim_{\alpha}$-equivalence class of $L$,
@@ -206,30 +260,30 @@ We will be working with scattered linear orders.
   $\tau_i$ such that:
 
   \begin{itemize}
-    \item If $q(\tau_i) = r(\tau_i) = 1$, then $L_i \in \mathcal{Q}_{< \alpha} \cap \mathcal{R}_{< \alpha}$.
-    \item If $q(\tau_i) = 1$ and $r(\tau_i) = 0$, then $L_i \in \mathcal{Q}_{< \alpha} - \mathcal{R}_{< \alpha}$.
-    \item If $q(\tau_i) = 0$ and $r(\tau_i) = 1$, then $L_i \in \mathcal{R}_{< \alpha} - \mathcal{Q}_{< \alpha}$.
-    \item If $q(\tau_i) = r(\tau_i) = 0$, then $L_i \in \mathcal{B}_{< \alpha} - (\mathcal{Q}_{< \alpha} \cup \mathcal{R}_{< \alpha})$.
+    \item If $q(\tau_i) = r(\tau_i) = 1$, then $L_i \in \mathcal{Q}_{\alpha} \cap \mathcal{R}_{\alpha}$.
+    \item If $q(\tau_i) = 1$ and $r(\tau_i) = 0$, then $L_i \in \mathcal{Q}_{\alpha} - \mathcal{R}_{\alpha}$.
+    \item If $q(\tau_i) = 0$ and $r(\tau_i) = 1$, then $L_i \in \mathcal{R}_{\alpha} - \mathcal{Q}_{\alpha}$.
+    \item If $q(\tau_i) = r(\tau_i) = 0$, then $L_i \in \mathcal{B}_{\alpha} - (\mathcal{Q}_{\alpha} \cup \mathcal{R}_{\alpha})$.
   \end{itemize}
 
   Let $L = \sum_{i \in I} L_i$.
-  
-  By definition each $L_i$ is in $\mathcal{B}_{< \alpha}$. We need to prove
-  that each $L_i$ is a largest $\mathcal{B}_{< \alpha}$-subinterval in $L$.
 
-  On the contrary, suppose that there exist $i' \ne i$ such that $[L_i, L_{i'}] \in \mathcal{B}_{< \alpha}$.
+  By definition each $L_i$ is in $\mathcal{B}_{\alpha}$. We need to prove
+  that each $L_i$ is a largest $\mathcal{B}_{\alpha}$-subinterval in $L$.
+
+  On the contrary, suppose that there exist $i' \ne i$ such that $[L_i, L_{i'}] \in \mathcal{B}_{\alpha}$.
   WLOG, $L_i < L_{i'}$.
-  
-  Since $I$ is scattered, take some $i \le a < b \le i'$ such that 
+
+  Since $I$ is scattered, take some $i \le a < b \le i'$ such that
   there is no element between $a$ and $b$ in $I$.
 
-  Then $L_a \in \mathcal{R}_{< \alpha}$ and $L_b \in \mathcal{Q}_{< \alpha}$, in contradiction.
+  Then $L_a \in \mathcal{R}_{\alpha}$ and $L_b \in \mathcal{Q}_{\alpha}$, in contradiction.
 \end{proof}
 
 \begin{lemma}
-  Let $L$ be a scattered countable linear order.
+  Let $L$ be a countable linear order.
 
-  Let $J \subseteq L$ be some subinterval in $\mathcal{B}_{< \alpha}$.
+  Let $J \subseteq L$ be some subinterval in $\mathcal{B}_{\alpha}$.
 
   Then $\hrank{J} \le \alpha$.
 
@@ -248,29 +302,29 @@ We will be working with scattered linear orders.
 
   Conversely, suppose $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
 
-  Then $1 + J + 1 \in \mathcal{B}_{< \alpha}$. But it is a bounded interval,
+  Then $1 + J + 1 \in \mathcal{B}_{\alpha}$. But it is a bounded interval,
   so $\hrank{1 + J + 1} < \alpha$ and thus $\hrank{J} < \alpha$.
 \end{proof}
 
 \begin{lemma}
   Let $J \subseteq L$ be a subinterval.
 
-  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals.
+  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of $\mathcal{B}_{\alpha}$-subintervals.
 
   Note: this lemma does not work if we take a general $\qq$ property.
 \end{lemma}
 
 \begin{proof}
-  From the previous lemma, it is clear that if $J$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals,
+  From the previous lemma, it is clear that if $J$ is a finite sum of $\mathcal{B}_{\alpha}$-subintervals,
   then $\hrank{J} \le \alpha$, since the rank bound is preserved under finite sums.
 
   Conversely, suppose $\hrank{J} \le \alpha$.
 
   If $J = \sum_{i \in \ZZ} J_i$ for some $J_i$ of Hausdorff rank $< \alpha$,
   take $x, y \in J$. Then let $x \in J_{i_1}$ and $y \in J_{i_2}$.
-  
+
   Then $[x, y] \subseteq \sum_{i \in [i_1, i_2]} J_i$. But the last sum is of rank $< \alpha$
-  and thus $[x, y]$ is of rank $< \alpha$. That is, $J \in \mathcal{B}_{< \alpha}$.
+  and thus $[x, y]$ is of rank $< \alpha$. That is, $J \in \mathcal{B}_{\alpha}$.
 
   Since every subinterval of rank $\le \alpha$ is a finite sum of $\ZZ$-sums of intervals of rank $< \alpha$,
   we are done.
@@ -279,42 +333,129 @@ We will be working with scattered linear orders.
 \begin{corollary}
   Let $J \subseteq L$ be a subinterval.
 
-  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of largest $\mathcal{B}_{< \alpha}$-subintervals in $L$
+  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of largest $\mathcal{B}_{\alpha}$-subintervals in $L$
 \end{corollary}
 
 \begin{lemma}
-  There exists a global computable function $f : \NN \to \NN$ such that for all $n \in \NN$,
-  The ordinal-sequence $A_\beta$ of all $n$-types satisfiable 
-  in $\mathcal{H}_{< \beta}$ stabilizes at $f(n)$,
-  i.e, $A_{\beta} = A_{f(n)}$ for all $\beta \ge f(n)$.
+  There exists a global computable function $f : \NN \to \NN$ such that
+  for all $n \in \NN$,
+  $\type{n}{\mathcal{H}_{f(n) + 1}} = \type{n}{\mathcal{H}_{f(n)}}$.
+
+  Equivalently, every linear order of finite rank is $n$-equivalent to some linear order of rank $\le f(n)$.
 \end{lemma}
 
 \begin{proof}
-  Let $\tau$ be an $n$-type. We prove by induction
-  on $\beta \ge f(n)$ that $\tau \in A_{f(n)}$.
+  Since there exist only a finite number of $n$-types,
+  and the $\omega$-sequence $\braces{\type{n}{\mathcal{H}_{k}}}_{k \in \omega}$ is monotone,
+  it must stabilize at some point.
 
-  The base clear is clear as $\beta = f(n)$ implies $\tau \in A_{f(n)+1}$,
-  that is $\tau \in A_{f(n)}$.
+  This point is computable as a function of $n$, because
+  $\type{n}{\mathcal{H}_{k}}$ is computable for every finite $k$.
+\end{proof}
 
-  The induction step is also clear, because if $\beta > f(n)$,
-  then we can write $\tau = \sum_{i \in I} \tau_i$ where $\tau_i$
-  of rank $< \beta$, and thus by induction $\tau_i \in A_{f(n)}$,
-  thus $\tau \in A_{f(n)+1}=A_{f(n)}$.
+
+\begin{lemma}
+  There exist global computable functions $a, b : \NN \to \NN$ such that
+  for all $n, c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
+  $$\type{n}{\mathcal{H}_{c_1}} = \type{n}{\mathcal{H}_{c_2}}$$
+
+  Equivalently, the sequence $\braces{\type{n}{\mathcal{H}_{k}}}_{k \in \omega}$ 
+  is ultimately periodic for all $n \in \NN$. Furthermore, the starting point and the period
+  itself can be computed as a function of $n$.
+\end{lemma}
+
+\begin{proof}
+  Let $n \in \NN$.
+
+  Since there exist only a finite number of possible
+  sets of $n$-types, there exist (and can be computed)
+  some $a(n) > f(n)$, $a(n) + b(n)$ such that
+  
+  $$\type{n}{\mathcal{H}_{a(n)}} = \type{n}{\mathcal{H}_{a(n) + b(n)}}$$
+  
+  We shall prove by induction that for all $c \ge a(n) + b(n)$,
+
+  $$\type{n}{\mathcal{H}_{c}} = \type{n}{\mathcal{H}_{c + b(n)}}$$
+
+  This will complete the proof.
+
+  The base case $c = a(n)$ has been proven in the beginning.
+
+  Suppose the induction hypothesis holds for $c$.
+
+  Let $L$ be of rank $c + 1$.
+
+  Write $L = \sum_{i \in I} L_i$ where $\hrank{L_i} < c + 1$,
+  and $\hrank{L_i} = c$ infinitely many times.
+
+  By the induction hypothesis,
+  if $\hrank{L_i} = c$, we can find $N_i \equiv_n L_i$ with $\hrank{N_i} = c + b(n)$.
+  Setting $N_i := L_i$ for all other $i$, we conclude that $N := \sum_{i \in I} N_i$
+  is $n$-equivalent to $L$.
+
+  However, clearly $\hrank{N} = c + b(n) + 1$. So overall,
+  $$\type{n}{\mathcal{H}_{c + 1}} \subseteq \type{n}{\mathcal{H}_{c + b(n) + 1}}$$
+
+  Conversely, suppose $L$ is of rank $c + b(n) + 1$.
+  Write $L$ = $\sum_{i \in I} L_i$ where $\hrank{L_i} < c + b(n) + 1$,
+  and $\hrank{L_i} = c + b(n)$ infinitely many times.
+
+  By the induction hypothesis,
+  we can find for all $i$ such that $\hrank{L_i} = c + b(n)$ some 
+  $N_i \equiv_n L_i$ with $\hrank{N_i} = c$.
+  Furthermore, since $c \ge a(n) > f(n)$, we can
+  find $N_i \equiv_n L_i$ with $\hrank{N_i} \le f(n) < c$ for all other $i$.
+
+  We conclude that $N := \sum_{i \in I} N_i$ is $n$-equivalent to $L$.
+  However, clearly $\hrank{N} = c + 1$. So overall,
+  $$\type{n}{\mathcal{H}_{c + b(n) + 1}} \subseteq \type{n}{\mathcal{H}_{c + 1}}$$
+
+  So we have proven the induction step, and the lemma follows.
 \end{proof}
 
 \begin{lemma}
-  For every ordinal $\alpha \ge f(n)$,
-  and for every linear order $L$ with $\hrank{L} \ge f(n)$,
-  and for every class $\mathcal{C}$ which is one of:
-  \begin{enumerate}
-    \item $\mathcal{H}_{< \alpha}$,
-    \item $\mathcal{Q}_{< \alpha} - \mathcal{R}_{< \alpha}$,
-    \item $\mathcal{R}_{< \alpha} - \mathcal{Q}_{< \alpha}$,
-    \item $\mathcal{B}_{< \alpha} - (\mathcal{Q}_{< \alpha} \cup \mathcal{R}_{< \alpha})$.
-  \end{enumerate}
-  there exists some linear order $L' \in \mathcal{C}$ such that
-  $L \equiv_n L'$.
+  Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
+
+  Then,
+  $$\type{n}{\mathcal{H}_{\alpha}} = \bigcup_{c < b(n)}{\type{n}{\mathcal{H}_{c + b(n)}}}$$
+
+  In particular, $\type{n}{\mathcal{H}_{\alpha}}$ can be
+  computed, and is independent of the choice $\alpha \ge \omega$.
 \end{lemma}
+
+\begin{proof}
+  TBC.
+\end{proof}
+
+\begin{proof}
+  By induction on $\alpha \ge f(n)$
+  suppose that for all $f(n) \le \beta < \alpha$,
+  $$\type{n}{\mathcal{H}_{\beta + 1}} = \type{n}{\mathcal{H}_{f(n)}}$$
+
+  Let $L$ be a scattered linear order of rank $\alpha$.
+
+  Then $L = \sum_{i \in I} L_i$ where $\hrank{L_i} < \alpha$.
+  By the induction hypothesis, we can find $N_i \equiv_n L_i$ with $\hrank{N_i} < f(n)$.
+
+  Let $N = \sum_{i \in I} N_i$. Then $L \equiv_n N$.
+  
+  Additionally, $\hrank{N} < f(n) + 1$ by the rank definition. However, that means that 
+  we can find $N' \equiv_n N$ with $\hrank{N'} \le f(n)$ by the definition of $f(n)$.
+\end{proof}
+
+\begin{corollary}
+  The following sequences stabilize at $f(n)$:
+
+  \begin{itemize}
+    \item $\type{n}{\mathcal{H}_{\alpha}}$
+    \item $\type{n}{\mathcal{B}_{\alpha}}$
+    \item $\type{n}{\mathcal{Q}_{\alpha}}$
+    \item $\type{n}{\mathcal{R}_{\alpha}}$
+    \item $\type{n}{\mathcal{Q}_{\alpha} - \mathcal{R}_{\alpha}}$
+    \item $\type{n}{\mathcal{R}_{\alpha} - \mathcal{Q}_{\alpha}}$
+    \item $\type{n}{\mathcal{B}_{\alpha} - (\mathcal{Q}_{\alpha} \cup \mathcal{R}_{\alpha})}$
+  \end{itemize}
+\end{corollary}
 
 \begin{proof}
   Let $A_k$ be the set of all satisfiable $n$-types of rank $< k$.
@@ -326,7 +467,7 @@ We will be working with scattered linear orders.
 
   Suppose $L$ has rank $\beta \ge f(n)$.
 
-  Write $L = \sum_{i \in I} L_i$ where $\hrank{L_i} < \beta$, and 
+  Write $L = \sum_{i \in I} L_i$ where $\hrank{L_i} < \beta$, and
   $I$ is a finite sum of $\subseteq \ZZ$.
 
   If $\beta$ is a limit ordinal, then there must be
@@ -338,16 +479,16 @@ We will be working with scattered linear orders.
   Now we proceed by induction on $\alpha \ge f(n)$.
 
   \begin{enumerate}
-    \item If $\mathcal{C} = \mathcal{H}_{< \alpha}$, we take $L' \in A_{f(n)}$,
+    \item If $\mathcal{C} = \mathcal{H}_{\alpha}$, we take $L' \in A_{f(n)}$,
           which necessarily has rank $< f(n) \le \alpha$.
-    \item If $\mathcal{C} = \mathcal{Q}_{< \alpha} - \mathcal{R}_{< \alpha}$,
+    \item If $\mathcal{C} = \mathcal{Q}_{\alpha} - \mathcal{R}_{\alpha}$,
           we take an $\omega$-sequence $\alpha_k$ such that $\alpha_k \to \alpha$
           (if $\alpha$ is a limit ordinal) or $\alpha_k = \alpha-1$
           (if $\alpha$ is a successor ordinal).
 
           Then we take $L' = \sum_{i \in \omega} L'_i$ where $\hrank{L'_{i_k}} = \alpha_k$
           (and $\hrank{L'_i} = \hrank{L_i}$ for every other $i$).
-          Then $L' \in \mathcal{Q}_{< \alpha} - \mathcal{R}_{< \alpha}$,
+          Then $L' \in \mathcal{Q}_{\alpha} - \mathcal{R}_{\alpha}$,
           but also $L' \equiv_n L$.
     \item This is just the same with $\agemo$ instead of $\omega$.
     \item This is just the same with $\ZZ$ instead of $\agemo$.
@@ -355,7 +496,7 @@ We will be working with scattered linear orders.
 \end{proof}
 
 \begin{corollary}
-  Over scattered with interpretations of $P$, $Q$ and $R$ as above, the properties
+  Over countable linear orders with interpretations of $P$, $Q$ and $R$ as above, the properties
   $\hrank{\cdot} \le \alpha$, $\hrank{\cdot} < \alpha$ and $\hrank{\cdot} = \alpha$
   over subintervals are all expressible in $\mso[P, Q, R]$.
 \end{corollary}
@@ -367,8 +508,8 @@ We will be working with scattered linear orders.
 \end{proof}
 
 \begin{theorem}
-  There is a an algorithm solving satisfiability for $\mso[P, Q, R]$ over scattered linear orders,
-  given an oracle which solves the satisfiability problem for $\mso$ over scattered linear orders.
+  There is a an algorithm solving satisfiability for $\mso[P, Q, R]$ over countable linear orders,
+  given an oracle which solves the satisfiability problem for $\mso$ over countable linear orders.
 \end{theorem}
 
 \begin{proof}
@@ -387,7 +528,7 @@ We will be working with scattered linear orders.
   Where $I_\tau = \setcomp{i \in I : L_i \models \tau}$ for every $n$-type $\tau$.
 
   Let $T$ be the set of $n$-types in $\mso[p, q, r]$ which satisfy
-  $q(\tau) = 1 \iff \tau \in \mathcal{Q}_{< \alpha}$ and $r(\tau) = 1 \iff \tau \in \mathcal{R}_{< \alpha}$.
+  $q(\tau) = 1 \iff \tau \in \mathcal{Q}_{\alpha}$ and $r(\tau) = 1 \iff \tau \in \mathcal{R}_{\alpha}$.
 
   Let $S = \setcomp{(\tau_1, \tau_2) : p(\tau_1) \ne p(\tau_2) \land (r(\tau_1) = 0 \lor q(\tau_2) = 0)}$.
 
@@ -405,7 +546,7 @@ We will be working with scattered linear orders.
 
   Now we claim that $\varphi$ is satisfiable in some linear order, iff $\psi'$ is satisfiable in some
   linear order.
-  
+
   Suppose $\varphi$ is satisfiable in some linear order $L$.
 
   Take a decomposition $L = \sum_{i \in I} L_i$ as in lemma 2.
@@ -413,9 +554,9 @@ We will be working with scattered linear orders.
   Then $\psi$ holds over the assignment $X_\tau := I_\tau$. But by lemma 2, this assignment
   satisfies the condition required for $\psi'$ to hold. Then $\psi'$ holds over $I$.
 
-  Conversely, suppose $psi'$ holds in $I$.
+  Conversely, suppose $\psi'$ holds in $I$.
 
-  Let $X_\tau := Z_\tau$ be the assignment that is guaranteed by $psi'$.
+  Let $X_\tau := Z_\tau$ be the assignment that is guaranteed by $\psi'$.
 
   Let $tau_i$ be the unique $\tau$ such that $i \in Z_\tau$.
 
