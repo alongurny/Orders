@@ -205,7 +205,7 @@
   of linear orders $M$ where $1 + M \in \mathcal{B}_{< \alpha}$.
 \end{definitions}
 
-\begin{claim}
+\begin{lemma}
   The following are equal:
 
   \begin{enumerate}
@@ -214,7 +214,7 @@
     \item $\mathcal{L}_{< \alpha} \cap \mathcal{R}_{< \alpha}$
   \end{enumerate}
 
-\end{claim}
+\end{lemma}
 
 \begin{proof}
   The only nontrivial direction is 3 implies 2, which follows from the star property
@@ -363,15 +363,13 @@
 \end{proof}
 
 \begin{lemma}
-  Over countable linear orders with interpretations of $P$, $L$ and $R$ as above, the properties
-  $\hrank{\cdot} \le \alpha$, $\hrank{\cdot} < \alpha$ and $\hrank{\cdot} = \alpha$
-  over subintervals are all expressible in $\mso[P, L, R]$.
+  Over countable linear orders with interpretations of $P$, $L$ and $R$ as above, the property
+  $\qq^{< \alpha}$ is expressible in $\mso[P, L, R]$.
 \end{lemma}
 
 \begin{proof}
-  For $\hrank{\cdot} \le \alpha$ and $\hrank{\cdot} < \alpha$, we can use the previous lemmas.
-
-  For $\hrank{\cdot} = \alpha$, we can use the previous two.
+  From lemma 3 we can express $\qq^{< \alpha}$ as the intersection
+  of $L$ and $R$.
 \end{proof}
 
 
