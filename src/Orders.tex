@@ -269,7 +269,102 @@
 
 \section{Decidability of the rank}
 
+
+
+\begin{lemma}
+  There exists a global computable function $f : \NN \to \NN$ such that
+  for all $n \in \NN$,
+  $\type{n}{\mathcal{H}_{f(n) + 1}} = \type{n}{\mathcal{H}_{f(n)}}$.
+
+  Equivalently, every linear order of finite rank is $n$-equivalent to some linear order of rank $\le f(n)$.
+\end{lemma}
+
+\begin{proof}
+  Since there exist only a finite number of $n$-types,
+  and the $\omega$-sequence $\braces{\type{n}{\mathcal{H}_{k}}}_{k \in \omega}$ is monotone,
+  it must stabilize at some point.
+
+  This point is computable as a function of $n$, because
+  $\type{n}{\mathcal{H}_{k}}$ is computable for every finite $k$.
+\end{proof}
+
+
+\begin{lemma}
+  There exist global computable functions $a, b : \NN \to \NN$ such that
+  for all $n, c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
+  $$\type{n}{\mathcal{H}_{c_1}} = \type{n}{\mathcal{H}_{c_2}}$$
+
+  Equivalently, the sequence $\braces{\type{n}{\mathcal{H}_{k}}}_{k \in \omega}$ 
+  is ultimately periodic for all $n \in \NN$. Furthermore, the starting point and the period
+  itself can be computed as a function of $n$.
+\end{lemma}
+
+\begin{proof}
+  Let $n \in \NN$.
+
+  Since there exist only a finite number of possible
+  sets of $n$-types, there exist (and can be computed)
+  some $a(n) > f(n)$, $a(n) + b(n)$ such that
+  
+  $$\type{n}{\mathcal{H}_{a(n)}} = \type{n}{\mathcal{H}_{a(n) + b(n)}}$$
+  
+  We shall prove by induction that for all $c \ge a(n) + b(n)$,
+
+  $$\type{n}{\mathcal{H}_{c}} = \type{n}{\mathcal{H}_{c + b(n)}}$$
+
+  This will complete the proof.
+
+  The base case $c = a(n)$ has been proven in the beginning.
+
+  Suppose the induction hypothesis holds for $c$.
+
+  Let $M$ be of rank $c + 1$.
+
+  Write $M = \sum_{i \in I} M_i$ where $\hrank{M_i} < c + 1$,
+  and $\hrank{M_i} = c$ infinitely many times.
+
+  By the induction hypothesis,
+  if $\hrank{M_i} = c$, we can find $N_i \equiv_n M_i$ with $\hrank{N_i} = c + b(n)$.
+  Setting $N_i := M_i$ for all other $i$, we conclude that $N := \sum_{i \in I} N_i$
+  is $n$-equivalent to $M$.
+
+  However, clearly $\hrank{N} = c + b(n) + 1$. So overall,
+  $$\type{n}{\mathcal{H}_{c + 1}} \subseteq \type{n}{\mathcal{H}_{c + b(n) + 1}}$$
+
+  Conversely, suppose $M$ is of rank $c + b(n) + 1$.
+  Write $M$ = $\sum_{i \in I} M_i$ where $\hrank{M_i} < c + b(n) + 1$,
+  and $\hrank{M_i} = c + b(n)$ infinitely many times.
+
+  By the induction hypothesis,
+  we can find for all $i$ such that $\hrank{M_i} = c + b(n)$ some 
+  $N_i \equiv_n M_i$ with $\hrank{N_i} = c$.
+  Furthermore, since $c \ge a(n) > f(n)$, we can
+  find $N_i \equiv_n M_i$ with $\hrank{N_i} \le f(n) < c$ for all other $i$.
+
+  We conclude that $N := \sum_{i \in I} N_i$ is $n$-equivalent to $M$.
+  However, clearly $\hrank{N} = c + 1$. So overall,
+  $$\type{n}{\mathcal{H}_{c + b(n) + 1}} \subseteq \type{n}{\mathcal{H}_{c + 1}}$$
+
+  So we have proven the induction step, and the lemma follows.
+\end{proof}
+
+\begin{lemma}
+  Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
+
+  Then,
+  $$\type{n}{\qq^{= \alpha}} = \bigcup_{c < b(n)}{\type{n}{\mathcal{H}_{c + b(n)}}}$$
+
+  In particular, $\type{n}{\qq^{= \alpha}}$ can be
+  computed, and is independent of the choice $\alpha \ge \omega$.
+\end{lemma}
+
+\begin{proof}
+  TBC.
+\end{proof}
+
 \begin{definition}
+  Let $\alpha \ge \omega$ be an ordinal.
+
   Let $M$ be a linear order and $x \in M$.
 
   We define the convex equivalence relation $\sim_\alpha := \sim_{\mathcal{B}_{< \alpha}}$,
@@ -370,98 +465,6 @@
 \begin{proof}
   From lemma 3 we can express $\qq^{< \alpha}$ as the intersection
   of $L$ and $R$.
-\end{proof}
-
-
-\begin{lemma}
-  There exists a global computable function $f : \NN \to \NN$ such that
-  for all $n \in \NN$,
-  $\type{n}{\mathcal{H}_{f(n) + 1}} = \type{n}{\mathcal{H}_{f(n)}}$.
-
-  Equivalently, every linear order of finite rank is $n$-equivalent to some linear order of rank $\le f(n)$.
-\end{lemma}
-
-\begin{proof}
-  Since there exist only a finite number of $n$-types,
-  and the $\omega$-sequence $\braces{\type{n}{\mathcal{H}_{k}}}_{k \in \omega}$ is monotone,
-  it must stabilize at some point.
-
-  This point is computable as a function of $n$, because
-  $\type{n}{\mathcal{H}_{k}}$ is computable for every finite $k$.
-\end{proof}
-
-
-\begin{lemma}
-  There exist global computable functions $a, b : \NN \to \NN$ such that
-  for all $n, c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
-  $$\type{n}{\mathcal{H}_{c_1}} = \type{n}{\mathcal{H}_{c_2}}$$
-
-  Equivalently, the sequence $\braces{\type{n}{\mathcal{H}_{k}}}_{k \in \omega}$ 
-  is ultimately periodic for all $n \in \NN$. Furthermore, the starting point and the period
-  itself can be computed as a function of $n$.
-\end{lemma}
-
-\begin{proof}
-  Let $n \in \NN$.
-
-  Since there exist only a finite number of possible
-  sets of $n$-types, there exist (and can be computed)
-  some $a(n) > f(n)$, $a(n) + b(n)$ such that
-  
-  $$\type{n}{\mathcal{H}_{a(n)}} = \type{n}{\mathcal{H}_{a(n) + b(n)}}$$
-  
-  We shall prove by induction that for all $c \ge a(n) + b(n)$,
-
-  $$\type{n}{\mathcal{H}_{c}} = \type{n}{\mathcal{H}_{c + b(n)}}$$
-
-  This will complete the proof.
-
-  The base case $c = a(n)$ has been proven in the beginning.
-
-  Suppose the induction hypothesis holds for $c$.
-
-  Let $M$ be of rank $c + 1$.
-
-  Write $M = \sum_{i \in I} M_i$ where $\hrank{M_i} < c + 1$,
-  and $\hrank{M_i} = c$ infinitely many times.
-
-  By the induction hypothesis,
-  if $\hrank{M_i} = c$, we can find $N_i \equiv_n M_i$ with $\hrank{N_i} = c + b(n)$.
-  Setting $N_i := M_i$ for all other $i$, we conclude that $N := \sum_{i \in I} N_i$
-  is $n$-equivalent to $M$.
-
-  However, clearly $\hrank{N} = c + b(n) + 1$. So overall,
-  $$\type{n}{\mathcal{H}_{c + 1}} \subseteq \type{n}{\mathcal{H}_{c + b(n) + 1}}$$
-
-  Conversely, suppose $M$ is of rank $c + b(n) + 1$.
-  Write $M$ = $\sum_{i \in I} M_i$ where $\hrank{M_i} < c + b(n) + 1$,
-  and $\hrank{M_i} = c + b(n)$ infinitely many times.
-
-  By the induction hypothesis,
-  we can find for all $i$ such that $\hrank{M_i} = c + b(n)$ some 
-  $N_i \equiv_n M_i$ with $\hrank{N_i} = c$.
-  Furthermore, since $c \ge a(n) > f(n)$, we can
-  find $N_i \equiv_n M_i$ with $\hrank{N_i} \le f(n) < c$ for all other $i$.
-
-  We conclude that $N := \sum_{i \in I} N_i$ is $n$-equivalent to $M$.
-  However, clearly $\hrank{N} = c + 1$. So overall,
-  $$\type{n}{\mathcal{H}_{c + b(n) + 1}} \subseteq \type{n}{\mathcal{H}_{c + 1}}$$
-
-  So we have proven the induction step, and the lemma follows.
-\end{proof}
-
-\begin{lemma}
-  Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
-
-  Then,
-  $$\type{n}{\qq^{= \alpha}} = \bigcup_{c < b(n)}{\type{n}{\mathcal{H}_{c + b(n)}}}$$
-
-  In particular, $\type{n}{\qq^{= \alpha}}$ can be
-  computed, and is independent of the choice $\alpha \ge \omega$.
-\end{lemma}
-
-\begin{proof}
-  TBC.
 \end{proof}
 
 \begin{corollary}
