@@ -30,14 +30,14 @@
 % Macros
 \newcommand{\setcomp}[1]{\braces{#1}}
 \newcommand{\hrank}[1]{\mathbf{hrank}_{\qq}\left( #1 \right)}
-\newcommand{\bigforall}{\mbox{\Large $\mathsurround0pt\forall$}} 
+\newcommand{\bigforall}{\mbox{\Large $\mathsurround0pt\foralM$}} 
 
 % Letters
 \newcommand{\agemo}{-\omega}
 \newcommand{\otp}{\mathbf{otp}}
 \newcommand{\fso}{\mathbf{FSO}}
 \newcommand{\mso}{\mathbf{MSO}}
-\newcommand{\bounded}{\mathbf{bounded}}
+\newcommand{\bounded}[1]{{#1} \text{-} \mathbf{bounded}}
 \newcommand{\pp}{\mathbf{P}}
 \newcommand{\qq}{\mathbf{Q}}
 
@@ -65,42 +65,35 @@
 
 % Definition of a monotone property
 \begin{definition}
-  A property $\pp$ of linear orders is \emph{monotone} if for every linear order $L$,
-  $L \in \pp$ implies that every suborder of $L$ is in $\pp$.
+  A property $\pp$ of linear orders is \emph{monotone} if for every linear order $M$,
+  $M \in \pp$ implies that every suborder of $M$ is in $\pp$.
 \end{definition}
 
 % Definition of a symmetric property
 \begin{definition}
-  A property $\pp$ of linear orders is \emph{symmetric} if for every linear order $L$,
-  $L \in \pp$ iff $L^R \in \pp$.
+  A property $\pp$ of linear orders is \emph{symmetric} if for every linear order $M$,
+  $M \in \pp$ iff $M^R \in \pp$.
 \end{definition}
 
 % Definition of an additive property
 \begin{definition}
-  A property $\pp$ of linear orders is an \emph{additive property} if for every linear orders $L_1$ and $L_2$,
-  $L_1 + L_2 \in \pp$ iff $L_1, L_2 \in \pp$.
+  A property $\pp$ of linear orders is an \emph{additive property} if for every linear orders $M_1$ and $M_2$,
+  $M_1 + M_2 \in \pp$ iff $M_1, M_2 \in \pp$.
 \end{definition}
 
-% Definition of a star property
-\begin{definition}
-  A property $\pp$ of linear orders is a \emph{star property} if for every family
-  $\mathcal{F}$ of linear orders in $\pp$ such that $\bigcap \mathcal{F} \ne \emptyset$,
-  $\bigcup \mathcal{F} \in \pp$.
-\end{definition}
-
-% Definition of $\bounded-\pp$
+% Definition of $\bounded{\pp}$
 \begin{definition}
   Let $\pp$ be a property of linear orders.
 
-  We define $\bounded-\pp$ to be the class of linear orders $L$ such that for every $x, y \in L$,
+  We define $\bounded{\pp}$ to be the class of linear orders $M$ such that for every $x, y \in M$,
   the bounded subinterval $[x, y]$ is in $\pp$.
 \end{definition}
 
 % Definition of an almost anti-symmetric property
 \begin{definition}
   A property $\pp$ of linear orders is \emph{almost anti-symmetric}
-  if for every linear order $L$,
-  $L \in \pp$ and $L^R \in \pp$ imply that $L$ is finite.
+  if for every linear order $M$,
+  $M \in \pp$ and $M^R \in \pp$ imply that $M$ is finite.
 \end{definition}
 
 % Definition of a good property
@@ -108,13 +101,63 @@
   A property $\pp$ of linear orders is \emph{good} if it is 
   monotone, additive and contains at least one infinite linear order.
 \end{definition}
+
+% Definition of a star property
+\begin{definition}
+  A property $\pp$ of linear orders is a \emph{star property} if 
+  for every linear orders $M$, and every family $\mathcal{F} \subseteq \pp$
+  of subintervals of $M$ such that $J_1 \cap J_2 \ne \emptyset$
+  for every $J_1, J_2 \in \mathcal{F}$, we have that
+  $\bigcup \mathcal{F} \in \pp$.
+\end{definition}
+
   
-% Lemma: $\bounded-\pp$ is a star property
-\begin{lemma}
+% Lemma: $\bounded{\pp}$ is a star property
+\begin{lemma}[Star Lemma]
   Let $\pp$ be an additive property of linear orders.
 
-  Then the property $\bounded-\pp$ is has the star property.
+  Then the property $\bounded{\pp}$ has the star property.
 \end{lemma}
+
+% Proof of the star lemma
+\begin{proof}
+  Let $M$ be a linear order,
+  and let $\mathcal{F} \subseteq \bounded{\pp}$ be a family of subintervals of $M$.
+
+  Let $[x, y] \subseteq \bigcup \mathcal{F}$ be any bounded subinterval. We need to prove 
+  it is in $\pp$.
+
+  Suppose $x \in J_1$ and $y \in J_2$ for $J_1, J_2 \in \mathcal{F}$.
+  
+  Since $J_1 \cap J_2 \ne \emptyset$, we can take $z \in J_1 \cap J_2$.
+
+  Then $[x, z] \subseteq J_1$ and $[z, y] \subseteq J_2$,
+  and thus by $\bounded{\pp}$, $[x, z], [z, y] \in \pp$.
+  However, $\pp$ is additive. Since $[x, y]$ is either the sum
+  or difference of $[x, z]$ and $[z, y]$, we have that $[x, y] \in \pp$.
+\end{proof}
+
+% Partition according to a star property
+\begin{lemma}
+  Let $\pp$ be a star property.
+
+  Then for every linear order $M$,
+  and every point $x \in M$, there exists a largest subinterval $J \subseteq M$ such that
+  $J \in \pp$.
+
+  Thus, we can define an equivalence relation $\sim_{\pp}$ on $M$ such that
+  $x \sim_{\pp} y$ iff $x$ and $y$ are in the same largest $\pp$-subinterval.
+\end{lemma}
+
+\begin{proof}
+  Let $J \subseteq M$ be the union of all $\bounded{\pp}$-subintervals containing $x$.
+  All such subintervals intersect at $x$.
+
+  Therefore, by the star lemma, $J$ is in $\bounded{\pp}$, and by definition
+  $J$ is the largest $\pp$-subinterval containing $x$.
+
+  Thus we can define the equivalence relation $\sim_{\pp}$ as above.
+\end{proof}
 
 \section{Hausdorff Rank}
 
@@ -122,168 +165,162 @@
 \begin{definition}
   Let $\qq$ be a good property of linear orders.
 
-  We define a property $\qq^\alpha$ for every ordinal $\alpha$ as follows:
+  We define a property $\qq^{\le \alpha}$
+  for every ordinal $\alpha$ as follows:
   
   \begin{itemize}
-    \item $\qq^0$ is the class of finite linear orders.
-    \item For $\alpha > 0$, $\qq^\alpha$ is the class of linear orders $L$ such that
-          $L = \sum_{i \in I} L_i$ for some $I \in \qq$ where 
-          for all $i \in I$, $L_i \in \qq^{\beta_i}$ for some $\beta_i < \alpha$
+    \item $\qq^{\le 0}$ is the class of finite linear orders.
+    \item For $\alpha > 0$, $\qq^{\le \alpha}$ is the class of linear orders $M$ such that
+          $M = \sum_{i \in I} M_i$ for some $I \in \qq$ where 
+          for all $i \in I$, $M_i \in \qq^{\beta_i}$ for some $\beta_i < \alpha$
   \end{itemize}
 
-  We define $\hrank{L} = \alpha$ iff $\alpha$ is the
-  least ordinal such that $L \in \qq^\alpha$. This is a \emph{partial} map
-  from linear orders to ordinals.
+  We define further $\qq^{< \alpha} = \bigcup_{\beta < \alpha} \qq^{\le \beta}$
+  and $\qq^{=\alpha} = \qq^{\le \alpha} - \qq^{< \alpha}$.
+
+  We define $\hrank{M} = \alpha$ iff $M \in \qq^{= \alpha}$.
+  This is a \emph{partial map} from linear orders to ordinals.
 \end{definition}
 
 \begin{observations}
+  Let $\qq$ be a good property.
+
   We claim the following without proof:
 
   \begin{itemize}
-    \item $\qq^1 = \qq$.
-    \item For all $\alpha$, $\qq^\alpha$ is a good property.
-    \item $\qq^\alpha \subsetneq \qq^\beta$ iff $\alpha < \beta$.
+    \item $\qq^{\le 1} = \qq$.
+    \item For all $\alpha$, $\qq^{\le \alpha}$ is a good property.
+    \item $\qq^{\le \alpha} \subsetneq \qq^{\le \beta}$ iff $\alpha < \beta$.
   \end{itemize}
 \end{observations}
 
-\begin{notations}
-  Let $\mathcal{H}_{\alpha}$ be the class of linear orders of Hausdorff rank
-  $< \alpha$ and $\mathcal{H}_{=\alpha}$ be the class of linear orders of
-  Hausdorff rank $= \alpha$.
+\begin{definitions}
+  $\mathcal{B}_{< \alpha} := \bounded{\qq^{< \alpha}}$ is the class
+  of linear orders of rank $< \alpha$ on bounded intervals.
 
-  Let $\mathcal{B}_{\alpha}$ be the class of linear orders
-  of Hausdorff rank $< \alpha$ on bounded subintervals.
+  $\mathcal{R}_{< \alpha}$ is the class
+  of linear orders $M$ where $M + 1 \in \mathcal{B}_{< \alpha}$.
 
-  Let $\mathcal{Q}_{\alpha} = \setcomp{L : 1 + L \in \mathcal{B}_{\alpha}}$.
-
-  Let $\mathcal{R}_{\alpha} = \setcomp{L : L + 1 \in \mathcal{B}_{\alpha}}$.
-
-  Clearly,
-  $\mathcal{H}_{\alpha}, \mathcal{Q}_{\alpha}, \mathcal{R}_{\alpha} \subseteq \mathcal{B}_{\alpha}$.
-
-  Clearly,
-  $\mathcal{H}_{\alpha + 1} = \setcomp{L : \hrank{L} \le \alpha}$.
-\end{notations}
+  $\mathcal{L}_{< \alpha}$ is the class
+  of linear orders $M$ where $1 + M \in \mathcal{B}_{< \alpha}$.
+\end{definitions}
 
 \begin{claim}
   The following are equal:
 
   \begin{enumerate}
-    \item $\mathcal{H}_{\alpha}$
-    \item $\setcomp{L : 1 + L + 1 \in \mathcal{B}_{\alpha}}$.
-    \item $\mathcal{Q}_{\alpha} \cap \mathcal{R}_{\alpha}$
+    \item $\qq^{< \alpha}$
+    \item $\setcomp{M : 1 + M + 1 \in \mathcal{B}_{< \alpha}}$.
+    \item $\mathcal{L}_{< \alpha} \cap \mathcal{R}_{< \alpha}$
   \end{enumerate}
 
 \end{claim}
 
 \begin{proof}
-  The equivalence of 1 and 2 is clear, and obviously
-  2 implies 3.
-
-  The other direction (3 implies 2) follows from the star property
-  of $\mathcal{B}_{\alpha}$.
+  The only nontrivial direction is 3 implies 2, which follows from the star property
+  of $\mathcal{B}_{< \alpha}$.
 \end{proof}
 
 \begin{lemma}
-  Let $L$ be a linear order. Then there exists a largest subinterval $M \subseteq L$ such that
-  $x \in M$ and $M \in \mathcal{B}_{\alpha}$.
+  Let $M$ be a linear order. Then there exists a largest subinterval $J \subseteq M$ such that
+  $x \in J$ and $J \in \mathcal{B}_{< \alpha}$.
 \end{lemma}
 
 \begin{definition}
-  Let $L$ be a linear order. Let $x \in L$. We define $M_{\alpha}[x]$ to be the largest subinterval
-  $M \subseteq L$ such that $x \in M$ and $M \in \mathcal{B}_{\alpha}$.
+  Let $M$ be a linear order. Let $x \in M$. We define $M_{\alpha}[x]$ to be the largest subinterval
+  $M \subseteq M$ such that $x \in M$ and $M \in \mathcal{B}_{< \alpha}$.
 
-  We define $\sim_{\alpha}$ to be the equivalence relation on $L$ such that $x \sim_{\alpha} y$ iff
+  We define $\sim_{\alpha}$ to be the equivalence relation on $M$ such that $x \sim_{\alpha} y$ iff
   $M_{\alpha}[x] = M_{\alpha}[y]$.
 \end{definition}
 
 \begin{lemma}
-  Let $L$ be a linear order. Let $P, Q, R \subseteq L$ be relations, such that:
+  Let $M$ be a linear order. Let $P, L, R \subseteq M$ be relations, such that:
 
   \begin{itemize}
-    \item $P$ represents $\sim_{\alpha}$ on $L$.
-    \item $Q$ is such that $x \in Q$ iff $M_{\alpha}[x] \in \mathcal{Q}_{\alpha}$.
-    \item $R$ is such that $x \in R$ iff $M_{\alpha}[x] \in \mathcal{R}_{\alpha}$.
+    \item $P$ represents $\sim_{\alpha}$ on $M$.
+    \item $L$ is such that $x \in L$ iff $M_{\alpha}[x] \in \mathcal{L}_{< \alpha}$.
+    \item $R$ is such that $x \in R$ iff $M_{\alpha}[x] \in \mathcal{R}_{< \alpha}$.
   \end{itemize}
 
   Then for some linear order $I$ there exists a decomposition
-  $L = \sum_{i \in I} L_i$ such that $L_i \in \mathcal{B}_{\alpha}$ for all $i \in I$,
-  $L_i$ is monochromatic with respect to $P$, $Q$ and $R$.
+  $M = \sum_{i \in I} M_i$ such that $M_i \in \mathcal{B}_{< \alpha}$ for all $i \in I$,
+  $M_i$ is monochromatic with respect to $P$, $L$ and $R$.
 
-  Furthermore, let $\tau_i$ be the $n$-type of $L_i, p_i, q_i, r_i$ in $\mso[p, q, r]$,
-  where $p_i = 1_{L_i \subseteq P}$, $q_i = 1_{L_i \subseteq Q}$ and $r_i = 1_{L_i \subseteq R}$.
+  Furthermore, let $\tau_i$ be the $n$-type of $M_i, p_i, q_i, r_i$ in $\mso[p, \ell, r]$,
+  where $p_i = 1_{M_i \subseteq P}$, $q_i = 1_{M_i \subseteq L}$ and $r_i = 1_{M_i \subseteq R}$.
   Then the following hold
   \begin{itemize}
     \item if $i$ has a successor, $p(\tau_i) \ne p(\tau_{i+1})$
-    \item if $i$ has a successor, either $r(\tau_i) = 0$ or $q(\tau_{i+1}) = 0$
+    \item if $i$ has a successor, either $r(\tau_i) = 0$ or $\ell(\tau_{i+1}) = 0$
   \end{itemize}
 \end{lemma}
 \begin{proof}
-  Take $I = L / \sim_{\alpha}$.
+  Take $I = M / \sim_{\alpha}$.
 
-  Then $L = \sum_{i \in I} L_i$ where $L_i$ is the $\sim_{\alpha}$-equivalence class of $i$.
+  Then $M = \sum_{i \in I} M_i$ where $M_i$ is the $\sim_{\alpha}$-equivalence class of $i$.
 
-  Then $L_i$ is monochromatic with respect to $P$, $Q$ and $R$.
+  Then $M_i$ is monochromatic with respect to $P$, $L$ and $R$.
 
   The only thing left to prove is the last two conditions. The first follows from
   the fact that $P$ represents $\sim_{\alpha}$.
 
-  The second follows because if it were not the case, then $L_i$ and $L_{i+1}$ would
+  The second follows because if it were not the case, then $M_i$ and $M_{i+1}$ would
   be the same $\sim_{\alpha}$-equivalence class.
 \end{proof}
 
 \begin{lemma}
-  Let $I$ be a linear order. Let $n \in \NN$. Let $p, q, r$ be boolean variables.
+  Let $I$ be a linear order. Let $n \in \NN$. Let $p, \ell, r$ be boolean variables.
 
-  Let $\tau_i$ be an assignment of satisfiable $n$-types in $\mso[p, q, r]$ for all $i \in I$. Assume that
+  Let $\tau_i$ be an assignment of satisfiable $n$-types in $\mso[p, \ell, r]$ for all $i \in I$. Assume that
   \begin{itemize}
     \item if $i$ has a successor, $p(\tau_i) \ne p(\tau_{i+1})$
-    \item if $i$ has a successor, either $r(\tau_i) = 0$ or $q(\tau_{i+1}) = 0$
+    \item if $i$ has a successor, either $r(\tau_i) = 0$ or $\ell(\tau_{i+1}) = 0$
   \end{itemize}
 
-  Then there exists a linear order $L$ and $P, Q, R \subseteq L$ such that:
+  Then there exists a linear order $M$ and $P, L, R \subseteq M$ such that:
   \begin{itemize}
-    \item $P$ represents $\sim_{\alpha}$ on $L$.
-    \item $Q$ is such that $x \in Q$ iff $M_{\alpha}[x] \in \mathcal{Q}_{\alpha}$.
-    \item $R$ is such that $x \in R$ iff $M_{\alpha}[x] \in \mathcal{R}_{\alpha}$.
+    \item $P$ represents $\sim_{\alpha}$ on $M$.
+    \item $L$ is such that $x \in L$ iff $M_{\alpha}[x] \in \mathcal{L}_{< \alpha}$.
+    \item $R$ is such that $x \in R$ iff $M_{\alpha}[x] \in \mathcal{R}_{< \alpha}$.
   \end{itemize}
 
-  such that for all $i \in I$, $L_i$ is a $\sim_{\alpha}$-equivalence class of $L$,
-  and is thus monochromatic with respect to $P$, $Q$ and $R$.
+  such that for all $i \in I$, $M_i$ is a $\sim_{\alpha}$-equivalence class of $M$,
+  and is thus monochromatic with respect to $P$, $L$ and $R$.
 
-  Furthermore, the $n$-type of $L_i, p_i, q_i, r_i$ in $\mso[p, q, r]$ is $\tau_i$, where
-  $p_i = 1_{L_i \subseteq P}$, $q_i = 1_{L_i \subseteq Q}$ and $r_i = 1_{L_i \subseteq R}$,
+  Furthermore, the $n$-type of $M_i, p_i, q_i, r_i$ in $\mso[p, \ell, r]$ is $\tau_i$, where
+  $p_i = 1_{M_i \subseteq P}$, $q_i = 1_{M_i \subseteq L}$ and $r_i = 1_{M_i \subseteq R}$,
 \end{lemma}
 
 \begin{proof}
-  Since $\tau_i$ is satisfiable, we can take $L_i$ to be a linear order of $n$-type
+  Since $\tau_i$ is satisfiable, we can take $M_i$ to be a linear order of $n$-type
   $\tau_i$ such that:
 
   \begin{itemize}
-    \item If $q(\tau_i) = r(\tau_i) = 1$, then $L_i \in \mathcal{Q}_{\alpha} \cap \mathcal{R}_{\alpha}$.
-    \item If $q(\tau_i) = 1$ and $r(\tau_i) = 0$, then $L_i \in \mathcal{Q}_{\alpha} - \mathcal{R}_{\alpha}$.
-    \item If $q(\tau_i) = 0$ and $r(\tau_i) = 1$, then $L_i \in \mathcal{R}_{\alpha} - \mathcal{Q}_{\alpha}$.
-    \item If $q(\tau_i) = r(\tau_i) = 0$, then $L_i \in \mathcal{B}_{\alpha} - (\mathcal{Q}_{\alpha} \cup \mathcal{R}_{\alpha})$.
+    \item If $\ell(\tau_i) = r(\tau_i) = 1$, then $M_i \in \mathcal{L}_{< \alpha} \cap \mathcal{R}_{< \alpha}$.
+    \item If $\ell(\tau_i) = 1$ and $r(\tau_i) = 0$, then $M_i \in \mathcal{L}_{< \alpha} - \mathcal{R}_{< \alpha}$.
+    \item If $\ell(\tau_i) = 0$ and $r(\tau_i) = 1$, then $M_i \in \mathcal{R}_{< \alpha} - \mathcal{L}_{< \alpha}$.
+    \item If $\ell(\tau_i) = r(\tau_i) = 0$, then $M_i \in \mathcal{B}_{< \alpha} - (\mathcal{L}_{< \alpha} \cup \mathcal{R}_{< \alpha})$.
   \end{itemize}
 
-  Let $L = \sum_{i \in I} L_i$.
+  Let $M = \sum_{i \in I} M_i$.
 
-  By definition each $L_i$ is in $\mathcal{B}_{\alpha}$. We need to prove
-  that each $L_i$ is a largest $\mathcal{B}_{\alpha}$-subinterval in $L$.
+  By definition each $M_i$ is in $\mathcal{B}_{< \alpha}$. We need to prove
+  that each $M_i$ is a largest $\mathcal{B}_{< \alpha}$-subinterval in $M$.
 
-  On the contrary, suppose that there exist $i' \ne i$ such that $[L_i, L_{i'}] \in \mathcal{B}_{\alpha}$.
-  WLOG, $L_i < L_{i'}$.
+  On the contrary, suppose that there exist $i' \ne i$ such that $[M_i, M_{i'}] \in \mathcal{B}_{< \alpha}$.
+  WLOG, $M_i < M_{i'}$.
 
   Since $I$ is scattered, take some $i \le a < b \le i'$ such that
   there is no element between $a$ and $b$ in $I$.
 
-  Then $L_a \in \mathcal{R}_{\alpha}$ and $L_b \in \mathcal{Q}_{\alpha}$, in contradiction.
+  Then $M_a \in \mathcal{R}_{< \alpha}$ and $M_b \in \mathcal{L}_{< \alpha}$, in contradiction.
 \end{proof}
 
 \begin{lemma}
-  Let $L$ be a countable linear order.
+  Let $M$ be a countable linear order.
 
-  Let $J \subseteq L$ be some subinterval in $\mathcal{B}_{\alpha}$.
+  Let $J \subseteq M$ be some subinterval in $\mathcal{B}_{< \alpha}$.
 
   Then $\hrank{J} \le \alpha$.
 
@@ -302,20 +339,20 @@
 
   Conversely, suppose $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
 
-  Then $1 + J + 1 \in \mathcal{B}_{\alpha}$. But it is a bounded interval,
+  Then $1 + J + 1 \in \mathcal{B}_{< \alpha}$. But it is a bounded interval,
   so $\hrank{1 + J + 1} < \alpha$ and thus $\hrank{J} < \alpha$.
 \end{proof}
 
 \begin{lemma}
-  Let $J \subseteq L$ be a subinterval.
+  Let $J \subseteq M$ be a subinterval.
 
-  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of $\mathcal{B}_{\alpha}$-subintervals.
+  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals.
 
   Note: this lemma does not work if we take a general $\qq$ property.
 \end{lemma}
 
 \begin{proof}
-  From the previous lemma, it is clear that if $J$ is a finite sum of $\mathcal{B}_{\alpha}$-subintervals,
+  From the previous lemma, it is clear that if $J$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals,
   then $\hrank{J} \le \alpha$, since the rank bound is preserved under finite sums.
 
   Conversely, suppose $\hrank{J} \le \alpha$.
@@ -324,16 +361,16 @@
   take $x, y \in J$. Then let $x \in J_{i_1}$ and $y \in J_{i_2}$.
 
   Then $[x, y] \subseteq \sum_{i \in [i_1, i_2]} J_i$. But the last sum is of rank $< \alpha$
-  and thus $[x, y]$ is of rank $< \alpha$. That is, $J \in \mathcal{B}_{\alpha}$.
+  and thus $[x, y]$ is of rank $< \alpha$. That is, $J \in \mathcal{B}_{< \alpha}$.
 
   Since every subinterval of rank $\le \alpha$ is a finite sum of $\ZZ$-sums of intervals of rank $< \alpha$,
   we are done.
 \end{proof}
 
 \begin{corollary}
-  Let $J \subseteq L$ be a subinterval.
+  Let $J \subseteq M$ be a subinterval.
 
-  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of largest $\mathcal{B}_{\alpha}$-subintervals in $L$
+  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of largest $\mathcal{B}_{< \alpha}$-subintervals in $M$
 \end{corollary}
 
 \begin{lemma}
@@ -383,30 +420,30 @@
 
   Suppose the induction hypothesis holds for $c$.
 
-  Let $L$ be of rank $c + 1$.
+  Let $M$ be of rank $c + 1$.
 
-  Write $L = \sum_{i \in I} L_i$ where $\hrank{L_i} < c + 1$,
-  and $\hrank{L_i} = c$ infinitely many times.
+  Write $M = \sum_{i \in I} M_i$ where $\hrank{M_i} < c + 1$,
+  and $\hrank{M_i} = c$ infinitely many times.
 
   By the induction hypothesis,
-  if $\hrank{L_i} = c$, we can find $N_i \equiv_n L_i$ with $\hrank{N_i} = c + b(n)$.
-  Setting $N_i := L_i$ for all other $i$, we conclude that $N := \sum_{i \in I} N_i$
-  is $n$-equivalent to $L$.
+  if $\hrank{M_i} = c$, we can find $N_i \equiv_n M_i$ with $\hrank{N_i} = c + b(n)$.
+  Setting $N_i := M_i$ for all other $i$, we conclude that $N := \sum_{i \in I} N_i$
+  is $n$-equivalent to $M$.
 
   However, clearly $\hrank{N} = c + b(n) + 1$. So overall,
   $$\type{n}{\mathcal{H}_{c + 1}} \subseteq \type{n}{\mathcal{H}_{c + b(n) + 1}}$$
 
-  Conversely, suppose $L$ is of rank $c + b(n) + 1$.
-  Write $L$ = $\sum_{i \in I} L_i$ where $\hrank{L_i} < c + b(n) + 1$,
-  and $\hrank{L_i} = c + b(n)$ infinitely many times.
+  Conversely, suppose $M$ is of rank $c + b(n) + 1$.
+  Write $M$ = $\sum_{i \in I} M_i$ where $\hrank{M_i} < c + b(n) + 1$,
+  and $\hrank{M_i} = c + b(n)$ infinitely many times.
 
   By the induction hypothesis,
-  we can find for all $i$ such that $\hrank{L_i} = c + b(n)$ some 
-  $N_i \equiv_n L_i$ with $\hrank{N_i} = c$.
+  we can find for all $i$ such that $\hrank{M_i} = c + b(n)$ some 
+  $N_i \equiv_n M_i$ with $\hrank{N_i} = c$.
   Furthermore, since $c \ge a(n) > f(n)$, we can
-  find $N_i \equiv_n L_i$ with $\hrank{N_i} \le f(n) < c$ for all other $i$.
+  find $N_i \equiv_n M_i$ with $\hrank{N_i} \le f(n) < c$ for all other $i$.
 
-  We conclude that $N := \sum_{i \in I} N_i$ is $n$-equivalent to $L$.
+  We conclude that $N := \sum_{i \in I} N_i$ is $n$-equivalent to $M$.
   However, clearly $\hrank{N} = c + 1$. So overall,
   $$\type{n}{\mathcal{H}_{c + b(n) + 1}} \subseteq \type{n}{\mathcal{H}_{c + 1}}$$
 
@@ -417,9 +454,9 @@
   Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
 
   Then,
-  $$\type{n}{\mathcal{H}_{\alpha}} = \bigcup_{c < b(n)}{\type{n}{\mathcal{H}_{c + b(n)}}}$$
+  $$\type{n}{\qq^{= \alpha}} = \bigcup_{c < b(n)}{\type{n}{\mathcal{H}_{c + b(n)}}}$$
 
-  In particular, $\type{n}{\mathcal{H}_{\alpha}}$ can be
+  In particular, $\type{n}{\qq^{= \alpha}}$ can be
   computed, and is independent of the choice $\alpha \ge \omega$.
 \end{lemma}
 
@@ -432,12 +469,12 @@
   suppose that for all $f(n) \le \beta < \alpha$,
   $$\type{n}{\mathcal{H}_{\beta + 1}} = \type{n}{\mathcal{H}_{f(n)}}$$
 
-  Let $L$ be a scattered linear order of rank $\alpha$.
+  Let $M$ be a scattered linear order of rank $\alpha$.
 
-  Then $L = \sum_{i \in I} L_i$ where $\hrank{L_i} < \alpha$.
-  By the induction hypothesis, we can find $N_i \equiv_n L_i$ with $\hrank{N_i} < f(n)$.
+  Then $M = \sum_{i \in I} M_i$ where $\hrank{M_i} < \alpha$.
+  By the induction hypothesis, we can find $N_i \equiv_n M_i$ with $\hrank{N_i} < f(n)$.
 
-  Let $N = \sum_{i \in I} N_i$. Then $L \equiv_n N$.
+  Let $N = \sum_{i \in I} N_i$. Then $M \equiv_n N$.
   
   Additionally, $\hrank{N} < f(n) + 1$ by the rank definition. However, that means that 
   we can find $N' \equiv_n N$ with $\hrank{N'} \le f(n)$ by the definition of $f(n)$.
@@ -448,57 +485,23 @@
 
   \begin{itemize}
     \item $\type{n}{\mathcal{H}_{\alpha}}$
-    \item $\type{n}{\mathcal{B}_{\alpha}}$
-    \item $\type{n}{\mathcal{Q}_{\alpha}}$
-    \item $\type{n}{\mathcal{R}_{\alpha}}$
-    \item $\type{n}{\mathcal{Q}_{\alpha} - \mathcal{R}_{\alpha}}$
-    \item $\type{n}{\mathcal{R}_{\alpha} - \mathcal{Q}_{\alpha}}$
-    \item $\type{n}{\mathcal{B}_{\alpha} - (\mathcal{Q}_{\alpha} \cup \mathcal{R}_{\alpha})}$
+    \item $\type{n}{\mathcal{B}_{< \alpha}}$
+    \item $\type{n}{\mathcal{L}_{< \alpha}}$
+    \item $\type{n}{\mathcal{R}_{< \alpha}}$
+    \item $\type{n}{\mathcal{L}_{< \alpha} - \mathcal{R}_{< \alpha}}$
+    \item $\type{n}{\mathcal{R}_{< \alpha} - \mathcal{L}_{< \alpha}}$
+    \item $\type{n}{\mathcal{B}_{< \alpha} - (\mathcal{L}_{< \alpha} \cup \mathcal{R}_{< \alpha})}$
   \end{itemize}
 \end{corollary}
 
 \begin{proof}
-  Let $A_k$ be the set of all satisfiable $n$-types of rank $< k$.
-  Then $A_{k+1}$ is the closure of $A_k$ under finite sums
-  of $\subseteq \ZZ$-sums.
-
-  The sequence $A_0 \subseteq A_1 \subseteq \ldots$ stabilizes at some point.
-  Suppose $A_{f(n)} = A_{f(n) + 1}$.
-
-  Suppose $L$ has rank $\beta \ge f(n)$.
-
-  Write $L = \sum_{i \in I} L_i$ where $\hrank{L_i} < \beta$, and
-  $I$ is a finite sum of $\subseteq \ZZ$.
-
-  If $\beta$ is a limit ordinal, then there must be
-  a bi-cofinal sequence $i_{k}$ such that $\hrank{L_{i_k}} \to \beta$.
-
-  If $\beta$ is a successor ordinal, then $\hrank{L_i} = \beta - 1$ must hold
-  infinitely many times.
-
-  Now we proceed by induction on $\alpha \ge f(n)$.
-
-  \begin{enumerate}
-    \item If $\mathcal{C} = \mathcal{H}_{\alpha}$, we take $L' \in A_{f(n)}$,
-          which necessarily has rank $< f(n) \le \alpha$.
-    \item If $\mathcal{C} = \mathcal{Q}_{\alpha} - \mathcal{R}_{\alpha}$,
-          we take an $\omega$-sequence $\alpha_k$ such that $\alpha_k \to \alpha$
-          (if $\alpha$ is a limit ordinal) or $\alpha_k = \alpha-1$
-          (if $\alpha$ is a successor ordinal).
-
-          Then we take $L' = \sum_{i \in \omega} L'_i$ where $\hrank{L'_{i_k}} = \alpha_k$
-          (and $\hrank{L'_i} = \hrank{L_i}$ for every other $i$).
-          Then $L' \in \mathcal{Q}_{\alpha} - \mathcal{R}_{\alpha}$,
-          but also $L' \equiv_n L$.
-    \item This is just the same with $\agemo$ instead of $\omega$.
-    \item This is just the same with $\ZZ$ instead of $\agemo$.
-  \end{enumerate}
+  The corollary is false and should be fixed.
 \end{proof}
 
 \begin{corollary}
-  Over countable linear orders with interpretations of $P$, $Q$ and $R$ as above, the properties
+  Over countable linear orders with interpretations of $P$, $L$ and $R$ as above, the properties
   $\hrank{\cdot} \le \alpha$, $\hrank{\cdot} < \alpha$ and $\hrank{\cdot} = \alpha$
-  over subintervals are all expressible in $\mso[P, Q, R]$.
+  over subintervals are all expressible in $\mso[P, L, R]$.
 \end{corollary}
 
 \begin{proof}
@@ -508,35 +511,35 @@
 \end{proof}
 
 \begin{theorem}
-  There is a an algorithm solving satisfiability for $\mso[P, Q, R]$ over countable linear orders,
+  There is a an algorithm solving satisfiability for $\mso[P, L, R]$ over countable linear orders,
   given an oracle which solves the satisfiability problem for $\mso$ over countable linear orders.
 \end{theorem}
 
 \begin{proof}
   By the decomposition theorem, there exists a translation,
-  that given an $\mso[P, Q, R]$ formula $\varphi$ of quantifier-depth $n$.
+  that given an $\mso[P, L, R]$ formula $\varphi$ of quantifier-depth $n$.
   outputs an $\mso[\setcomp{X_\tau}_\tau]$ formula $\psi$.
 
-  Let $P_L, Q_L, R_L$ be the interpretations of $P, Q, R$ on $L$.
+  Let $P_L, Q_L, R_M$ be the interpretations of $P, L, R$ on $M$.
 
   Then
 
   $$
-    L, P := P_L, Q := Q_L, R := R_L \models \varphi \iff I, \setcomp{X_\tau := I_\tau}_\tau \models \psi
+    M, P := P_L, L := Q_L, R := R_L \models \varphi \iff I, \setcomp{X_\tau := I_\tau}_\tau \models \psi
   $$
 
-  Where $I_\tau = \setcomp{i \in I : L_i \models \tau}$ for every $n$-type $\tau$.
+  Where $I_\tau = \setcomp{i \in I : M_i \models \tau}$ for every $n$-type $\tau$.
 
-  Let $T$ be the set of $n$-types in $\mso[p, q, r]$ which satisfy
-  $q(\tau) = 1 \iff \tau \in \mathcal{Q}_{\alpha}$ and $r(\tau) = 1 \iff \tau \in \mathcal{R}_{\alpha}$.
+  Let $T$ be the set of $n$-types in $\mso[p, \ell, r]$ which satisfy
+  $\ell(\tau) = 1 \iff \tau \in \mathcal{L}_{< \alpha}$ and $r(\tau) = 1 \iff \tau \in \mathcal{R}_{< \alpha}$.
 
-  Let $S = \setcomp{(\tau_1, \tau_2) : p(\tau_1) \ne p(\tau_2) \land (r(\tau_1) = 0 \lor q(\tau_2) = 0)}$.
+  Let $S = \setcomp{(\tau_1, \tau_2) : p(\tau_1) \ne p(\tau_2) \land (r(\tau_1) = 0 \lor \ell(\tau_2) = 0)}$.
 
   Then $T$ and $S$ can be calculated using the oracle.
 
   Then $\psi$ is an $\mso[T, S]$ formula.
 
-  Then we define an $\mso[p, q, r]$ formula $\psi'$ as follows:
+  Then we define an $\mso[p, \ell, r]$ formula $\psi'$ as follows:
 
   $\psi'$ claims that there exists a partition (with possible empty sets) $\setcomp{Y_\tau}_{\tau}$ of $I$ such that
   \begin{itemize}
@@ -547,9 +550,9 @@
   Now we claim that $\varphi$ is satisfiable in some linear order, iff $\psi'$ is satisfiable in some
   linear order.
 
-  Suppose $\varphi$ is satisfiable in some linear order $L$.
+  Suppose $\varphi$ is satisfiable in some linear order $M$.
 
-  Take a decomposition $L = \sum_{i \in I} L_i$ as in lemma 2.
+  Take a decomposition $M = \sum_{i \in I} M_i$ as in lemma 2.
 
   Then $\psi$ holds over the assignment $X_\tau := I_\tau$. But by lemma 2, this assignment
   satisfies the condition required for $\psi'$ to hold. Then $\psi'$ holds over $I$.
@@ -562,8 +565,8 @@
 
   Then the conditions for lemma 3 are guaranteed.
 
-  Thus, take $L$ as in lemma 3. Then $\psi$ holds over $I$ when we set $X_i := Z_\tau$.
-  But $Z_\tau = I_\tau$ for all $\tau$, so $\varphi$ holds over $L$.
+  Thus, take $M$ as in lemma 3. Then $\psi$ holds over $I$ when we set $X_i := Z_\tau$.
+  But $Z_\tau = I_\tau$ for all $\tau$, so $\varphi$ holds over $M$.
 \end{proof}
 
 \end{document}
