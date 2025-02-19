@@ -222,26 +222,11 @@
 \end{proof}
 
 \begin{lemma}
-  Let $M$ be a linear order. Then there exists a largest subinterval $J \subseteq M$ such that
-  $x \in J$ and $J \in \mathcal{B}_{< \alpha}$.
-\end{lemma}
+  Let $M$ be a countable linear order in $\mathcal{B}_{< \alpha}$.
 
-\begin{definition}
-  Let $M$ be a linear order. Let $x \in M$. We define $M_{\alpha}[x]$ to be the largest subinterval
-  $M \subseteq M$ such that $x \in M$ and $M \in \mathcal{B}_{< \alpha}$.
+  Then $\hrank{M} \le \alpha$.
 
-  We define $\sim_{\alpha}$ to be the equivalence relation on $M$ such that $x \sim_{\alpha} y$ iff
-  $M_{\alpha}[x] = M_{\alpha}[y]$.
-\end{definition}
-
-\begin{lemma}
-  Let $M$ be a countable linear order.
-
-  Let $J \subseteq M$ be some subinterval in $\mathcal{B}_{< \alpha}$.
-
-  Then $\hrank{J} \le \alpha$.
-
-  Furthermore, $\hrank{J} < \alpha$ iff $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
+  Furthermore, $\hrank{M} < \alpha$ iff $M \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
 \end{lemma}
 
 \begin{proof}
@@ -261,9 +246,9 @@
 \end{proof}
 
 \begin{lemma}
-  Let $J \subseteq M$ be a subinterval.
+  Let $M$ be a countable linear order.
 
-  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals.
+  Then $\hrank{M} \le \alpha$ iff $M$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals.
 
   Note: this lemma does not work if we take a general $\qq$ property.
 \end{lemma}
@@ -283,12 +268,6 @@
   Since every subinterval of rank $\le \alpha$ is a finite sum of $\ZZ$-sums of intervals of rank $< \alpha$,
   we are done.
 \end{proof}
-
-\begin{corollary}
-  Let $J \subseteq M$ be a subinterval.
-
-  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of largest $\mathcal{B}_{< \alpha}$-subintervals in $M$
-\end{corollary}
 
 \begin{corollary}
   Over countable linear orders with interpretations of $P$, $L$ and $R$ as above, the properties
