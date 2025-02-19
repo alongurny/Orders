@@ -222,27 +222,24 @@
 \end{proof}
 
 \begin{lemma}
-  Let $M$ be a countable linear order in $\mathcal{B}_{< \alpha}$.
+  A countable linear order which has rank $< \alpha$ 
+  on bounded subintervals is of rank $\le \alpha$.
+  That is,
 
-  Then $\hrank{M} \le \alpha$.
-
-  Furthermore, $\hrank{M} < \alpha$ iff $M \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
+  $$\mathcal{B}_{< \alpha} \subseteq \qq^{\le \alpha}$$
 \end{lemma}
 
 \begin{proof}
-  Let $\setcomp{x_i}_{i \in I} \subseteq J$ be a bidirectional, cofinal, weakly monotone $I$-sequence in $J$, i.e,
+  Let $M$ be a countable linear order of rank $< \alpha$.
+
+  Then $M = \sum_{i \in I} M_i$ where $M_i \in \qq^{< \alpha}$.
+
+  Let $\setcomp{x_i}_{i \in I} \subseteq M$ be a bidirectional, cofinal, weakly monotone $I$-sequence in $M$, i.e,
   $x_i \le x_j$ if $i \le j$ for $I \subseteq \ZZ$.
 
-  Write $J = \sum_{i \in I} [x_i, x_{i+1}]$. Then every $[x_i, x_{i+1}]$ is of Hausdorff rank $< \alpha$.
+  Write $M = \sum_{i \in I} [x_i, x_{i+1}]$. Then every $[x_i, x_{i+1}]$ is of Hausdorff rank $< \alpha$.
 
-  Thus, $\hrank{J} \le \alpha$.
-
-  Suppose $\hrank{J} < \alpha$, then obviously $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
-
-  Conversely, suppose $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
-
-  Then $1 + J + 1 \in \mathcal{B}_{< \alpha}$. But it is a bounded interval,
-  so $\hrank{1 + J + 1} < \alpha$ and thus $\hrank{J} < \alpha$.
+  Thus, $\hrank{M} \le \alpha$, which completes the proof.
 \end{proof}
 
 \begin{lemma}
@@ -254,43 +251,39 @@
 \end{lemma}
 
 \begin{proof}
-  From the previous lemma, it is clear that if $J$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals,
-  then $\hrank{J} \le \alpha$, since the rank bound is preserved under finite sums.
+  From the previous lemma, it is clear that if $M$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals,
+  then $\hrank{M} \le \alpha$, since the rank bound is preserved under finite sums.
 
-  Conversely, suppose $\hrank{J} \le \alpha$.
+  Conversely, suppose $\hrank{M} \le \alpha$.
 
-  If $J = \sum_{i \in \ZZ} J_i$ for some $J_i$ of Hausdorff rank $< \alpha$,
-  take $x, y \in J$. Then let $x \in J_{i_1}$ and $y \in J_{i_2}$.
+  If $M = \sum_{i \in \ZZ} M_i$ for some $M_i$ of Hausdorff rank $< \alpha$,
+  take $x, y \in M$. Then let $x \in M_{i_1}$ and $y \in M_{i_2}$.
 
-  Then $[x, y] \subseteq \sum_{i \in [i_1, i_2]} J_i$. But the last sum is of rank $< \alpha$
-  and thus $[x, y]$ is of rank $< \alpha$. That is, $J \in \mathcal{B}_{< \alpha}$.
+  Then $[x, y] \subseteq \sum_{i \in [i_1, i_2]} M_i$. But the last sum is of rank $< \alpha$
+  and thus $[x, y]$ is of rank $< \alpha$. That is, $M \in \mathcal{B}_{< \alpha}$.
 
   Since every subinterval of rank $\le \alpha$ is a finite sum of $\ZZ$-sums of intervals of rank $< \alpha$,
   we are done.
 \end{proof}
 
-\begin{corollary}
-  Over countable linear orders with interpretations of $P$, $L$ and $R$ as above, the properties
-  $\hrank{\cdot} \le \alpha$, $\hrank{\cdot} < \alpha$ and $\hrank{\cdot} = \alpha$
-  over subintervals are all expressible in $\mso[P, L, R]$.
-\end{corollary}
-
-\begin{proof}
-  For $\hrank{\cdot} \le \alpha$ and $\hrank{\cdot} < \alpha$, we can use the previous lemmas.
-
-  For $\hrank{\cdot} = \alpha$, we can use the previous two.
-\end{proof}
-
 \section{Decidability of the rank}
 
+\begin{definition}
+  Let $M$ be a linear order and $x \in M$.
+
+  We define the convex equivalence relation $\sim_\alpha := \sim_{\mathcal{B}_{< \alpha}}$,
+  and $\brackets{x}_{\alpha} := \brackets{x}_{\mathcal{B}_{< \alpha}}$ (that is,
+  $\brackets{x}_{\alpha}$ is the largest $\mathcal{B}_{< \alpha}$-subinterval
+  containing $x$ in $M$).
+\end{definition}
 
 \begin{lemma}
   Let $M$ be a linear order. Let $P, L, R \subseteq M$ be relations, such that:
 
   \begin{itemize}
     \item $P$ represents $\sim_{\alpha}$ on $M$.
-    \item $L$ is such that $x \in L$ iff $M_{\alpha}[x] \in \mathcal{L}_{< \alpha}$.
-    \item $R$ is such that $x \in R$ iff $M_{\alpha}[x] \in \mathcal{R}_{< \alpha}$.
+    \item $L$ is such that $x \in L$ iff $\brackets{x}_{\alpha} \in \mathcal{L}_{< \alpha}$.
+    \item $R$ is such that $x \in R$ iff $\brackets{x}_{\alpha} \in \mathcal{R}_{< \alpha}$.
   \end{itemize}
 
   Then for some linear order $I$ there exists a decomposition
@@ -331,8 +324,8 @@
   Then there exists a linear order $M$ and $P, L, R \subseteq M$ such that:
   \begin{itemize}
     \item $P$ represents $\sim_{\alpha}$ on $M$.
-    \item $L$ is such that $x \in L$ iff $M_{\alpha}[x] \in \mathcal{L}_{< \alpha}$.
-    \item $R$ is such that $x \in R$ iff $M_{\alpha}[x] \in \mathcal{R}_{< \alpha}$.
+    \item $L$ is such that $x \in L$ iff $\brackets{x}_{\alpha} \in \mathcal{L}_{< \alpha}$.
+    \item $R$ is such that $x \in R$ iff $\brackets{x}_{\alpha} \in \mathcal{R}_{< \alpha}$.
   \end{itemize}
 
   such that for all $i \in I$, $M_i$ is a $\sim_{\alpha}$-equivalence class of $M$,
@@ -341,6 +334,7 @@
   Furthermore, the $n$-type of $M_i, p_i, q_i, r_i$ in $\mso[p, \ell, r]$ is $\tau_i$, where
   $p_i = 1_{M_i \subseteq P}$, $q_i = 1_{M_i \subseteq L}$ and $r_i = 1_{M_i \subseteq R}$,
 \end{lemma}
+
 
 \begin{proof}
   Since $\tau_i$ is satisfiable, we can take $M_i$ to be a linear order of $n$-type
@@ -365,6 +359,18 @@
   there is no element between $a$ and $b$ in $I$.
 
   Then $M_a \in \mathcal{R}_{< \alpha}$ and $M_b \in \mathcal{L}_{< \alpha}$, in contradiction.
+\end{proof}
+
+\begin{lemma}
+  Over countable linear orders with interpretations of $P$, $L$ and $R$ as above, the properties
+  $\hrank{\cdot} \le \alpha$, $\hrank{\cdot} < \alpha$ and $\hrank{\cdot} = \alpha$
+  over subintervals are all expressible in $\mso[P, L, R]$.
+\end{lemma}
+
+\begin{proof}
+  For $\hrank{\cdot} \le \alpha$ and $\hrank{\cdot} < \alpha$, we can use the previous lemmas.
+
+  For $\hrank{\cdot} = \alpha$, we can use the previous two.
 \end{proof}
 
 
