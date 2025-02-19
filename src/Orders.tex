@@ -235,6 +235,77 @@
 \end{definition}
 
 \begin{lemma}
+  Let $M$ be a countable linear order.
+
+  Let $J \subseteq M$ be some subinterval in $\mathcal{B}_{< \alpha}$.
+
+  Then $\hrank{J} \le \alpha$.
+
+  Furthermore, $\hrank{J} < \alpha$ iff $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
+\end{lemma}
+
+\begin{proof}
+  Let $\setcomp{x_i}_{i \in I} \subseteq J$ be a bidirectional, cofinal, weakly monotone $I$-sequence in $J$, i.e,
+  $x_i \le x_j$ if $i \le j$ for $I \subseteq \ZZ$.
+
+  Write $J = \sum_{i \in I} [x_i, x_{i+1}]$. Then every $[x_i, x_{i+1}]$ is of Hausdorff rank $< \alpha$.
+
+  Thus, $\hrank{J} \le \alpha$.
+
+  Suppose $\hrank{J} < \alpha$, then obviously $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
+
+  Conversely, suppose $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
+
+  Then $1 + J + 1 \in \mathcal{B}_{< \alpha}$. But it is a bounded interval,
+  so $\hrank{1 + J + 1} < \alpha$ and thus $\hrank{J} < \alpha$.
+\end{proof}
+
+\begin{lemma}
+  Let $J \subseteq M$ be a subinterval.
+
+  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals.
+
+  Note: this lemma does not work if we take a general $\qq$ property.
+\end{lemma}
+
+\begin{proof}
+  From the previous lemma, it is clear that if $J$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals,
+  then $\hrank{J} \le \alpha$, since the rank bound is preserved under finite sums.
+
+  Conversely, suppose $\hrank{J} \le \alpha$.
+
+  If $J = \sum_{i \in \ZZ} J_i$ for some $J_i$ of Hausdorff rank $< \alpha$,
+  take $x, y \in J$. Then let $x \in J_{i_1}$ and $y \in J_{i_2}$.
+
+  Then $[x, y] \subseteq \sum_{i \in [i_1, i_2]} J_i$. But the last sum is of rank $< \alpha$
+  and thus $[x, y]$ is of rank $< \alpha$. That is, $J \in \mathcal{B}_{< \alpha}$.
+
+  Since every subinterval of rank $\le \alpha$ is a finite sum of $\ZZ$-sums of intervals of rank $< \alpha$,
+  we are done.
+\end{proof}
+
+\begin{corollary}
+  Let $J \subseteq M$ be a subinterval.
+
+  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of largest $\mathcal{B}_{< \alpha}$-subintervals in $M$
+\end{corollary}
+
+\begin{corollary}
+  Over countable linear orders with interpretations of $P$, $L$ and $R$ as above, the properties
+  $\hrank{\cdot} \le \alpha$, $\hrank{\cdot} < \alpha$ and $\hrank{\cdot} = \alpha$
+  over subintervals are all expressible in $\mso[P, L, R]$.
+\end{corollary}
+
+\begin{proof}
+  For $\hrank{\cdot} \le \alpha$ and $\hrank{\cdot} < \alpha$, we can use the previous lemmas.
+
+  For $\hrank{\cdot} = \alpha$, we can use the previous two.
+\end{proof}
+
+\section{Decidability of the rank}
+
+
+\begin{lemma}
   Let $M$ be a linear order. Let $P, L, R \subseteq M$ be relations, such that:
 
   \begin{itemize}
@@ -317,61 +388,6 @@
   Then $M_a \in \mathcal{R}_{< \alpha}$ and $M_b \in \mathcal{L}_{< \alpha}$, in contradiction.
 \end{proof}
 
-\begin{lemma}
-  Let $M$ be a countable linear order.
-
-  Let $J \subseteq M$ be some subinterval in $\mathcal{B}_{< \alpha}$.
-
-  Then $\hrank{J} \le \alpha$.
-
-  Furthermore, $\hrank{J} < \alpha$ iff $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
-\end{lemma}
-
-\begin{proof}
-  Let $\setcomp{x_i}_{i \in I} \subseteq J$ be a bidirectional, cofinal, weakly monotone $I$-sequence in $J$, i.e,
-  $x_i \le x_j$ if $i \le j$ for $I \subseteq \ZZ$.
-
-  Write $J = \sum_{i \in I} [x_i, x_{i+1}]$. Then every $[x_i, x_{i+1}]$ is of Hausdorff rank $< \alpha$.
-
-  Thus, $\hrank{J} \le \alpha$.
-
-  Suppose $\hrank{J} < \alpha$, then obviously $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
-
-  Conversely, suppose $J \in \mathcal{Q_{< \alpha}} \cap \mathcal{R_{< \alpha}}$.
-
-  Then $1 + J + 1 \in \mathcal{B}_{< \alpha}$. But it is a bounded interval,
-  so $\hrank{1 + J + 1} < \alpha$ and thus $\hrank{J} < \alpha$.
-\end{proof}
-
-\begin{lemma}
-  Let $J \subseteq M$ be a subinterval.
-
-  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals.
-
-  Note: this lemma does not work if we take a general $\qq$ property.
-\end{lemma}
-
-\begin{proof}
-  From the previous lemma, it is clear that if $J$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals,
-  then $\hrank{J} \le \alpha$, since the rank bound is preserved under finite sums.
-
-  Conversely, suppose $\hrank{J} \le \alpha$.
-
-  If $J = \sum_{i \in \ZZ} J_i$ for some $J_i$ of Hausdorff rank $< \alpha$,
-  take $x, y \in J$. Then let $x \in J_{i_1}$ and $y \in J_{i_2}$.
-
-  Then $[x, y] \subseteq \sum_{i \in [i_1, i_2]} J_i$. But the last sum is of rank $< \alpha$
-  and thus $[x, y]$ is of rank $< \alpha$. That is, $J \in \mathcal{B}_{< \alpha}$.
-
-  Since every subinterval of rank $\le \alpha$ is a finite sum of $\ZZ$-sums of intervals of rank $< \alpha$,
-  we are done.
-\end{proof}
-
-\begin{corollary}
-  Let $J \subseteq M$ be a subinterval.
-
-  Then $\hrank{J} \le \alpha$ iff $J$ is a finite sum of largest $\mathcal{B}_{< \alpha}$-subintervals in $M$
-\end{corollary}
 
 \begin{lemma}
   There exists a global computable function $f : \NN \to \NN$ such that
@@ -464,22 +480,6 @@
   TBC.
 \end{proof}
 
-\begin{proof}
-  By induction on $\alpha \ge f(n)$
-  suppose that for all $f(n) \le \beta < \alpha$,
-  $$\type{n}{\mathcal{H}_{\beta + 1}} = \type{n}{\mathcal{H}_{f(n)}}$$
-
-  Let $M$ be a scattered linear order of rank $\alpha$.
-
-  Then $M = \sum_{i \in I} M_i$ where $\hrank{M_i} < \alpha$.
-  By the induction hypothesis, we can find $N_i \equiv_n M_i$ with $\hrank{N_i} < f(n)$.
-
-  Let $N = \sum_{i \in I} N_i$. Then $M \equiv_n N$.
-  
-  Additionally, $\hrank{N} < f(n) + 1$ by the rank definition. However, that means that 
-  we can find $N' \equiv_n N$ with $\hrank{N'} \le f(n)$ by the definition of $f(n)$.
-\end{proof}
-
 \begin{corollary}
   The following sequences stabilize at $f(n)$:
 
@@ -496,18 +496,6 @@
 
 \begin{proof}
   The corollary is false and should be fixed.
-\end{proof}
-
-\begin{corollary}
-  Over countable linear orders with interpretations of $P$, $L$ and $R$ as above, the properties
-  $\hrank{\cdot} \le \alpha$, $\hrank{\cdot} < \alpha$ and $\hrank{\cdot} = \alpha$
-  over subintervals are all expressible in $\mso[P, L, R]$.
-\end{corollary}
-
-\begin{proof}
-  For $\hrank{\cdot} \le \alpha$ and $\hrank{\cdot} < \alpha$, we can use the previous lemmas.
-
-  For $\hrank{\cdot} = \alpha$, we can use the previous two.
 \end{proof}
 
 \begin{theorem}
