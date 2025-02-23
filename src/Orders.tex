@@ -56,6 +56,20 @@
 
 \maketitle
 
+\section{Order Theory}
+% Definition of left/right/bi-directionally cofinal
+\begin{definition}
+  Let $M$ be a linear order.
+
+  A set $A \subseteq M$ is \emph{left cofinal} in $M$ if for every $x \in M$,
+  there exists $y \in A$ such that $y \le x$.
+
+  A set $A \subseteq M$ is \emph{right cofinal} in $M$ if for every $x \in M$,
+  there exists $y \in A$ such that $x \le y$.
+
+  A set $A \subseteq M$ is \emph{bi-directionally cofinal} in $M$ if it is both left and right cofinal.
+\end{definition}
+
 \section{Properties}
 % Definition of a property
 \begin{definition}
@@ -98,20 +112,20 @@
 
 % Definition of a good property
 \begin{definition}
-  A property $\pp$ of linear orders is \emph{good} if it is 
+  A property $\pp$ of linear orders is \emph{good} if it is
   monotone, additive and contains at least one infinite linear order.
 \end{definition}
 
 % Definition of a star property
 \begin{definition}
-  A property $\pp$ of linear orders is a \emph{star property} if 
+  A property $\pp$ of linear orders is a \emph{star property} if
   for every linear orders $M$, and every family $\mathcal{F} \subseteq \pp$
   of subintervals of $M$ such that $J_1 \cap J_2 \ne \emptyset$
   for every $J_1, J_2 \in \mathcal{F}$, we have that
   $\bigcup \mathcal{F} \in \pp$.
 \end{definition}
 
-  
+
 % Lemma: $\bounded{\pp}$ is a star property
 \begin{lemma}[Star Lemma]
   Let $\pp$ be an additive property of linear orders.
@@ -124,11 +138,11 @@
   Let $M$ be a linear order,
   and let $\mathcal{F} \subseteq \bounded{\pp}$ be a family of subintervals of $M$.
 
-  Let $[x, y] \subseteq \bigcup \mathcal{F}$ be any bounded subinterval. We need to prove 
+  Let $[x, y] \subseteq \bigcup \mathcal{F}$ be any bounded subinterval. We need to prove
   it is in $\pp$.
 
   Suppose $x \in J_1$ and $y \in J_2$ for $J_1, J_2 \in \mathcal{F}$.
-  
+
   Since $J_1 \cap J_2 \ne \emptyset$, we can take $z \in J_1 \cap J_2$.
 
   Then $[x, z] \subseteq J_1$ and $[z, y] \subseteq J_2$,
@@ -167,11 +181,11 @@
 
   We define a property $\qq^{\le \alpha}$
   for every ordinal $\alpha$ as follows:
-  
+
   \begin{itemize}
     \item $\qq^{\le 0}$ is the class of finite linear orders.
     \item For $\alpha > 0$, $\qq^{\le \alpha}$ is the class of linear orders $M$ such that
-          $M = \sum_{i \in I} M_i$ for some $I \in \qq$ where 
+          $M = \sum_{i \in I} M_i$ for some $I \in \qq$ where
           for all $i \in I$, $M_i \in \qq^{\beta_i}$ for some $\beta_i < \alpha$
   \end{itemize}
 
@@ -198,11 +212,13 @@
   $\mathcal{B}_{< \alpha} := \bounded{\qq^{< \alpha}}$ is the class
   of linear orders of rank $< \alpha$ on bounded intervals.
 
-  $\mathcal{R}_{< \alpha}$ is the class
-  of linear orders $M$ where $M + 1 \in \mathcal{B}_{< \alpha}$.
-
   $\mathcal{L}_{< \alpha}$ is the class
   of linear orders $M$ where $1 + M \in \mathcal{B}_{< \alpha}$.
+  Equivalently, $M$ is of rank $< \alpha$ on right-bounded rays.
+
+  $\mathcal{R}_{< \alpha}$ is the class
+  of linear orders $M$ where $M + 1 \in \mathcal{B}_{< \alpha}$.
+  Equivalently, $M$ is of rank $< \alpha$ on left-bounded rays.
 \end{definitions}
 
 \begin{lemma}
@@ -218,11 +234,12 @@
 
 \begin{proof}
   The only nontrivial direction is 3 implies 2, which follows from the star property
-  of $\mathcal{B}_{< \alpha}$.
+  of $\mathcal{B}_{< \alpha}$ (Or alternatively, it can be seen clearly from the
+  ray-based formulation).
 \end{proof}
 
 \begin{lemma}
-  A countable linear order which has rank $< \alpha$ 
+  A countable linear order which has rank $< \alpha$
   on bounded subintervals is of rank $\le \alpha$.
   That is,
 
@@ -267,6 +284,76 @@
   we are done.
 \end{proof}
 
+\begin{lemma}
+  Let $M = \sum_{i \in I} M_i$ where $I \in \qq$ and $\hrank{M_i} < \alpha$ for all $i \in I$.
+
+  Then $\hrank{M} = \alpha$ iff either:
+
+  \begin{itemize}
+    \item $\alpha$ is a successor ordinal, and for all $i \in I$, $\hrank{M_i} = \alpha - 1$.
+  \end{itemize}
+\end{lemma}
+
+
+
+\begin{definition}[Compatibility]
+  Let $I \in \qq$.
+  Let $M$ and $N$ be countable linear orders.
+  Let $\alpha = \hrank{M}$ and $\beta = \hrank{N}$.
+
+  Suppose $M = \sum_{i \in I} M_i$ and $N = \sum_{i \in I} N_i$ where
+  $\hrank{M_i} < \alpha$ and $\hrank{N_i} < \beta$ for all $i \in I$,
+  and $M_i \equiv_n N_i$ for all $i \in I$.
+
+  Then the decompositions $M = \sum_{i \in I} M_i$ and $N = \sum_{i \in I} N_i$ are \emph{compatible} if one of the following holds:
+
+  \begin{itemize}
+    \item $\alpha$ and $\beta$ are both successor ordinals,
+          and for all $i \in I$, $\hrank{M_i} = \alpha - 1$
+          if and only if $\hrank{N_i} = \beta - 1$.
+    \item $\alpha$ and $\beta$ are both limit ordinals,
+          and for every subset $J \subseteq I$,
+          the subset $\hrank{J}$ is cofinal in $\alpha$
+          iff the subset $\hrank{J}$ is cofinal in $\beta$.
+  \end{itemize}
+
+  $M$ and $N$ are \emph{compatible} if for some $I \in \qq$,
+  there exists such a pair of compatible decompositions of $M$ and $N$.
+\end{definition}
+
+\begin{definition}
+  Let $\qq$ be a good property.
+
+  We say that $\qq$ is \emph{compatibility preserving} if
+  for every $I \in \qq$ and every pair of compatible decompositions
+  $M = \sum_{i \in I} M_i$ and $N = \sum_{i \in I} N_i$,
+  where $\hrank{M} = \alpha$ and $\hrank{N} = \beta$,
+  and $\hrank{M_i} < \alpha$ and $\hrank{N_i} < \beta$ for all $i \in I$,
+
+\end{definition}
+
+\begin{lemma}
+  Suppose $M = \sum_{i \in I} M_i$ and $N = \sum_{i \in I} N_i$ are 
+  a pair of compatible decompositions.
+  
+  Let $J \subseteq I$ be a subinterval.
+  
+  Let $M_J = \sum_{i \in J} M_i$ and $N_J = \sum_{i \in J} N_i$. Then:
+
+  \begin{enumerate}
+    \item $\hrank{M_J} = \alpha$ iff $\hrank{N_J} = \beta$.
+    \item If $\hrank{M_J} = \alpha$ and $\hrank{N_J} = \beta$,
+          then the decompositions 
+          $M_J = \sum_{i \in J} M_i$ and $N_J = \sum_{i \in J} N_i$ are compatible.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  First let us proof 1. Suppose $\hrank{M_J} = \alpha$.
+  
+  
+\end{proof}
+
 \section{Decidability of the rank}
 
 
@@ -288,13 +375,12 @@
   $\type{n}{\mathcal{H}_{k}}$ is computable for every finite $k$.
 \end{proof}
 
-
 \begin{lemma}
   There exist global computable functions $a, b : \NN \to \NN$ such that
   for all $n, c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
   $$\type{n}{\mathcal{H}_{c_1}} = \type{n}{\mathcal{H}_{c_2}}$$
 
-  Equivalently, the sequence $\braces{\type{n}{\mathcal{H}_{k}}}_{k \in \omega}$ 
+  Equivalently, the sequence $\braces{\type{n}{\mathcal{H}_{k}}}_{k \in \omega}$
   is ultimately periodic for all $n \in \NN$. Furthermore, the starting point and the period
   itself can be computed as a function of $n$.
 \end{lemma}
@@ -305,9 +391,9 @@
   Since there exist only a finite number of possible
   sets of $n$-types, there exist (and can be computed)
   some $a(n) > f(n)$, $a(n) + b(n)$ such that
-  
+
   $$\type{n}{\mathcal{H}_{a(n)}} = \type{n}{\mathcal{H}_{a(n) + b(n)}}$$
-  
+
   We shall prove by induction that for all $c \ge a(n) + b(n)$,
 
   $$\type{n}{\mathcal{H}_{c}} = \type{n}{\mathcal{H}_{c + b(n)}}$$
@@ -336,7 +422,7 @@
   and $\hrank{M_i} = c + b(n)$ infinitely many times.
 
   By the induction hypothesis,
-  we can find for all $i$ such that $\hrank{M_i} = c + b(n)$ some 
+  we can find for all $i$ such that $\hrank{M_i} = c + b(n)$ some
   $N_i \equiv_n M_i$ with $\hrank{N_i} = c$.
   Furthermore, since $c \ge a(n) > f(n)$, we can
   find $N_i \equiv_n M_i$ with $\hrank{N_i} \le f(n) < c$ for all other $i$.
@@ -359,6 +445,37 @@
 \end{lemma}
 
 \begin{proof}
+  TBC.
+\end{proof}
+
+\begin{lemma}
+  Let $\alpha, \beta \ge \omega$ be ordinals.
+
+  Let $M, N$ be countable linear orders.
+
+  Suppose $\hrank{M} \in \mathcal{B}_{< \alpha}$ and $\hrank{N} \in \mathcal{B}_{< \beta}$.
+
+  Let $M = \sum_{i \in I} M_i$ and $N = \sum_{i \in I} N_i$ be decompositions
+  where $I \in \qq$ and for all $i \in I$, $\hrank{M_i} < \alpha$
+  and $\hrank{N_i} < \beta$.
+
+  Then, $M \in \mathcal{L}_{< \alpha}$ iff $N \in \mathcal{L}_{< \beta}$,
+  and $M \in \mathcal{R}_{< \alpha}$ iff $N \in \mathcal{R}_{< \beta}$.
+\end{lemma}
+
+\begin{proof}
+  We will prove for the case of $\mathcal{L}$, the other case is dual.
+
+  We will show the first direction, as the other direction is symmetric.
+
+  Suppose $M \in \mathcal{L}_{< \alpha}$.
+  That is, for every $x \in M$, the ray $\setcomp{\le x}$ is of rank $< \alpha$.
+
+  Let $y \in N$. Suppose $y \in M_j$. Let us look at
+  $N' = \sum_{i \le j} N_i$.
+
+  Suppose for the contrary that it is of rank $< \beta$.
+
   TBC.
 \end{proof}
 
@@ -404,12 +521,10 @@
   $M = \sum_{i \in I} M_i$ such that $M_i \in \mathcal{B}_{< \alpha}$ for all $i \in I$,
   $M_i$ is monochromatic with respect to $P$, $L$ and $R$.
 
-  Furthermore, let $\tau_i$ be the $n$-type of $M_i, p_i, q_i, r_i$ in $\mso[p, \ell, r]$,
-  where $p_i = 1_{M_i \subseteq P}$, $q_i = 1_{M_i \subseteq L}$ and $r_i = 1_{M_i \subseteq R}$.
-  Then the following hold
+  Furthermore, the following hold:
   \begin{itemize}
-    \item if $i$ has a successor, $p(\tau_i) \ne p(\tau_{i+1})$
-    \item if $i$ has a successor, either $r(\tau_i) = 0$ or $\ell(\tau_{i+1}) = 0$
+    \item if $i$ has a successor, $M_i \subseteq P$ iff $M_{i+1} \subseteq P$.
+    \item if $i$ has a successor, either $M_i \not \subseteq R$ or $M_{i+1} \not \subseteq L$.
   \end{itemize}
 \end{lemma}
 \begin{proof}
@@ -427,7 +542,7 @@
 \end{proof}
 
 \begin{lemma}
-  Let $I$ be a linear order. Let $n \in \NN$. Let $p, \ell, r$ be boolean variables.
+  Let $I$ be a linear order. Let $n \in \NN$.
 
   Let $\tau_i$ be an assignment of satisfiable $n$-types in $\mso[p, \ell, r]$ for all $i \in I$. Assume that
   \begin{itemize}
