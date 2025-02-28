@@ -87,9 +87,9 @@
   Let $s \in \setcomp{1, \omega, \omega^R, \ZZ}$ be a shape.
 
   Then there exists (and can be computed) $A_s \subseteq \setcomp{0, \ldots, a(n) - 1}$ such that
-  $$\type{n}{\mathcal{S}^s_{\alpha}} = \bigcup_{c \in A_s}{\type{n}{\qq^{= c + b(n))}}}$$
+  $$\type{n}{\mathcal{S}^{s}_{\alpha}} = \bigcup_{c \in A_s}{\type{n}{\qq^{= c + b(n))}}}$$
 
-  In particular, $\type{n}{\mathcal{S}^s_{\alpha}}$ can be
+  In particular, $\type{n}{\mathcal{S}^{s}_{\alpha}}$ can be
   computed, and is independent of the choice $\alpha \ge \omega$.
 \end{lemma}
 
@@ -102,9 +102,9 @@
 
   Let $M$ be a linear order and $x \in M$.
 
-  We define the convex equivalence relation $\sim_\alpha := \sim_{\mathcal{B}_{< \alpha}}$,
-  and $\brackets{x}_{\alpha} := \brackets{x}_{\mathcal{B}_{< \alpha}}$ (that is,
-  $\brackets{x}_{\alpha}$ is the largest $\mathcal{B}_{< \alpha}$-subinterval
+  We define the convex equivalence relation $\sim_\alpha := \sim_{\mathcal{B}_{\alpha}}$,
+  and $\brackets{x}_{\alpha} := \brackets{x}_{\mathcal{B}_{\alpha}}$ (that is,
+  $\brackets{x}_{\alpha}$ is the largest $\mathcal{B}_{\alpha}$-subinterval
   containing $x$ in $M$).
 
   We define $\sigma_{\alpha} \parens{M}$ as 
@@ -113,13 +113,14 @@
 
 
 \begin{lemma}
-  Over countable linear orders with interpretations of $P$, $L$ and $R$ as above, the property
-  $\qq^{< \alpha}$ is expressible in $\mso[P, L, R]$.
+  The property
+  $\hrank{\cdot} = \alpha$ is expressible over intervals
+   in $\mso[\sim_{\alpha}, \sigma_{\alpha}]$
 \end{lemma}
 
 \begin{proof}
-  From lemma 3 we can express $\qq^{< \alpha}$ as the intersection
-  of $L$ and $R$.
+  It is equivalent to being a sum of $\sim_{\alpha}$-subintervals,
+  of which at least one has $\sigma_{\alpha} \ne 1$.
 \end{proof}
 
 \begin{theorem}
@@ -173,10 +174,10 @@
   Let us take a model $M_i$ with the appropriate type.
   Now define $M := \sum_{i \in I} M_i$.
 
-  We claim that each $M_i$ is a \emph{maximum} $\mathcal{B}_{< \alpha}$-subinterval
+  We claim that each $M_i$ is a \emph{maximum} $\mathcal{B}_{\alpha}$-subinterval
   of $M$.
 
-  Suppose $[M_i, M_j]$ is a $\mathcal{B}_{< \alpha}$-subinterval of $M$.
+  Suppose $[M_i, M_j]$ is a $\mathcal{B}_{\alpha}$-subinterval of $M$.
   
   In particular, it has a rank, so it is scattered. So in particular,
   $[i, j] \subseteq I$ is a scattered interval.

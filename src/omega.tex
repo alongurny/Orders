@@ -7,17 +7,17 @@
 
   We define $\hrank{M} = \alpha$ iff $M \in \qqo^{= \alpha}$.
 
-  $\mathcal{B}_{< \alpha} := \bounded{\qqo^{< \alpha}}$ is the class
+  $\mathcal{B}_{\alpha} := \bounded{\qqo^{< \alpha}}$ is the class
   of linear orders of rank $< \alpha$ on bounded intervals.
 \end{definitions}
 
 
 \begin{definition}
-  Let $M \in \mathcal{B}_{< \alpha}$. We define the $\alpha$-shape
+  Let $M \in \mathcal{B}_{\alpha}$. We define the $\alpha$-shape
   of $M$ to be the $I \in \setcomp{1, \omega, \omega^R, \ZZ}$ 
   for which the previous lemma holds.
 
-  We define $\mathcal{S}^{s}_{< \alpha}$ to be the class of linear orders
+  We define $\mathcal{S}^{s}_{\alpha}$ to be the class of linear orders
   whose $\alpha$-shape is $s$, for $s \in \setcomp{1, \omega, \omega^R, \ZZ}$.
 \end{definition}
 
@@ -26,11 +26,11 @@
 
   Let $M$ be a countable linear order.
 
-  Then $\hrank{M} \le \alpha$ iff $M$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals.
+  Then $\hrank{M} \le \alpha$ iff $M$ is a finite sum of $\mathcal{B}_{\alpha}$-subintervals.
 \end{lemma}
 
 \begin{proof}
-  From the previous lemma, it is clear that if $M$ is a finite sum of $\mathcal{B}_{< \alpha}$-subintervals,
+  From the previous lemma, it is clear that if $M$ is a finite sum of $\mathcal{B}_{\alpha}$-subintervals,
   then $\hrank{M} \le \alpha$, since the rank bound is preserved under finite sums.
 
   Conversely, suppose $\hrank{M} \le \alpha$.
@@ -39,13 +39,13 @@
   take $x, y \in M$. Then let $x \in M_{i_1}$ and $y \in M_{i_2}$.
 
   Then $[x, y] \subseteq \sum_{i \in [i_1, i_2]} M_i$. But the last sum is of rank $< \alpha$
-  and thus $[x, y]$ is of rank $< \alpha$. That is, $M \in \mathcal{B}_{< \alpha}$.
+  and thus $[x, y]$ is of rank $< \alpha$. That is, $M \in \mathcal{B}_{\alpha}$.
 
   So we have proven that each interval which is a $\ZZ$-sum of linear orders of
-  $\omega$-rank $< \alpha$ is in $\mathcal{B}_{< \alpha}$.
+  $\omega$-rank $< \alpha$ is in $\mathcal{B}_{\alpha}$.
 
   But generally, $M$ is a finite sum of such $\ZZ$-sums, so it is a finite sums
-  of $\mathcal{B}_{< \alpha}$-subintervals.
+  of $\mathcal{B}_{\alpha}$-subintervals.
 \end{proof}
 
 \begin{lemma}
@@ -86,16 +86,16 @@
 \end{definition}
 
 
-\begin{lemma}[Characterization of $\mathcal{B}_{< \alpha}$]
+\begin{lemma}[Characterization of $\mathcal{B}_{\alpha}$]
   Let $\alpha \ge \omega$ be a limit ordinal.
 
-  Let $M \in \mathcal{B}_{< \alpha}$.
+  Let $M \in \mathcal{B}_{\alpha}$.
   
   Then $M$ \emph{has a unique} $\alpha$-shape in $\setcomp{1, \omega, \omega^R, \ZZ}$.
 \end{lemma}
 
 \begin{proof}
-  $\implies$: Let $M \in \mathcal{B}_{< \alpha}$. By the lemma,
+  $\implies$: Let $M \in \mathcal{B}_{\alpha}$. By the lemma,
   there exists a decomposition $M = \sum_{i \in I} M_i$ where
   $I \subseteq \ZZ$ and $\hrank{M_i} < \alpha$ for all $i \in I$.
 
