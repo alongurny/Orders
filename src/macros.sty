@@ -1,0 +1,54 @@
+\ProvidesPackage{macros}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+% Theorems
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{observation}{Observation}
+\newtheorem{observations}{Observations}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{claim}{Claim}
+
+% Definitions
+\newtheorem{definition}{Definition}
+\newtheorem{definitions}{Definitions}
+\newtheorem{notation}{Notation}
+\newtheorem{notations}{Notations}
+
+% Delimiters
+\newcommand{\parens}[1]{\left( {#1} \right)}
+\newcommand{\brackets}[1]{\left[ {#1} \right]}
+\newcommand{\braces}[1]{\left\{ {#1} \right\}}
+
+% Macros
+\newcommand{\setcomp}[1]{\braces{#1}}
+\newcommand{\hrank}[1]{\mathbf{hrank}_{\omega}\left( #1 \right)}
+\newcommand{\bigforall}{\mbox{\Large $\mathsurround0pt\foralM$}} 
+
+% Letters
+\newcommand{\agemo}{-\omega}
+\newcommand{\otp}{\mathbf{otp}}
+\newcommand{\fso}{\mathbf{FSO}}
+\newcommand{\mso}{\mathbf{MSO}}
+\newcommand{\bounded}[1]{{#1} \text{-} \mathbf{bounded}}
+\newcommand{\pp}{\mathbf{P}}
+\newcommand{\qq}{\mathbf{Q}}
+
+% Sets
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+% Types
+\newcommand{\type}[2]{\mathbf{type}_{#1} \brackets{#2}}
+
+% Monoids
+\newcommand{\zero}{\cdot}
+
+\newcommand{\abs}[1]{\left| {#1} \right|}
+
+\newcommand{\qqo}{\Gamma_{\omega}}

@@ -1,0 +1,60 @@
+
+\section{General Hausdorff Rank}
+
+% Definition of the Hausdorff rank
+\begin{definition}
+  Let $\qq$ be a good property of linear orders.
+
+  We define a property $\qq^{\le \alpha}$
+  for every ordinal $\alpha$ as follows:
+
+  \begin{itemize}
+    \item $\qq^{\le 0}$ is the class of finite linear orders.
+    \item For $\alpha > 0$, $\qq^{\le \alpha}$ is the class of linear orders $M$ such that
+          $M = \sum_{i \in I} M_i$ for some $I \in \qq$ where
+          for all $i \in I$, $M_i \in \qq^{\beta_i}$ for some $\beta_i < \alpha$
+  \end{itemize}
+
+  We define further $\qq^{< \alpha} = \bigcup_{\beta < \alpha} \qq^{\le \beta}$
+  and $\qq^{=\alpha} = \qq^{\le \alpha} - \qq^{< \alpha}$.
+
+  We define $\hrank{M} = \alpha$ iff $M \in \qq^{= \alpha}$.
+  This is a \emph{partial map} from linear orders to ordinals.
+\end{definition}
+
+\begin{observations}
+  Let $\qq$ be a good property.
+
+  We claim the following without proof:
+
+  \begin{itemize}
+    \item $\qq^{\le 1} = \qq$.
+    \item For all $\alpha$, $\qq^{\le \alpha}$ is a good property.
+    \item $\qq^{\le \alpha} \subsetneq \qq^{\le \beta}$ iff $\alpha < \beta$.
+  \end{itemize}
+\end{observations}
+
+\begin{lemma}
+  Let $\qq$ be a good property.
+
+  A countable linear order which has $\qq$-rank $< \alpha$
+  on bounded subintervals is an $I$-sum of 
+  linear orders of rank $< \alpha$ for some $I \subseteq \ZZ$.
+\end{lemma}
+
+\begin{proof}
+  Since $M$ is countable, there exists a $\ZZ$-sequence $\setcomp{x_k}_{k \in \ZZ} \subseteq M$,
+  which is weakly monotone bi-directionally cofinal in $M$.
+
+  That is, $M = \sum_{k \in \ZZ} \left[ x_k, x_{k + 1} \right)$.
+
+  Taking only those $k$ for which $x_k < x_{k + 1}$, we get a decomposition
+  $M = \sum_{i \in I} M_i$ where $I \subseteq \ZZ$.
+
+  Since the rank of every interval $\left[ x_k, x_{k + 1} \right)$ is $< \alpha$,
+  $M$ has a rank $\le \alpha$.
+\end{proof}
+
+\begin{corollary}
+  $$\bounded{\qq^{< \alpha}} \subseteq \qq^{\le \alpha}$$
+\end{corollary}

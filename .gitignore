@@ -7,7 +7,7 @@
 # Source
 !src/
 !src/*.tex
-!src/*.inc
+!src/*.sty
 
 # Output
 !Orders.pdf

@@ -1,0 +1,219 @@
+
+\section{Decidability of the rank}
+
+\begin{lemma}
+  There exists a global computable function $f : \NN \to \NN$ such that
+  for all $n \in \NN$, and all $a \in \NN$ such that $a \ge f(n)$,
+  $\type{n}{\qq^{\le a}} = \type{n}{\qq^{\le f(n)}}$.
+
+  Equivalently, every linear order of finite rank is $n$-equivalent to some linear order of rank $\le f(n)$.
+\end{lemma}
+
+\begin{proof}
+  Since there are only finitely many $n$-types
+
+  and the $\omega$-sequence $\braces{\type{n}{\qq^{\le k}}}_{k \in \omega}$
+  is monotone for every $s$, and there are only finitely many $s$,
+  there must be some $k$ where the sequence stabilizes for all $s$.
+
+  This point $k$ is computable as a function of $n$, because
+  $\type{n}{\qq^{\le k}}$ is computable for every finite $k$.
+\end{proof}
+
+\begin{lemma}
+  There exist global computable functions $a, b : \NN \to \NN$ such that
+  for all $n, c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
+  $$\type{n}{\qq^{= c_1}} = \type{n}{\qq^{= c_2}}$$
+
+  Equivalently, the sequence $\braces{\type{n}{\qq^{k}}}_{k \in \omega}$
+  is ultimately periodic for all $n \in \NN$. Furthermore, the starting point and the period
+  itself can be computed as a function of $n$.
+\end{lemma}
+
+\begin{proof}
+  Let $n \in \NN$.
+
+  Since there are only finitely many sets of $n$-types,
+  there exist (and can be computed)
+  some $a(n) > f(n)$, $a(n) + b(n)$ such that
+
+  $$\type{n}{\qq^{= a(n)}} = \type{n}{\qq^{= a(n) + b(n)}}$$
+
+  holds for every $s$.
+
+  We shall prove by induction that for all $c \ge a(n)$,
+
+  $$\type{n}{\qq^{= c}} = \type{n}{\qq^{= c + b(n)}}$$
+
+  This will complete the proof.
+
+  The base case $c = a(n)$ has been proven in the beginning.
+
+  Suppose the induction hypothesis holds for $c$.
+
+  Let $M$ be of rank $c + 1$.
+
+  Write $M = \sum_{i \in I} M_i$ where $\hrank{M_i} < c + 1$,
+  and $\hrank{M_i} = c$ infinitely many times.
+
+  By the induction hypothesis,
+  if $\hrank{M_i} = c$, we can find $N_i \equiv_n M_i$ with $\hrank{N_i} = c + b(n)$.
+  Setting $N_i := M_i$ for all other $i$, we conclude that $N := \sum_{i \in I} N_i$
+  is $n$-equivalent to $M$.
+
+  However, clearly $\hrank{N} = c + b(n) + 1$. So overall,
+  $$\type{n}{\qq^{= c + 1}} \subseteq \type{n}{\qq^{= c + b(n) + 1}}$$
+
+  Conversely, suppose $M$ is of rank $c + b(n) + 1$.
+  Write $M$ = $\sum_{i \in I} M_i$ where $\hrank{M_i} < c + b(n) + 1$,
+  and $\hrank{M_i} = c + b(n)$ infinitely many times.
+
+  By the induction hypothesis,
+  we can find for all $i$ such that $\hrank{M_i} = c + b(n)$ some
+  $N_i \equiv_n M_i$ with $\hrank{N_i} = c$.
+  Furthermore, since $c \ge a(n) > f(n)$, we can
+  find $N_i \equiv_n M_i$ with $\hrank{N_i} \le f(n) < c$ for all other $i$.
+
+  We conclude that $N := \sum_{i \in I} N_i$ is $n$-equivalent to $M$.
+  However, clearly $\hrank{N} = c + 1$. So overall,
+  $$\type{n}{\qq^{= c + b(n) + 1}} \subseteq \type{n}{\qq^{= c + 1}}$$
+
+  So we have proven the induction step, and the lemma follows.
+\end{proof}
+
+\begin{lemma}
+  Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
+
+  Let $s \in \setcomp{1, \omega, \omega^R, \ZZ}$ be a shape.
+
+  Then there exists (and can be computed) $A_s \subseteq \setcomp{0, \ldots, a(n) - 1}$ such that
+  $$\type{n}{\mathcal{S}^s_{\alpha}} = \bigcup_{c \in A_s}{\type{n}{\qq^{= c + b(n))}}}$$
+
+  In particular, $\type{n}{\mathcal{S}^s_{\alpha}}$ can be
+  computed, and is independent of the choice $\alpha \ge \omega$.
+\end{lemma}
+
+\begin{proof}
+  TBC.
+\end{proof}
+
+\begin{lemma}
+  Let $\alpha, \beta \ge \omega$ be ordinals.
+
+  Let $M, N$ be countable linear orders.
+
+  Suppose $\hrank{M} \in \mathcal{B}_{< \alpha}$ and $\hrank{N} \in \mathcal{B}_{< \beta}$.
+
+  Let $M = \sum_{i \in I} M_i$ and $N = \sum_{i \in I} N_i$ be decompositions
+  where $I \in \qq$ and for all $i \in I$, $\hrank{M_i} < \alpha$
+  and $\hrank{N_i} < \beta$.
+
+  Then, $M \in \mathcal{L}_{< \alpha}$ iff $N \in \mathcal{L}_{< \beta}$,
+  and $M \in \mathcal{R}_{< \alpha}$ iff $N \in \mathcal{R}_{< \beta}$.
+\end{lemma}
+
+\begin{proof}
+  We will prove for the case of $\mathcal{L}$, the other case is dual.
+
+  We will show the first direction, as the other direction is symmetric.
+
+  Suppose $M \in \mathcal{L}_{< \alpha}$.
+  That is, for every $x \in M$, the ray $\setcomp{\le x}$ is of rank $< \alpha$.
+
+  Let $y \in N$. Suppose $y \in M_j$. Let us look at
+  $N' = \sum_{i \le j} N_i$.
+
+  Suppose for the contrary that it is of rank $< \beta$.
+
+  TBC.
+\end{proof}
+
+\begin{definition}
+  Let $\alpha \ge \omega$ be an ordinal.
+
+  Let $M$ be a linear order and $x \in M$.
+
+  We define the convex equivalence relation $\sim_\alpha := \sim_{\mathcal{B}_{< \alpha}}$,
+  and $\brackets{x}_{\alpha} := \brackets{x}_{\mathcal{B}_{< \alpha}}$ (that is,
+  $\brackets{x}_{\alpha}$ is the largest $\mathcal{B}_{< \alpha}$-subinterval
+  containing $x$ in $M$).
+
+  We define $\sigma_{\alpha} \parens{M}$ as 
+  the $\alpha$-shape of $M$.
+\end{definition}
+
+
+\begin{lemma}
+  Over countable linear orders with interpretations of $P$, $L$ and $R$ as above, the property
+  $\qq^{< \alpha}$ is expressible in $\mso[P, L, R]$.
+\end{lemma}
+
+\begin{proof}
+  From lemma 3 we can express $\qq^{< \alpha}$ as the intersection
+  of $L$ and $R$.
+\end{proof}
+
+\begin{theorem}
+  There is an oracle reduction from SAT for $\mso[\sim_{\alpha}, \sigma_{\alpha}]$,
+  to SAT for $\mso$.
+\end{theorem}
+
+\begin{proof}
+  By the decomposition theorem, there exists a translation,
+  that given an $\mso[\sim_{\alpha}, \sigma_{\alpha}]$ formula $\varphi$ of quantifier-depth $n$.
+  outputs an $\mso$ formula $\psi(\Pi)$ such that...
+
+  Let $\varphi$ be an $\mso[\sim_{\alpha}, \sigma_{\alpha}]$ formula,
+  and let $n$ be the quantifier-depth of $\varphi$.
+
+  WLOG, assume that $\varphi$ is a sentence.
+
+  First, let us calculate the sets:
+  
+  $$T_s := \type{n}{\mathcal{S}^{s}_{\alpha}}$$
+  for every shape $s$.
+
+  Now we create the formulae:
+  $$\theta_s(\Pi, \Xi) := \setcomp{i : \bigvee_{\tau \in S_s}{\Xi(\Pi(i)) = s}}$$
+  $$L(\Pi, \Xi) := \theta_{\omega}(\Pi, \Xi) \vee \theta_{\ZZ}(\Pi, \Xi)$$
+  $$R(\Pi, \Xi) := \theta_{\omega^R}(\Pi, \Xi) \vee \theta_{\ZZ}(\Pi, \Xi)$$
+
+  We create the formula $\chi(\Pi, \Xi)$ as follows:
+
+  $$\chi := \Pi = domain(\Xi) \wedge \forall i, i'. i' = i + 1 \implies {i \in R(\Pi, \Xi) \vee i' \in L(\Pi, \Xi)}$$
+
+  Now we claim that $\varphi$ is satisfiable in $\mso[\sim_{\alpha}, \sigma_{\alpha}]$
+  iff $\psi \land \chi$ is satisfiable in $\mso$.
+
+  If $\varphi$ is satisfiable, then there exists a model $M$ of $\varphi$.
+
+  Let $M = \sum_{i \in I} M_i$ be the decomposition of $M$
+  where $I = \sim_{\alpha}$ and $M_i$ are the $\sim_{\alpha}$-equivalence classes.
+
+  By the decomposition theorem, $\Psi$ holds
+  in $I, \Pi := \type{n}{\cdot}$.
+
+  We claim that $\chi$ holds in $I, \Pi := \type{n}{\cdot}$. 
+  
+  It follows from the star property of $\sim_{\alpha}$ that the constraint holds.
+
+  Conversely, suppose $\psi \land \chi$ is satisfiable in $\mso$.
+
+  Let $I, \Pi := T$ be a model of $\psi \land \chi$.
+
+  Let us take a model $M_i$ with the appropriate type.
+  Now define $M := \sum_{i \in I} M_i$.
+
+  We claim that each $M_i$ is a \emph{maximum} $\mathcal{B}_{< \alpha}$-subinterval
+  of $M$.
+
+  Suppose $[M_i, M_j]$ is a $\mathcal{B}_{< \alpha}$-subinterval of $M$.
+  
+  In particular, it has a rank, so it is scattered. So in particular,
+  $[i, j] \subseteq I$ is a scattered interval.
+
+  If $i = j$ we are done. Otherwise, let $i'$, $j'$ be such that $i \le i' < j' \le j$,
+  and $j' = i' + 1$.  But it cannot be the case by the constraint.
+
+
+\end{proof}

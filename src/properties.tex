@@ -1,0 +1,102 @@
+\section{Properties}
+% Definition of a property
+\begin{definition}
+  A \emph{property} $\pp$ of linear orders is a class of linear orders which
+  is closed under isomorphism.
+\end{definition}
+
+% Definition of a monotone property
+\begin{definition}
+  A property $\pp$ of linear orders is \emph{monotone} if for every linear order $M$,
+  $M \in \pp$ implies that every suborder of $M$ is in $\pp$.
+\end{definition}
+
+% Definition of a symmetric property
+\begin{definition}
+  A property $\pp$ of linear orders is \emph{symmetric} if for every linear order $M$,
+  $M \in \pp$ iff $M^R \in \pp$.
+\end{definition}
+
+% Definition of an additive property
+\begin{definition}
+  A property $\pp$ of linear orders is an \emph{additive property} if for every linear orders $M_1$ and $M_2$,
+  $M_1 + M_2 \in \pp$ iff $M_1, M_2 \in \pp$.
+\end{definition}
+
+% Definition of $\bounded{\pp}$
+\begin{definition}
+  Let $\pp$ be a property of linear orders.
+
+  We define $\bounded{\pp}$ to be the class of linear orders $M$ such that for every $x, y \in M$,
+  the bounded subinterval $[x, y]$ is in $\pp$.
+\end{definition}
+
+% Definition of an almost anti-symmetric property
+\begin{definition}
+  A property $\pp$ of linear orders is \emph{almost anti-symmetric}
+  if for every linear order $M$,
+  $M \in \pp$ and $M^R \in \pp$ imply that $M$ is finite.
+\end{definition}
+
+% Definition of a good property
+\begin{definition}
+  A property $\pp$ of linear orders is \emph{good} if it is
+  monotone, additive and $\ZZ \in \pp$.
+\end{definition}
+
+% Definition of a star property
+\begin{definition}
+  A property $\pp$ of linear orders is a \emph{star property} if
+  for every linear orders $M$, and every family $\mathcal{F} \subseteq \pp$
+  of subintervals of $M$ such that $J_1 \cap J_2 \ne \emptyset$
+  for every $J_1, J_2 \in \mathcal{F}$, we have that
+  $\bigcup \mathcal{F} \in \pp$.
+\end{definition}
+
+
+% Lemma: $\bounded{\pp}$ is a star property
+\begin{lemma}[Star Lemma]
+  Let $\pp$ be an additive property of linear orders.
+
+  Then the property $\bounded{\pp}$ is a star property.
+\end{lemma}
+
+% Proof of the star lemma
+\begin{proof}
+  Let $M$ be a linear order,
+  and let $\mathcal{F} \subseteq \bounded{\pp}$ be a family of subintervals of $M$.
+
+  Let $[x, y] \subseteq \bigcup \mathcal{F}$ be any bounded subinterval. We need to prove
+  it is in $\pp$.
+
+  Suppose $x \in J_1$ and $y \in J_2$ for $J_1, J_2 \in \mathcal{F}$.
+
+  Since $J_1 \cap J_2 \ne \emptyset$, we can take $z \in J_1 \cap J_2$.
+
+  Then $[x, z] \subseteq J_1$ and $[z, y] \subseteq J_2$,
+  and thus by $\bounded{\pp}$, $[x, z], [z, y] \in \pp$.
+  However, $\pp$ is additive. Since $[x, y]$ is either the sum
+  or difference of $[x, z]$ and $[z, y]$, we have that $[x, y] \in \pp$.
+\end{proof}
+
+% Partition according to a star property
+\begin{lemma}
+  Let $\pp$ be a star property.
+
+  Then for every linear order $M$,
+  and every point $x \in M$, there exists a largest subinterval $J \subseteq M$ such that
+  $J \in \pp$.
+
+  Thus, we can define an equivalence relation $\sim_{\pp}$ on $M$ such that
+  $x \sim_{\pp} y$ iff $x$ and $y$ are in the same largest $\pp$-subinterval.
+\end{lemma}
+
+\begin{proof}
+  Let $J \subseteq M$ be the union of all $\bounded{\pp}$-subintervals containing $x$.
+  All such subintervals intersect at $x$.
+
+  Therefore, by the star lemma, $J$ is in $\bounded{\pp}$, and by definition
+  $J$ is the largest $\pp$-subinterval containing $x$.
+
+  Thus we can define the equivalence relation $\sim_{\pp}$ as above.
+\end{proof}
