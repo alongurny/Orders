@@ -86,15 +86,25 @@
 
   Let $s \in \setcomp{1, \omega, \omega^R, \ZZ}$ be a shape.
 
-  Then there exists (and can be computed) $A_s \subseteq \setcomp{0, \ldots, a(n) - 1}$ such that
-  $$\type{n}{\mathcal{S}^{s}_{\alpha}} = \bigcup_{c \in A_s}{\type{n}{\qq^{= c + b(n))}}}$$
+  $$\type{n}{\mathcal{S}^{s}_{\alpha}} = \bigcup_{c < b(n)}{\type{n}{\qq^{= a(n) + c)}}}$$
 
   In particular, $\type{n}{\mathcal{S}^{s}_{\alpha}}$ can be
   computed, and is independent of the choice $\alpha \ge \omega$.
 \end{lemma}
 
 \begin{proof}
-  TBC.
+  Draft:
+  
+  For $\alpha = \omega$:
+
+  For example, for $s = \omega$, if we have an $\omega$-sum
+  of linear orders of rank something, we can change it
+  to be an increasing-to-$\infty$ sequence.
+
+  For the other direction, we take an $\omega$-sum and reduce it modulo
+  $b(n)$ to be between $a(n)$ and $a(n) + b(n)$.
+
+  For other values of $\alpha \ge \omega$ we prove by induction:
 \end{proof}
 
 \begin{definition}
@@ -186,4 +196,20 @@
   and $j' = i' + 1$.  But it cannot be the case by the constraint.
 
 
+\end{proof}
+
+\begin{theorem}
+  Suppose $\alpha_k > \alpha_{k - 1} > \ldots > \alpha_0 > 0$ are ordinals.
+
+  Then there is an oracle reduction from SAT for $\mso[
+    \sim_{\alpha_k}, \sigma_{\alpha_k}, \ldots, \sim_{\alpha_0}, \sigma_{\alpha_0}]$,
+
+  to SAT for $\mso[
+    \sim_{\delta_{k-1}}, \sigma_{\delta_{k-1}}, \ldots, \sim_{\delta_0}, \sigma_{\delta_0}]$.
+
+  where $\alpha_0 + \delta_i = \alpha_{i + 1}$ for $0 \le i < k$.
+\end{theorem}
+
+\begin{proof}
+  
 \end{proof}

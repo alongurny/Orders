@@ -35,17 +35,89 @@
 
   Conversely, suppose $\hrank{M} \le \alpha$.
 
-  \emph{If} $M = \sum_{i \in \ZZ} M_i$ for some $M_i$ of Hausdorff rank $< \alpha$,
+  \emph{If} $M = \sum_{i \in I} M_i$ for some $M_i$ of Hausdorff rank $< \alpha$ for $I \in \Gamma_{\omega}$,
   take $x, y \in M$. Then let $x \in M_{i_1}$ and $y \in M_{i_2}$.
 
   Then $[x, y] \subseteq \sum_{i \in [i_1, i_2]} M_i$. But the last sum is of rank $< \alpha$
   and thus $[x, y]$ is of rank $< \alpha$. That is, $M \in \mathcal{B}_{\alpha}$.
 
-  So we have proven that each interval which is a $\ZZ$-sum of linear orders of
+  So we have proven that each interval which is a $\Gamma_{\omega}$-sum of linear orders of
   $\omega$-rank $< \alpha$ is in $\mathcal{B}_{\alpha}$.
 
   But generally, $M$ is a finite sum of such $\ZZ$-sums, so it is a finite sums
   of $\mathcal{B}_{\alpha}$-subintervals.
+\end{proof}
+
+\begin{lemma}
+  Let $\alpha, \delta > 0$ be ordinals.
+
+  Let $M$ be a countable linear order.
+
+  Then $\hrank{M} \le \alpha + \delta$ iff there exists a decomposition
+  $M = \sum_{i \in I} M_i$ where $\hrank{I} \le \delta$ and $\hrank{M_i} < \alpha$ for all $i \in I$.
+\end{lemma}
+
+\begin{proof}
+  By induction on $\delta > 0$.
+
+  For $\delta = 1$ this is just the definition.
+
+  For the inductive step,
+  suppose $\delta$ is a successor ordinal, say $\delta = \gamma + 1$.
+  suppose $\hrank{M} \le \alpha + \delta$.
+
+  Then there exists a decomposition $M = \sum_{i \in I} M_i$ where $\hrank{I} \le 1$
+  and $\hrank{M_i} < \alpha + \delta$ for all $i \in I$.
+  That is, $\hrank{M_i} \le \alpha + \gamma$.
+
+  By the induction hypothesis, each $M_i$ can be decomposed into a sum of
+  $M_i = \sum_{j \in J_i} M_{ij}$
+  where $\hrank{J_i} \le \gamma$ and $\hrank{M_{ij}} < \alpha$.
+  
+  Let $J = \sum_{i \in I} J_i$. Then $\hrank{J} \le \gamma + 1 = \delta$.
+
+  Then $M = \sum_{j \in J} M_j$ where $\hrank{J} \le \delta$ and $\hrank{M_j} < \alpha$.
+
+  Conversely, suppose $M = \sum_{j \in J} M_j$,
+
+  where $\hrank{J} \le \delta$ and $\hrank{M_j} < \alpha$.
+  
+  Then $J = \sum_{i \in I} J_i$ where $\hrank{I} \le 1$ and $\hrank{J_i} \le \gamma$.
+  
+  Then $M = \sum_{i \in I} \sum_{j \in J_i} M_j$.
+  Let $N_i := \sum_{j \in J_i} M_j$. By the induction hypothesis,
+  $\hrank{N_i} \le \alpha + \gamma$.
+
+  Since $M = \sum_{i \in I} N_i$ and $\hrank{I} \le 1$,
+  
+  And thus, $\hrank{M} \le \alpha + \gamma + 1$,
+  that is $\hrank{M} \le \alpha + \delta$.
+
+  Now suppose $\delta$ is a limit ordinal.
+  Suppose $\hrank{M} \le \alpha + \delta$.
+
+  Say, $\hrank{M} \le \alpha + \gamma$ for some $\gamma < \delta$.
+  Then, by the induction hypothesis there exists a decomposition
+  $M = \sum_{i \in I} M_i$ where $\hrank{I} \le \gamma \le \delta$
+  and $\hrank{M_i} < \alpha$ for all $i \in I$.
+
+  Conversely, suppose that $M = \sum_{i \in I} M_i$,
+  
+  where $\hrank{I} \le \delta$ and $\hrank{M_i} < \alpha$ for all $i \in I$.
+
+  We can write $I = \sum_{j \in J} I_j$
+  where $\hrank{I_j} < \delta$ and $\hrank{J} \le 1$.
+
+  Then, $M = \sum_{j \in J} \sum_{i \in I_j} M_i$ where $\hrank{I_j} < \delta$
+  and $\hrank{M_i} < \alpha$ and $\hrank{J} \le 1$.
+  
+  Let $N_j = \sum_{i \in I_j} M_i$, and let $\gamma_j := \hrank{I_j} < \delta$.
+
+  By the induction hypothesis,
+  $\hrank{N_j} \le \alpha + \gamma_j < \alpha + \delta$.
+  
+  Since $M = \sum_{j \in J} N_j$ and $\hrank{J} \le 1$,
+  we conclude $\hrank{M} \le \alpha + \delta$.
 \end{proof}
 
 \begin{lemma}
@@ -55,17 +127,17 @@
   for all $i \in I$.
 
   Then,
-  $$\hrank{M} = \alpha \iff \sup_{i \in I} \parens{\hrank{M_i}+1} = \alpha$$
+  $$\hrank{M} = \alpha \iff \limsup_{i \in I} \parens{\hrank{M_i}+1} = \alpha$$
 \end{lemma}
 
 \begin{proof}
   Clearly $\hrank{M} \le \alpha$.
   
-  If $\sup_{i \in I}{\hrank{M_i}} = \alpha$,
+  If $\limsup_{i \in I}{\hrank{M_i}} = \alpha$,
   since $\hrank{M} \ge \hrank{M_i}$ for all $i \in I$,
   we get $\hrank{M} \ge \alpha$.
 
-  If $\sup_{i \in I}{\hrank{M_i}} = \beta < \alpha$,
+  If $\limsup_{i \in I}{\hrank{M_i}} = \beta < \alpha$,
   then $\hrank{M} \le \beta + 1 < \alpha$, since 
   $\alpha$ is a limit ordinal.
 \end{proof}
@@ -108,5 +180,30 @@
 
   TBC.
 
+  Uniqueness follows from the following lemma.
+\end{proof}
 
+\begin{lemma}
+  Let $\alpha \ge \omega$ be a limit ordinal.
+
+  Let $M$ be a linear order.
+  
+  Suppose $M = \sum_{i \in \omega} M_i$
+  where $\hrank{M_i} < \alpha$ for all $i \in \omega$,
+  such that $\limsup_{i < \omega}{\hrank{M_i}} = \alpha$.
+
+  Then $M + 1 \notin \mathcal{B}_{\alpha}$.
+\end{lemma}
+
+\begin{proof}
+  On the contrary, suppose $M + 1 \in \mathcal{B}_{\alpha}$.
+  
+  Pick $x_i \in M_i$. Let $\infty$ be the last element of $M + 1$.
+
+  Then $[x_i, \infty]$ is a bounded interval, and thus
+  $\hrank{[x_i, \infty]} < \alpha$.
+
+  The $\omega$-sequence $\setcomp{\hrank{[x_i, \infty]}}$
+  is decreasing and therefore it stabilizes at some $\beta < \alpha$.
+  In particular, $\limsup_{i < \omega}{\hrank{[x_i, \infty]}} = \beta$.
 \end{proof}
