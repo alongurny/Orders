@@ -1,4 +1,24 @@
 \section{Properties}
+% Definition of left/right/bi-directionally cofinal
+\begin{definition}
+  Let $M$ be a linear order.
+
+  A set $A \subseteq M$ is \emph{left cofinal} in $M$ if for every $x \in M$,
+  there exists $y \in A$ such that $y \le x$.
+
+  A set $A \subseteq M$ is \emph{right cofinal} in $M$ if for every $x \in M$,
+  there exists $y \in A$ such that $x \le y$.
+
+  A set $A \subseteq M$ is \emph{bi-directionally cofinal} in $M$ if it is both left and right cofinal.
+\end{definition}
+
+% Definitions of special orders
+\begin{definition}
+  Let $M$ be a linear order.
+
+  Then $M^\ast$ is the dual - the reverse order of $M$.
+\end{definition}
+
 % Definition of a property
 \begin{definition}
   A \emph{property} $\pp$ of linear orders is a class of linear orders which
@@ -14,7 +34,7 @@
 % Definition of a symmetric property
 \begin{definition}
   A property $\pp$ of linear orders is \emph{symmetric} if for every linear order $M$,
-  $M \in \pp$ iff $M^R \in \pp$.
+  $M \in \pp$ iff $M^\ast \in \pp$.
 \end{definition}
 
 % Definition of an additive property
@@ -35,7 +55,7 @@
 \begin{definition}
   A property $\pp$ of linear orders is \emph{almost anti-symmetric}
   if for every linear order $M$,
-  $M \in \pp$ and $M^R \in \pp$ imply that $M$ is finite.
+  $M \in \pp$ and $M^\ast \in \pp$ imply that $M$ is finite.
 \end{definition}
 
 % Definition of a good property
@@ -86,9 +106,12 @@
   Then for every linear order $M$,
   and every point $x \in M$, there exists a largest subinterval $J \subseteq M$ such that
   $J \in \pp$.
+  
+  Equivalently, we can define a convex equivalence relation $\sim_{\pp}$ on $M$ such that $x \sim_{\pp} y$ iff $[x, y] \in \pp$.
 
-  Thus, we can define an equivalence relation $\sim_{\pp}$ on $M$ such that
+  That is,
   $x \sim_{\pp} y$ iff $x$ and $y$ are in the same largest $\pp$-subinterval.
+
 \end{lemma}
 
 \begin{proof}
@@ -99,4 +122,34 @@
   $J$ is the largest $\pp$-subinterval containing $x$.
 
   Thus we can define the equivalence relation $\sim_{\pp}$ as above.
+\end{proof}
+
+% Definition of sum
+\begin{definitions}
+  Let $\pp$ and $\qq$ be properties.
+  Let $M$ be a specific linear order.
+
+  We define the properties:
+
+  \begin{itemize}
+    \item $\mathbf{Finite} := \setcomp{M : M \text{ is finite}}$.
+    \item $\pp + \qq := \setcomp{M_1 + M_2 : M_1 \in \pp, M_2 \in \qq}$.
+    \item $\sum_{\pp}{\qq} := 
+    \setcomp{\sum_{i \in I} M_i : I \in \pp, \forall i \in I. M_i \in \qq}$.
+    \item If $\pp = \setcomp{M}$ is a singleton (up to isomorphism),
+    then $\sum_{M}{\qq} := \sum_{\pp}{\qq}$.
+    \item $\pp^+ := \sum_{\mathbf{Finite}}{\pp}$.
+  \end{itemize}
+
+  Note that $\mathbf{Finite} = 1^+$.
+\end{definitions}
+
+\begin{lemma}[Associativity of sum]
+  Let $\pp_1$, $\pp_2$ and $\pp_3$ be properties.
+
+  Then $\sum_{\pp_1}{\sum_{\pp_2}{\pp_3}} = \sum_{\sum_{\pp_1}{\pp_2}}{\pp_3}$.
+\end{lemma}
+
+\begin{proof}
+  This is trivial.
 \end{proof}

@@ -5,32 +5,35 @@
 \begin{definition}
   Let $\qq$ be a good property of linear orders.
 
-  We define a property $\qq^{\le \alpha}$
-  for every ordinal $\alpha$ as follows:
+  We define a property $\qq^{< \alpha}$
+  for every ordinal $\alpha > 0$ as follows:
 
   \begin{itemize}
-    \item $\qq^{\le 0}$ is the class of finite linear orders.
-    \item For $\alpha > 0$, $\qq^{\le \alpha}$ is the class of linear orders $M$ such that
-          $M = \sum_{i \in I} M_i$ for some $I \in \qq$ where
-          for all $i \in I$, $M_i \in \qq^{\beta_i}$ for some $\beta_i < \alpha$
+    \item For $\alpha = 1$, $\qq^{< 1} = \mathbf{Finite}$.
+    \item For $\alpha = \gamma + 1$,
+          $$\qq^{< \alpha} = \sum_{\qq}{^{< \gamma}}$$.
+    \item For $\alpha$ a limit ordinal,
+          $$\qq^{< \alpha} = \bigcup_{\beta < \alpha} \qq^{< \beta}$$.
   \end{itemize}
 
-  We define further $\qq^{< \alpha} = \bigcup_{\beta < \alpha} \qq^{\le \beta}$
-  and $\qq^{=\alpha} = \qq^{\le \alpha} - \qq^{< \alpha}$.
-
-  We define $\hrank{M} = \alpha$ iff $M \in \qq^{= \alpha}$.
-  This is a \emph{partial map} from linear orders to ordinals.
+  We define further $\qq^{\le \alpha} = \qq^{< \alpha + 1}$
+  and $\qq^{= \alpha} = \qq^{\le \alpha} - \qq^{< \alpha}$.
+  
+  We call such an $\alpha$, if it exists,
+  \emph{the $\qq$-rank} of a linear order $M$.
 \end{definition}
 
 \begin{observations}
+  Let $\alpha, \beta > 0$ be ordinals.
+
   Let $\qq$ be a good property.
 
   We claim the following without proof:
 
   \begin{itemize}
     \item $\qq^{\le 1} = \qq$.
-    \item For all $\alpha$, $\qq^{\le \alpha}$ is a good property.
-    \item $\qq^{\le \alpha} \subsetneq \qq^{\le \beta}$ iff $\alpha < \beta$.
+    \item $\qq^{< \alpha}$ is a good property.
+    \item $\qq^{< \alpha} \subsetneq \qq^{< \beta}$ iff $\alpha < \beta$.
   \end{itemize}
 \end{observations}
 
