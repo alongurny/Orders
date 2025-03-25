@@ -1,9 +1,7 @@
-
-
-\section{$\omega$-Hausdorff rank}
+\section{\texorpdfstring{$\omega$}{omega}-Hausdorff rank}
 
 \begin{definitions}
-  $\qqo = \setcomp{M : \exists n \in \NN . M \subseteq \ZZ \cdot n}$.
+  $\qqo = \set{M : \exists n \in \NN . M \subseteq \ZZ \cdot n}$.
 
   We define $\hrank{M} = \alpha$ iff $M \in \qqo^{= \alpha}$.
 
@@ -14,11 +12,11 @@
 
 \begin{definition}
   Let $M \in \mathcal{B}_{\alpha}$. We define the $\alpha$-shape
-  of $M$ to be the $I \in \setcomp{1, \omega, \omega^\ast, \ZZ}$ 
+  of $M$ to be the $I \in \set{1, \omega, \omega^\ast, \ZZ}$ 
   for which the previous lemma holds.
 
   We define $\mathcal{S}^{s}_{\alpha}$ to be the class of linear orders
-  whose $\alpha$-shape is $s$, for $s \in \setcomp{1, \omega, \omega^\ast, \ZZ}$.
+  whose $\alpha$-shape is $s$, for $s \in \set{1, \omega, \omega^\ast, \ZZ}$.
 \end{definition}
 
 \begin{lemma}
@@ -49,85 +47,13 @@
 \end{proof}
 
 \begin{lemma}
-  Let $\alpha, \delta > 0$ be ordinals.
-
-  Let $M$ be a countable linear order.
-
-  Then $\hrank{M} \le \alpha + \delta$ iff there exists a decomposition
-  $M = \sum_{i \in I} M_i$ where $\hrank{I} \le \delta$ and $\hrank{M_i} < \alpha$ for all $i \in I$.
-\end{lemma}
-
-\begin{proof}
-  By induction on $\delta > 0$.
-
-  For $\delta = 1$ this is just the definition.
-
-  For the inductive step,
-  suppose $\delta$ is a successor ordinal, say $\delta = \gamma + 1$.
-  suppose $\hrank{M} \le \alpha + \delta$.
-
-  Then there exists a decomposition $M = \sum_{i \in I} M_i$ where $\hrank{I} \le 1$
-  and $\hrank{M_i} < \alpha + \delta$ for all $i \in I$.
-  That is, $\hrank{M_i} \le \alpha + \gamma$.
-
-  By the induction hypothesis, each $M_i$ can be decomposed into a sum of
-  $M_i = \sum_{j \in J_i} M_{ij}$
-  where $\hrank{J_i} \le \gamma$ and $\hrank{M_{ij}} < \alpha$.
-  
-  Let $J = \sum_{i \in I} J_i$. Then $\hrank{J} \le \gamma + 1 = \delta$.
-
-  Then $M = \sum_{j \in J} M_j$ where $\hrank{J} \le \delta$ and $\hrank{M_j} < \alpha$.
-
-  Conversely, suppose $M = \sum_{j \in J} M_j$,
-
-  where $\hrank{J} \le \delta$ and $\hrank{M_j} < \alpha$.
-  
-  Then $J = \sum_{i \in I} J_i$ where $\hrank{I} \le 1$ and $\hrank{J_i} \le \gamma$.
-  
-  Then $M = \sum_{i \in I} \sum_{j \in J_i} M_j$.
-  Let $N_i := \sum_{j \in J_i} M_j$. By the induction hypothesis,
-  $\hrank{N_i} \le \alpha + \gamma$.
-
-  Since $M = \sum_{i \in I} N_i$ and $\hrank{I} \le 1$,
-  
-  And thus, $\hrank{M} \le \alpha + \gamma + 1$,
-  that is $\hrank{M} \le \alpha + \delta$.
-
-  Now suppose $\delta$ is a limit ordinal.
-  Suppose $\hrank{M} \le \alpha + \delta$.
-
-  Say, $\hrank{M} \le \alpha + \gamma$ for some $\gamma < \delta$.
-  Then, by the induction hypothesis there exists a decomposition
-  $M = \sum_{i \in I} M_i$ where $\hrank{I} \le \gamma \le \delta$
-  and $\hrank{M_i} < \alpha$ for all $i \in I$.
-
-  Conversely, suppose that $M = \sum_{i \in I} M_i$,
-  
-  where $\hrank{I} \le \delta$ and $\hrank{M_i} < \alpha$ for all $i \in I$.
-
-  We can write $I = \sum_{j \in J} I_j$
-  where $\hrank{I_j} < \delta$ and $\hrank{J} \le 1$.
-
-  Then, $M = \sum_{j \in J} \sum_{i \in I_j} M_i$ where $\hrank{I_j} < \delta$
-  and $\hrank{M_i} < \alpha$ and $\hrank{J} \le 1$.
-  
-  Let $N_j = \sum_{i \in I_j} M_i$, and let $\gamma_j := \hrank{I_j} < \delta$.
-
-  By the induction hypothesis,
-  $\hrank{N_j} \le \alpha + \gamma_j < \alpha + \delta$.
-  
-  Since $M = \sum_{j \in J} N_j$ and $\hrank{J} \le 1$,
-  we conclude $\hrank{M} \le \alpha + \delta$.
-\end{proof}
-
-\begin{lemma}
   Let $\alpha \ge \omega$ be a limit ordinal.
 
   Let $M = \sum_{i \in I} M_i$ where $I \in \qqo$ and $\hrank{M_i} < \alpha$
   for all $i \in I$.
 
   Then,
-  $$\hrank{M} = \alpha \iff \limsup_{i \in I} \parens{\hrank{M_i}+1} = \alpha$$
+  \[\hrank{M} = \alpha \iff \limsup_{i \in I} \parens{\hrank{M_i}+1} = \alpha\]
 \end{lemma}
 
 \begin{proof}
@@ -143,18 +69,14 @@
 \end{proof}
 
 \begin{definition}
-  Let $\alpha \ge \omega$ be a limit ordinal.
+  Let $\alpha > 0$ be a limit ordinal.
 
   Let $M$ be a linear order.
 
-  We say that $M$ has \emph{$\alpha$-shape} $I$ if:
+  Let $I \in \set{1, \omega, \omega^\ast, \ZZ}$.
 
-  \begin{itemize}
-    \item $I = 1$ and $\hrank{M} < \alpha$, or
-    \item $I \in \setcomp{\omega, \omega^\ast, \ZZ}$ and $\hrank{M} = \alpha$ and
-      there exists a decomposition $M = \sum_{i \in I} M_i$ where
-      $\hrank{M_i} < \alpha$ for all $i \in I$.
-  \end{itemize}
+  We say that $M$ has \emph{$\alpha$-shape} $I$ if
+  $M \in \sum_{I}{\qqo^{< \alpha}}$.
 \end{definition}
 
 
@@ -163,7 +85,7 @@
 
   Let $M \in \mathcal{B}_{\alpha}$.
   
-  Then $M$ \emph{has a unique} $\alpha$-shape in $\setcomp{1, \omega, \omega^\ast, \ZZ}$.
+  Then $M$ \emph{has a unique} $\alpha$-shape in $\set{1, \omega, \omega^\ast, \ZZ}$.
 \end{lemma}
 
 \begin{proof}
@@ -203,7 +125,7 @@
   Then $[x_i, \infty]$ is a bounded interval, and thus
   $\hrank{[x_i, \infty]} < \alpha$.
 
-  The $\omega$-sequence $\setcomp{\hrank{[x_i, \infty]}}$
+  The $\omega$-sequence $\set{\hrank{[x_i, \infty]}}$
   is decreasing and therefore it stabilizes at some $\beta < \alpha$.
   In particular, $\limsup_{i < \omega}{\hrank{[x_i, \infty]}} = \beta$.
 \end{proof}

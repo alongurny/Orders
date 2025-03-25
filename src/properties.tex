@@ -25,6 +25,23 @@
   is closed under isomorphism.
 \end{definition}
 
+% Definition of extension of finitary operations
+\begin{definition}
+  Let $\mathbf{op}$ be a $k$-ary operation on linear orders.
+
+  Let $\pp_1, \ldots, \pp_k$ be properties of linear orders.
+
+  Then,
+  \[
+    \mathbf{op} \ps{\pp_1, \ldots, \pp_k}
+    := \set{ \mathbf{op} \ps{M_1, \ldots, M_k} : M_1 \in \pp_1, \ldots, M_k \in \pp_k}
+  \]
+
+  If $\mathbf{op}$ is replaced with a nondeterministic partial operation, 
+  we define the extension of the operation as a deterministic
+  operation which returns the image of the domain under the nondeterministic operation.
+\end{definition}
+
 % Definition of a monotone property
 \begin{definition}
   A property $\pp$ of linear orders is \emph{monotone} if for every linear order $M$,
@@ -34,13 +51,13 @@
 % Definition of a symmetric property
 \begin{definition}
   A property $\pp$ of linear orders is \emph{symmetric} if for every linear order $M$,
-  $M \in \pp$ iff $M^\ast \in \pp$.
+  $M \in \pp$ iff $M^\ast \in \pp$, i.e., if $\pp^\ast = \pp$.
 \end{definition}
 
 % Definition of an additive property
 \begin{definition}
   A property $\pp$ of linear orders is an \emph{additive property} if for every linear orders $M_1$ and $M_2$,
-  $M_1 + M_2 \in \pp$ iff $M_1, M_2 \in \pp$.
+  $M_1 + M_2 \in \pp$ iff $M_1, M_2 \in \pp$, i.e., if $\pp + \pp = \pp$.
 \end{definition}
 
 % Definition of $\bounded{\pp}$
@@ -106,7 +123,7 @@
   Then for every linear order $M$,
   and every point $x \in M$, there exists a largest subinterval $J \subseteq M$ such that
   $J \in \pp$.
-  
+
   Equivalently, we can define a convex equivalence relation $\sim_{\pp}$ on $M$ such that $x \sim_{\pp} y$ iff $[x, y] \in \pp$.
 
   That is,
@@ -125,24 +142,16 @@
 \end{proof}
 
 % Definition of sum
-\begin{definitions}
-  Let $\pp$ and $\qq$ be properties.
-  Let $M$ be a specific linear order.
+\begin{definition}
+  Let $I$ be a linear order labeled with colors $\vec{C} = \set{C_k}_{k=1}^m$.
+  Let $\gamma : I \to \vec{C}$ be the coloring function.
 
-  We define the properties:
+  Let $\vec{M} = \set{M_k}_{k=1}^m$ be a family of labeled linear orders.
 
-  \begin{itemize}
-    \item $\mathbf{Finite} := \setcomp{M : M \text{ is finite}}$.
-    \item $\pp + \qq := \setcomp{M_1 + M_2 : M_1 \in \pp, M_2 \in \qq}$.
-    \item $\sum_{\pp}{\qq} := 
-    \setcomp{\sum_{i \in I} M_i : I \in \pp, \forall i \in I. M_i \in \qq}$.
-    \item If $\pp = \setcomp{M}$ is a singleton (up to isomorphism),
-    then $\sum_{M}{\qq} := \sum_{\pp}{\qq}$.
-    \item $\pp^+ := \sum_{\mathbf{Finite}}{\pp}$.
-  \end{itemize}
-
-  Note that $\mathbf{Finite} = 1^+$.
-\end{definitions}
+  Then,
+  \[\sumv{I}{\vec{C}}{\vec{M}}
+    := \sum_{i \in I}{M_{\gamma(i)}}\]
+\end{definition}
 
 \begin{lemma}[Associativity of sum]
   Let $\pp_1$, $\pp_2$ and $\pp_3$ be properties.
@@ -151,5 +160,20 @@
 \end{lemma}
 
 \begin{proof}
-  This is trivial.
+  It follows directly from the associativity of the sum operation on
+  linear orders. Actually, it generalizes to any algebraic equation
+  which holds on linear orders.
 \end{proof}
+
+\begin{lemma}[Union-associativity of sum]
+  Let $\ppp$ be a family of properties.
+  
+  Let $\qq$ be a property.
+
+  Then $\sum_{\bigcup \ppp}{\qq} = \bigcup_{\pp \in \ppp}{\sum_{\pp}{\qq}}$.
+\end{lemma}
+
+\begin{proof}
+  This is obvious from the definition of the sum operation.
+\end{proof}
+

@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage[hidelinks]{hyperref}
 
 % Theorems
 \newtheorem{theorem}{Theorem}
@@ -25,8 +26,11 @@
 \newcommand{\brackets}[1]{\left[ {#1} \right]}
 \newcommand{\braces}[1]{\left\{ {#1} \right\}}
 
+\newcommand{\ps}[1]{\parens{#1}}
+\newcommand{\bs}[1]{\brackets{#1}}
+\newcommand{\set}[1]{\braces{#1}}
+
 % Macros
-\newcommand{\setcomp}[1]{\braces{#1}}
 \newcommand{\hrank}[1]{\mathbf{hrank}_{\omega}\left( #1 \right)}
 \newcommand{\bigforall}{\mbox{\Large $\mathsurround0pt\foralM$}} 
 
@@ -39,12 +43,15 @@
 \newcommand{\pp}{\mathbf{P}}
 \newcommand{\qq}{\mathbf{Q}}
 
+\newcommand{\ppp}{\mathcal{P}}
+\newcommand{\qqq}{\mathcal{Q}}
+
 % Sets
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\ZZ}{\mathbb{Z}}
 
 % Types
-\newcommand{\type}[2]{\mathbf{type}_{#1} \brackets{#2}}
+\newcommand{\type}[2]{\mathbf{type}_{#1} \bs{#2}}
 
 % Monoids
 \newcommand{\zero}{\cdot}
@@ -52,3 +59,7 @@
 \newcommand{\abs}[1]{\left| {#1} \right|}
 
 \newcommand{\qqo}{\Gamma_{\omega}}
+
+\newcommand{\from}{\leftarrow}
+
+\newcommand{\sumv}[3]{\sum_{#1} \bs{{#2} \from {#3}}}

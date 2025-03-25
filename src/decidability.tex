@@ -1,8 +1,26 @@
 
 \section{Decidability of the rank}
 
+% Definition of extension to types
+\begin{definition}
+  Let $\mathbf{op}$ be a $k$-ary operation on linear orders.
+
+  Suppose that $\mathbf{op}$ is invariant under $\equiv_n$, for some $n \in \NN$.
+
+  Then we extend $\mathbf{op}$ to a \emph{partial} operation on types as follows:
+  \[
+    \mathbf{op} \ps{\type{n}{M_1}, \ldots, \type{n}{M_k}}
+    := \type{n}{\mathbf{op} \ps{M_1, \ldots, M_k}}
+  \]
+
+  This is well defined because of the invariance. Furthermore, we can
+  extend it to a partial operation on sets of types in the obvious way.
+\end{definition}
+
 \begin{lemma}
-  There exists a global computable function $f : \NN \to \NN$ such that
+  Let $\qq$ be a good property of linear orders.
+
+  There exists a computable function $f_{\qq} = f: \NN \to \NN$ such that
   for all $n \in \NN$, and all $a \in \NN$ such that $a \ge f(n)$,
   $\type{n}{\qq^{\le a}} = \type{n}{\qq^{\le f(n)}}$.
 
@@ -10,11 +28,10 @@
 \end{lemma}
 
 \begin{proof}
-  Since there are only finitely many $n$-types
-
-  and the $\omega$-sequence $\braces{\type{n}{\qq^{\le k}}}_{k \in \omega}$
-  is monotone for every $s$, and there are only finitely many $s$,
-  there must be some $k$ where the sequence stabilizes for all $s$.
+  Since there are only finitely many $n$-types,
+  and the $\omega$-sequence \[\braces{\type{n}{\qq^{\le k}}}_{k \in \omega}\]
+  is monotone,
+  there must be some $k$ where the sequence stabilizes.
 
   This point $k$ is computable as a function of $n$, because
   $\type{n}{\qq^{\le k}}$ is computable for every finite $k$.
@@ -23,7 +40,7 @@
 \begin{lemma}
   There exist global computable functions $a, b : \NN \to \NN$ such that
   for all $n, c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
-  $$\type{n}{\qq^{= c_1}} = \type{n}{\qq^{= c_2}}$$
+  \[\type{n}{\qq^{= c_1}} = \type{n}{\qq^{= c_2}}\]
 
   Equivalently, the sequence $\braces{\type{n}{\qq^{k}}}_{k \in \omega}$
   is ultimately periodic for all $n \in \NN$. Furthermore, the starting point and the period
@@ -37,13 +54,13 @@
   there exist (and can be computed)
   some $a(n) > f(n)$, $a(n) + b(n)$ such that
 
-  $$\type{n}{\qq^{= a(n)}} = \type{n}{\qq^{= a(n) + b(n)}}$$
+  \[\type{n}{\qq^{= a(n)}} = \type{n}{\qq^{= a(n) + b(n)}}\]
 
   holds for every $s$.
 
   We shall prove by induction that for all $c \ge a(n)$,
 
-  $$\type{n}{\qq^{= c}} = \type{n}{\qq^{= c + b(n)}}$$
+  \[\type{n}{\qq^{= c}} = \type{n}{\qq^{= c + b(n)}}\]
 
   This will complete the proof.
 
@@ -62,7 +79,7 @@
   is $n$-equivalent to $M$.
 
   However, clearly $\hrank{N} = c + b(n) + 1$. So overall,
-  $$\type{n}{\qq^{= c + 1}} \subseteq \type{n}{\qq^{= c + b(n) + 1}}$$
+  \[\type{n}{\qq^{= c + 1}} \subseteq \type{n}{\qq^{= c + b(n) + 1}}\]
 
   Conversely, suppose $M$ is of rank $c + b(n) + 1$.
   Write $M$ = $\sum_{i \in I} M_i$ where $\hrank{M_i} < c + b(n) + 1$,
@@ -76,7 +93,7 @@
 
   We conclude that $N := \sum_{i \in I} N_i$ is $n$-equivalent to $M$.
   However, clearly $\hrank{N} = c + 1$. So overall,
-  $$\type{n}{\qq^{= c + b(n) + 1}} \subseteq \type{n}{\qq^{= c + 1}}$$
+  \[\type{n}{\qq^{= c + b(n) + 1}} \subseteq \type{n}{\qq^{= c + 1}}\]
 
   So we have proven the induction step, and the lemma follows.
 \end{proof}
@@ -84,9 +101,9 @@
 \begin{lemma}
   Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
 
-  Let $s \in \setcomp{1, \omega, \omega^\ast, \ZZ}$ be a shape.
+  Let $s \in \set{1, \omega, \omega^\ast, \ZZ}$ be a shape.
 
-  $$\type{n}{\mathcal{S}^{s}_{\alpha}} = \bigcup_{c < b(n)}{\type{n}{\qq^{= a(n) + c)}}}$$
+  \[\type{n}{\mathcal{S}^{s}_{\alpha}} = \bigcup_{c < b(n)}{\type{n}{\qq^{= a(n) + c)}}}\]
 
   In particular, $\type{n}{\mathcal{S}^{s}_{\alpha}}$ can be
   computed, and is independent of the choice $\alpha \ge \omega$.
@@ -94,7 +111,7 @@
 
 \begin{proof}
   Draft:
-  
+
   For $\alpha = \omega$:
 
   For example, for $s = \omega$, if we have an $\omega$-sum
@@ -113,11 +130,11 @@
   Let $M$ be a linear order and $x \in M$.
 
   We define the convex equivalence relation $\sim_\alpha := \sim_{\mathcal{B}_{\alpha}}$,
-  and $\brackets{x}_{\alpha} := \brackets{x}_{\mathcal{B}_{\alpha}}$ (that is,
-  $\brackets{x}_{\alpha}$ is the largest $\mathcal{B}_{\alpha}$-subinterval
+  and $\bs{x}_{\alpha} := \bs{x}_{\mathcal{B}_{\alpha}}$ (that is,
+  $\bs{x}_{\alpha}$ is the largest $\mathcal{B}_{\alpha}$-subinterval
   containing $x$ in $M$).
 
-  We define $\sigma_{\alpha} \parens{M}$ as 
+  We define $\sigma_{\alpha} \parens{M}$ as
   the $\alpha$-shape of $M$.
 \end{definition}
 
@@ -125,7 +142,7 @@
 \begin{lemma}
   The property
   $\hrank{\cdot} = \alpha$ is expressible over intervals
-   in $\mso[\sim_{\alpha}, \sigma_{\alpha}]$
+  in $\mso[\sim_{\alpha}, \sigma_{\alpha}]$
 \end{lemma}
 
 \begin{proof}
@@ -149,18 +166,18 @@
   WLOG, assume that $\varphi$ is a sentence.
 
   First, let us calculate the sets:
-  
-  $$T_s := \type{n}{\mathcal{S}^{s}_{\alpha}}$$
+
+  \[T_s := \type{n}{\mathcal{S}^{s}_{\alpha}}\]
   for every shape $s$.
 
   Now we create the formulae:
-  $$\theta_s(\Pi, \Xi) := \setcomp{i : \bigvee_{\tau \in S_s}{\Xi(\Pi(i)) = s}}$$
-  $$L(\Pi, \Xi) := \theta_{\omega}(\Pi, \Xi) \vee \theta_{\ZZ}(\Pi, \Xi)$$
-  $$R(\Pi, \Xi) := \theta_{\omega^\ast}(\Pi, \Xi) \vee \theta_{\ZZ}(\Pi, \Xi)$$
+  \[\theta_s(\Pi, \Xi) := \set{i : \bigvee_{\tau \in S_s}{\Xi(\Pi(i)) = s}}\]
+  \[L(\Pi, \Xi) := \theta_{\omega}(\Pi, \Xi) \vee \theta_{\ZZ}(\Pi, \Xi)\]
+  \[R(\Pi, \Xi) := \theta_{\omega^\ast}(\Pi, \Xi) \vee \theta_{\ZZ}(\Pi, \Xi)\]
 
   We create the formula $\chi(\Pi, \Xi)$ as follows:
 
-  $$\chi := \Pi = domain(\Xi) \wedge \forall i, i'. i' = i + 1 \implies {i \in R(\Pi, \Xi) \vee i' \in L(\Pi, \Xi)}$$
+  \[\chi := \Pi = domain(\Xi) \wedge \forall i, i'. i' = i + 1 \implies {i \in R(\Pi, \Xi) \vee i' \in L(\Pi, \Xi)}\]
 
   Now we claim that $\varphi$ is satisfiable in $\mso[\sim_{\alpha}, \sigma_{\alpha}]$
   iff $\psi \land \chi$ is satisfiable in $\mso$.
@@ -173,8 +190,8 @@
   By the decomposition theorem, $\Psi$ holds
   in $I, \Pi := \type{n}{\cdot}$.
 
-  We claim that $\chi$ holds in $I, \Pi := \type{n}{\cdot}$. 
-  
+  We claim that $\chi$ holds in $I, \Pi := \type{n}{\cdot}$.
+
   It follows from the star property of $\sim_{\alpha}$ that the constraint holds.
 
   Conversely, suppose $\psi \land \chi$ is satisfiable in $\mso$.
@@ -188,7 +205,7 @@
   of $M$.
 
   Suppose $[M_i, M_j]$ is a $\mathcal{B}_{\alpha}$-subinterval of $M$.
-  
+
   In particular, it has a rank, so it is scattered. So in particular,
   $[i, j] \subseteq I$ is a scattered interval.
 
@@ -202,14 +219,72 @@
   Suppose $\alpha_k > \alpha_{k - 1} > \ldots > \alpha_0 > 0$ are ordinals.
 
   Then there is an oracle reduction from SAT for $\mso[
-    \sim_{\alpha_k}, \sigma_{\alpha_k}, \ldots, \sim_{\alpha_0}, \sigma_{\alpha_0}]$,
+      \sim_{\alpha_k}, \sigma_{\alpha_k}, \ldots, \sim_{\alpha_0}, \sigma_{\alpha_0}]$,
 
   to SAT for $\mso[
-    \sim_{\delta_{k-1}}, \sigma_{\delta_{k-1}}, \ldots, \sim_{\delta_0}, \sigma_{\delta_0}]$.
+      \sim_{\delta_{k-1}}, \sigma_{\delta_{k-1}}, \ldots, \sim_{\delta_0}, \sigma_{\delta_0}]$.
 
   where $\alpha_0 + \delta_i = \alpha_{i + 1}$ for $0 \le i < k$.
 \end{theorem}
 
 \begin{proof}
-  
+
 \end{proof}
+
+\begin{definition}
+  A relation $\le$ is a \emph{preorder} if it is reflexive and transitive.
+\end{definition}
+
+\begin{definition}
+  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders.
+
+  The sum $M = \sum_{i \in I} M_i$ is defined as follows:
+
+  The domain is $M = \biguplus_{i \in I} M_i$ (a disjoint union).
+
+  Let $\le_i$ be the preorder on $M_i$.
+
+  The order is defined as follows:
+  \[
+    x \le y \iff \begin{cases}
+      \exists i \in I. x, y \in M_i \land x \le_i y \\
+      \exists i, j \in I. x \in M_i \land y \in M_j \land i < j
+    \end{cases}
+  \]
+\end{definition}
+
+\begin{lemma}
+  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders.
+
+  Then $M = \sum_{i \in I} M_i$ is a preorder.
+\end{lemma}
+
+\begin{proof}
+  Reflexivity is clear.
+
+  For transitivity, suppose $x \le y$ and $y \le z$.
+
+  Suppose $x \in M_i$, $y \in M_j$, $z \in M_k$.
+
+  Then $i \le j$ and $j \le k$, so $i \le k$.
+  If $i = k$, then necessarily $i = j = k$, and so $x \le_i y$ and $y \le_i z$,
+  so $x \le_i z$, so $x \le z$, as required.
+
+  Otherwise, $i < k$, and thus $x \le z$, as required.
+\end{proof}
+
+\begin{theorem}[Decomposition theorem]
+  Let $\varphi \ps{\vec{X}}$ be an $MSO$ over preorders formula of quantifier-depth $n$.
+
+  There exists an algorithm which transforms $\varphi$ into $\psi \ps{\Pi}$,
+  such that for any $M = \sum_{i \in I} M_i$,
+  \[
+    M, \vec{X} \models \varphi \iff I, \Pi := \type{n}{M} \models \psi
+  \]
+
+  where $\Pi(i) = \type{n}{M_i}$.
+\end{theorem}
+
+\begin{corollary}
+
+\end{corollary}
