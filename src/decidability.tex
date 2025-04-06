@@ -103,7 +103,7 @@
 
   Let $s \in \set{1, \omega, \omega^\ast, \ZZ}$ be a shape.
 
-  \[\type{n}{\mathcal{S}^{s}_{\alpha}} = \bigcup_{c < b(n)}{\type{n}{\qq^{= a(n) + c)}}}\]
+  \[\type{n}{\mathcal{S}^{s}_{\alpha}} = \bigcup_{c < b(n)}{\mathcal{S}^{s}_{a(n) + c}                                                                                                                                                                                                                                                                                                                                                                                                                                       }\]
 
   In particular, $\type{n}{\mathcal{S}^{s}_{\alpha}}$ can be
   computed, and is independent of the choice $\alpha \ge \omega$.
@@ -228,6 +228,60 @@
 \end{theorem}
 
 \begin{proof}
+  By the decomposition theorem, there exists a translation,
+  that given an $\mso[\sim_{\alpha_k}, \sigma_{\alpha_k}, \ldots, \sim_{\alpha_0}, \sigma_{\alpha_0}]$ formula $\varphi$ of quantifier-depth $n$.
+  outputs an $\mso$ formula $\psi(\Pi)$ such that...
+
+  Let $\varphi$ be an $\mso[\sim_{\alpha_k}, \sigma_{\alpha_k}, \ldots, \sim_{\alpha_0}, \sigma_{\alpha_0}]$ formula,
+  and let $n$ be the quantifier-depth of $\varphi$.
+
+  WLOG, assume that $\varphi$ is a sentence.
+
+  First, let us calculate the sets
+  $\type{n}{\Gamma_{\omega}^{< \alpha}}$,
+  and 
+
+  Now we create the formulae:
+  \[\theta_s(\Pi, \Xi) := \set{i : \bigvee_{\tau \in S_s}{\Xi(\Pi(i)) = s}}\]
+  \[L(\Pi, \Xi) := \theta_{\omega}(\Pi, \Xi) \vee \theta_{\ZZ}(\Pi, \Xi)\]
+  \[R(\Pi, \Xi) := \theta_{\omega^\ast}(\Pi, \Xi) \vee \theta_{\ZZ}(\Pi, \Xi)\]
+
+  We create the formula $\chi(\Pi, \Xi)$ as follows:
+
+  \[\chi := \Pi = domain(\Xi) \wedge \forall i, i'. i' = i + 1 \implies {i \in R(\Pi, \Xi) \vee i' \in L(\Pi, \Xi)}\]
+
+  Now we claim that $\varphi$ is satisfiable in $\mso[\sim_{\alpha}, \sigma_{\alpha}]$
+  iff $\psi \land \chi$ is satisfiable in $\mso$.
+
+  If $\varphi$ is satisfiable, then there exists a model $M$ of $\varphi$.
+
+  Let $M = \sum_{i \in I} M_i$ be the decomposition of $M$
+  where $I = \sim_{\alpha}$ and $M_i$ are the $\sim_{\alpha}$-equivalence classes.
+
+  By the decomposition theorem, $\Psi$ holds
+  in $I, \Pi := \type{n}{\cdot}$.
+
+  We claim that $\chi$ holds in $I, \Pi := \type{n}{\cdot}$.
+
+  It follows from the star property of $\sim_{\alpha}$ that the constraint holds.
+
+  Conversely, suppose $\psi \land \chi$ is satisfiable in $\mso$.
+
+  Let $I, \Pi := T$ be a model of $\psi \land \chi$.
+
+  Let us take a model $M_i$ with the appropriate type.
+  Now define $M := \sum_{i \in I} M_i$.
+
+  We claim that each $M_i$ is a \emph{maximum} $\mathcal{B}_{\alpha}$-subinterval
+  of $M$.
+
+  Suppose $[M_i, M_j]$ is a $\mathcal{B}_{\alpha}$-subinterval of $M$.
+
+  In particular, it has a rank, so it is scattered. So in particular,
+  $[i, j] \subseteq I$ is a scattered interval.
+
+  If $i = j$ we are done. Otherwise, let $i'$, $j'$ be such that $i \le i' < j' \le j$,
+  and $j' = i' + 1$.  But it cannot be the case by the constraint.
 
 \end{proof}
 
@@ -274,17 +328,36 @@
 \end{proof}
 
 \begin{theorem}[Decomposition theorem]
-  Let $\varphi \ps{\vec{X}}$ be an $MSO$ over preorders formula of quantifier-depth $n$.
+  There exists a computable translation $\mathcal{T}$
+  from $MSO$ formulae $\varphi \ps{\vec{X}}$,
 
-  There exists an algorithm which transforms $\varphi$ into $\psi \ps{\Pi}$,
-  such that for any $M = \sum_{i \in I} M_i$,
+  such that for any $M = \sum_{i \in I} M_i$, and formula $\varphi$,
+  if $n$ is the quantifier-depth of $\varphi$,
+  then
   \[
-    M, \vec{X} \models \varphi \iff I, \Pi := \type{n}{M} \models \psi
+    M, \vec{X} \models \varphi \iff I, \Pi \models \mathcal{T} {\varphi}
   \]
 
-  where $\Pi(i) = \type{n}{M_i}$.
+  where $\Pi \ps{i} = \type{n}{M_i}$.
 \end{theorem}
 
 \begin{corollary}
+  Let $\pp$ be a property of linear orders
+  labeled with colors $\vec{C} = \set{C_k}_{k=1}^m$.
 
+  Let $\set {\qq_k}_{k=1}^m$ be a family of (possibly labeled) properties.
+
+  Let $n \in \NN$.
+
+  We can compute the type $\type{n}{\sumv{\pp}{\vec{C}}{\vec{\qq}}}$
+  from the types $\type{n}{\pp}$ and $\type{n}{\qq_k}$ for all $k$.
 \end{corollary}
+
+\begin{proof}
+  Let $\tau$ be an $n$-type of the appropriate signature.
+  
+  Assume we have $\type{n}{\pp}$ and $\type{n}{\qq_k}$ for all $k$.
+
+  
+
+\end{proof}

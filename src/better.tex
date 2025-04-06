@@ -1,0 +1,58 @@
+\section{Everything Better}
+
+\begin{theorem}
+    Let $\mathcal{C}$ be a computable property of labeled linear orders,
+    such that $\mathcal{C}$ is closed under taking subintervals,
+    projections and inverse-projections (i.e, of one of the colors), and all finite-sums and $\mathcal{C}$-sums.
+
+    Let $\pp_1, \ldots, \pp_k \subseteq \mathcal{C}$ be
+    computable properties of labeled linear orders.
+
+    Let $\mso[P_1, \ldots, P_k]$ be monadic second order logic of order
+    over $\mathcal{C}$,
+    with $P_1, \ldots, P_k$ as monadic predicates whose semantics are:
+    $P_i(X)$ holds iff $X$ is a subinterval which satisfies $\pp_i$.
+
+    Given $\phi$ a formula of $\mso[P_1, \ldots, P_k]$ (possibly with free variables)
+    we define \[ \mathcal{C}_{\phi} = \set{M \in \mathcal{C} : M \models \phi} \]
+
+    (Note that $M$ above may be a \emph{labeled} linear order.)
+
+    Then $\mathcal{C}_{\phi}$ is a computable property of linear orders.
+\end{theorem}
+
+\begin{proof}
+    By structural induction on $\phi$.
+
+    Suppose $\phi$ is an atomic formula.
+    If $\phi$ is of the form $X \subseteq Y$ or $X \le Y$,
+    \[
+        \mathcal{C}_{\phi} = \set{M \in \mathcal{C} : M \models \phi}
+    \]
+    and thus,
+    \[
+        \type{n}{\mathcal{C}_{\phi}} = \set{\tau \in \type{n}{\mathcal{C}} : \tau \models \phi}
+    \]
+
+    which is computable since $\type{n}{\mathcal{C}}$ is computable,
+    and we can then compute whether $\tau \models \phi$ for each $\tau \in \type{n}{\mathcal{C}}$.
+
+    If $\phi$ is of the form $P_i(X)$,
+    then
+    \[
+        \mathcal{C}_{\phi} = \set{M \in \mathcal{C} : M \models P_i(X)}
+    \]
+    and thus,
+    \[
+        \type{n}{\mathcal{C}_{\phi}} = \type{n}{\pp_i}
+    \]
+
+    which is computable since $\pp_i$ is computable.
+
+    If $\phi = \neg \phi_1$,
+    then
+    \[
+        \mathcal{C}_{\phi} = \mathcal{C} \setminus \mathcal{C}_{\phi_1}
+    \]
+
+\end{proof}
