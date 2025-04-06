@@ -1,0 +1,94 @@
+{
+    "cSpell.words": [
+        "cofinal",
+        "Cofinality",
+        "finitary",
+        "indecomposable",
+        "monoid",
+        "preorder",
+        "preorders",
+        "satisfiability",
+        "subinterval",
+        "subintervals",
+        "WLOG"
+    ],
+    "files.exclude": {
+        "**/.git": true, // this is a default value
+        "**/.DS_Store": true, // this is a default value
+        "**/*.aux": true,
+        "**/*.fdb_latexmk": true,
+        "**/*.fls": true,
+        "**/*.log": true,
+        "**/*.out": true,
+        "**/*.gz": true,
+        "**/*.toc": true,
+        "**/*.diagnose": true,
+        "**/*.kaux": true,
+    },
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk",
+            "tools": [
+                "latexmk",
+                "pdf"
+            ]
+        },
+        {
+            "name": "pdflatex -> bibtex -> pdflatex * 2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex",
+                "pdf"
+            ]
+        }
+    ],
+    "latex-workshop.latex.autoBuild.run": "onFileChange",
+    // "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.formatting.latex": "latexindent",
+    "latex-workshop.latex.tools": [ // list of tools to be used by recipes
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "pdf",
+            "command": "mv",
+            "args": [
+                "%DOCFILE%.pdf",
+                "%WORKSPACE_FOLDER%/"
+            ]
+        }
+    ],
+    "cSpell.enabledFileTypes": {
+        "tex": false
+    },
+}

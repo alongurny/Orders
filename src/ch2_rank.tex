@@ -1,0 +1,118 @@
+
+\section{General Hausdorff Rank}
+
+% Definition of the Hausdorff rank
+\begin{definition}
+  Let $\qq$ be a good property of linear orders.
+
+  We define a property $\qq^{< \alpha}$
+  for every ordinal $\alpha > 0$ as follows:
+
+  \begin{itemize}
+    \item For $\alpha = 1$, $\qq^{< 1} = \set{1}$.
+    \item For $1 < \alpha = \gamma + 1$,
+          \[\qq^{< \alpha} = \sum_{\qq}{\qq^{< \gamma}}\]
+    \item For $\alpha$ a limit ordinal,
+          \[\qq^{< \alpha} = \bigcup_{\beta < \alpha} \qq^{< \beta}\]
+  \end{itemize}
+
+  We define further $\qq^{\le \alpha} = \qq^{< \alpha + 1}$
+  and $\qq^{= \alpha} = \qq^{\le \alpha} - \qq^{< \alpha}$.
+
+  We call such an $\alpha$, if it exists,
+  \emph{the $\qq$-rank} of a linear order $M$.
+\end{definition}
+
+\begin{observations}
+  Let $\alpha, \beta > 0$ be ordinals.
+
+  Let $\qq$ be a good property.
+
+  We claim the following without proof:
+
+  \begin{itemize}
+    \item $\qq^{\le 1} = \qq$.
+    \item $\qq^{< \alpha}$ is a good property iff $\alpha > 1$.
+    \item $\qq^{< \alpha} \subsetneq \qq^{< \beta}$ iff $\alpha < \beta$.
+  \end{itemize}
+\end{observations}
+
+
+\begin{lemma}
+  Let $\alpha > 0$, $\delta \ge 0$ be ordinals. Let $\qq$ be a good property.
+
+  Then,
+  \[
+    \qq^{< \alpha + \delta}
+    = \sum_{\qq^{< 1 + \delta}}{\qq^{< \alpha}}
+  \]
+\end{lemma}
+
+\begin{proof}
+  We prove by induction on $\delta \ge 0$.
+
+  For $\delta = 0$, we need to show that $\qq^{< \alpha} = \sum_{1}\qq^{< \alpha}$,
+  which is obviously true.
+
+  For $\delta = \varepsilon + 1$, we have
+  $
+    \qq^{< \alpha + \delta}
+    = \qq^{< \alpha + \varepsilon + 1}
+    = \sum_{\qq}{\qq^{< \alpha + \varepsilon}}
+  $.
+
+  By the induction hypothesis,
+  $
+    \qq^{< \alpha + \varepsilon}
+    = \sum_{\qq^{< 1 + \varepsilon}}{\qq^{< \alpha}}
+  $, and thus we get
+  \[
+    \qq^{< \alpha + \delta} = \sum_{\qq}{\sum_{\qq^{< 1 + \varepsilon}}{\qq^{< \alpha}}}
+  \]
+
+  By associativity,
+  \[\qq^{< \alpha + \delta}
+    = \sum_{\sum_{\qq}{\qq^{< 1 + \varepsilon}}}{\qq^{< \alpha}}
+    = \sum_{\qq^{< 1 + \varepsilon + 1}}{\qq^{< \alpha}}
+    = \sum_{\qq^{< 1 + \delta}}{\qq^{< \alpha}}\]
+
+  For $\delta > 0$ a limit ordinal, note that $\alpha + \delta = \sup_{\varepsilon < \delta}{\alpha + \varepsilon}$,
+  and $1 + \delta = \delta$ since $\delta$ is infinite.
+
+  Then,
+  \[
+    \qq^{< \alpha + \delta}
+    = \bigcup_{\varepsilon < \delta}{\qq^{< \alpha + \varepsilon}}
+    = \bigcup_{\varepsilon < \delta}{\sum_{\qq^{< 1 + \varepsilon}}{\qq^{< \alpha}}}
+    = \sum_{\bigcup_{\varepsilon < \delta}{\qq^{< 1 + \varepsilon}}}{\qq^{< \alpha}}
+    = \sum_{\qq^{< 1 + \delta}}{\qq^{< \alpha}}
+  \]
+
+  where the second equality follows by the induction hypothesis.
+
+\end{proof}
+
+
+
+\begin{lemma}
+  Let $\alpha > 0$ be an ordinal.
+
+  Let $\qq$ be a good property.
+  
+  Then, $\bounded{\qq^{< \alpha}} \cap COUNTABLE \subseteq \qq^{\le \alpha}$.
+\end{lemma}
+
+\begin{proof}
+  Let $M \in \bounded{\qq^{< \alpha}}$ be a countable linear order.
+
+  Since $M$ is countable, there exists some $I \subseteq \ZZ$ and
+  an $I$-sequence $\set{x_k}_{k \in I} \subseteq M$,
+  which is strictly monotone and bi-directionally cofinal in $M$.
+
+  That is, $M = \sum_{k \in I} \left[ x_k, x_{k + 1} \right)$.
+
+  Since $I \subseteq \ZZ \in \qq$, and
+  since the rank of every interval $\left[ x_k, x_{k + 1} \right)$ is $< \alpha$,
+  $M \in \sum_{\qq}{\qq^{< \alpha}} = \qq^{\le \alpha}$.
+
+\end{proof}

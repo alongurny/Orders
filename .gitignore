@@ -9,6 +9,10 @@
 !src/*.tex
 !src/*.sty
 
+# Plan
+!plan/
+!plan/*.tex
+
 # Output
 !Orders.pdf
 
@@ -17,3 +21,8 @@
 
 # README
 !README.md
+
+# Settings files
+!.gitignore
+!.vscode/
+!.vscode/settings.json
