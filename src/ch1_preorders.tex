@@ -1,0 +1,88 @@
+\section{Preorders}
+
+\begin{definition}
+  A relation $\le$ is a \emph{preorder} if it is reflexive and transitive.
+\end{definition}
+
+\begin{definition}
+  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders.
+
+  The sum $M = \sum_{i \in I} M_i$ is defined as follows:
+
+  The domain is $M = \biguplus_{i \in I} M_i$ (a disjoint union).
+
+  Let $\le_i$ be the preorder on $M_i$.
+
+  The order is defined as follows:
+  \[
+    x \le y \iff \begin{cases}
+      \exists i \in I. x, y \in M_i \land x \le_i y \\
+      \exists i, j \in I. x \in M_i \land y \in M_j \land i < j
+    \end{cases}
+  \]
+
+  If $I = 2$, we define $M_1 + M_2 := \sum_{i \in 2} M_i$.
+\end{definition}
+
+\begin{lemma}
+  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders.
+
+  Then $M = \sum_{i \in I} M_i$ is a preorder.
+\end{lemma}
+
+\begin{proof}
+  Reflexivity is clear.
+
+  For transitivity, suppose $x \le y$ and $y \le z$.
+
+  Suppose $x \in M_i$, $y \in M_j$, $z \in M_k$.
+
+  Then $i \le j$ and $j \le k$, so $i \le k$.
+  If $i = k$, then necessarily $i = j = k$, and so $x \le_i y$ and $y \le_i z$,
+  so $x \le_i z$, so $x \le z$, as required.
+
+  Otherwise, $i < k$, and thus $x \le z$, as required.
+\end{proof}
+
+\begin{definition}
+  Let $\pp$ and $\qq$ be a property of preorders.
+
+  Then we define
+  \[
+    \sum_{\pp}^{\qq} := \set{\sum_{i \in I}{M_i} : I \in \pp \wedge \forall i \in I. M_i \in \qq}
+  \]
+
+  Furthermore, if $\pp = \set{I}$ is a singleton, we define $\sum_{I}^{\qq} := \sum_{\pp}^{\qq}$.
+\end{definition}
+
+\begin{theorem}[Decomposition theorem]
+  There exists a computable translation $\mathcal{T}$
+  from $MSO$ formulae $\varphi \ps{\vec{X}}$,
+
+  such that for any $M = \sum_{i \in I} M_i$, and formula $\varphi$,
+  if $n$ is the quantifier-depth of $\varphi$,
+  then
+  \[
+    M, \vec{X} \models \varphi \iff I, \Pi \models \mathcal{T} {\varphi}
+  \]
+
+  where $\Pi \ps{i} = \type{n}{M_i}$.
+\end{theorem}
+
+\begin{corollary}
+  Let $\pp$ be a property of linear orders
+  labeled with colors $\vec{C} = \set{C_k}_{k=1}^m$.
+
+  Let $\set {\qq_k}_{k=1}^m$ be a family of (possibly labeled) properties.
+
+  Let $n \in \NN$.
+
+  We can compute the type $\type{n}{\sumv{\pp}{\vec{C}}{\vec{\qq}}}$
+  from the types $\type{n}{\pp}$ and $\type{n}{\qq_k}$ for all $k$.
+\end{corollary}
+
+\begin{proof}
+  Let $\tau$ be an $n$-type of the appropriate signature.
+  
+  Assume we have $\type{n}{\pp}$ and $\type{n}{\qq_k}$ for all $k$.
+\end{proof}

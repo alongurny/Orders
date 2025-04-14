@@ -4,22 +4,28 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
 
 % Theorems
-\newtheorem{theorem}{Theorem}
-\newtheorem{corollary}{Corollary}
-\newtheorem{observation}{Observation}
-\newtheorem{observations}{Observations}
-\newtheorem{lemma}{Lemma}
-\newtheorem{proposition}{Proposition}
-\newtheorem{conjecture}{Conjecture}
-\newtheorem{claim}{Claim}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{observations}[theorem]{Observations}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}[theorem]{Claim}
 
 % Definitions
-\newtheorem{definition}{Definition}
-\newtheorem{definitions}{Definitions}
-\newtheorem{notation}{Notation}
-\newtheorem{notations}{Notations}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{definitions}[theorem]{Definitions}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{notations}[theorem]{Notations}
+
+% Examples
+\newtheorem{example}[theorem]{Example}
+\newtheorem{examples}[theorem]{Examples}
+
 
 % Delimiters
 \newcommand{\parens}[1]{\left( {#1} \right)}
@@ -31,15 +37,17 @@
 \newcommand{\set}[1]{\braces{#1}}
 
 % Macros
-\newcommand{\hrank}[1]{\mathbf{hrank}_{\omega}\left( #1 \right)}
-\newcommand{\bigforall}{\mbox{\Large $\mathsurround0pt\foralM$}} 
+\newcommand{\hrank}[2]{\mathbf{hrank}_{#1} \ps{#2}}
+\newcommand{\ho}[1]{\hrank{\omega}{#1}}
+\newcommand{\bigforall}{\mbox{\Large $\mathsurround0pt\foralM$}}
 
 % Letters
-\newcommand{\agemo}{-\omega}
+\newcommand{\agemo}{\omega^\ast}
+\newcommand{\oo}{\agemo + \omega}
 \newcommand{\otp}{\mathbf{otp}}
 \newcommand{\fso}{\mathbf{FSO}}
 \newcommand{\mso}{\mathbf{MSO}}
-\newcommand{\bounded}[1]{\mathcal{B}{#1}}
+\newcommand{\bounded}[1]{ \mathcal{B} \bs{{#1}} }
 \newcommand{\pp}{\mathbf{P}}
 \newcommand{\qq}{\mathbf{Q}}
 
@@ -48,7 +56,6 @@
 
 % Sets
 \newcommand{\NN}{\mathbb{N}}
-\newcommand{\ZZ}{\mathbb{Z}}
 
 % Types
 \newcommand{\type}[2]{\mathbf{type}_{#1} \bs{#2}}

@@ -25,16 +25,19 @@
   is closed under isomorphism.
 \end{definition}
 
+
 % Definition of extension of finitary operations
 \begin{definition}
-  Let $\mathbf{op}$ be a $k$-ary operation on linear orders.
+  Let $\kappa \ge 0$ be an ordinal.
 
-  Let $\pp_1, \ldots, \pp_k$ be properties of linear orders.
+  Let $\mathbf{op}$ be a $\kappa$-ary operation on linear orders.
+
+  Let $\set{\pp_i}_{i \in \kappa}$ be properties of linear orders.
 
   Then,
   \[
-    \mathbf{op} \ps{\pp_1, \ldots, \pp_k}
-    := \set{ \mathbf{op} \ps{M_1, \ldots, M_k} : M_1 \in \pp_1, \ldots, M_k \in \pp_k}
+    \mathbf{op} \ps{ \set{\pp_i}_{i \in \kappa} }
+    := \set{ \mathbf{op} \ps{ \set{\pp_i}_{i \in \kappa} } : \forall i \in \kappa, \pp_i \in \pp }
   \]
 
   If $\mathbf{op}$ is replaced with a nondeterministic partial operation, 
@@ -78,7 +81,7 @@
 % Definition of a good property
 \begin{definition}
   A property $\pp$ of linear orders is \emph{good} if it is
-  monotone, additive and $\ZZ \in \pp$.
+  monotone, additive and $\oo \in \pp$.
 \end{definition}
 
 % Definition of a star property
@@ -92,7 +95,7 @@
 
 
 % Lemma: $\bounded{\pp}$ is a star property
-\begin{lemma}[Star Lemma]
+\begin{lemma}[Star Lemma]\label{star-lemma}
   Let $\pp$ be an additive property of linear orders.
 
   Then the property $\bounded{\pp}$ is a star property.
@@ -184,3 +187,22 @@
   $\type{n}{\pp}$ and $\type{n}{\mathcal{C} \setminus \pp}$ are both
   computable as a function of $n$.
 \end{definition}                                                                                                                                                                                                                                                                                                                                                                                                             
+
+
+\begin{definition}
+  Let $\beta \ge \omega$ be a limit ordinal.
+
+  We define $\Gamma_{\beta} := \sum_{\mathbf{Finite}}^{\set{\gamma : \gamma \subseteq \beta^\ast + \beta}}$.
+\end{definition}
+
+\begin{example}
+  \[
+    \qqo = \mathbf{Finite} \uplus \set{\omega, \agemo, \oo}
+  \]
+\end{example}
+
+\begin{observation}
+  Let $\beta \ge \omega$ be a limit ordinal.
+
+  Then $\Gamma_{\beta}$ is a good property of linear orders.
+\end{observation}

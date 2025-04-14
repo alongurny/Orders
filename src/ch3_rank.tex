@@ -98,20 +98,20 @@
   Let $\alpha > 0$ be an ordinal.
 
   Let $\qq$ be a good property.
-  
-  Then, $\bounded{\qq^{< \alpha}} \cap COUNTABLE \subseteq \qq^{\le \alpha}$.
+
+  Then over countable linear orders, $\bounded{\qq^{< \alpha}} \subseteq \qq^{\le \alpha}$.
 \end{lemma}
 
 \begin{proof}
   Let $M \in \bounded{\qq^{< \alpha}}$ be a countable linear order.
 
-  Since $M$ is countable, there exists some $I \subseteq \ZZ$ and
+  Since $M$ is countable, there exists some $I \subseteq \oo$ and
   an $I$-sequence $\set{x_k}_{k \in I} \subseteq M$,
   which is strictly monotone and bi-directionally cofinal in $M$.
 
   That is, $M = \sum_{k \in I} \left[ x_k, x_{k + 1} \right)$.
 
-  Since $I \subseteq \ZZ \in \qq$, and
+  Since $I \subseteq \oo \in \qq$, and
   since the rank of every interval $\left[ x_k, x_{k + 1} \right)$ is $< \alpha$,
   $M \in \sum_{\qq}{\qq^{< \alpha}} = \qq^{\le \alpha}$.
 

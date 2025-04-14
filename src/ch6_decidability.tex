@@ -1,4 +1,3 @@
-
 \section{Decidability of the rank}
 
 % Definition of extension to types
@@ -70,29 +69,29 @@
 
   Let $M$ be of rank $c + 1$.
 
-  Write $M = \sum_{i \in I} M_i$ where $\hrank{M_i} < c + 1$,
-  and $\hrank{M_i} = c$ infinitely many times.
+  Write $M = \sum_{i \in I} M_i$ where $M_i \in \qqo^{< c + 1}$,
+  and $M_i \in \qqo^{= c}$ infinitely many times.
 
   By the induction hypothesis,
-  if $\hrank{M_i} = c$, we can find $N_i \equiv_n M_i$ with $\hrank{N_i} = c + b(n)$.
+  if $M_i \in \qqo^{= c}$, we can find $N_i \equiv_n M_i$ with $N_i \in \qqo^{= c + b(n)}$.
   Setting $N_i := M_i$ for all other $i$, we conclude that $N := \sum_{i \in I} N_i$
   is $n$-equivalent to $M$.
 
-  However, clearly $\hrank{N} = c + b(n) + 1$. So overall,
+  However, clearly $N \in \qqo^{= c + b(n) + 1}$. So overall,
   \[\type{n}{\qq^{= c + 1}} \subseteq \type{n}{\qq^{= c + b(n) + 1}}\]
 
   Conversely, suppose $M$ is of rank $c + b(n) + 1$.
-  Write $M$ = $\sum_{i \in I} M_i$ where $\hrank{M_i} < c + b(n) + 1$,
-  and $\hrank{M_i} = c + b(n)$ infinitely many times.
+  Write $M$ = $\sum_{i \in I} M_i$ where $M_i \in \qqo^{< c + b(n) + 1}$,
+  and $M_i \in \qqo^{= c + b(n)}$ infinitely many times.
 
   By the induction hypothesis,
-  we can find for all $i$ such that $\hrank{M_i} = c + b(n)$ some
-  $N_i \equiv_n M_i$ with $\hrank{N_i} = c$.
+  we can find for all $i$ such that $M_i \in \qqo^{= c + b(n)}$ some
+  $N_i \equiv_n M_i$ with $N_i \in \qqo^{= c}$.
   Furthermore, since $c \ge a(n) > f(n)$, we can
-  find $N_i \equiv_n M_i$ with $\hrank{N_i} \le f(n) < c$ for all other $i$.
+  find $N_i \equiv_n M_i$ with $N_i \in \qqo^{\le f(n) < c}$ for all other $i$.
 
   We conclude that $N := \sum_{i \in I} N_i$ is $n$-equivalent to $M$.
-  However, clearly $\hrank{N} = c + 1$. So overall,
+  However, clearly $N \in \qqo^{= c + 1}$. So overall,
   \[\type{n}{\qq^{= c + b(n) + 1}} \subseteq \type{n}{\qq^{= c + 1}}\]
 
   So we have proven the induction step, and the lemma follows.
@@ -101,7 +100,7 @@
 \begin{lemma}
   Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
 
-  Let $s \in \set{1, \omega, \omega^\ast, \ZZ}$ be a shape.
+  Let $s \in \set{1, \omega, \agemo, \oo}$ be a shape.
 
   \[\type{n}{\mathcal{S}^{s}_{\alpha}} = \bigcup_{c < b(n)}{\mathcal{S}^{s}_{a(n) + c}                                                                                                                                                                                                                                                                                                                                                                                                                                       }\]
 
@@ -129,9 +128,9 @@
 
   Let $M$ be a linear order and $x \in M$.
 
-  We define the convex equivalence relation $\sim_\alpha := \sim_{\mathcal{B}_{\alpha}}$,
-  and $\bs{x}_{\alpha} := \bs{x}_{\mathcal{B}_{\alpha}}$ (that is,
-  $\bs{x}_{\alpha}$ is the largest $\mathcal{B}_{\alpha}$-subinterval
+  We define the convex equivalence relation $\sim_\alpha := \sim_{\bounded{\qqo^{< \alpha}}}$,
+  and $\bs{x}_{\alpha} := \bs{x}_{\bounded{\qqo^{< \alpha}}}$ (that is,
+  $\bs{x}_{\alpha}$ is the largest $\bounded{\qqo^{< \alpha}}$-subinterval
   containing $x$ in $M$).
 
   We define $\sigma_{\alpha} \parens{M}$ as
@@ -141,7 +140,7 @@
 
 \begin{lemma}
   The property
-  $\hrank{\cdot} = \alpha$ is expressible over intervals
+  $\cdot \in \qqo^{= \alpha}$ is expressible over intervals
   in $\mso[\sim_{\alpha}, \sigma_{\alpha}]$
 \end{lemma}
 
@@ -172,8 +171,8 @@
 
   Now we create the formulae:
   \[\theta_s(\Pi, \Xi) := \set{i : \bigvee_{\tau \in S_s}{\Xi(\Pi(i)) = s}}\]
-  \[L(\Pi, \Xi) := \theta_{\omega}(\Pi, \Xi) \vee \theta_{\ZZ}(\Pi, \Xi)\]
-  \[R(\Pi, \Xi) := \theta_{\omega^\ast}(\Pi, \Xi) \vee \theta_{\ZZ}(\Pi, \Xi)\]
+  \[L(\Pi, \Xi) := \theta_{\omega}(\Pi, \Xi) \vee \theta_{\oo}(\Pi, \Xi)\]
+  \[R(\Pi, \Xi) := \theta_{\agemo}(\Pi, \Xi) \vee \theta_{\oo}(\Pi, \Xi)\]
 
   We create the formula $\chi(\Pi, \Xi)$ as follows:
 
@@ -201,10 +200,10 @@
   Let us take a model $M_i$ with the appropriate type.
   Now define $M := \sum_{i \in I} M_i$.
 
-  We claim that each $M_i$ is a \emph{maximum} $\mathcal{B}_{\alpha}$-subinterval
+  We claim that each $M_i$ is a \emph{maximum} $\bounded{\qqo^{< \alpha}}$-subinterval
   of $M$.
 
-  Suppose $[M_i, M_j]$ is a $\mathcal{B}_{\alpha}$-subinterval of $M$.
+  Suppose $[M_i, M_j]$ is a $\bounded{\qqo^{< \alpha}}$-subinterval of $M$.
 
   In particular, it has a rank, so it is scattered. So in particular,
   $[i, j] \subseteq I$ is a scattered interval.
@@ -238,13 +237,13 @@
   WLOG, assume that $\varphi$ is a sentence.
 
   First, let us calculate the sets
-  $\type{n}{\Gamma_{\omega}^{< \alpha}}$,
+  $\type{n}{\qqo^{< \alpha}}$,
   and 
 
   Now we create the formulae:
   \[\theta_s(\Pi, \Xi) := \set{i : \bigvee_{\tau \in S_s}{\Xi(\Pi(i)) = s}}\]
-  \[L(\Pi, \Xi) := \theta_{\omega}(\Pi, \Xi) \vee \theta_{\ZZ}(\Pi, \Xi)\]
-  \[R(\Pi, \Xi) := \theta_{\omega^\ast}(\Pi, \Xi) \vee \theta_{\ZZ}(\Pi, \Xi)\]
+  \[L(\Pi, \Xi) := \theta_{\omega}(\Pi, \Xi) \vee \theta_{\oo}(\Pi, \Xi)\]
+  \[R(\Pi, \Xi) := \theta_{\agemo}(\Pi, \Xi) \vee \theta_{\oo}(\Pi, \Xi)\]
 
   We create the formula $\chi(\Pi, \Xi)$ as follows:
 
@@ -272,92 +271,15 @@
   Let us take a model $M_i$ with the appropriate type.
   Now define $M := \sum_{i \in I} M_i$.
 
-  We claim that each $M_i$ is a \emph{maximum} $\mathcal{B}_{\alpha}$-subinterval
+  We claim that each $M_i$ is a \emph{maximum} $\bounded{\qqo^{< \alpha}}$-subinterval
   of $M$.
 
-  Suppose $[M_i, M_j]$ is a $\mathcal{B}_{\alpha}$-subinterval of $M$.
+  Suppose $[M_i, M_j]$ is a $\bounded{\qqo^{< \alpha}}$-subinterval of $M$.
 
   In particular, it has a rank, so it is scattered. So in particular,
   $[i, j] \subseteq I$ is a scattered interval.
 
   If $i = j$ we are done. Otherwise, let $i'$, $j'$ be such that $i \le i' < j' \le j$,
   and $j' = i' + 1$.  But it cannot be the case by the constraint.
-
-\end{proof}
-
-\begin{definition}
-  A relation $\le$ is a \emph{preorder} if it is reflexive and transitive.
-\end{definition}
-
-\begin{definition}
-  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders.
-
-  The sum $M = \sum_{i \in I} M_i$ is defined as follows:
-
-  The domain is $M = \biguplus_{i \in I} M_i$ (a disjoint union).
-
-  Let $\le_i$ be the preorder on $M_i$.
-
-  The order is defined as follows:
-  \[
-    x \le y \iff \begin{cases}
-      \exists i \in I. x, y \in M_i \land x \le_i y \\
-      \exists i, j \in I. x \in M_i \land y \in M_j \land i < j
-    \end{cases}
-  \]
-\end{definition}
-
-\begin{lemma}
-  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders.
-
-  Then $M = \sum_{i \in I} M_i$ is a preorder.
-\end{lemma}
-
-\begin{proof}
-  Reflexivity is clear.
-
-  For transitivity, suppose $x \le y$ and $y \le z$.
-
-  Suppose $x \in M_i$, $y \in M_j$, $z \in M_k$.
-
-  Then $i \le j$ and $j \le k$, so $i \le k$.
-  If $i = k$, then necessarily $i = j = k$, and so $x \le_i y$ and $y \le_i z$,
-  so $x \le_i z$, so $x \le z$, as required.
-
-  Otherwise, $i < k$, and thus $x \le z$, as required.
-\end{proof}
-
-\begin{theorem}[Decomposition theorem]
-  There exists a computable translation $\mathcal{T}$
-  from $MSO$ formulae $\varphi \ps{\vec{X}}$,
-
-  such that for any $M = \sum_{i \in I} M_i$, and formula $\varphi$,
-  if $n$ is the quantifier-depth of $\varphi$,
-  then
-  \[
-    M, \vec{X} \models \varphi \iff I, \Pi \models \mathcal{T} {\varphi}
-  \]
-
-  where $\Pi \ps{i} = \type{n}{M_i}$.
-\end{theorem}
-
-\begin{corollary}
-  Let $\pp$ be a property of linear orders
-  labeled with colors $\vec{C} = \set{C_k}_{k=1}^m$.
-
-  Let $\set {\qq_k}_{k=1}^m$ be a family of (possibly labeled) properties.
-
-  Let $n \in \NN$.
-
-  We can compute the type $\type{n}{\sumv{\pp}{\vec{C}}{\vec{\qq}}}$
-  from the types $\type{n}{\pp}$ and $\type{n}{\qq_k}$ for all $k$.
-\end{corollary}
-
-\begin{proof}
-  Let $\tau$ be an $n$-type of the appropriate signature.
-  
-  Assume we have $\type{n}{\pp}$ and $\type{n}{\qq_k}$ for all $k$.
-
-  
 
 \end{proof}
