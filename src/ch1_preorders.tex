@@ -1,10 +1,35 @@
 \section{Preorders}
 
-\begin{definition}
+\begin{definition}[Preorder]
   A relation $\le$ is a \emph{preorder} if it is reflexive and transitive.
 \end{definition}
 
+% Definition of a property
+\begin{definition}[Property of preorders]
+  A \emph{property} $\pp$ of preorders is a class of preorders which
+  is closed under isomorphism.
+\end{definition}
+
+% Definition of a monotone property
 \begin{definition}
+  A property $\pp$ of preorders is \emph{monotone} if for every preorder $M$,
+  $M \in \pp$ implies that every suborder of $M$ is in $\pp$.
+\end{definition}
+
+% Definition of an additive property
+\begin{definition}
+  A property $\pp$ of preorders is an \emph{additive property} if for every preorders $M_1$ and $M_2$,
+  $M_1 + M_2 \in \pp$ iff $M_1, M_2 \in \pp$, i.e., if $\pp + \pp = \pp$.
+\end{definition}
+
+% Definitions of special preorders.
+\begin{definition}
+  Let $M$ be a preorder.
+
+  Then $M^\ast$ is the dual - the reverse preorder of $M$.
+\end{definition}
+
+\begin{definition}[Sum of preorders]
   Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders.
 
   The sum $M = \sum_{i \in I} M_i$ is defined as follows:
@@ -45,6 +70,15 @@
 \end{proof}
 
 \begin{definition}
+  Let $\pp_1$ and $\pp_2$ be properties of preorders.
+
+  Then we define
+  \[
+    \pp_1 + \pp_2 := \set{M_1 + M_2 : M_1 \in \pp_1 \wedge M_2 \in \pp_2}
+  \]
+\end{definition}
+
+\begin{definition}
   Let $\pp$ and $\qq$ be a property of preorders.
 
   Then we define
@@ -52,37 +86,14 @@
     \sum_{\pp}^{\qq} := \set{\sum_{i \in I}{M_i} : I \in \pp \wedge \forall i \in I. M_i \in \qq}
   \]
 
-  Furthermore, if $\pp = \set{I}$ is a singleton, we define $\sum_{I}^{\qq} := \sum_{\pp}^{\qq}$.
+  Furthermore, if $\pp = \set{I}$ is a singleton, we define $\sum_{I}^{\qq} := \sum_{\pp}{\qq}$.
 \end{definition}
 
-\begin{theorem}[Decomposition theorem]
-  There exists a computable translation $\mathcal{T}$
-  from $MSO$ formulae $\varphi \ps{\vec{X}}$,
+\begin{definition}[Kleene plus]
+  Let $\pp$ be a property of preorders.
 
-  such that for any $M = \sum_{i \in I} M_i$, and formula $\varphi$,
-  if $n$ is the quantifier-depth of $\varphi$,
-  then
-  \[
-    M, \vec{X} \models \varphi \iff I, \Pi \models \mathcal{T} {\varphi}
-  \]
+  We define its Kleene plus as the smallest property of preorders $\pp^+$ which contains $\pp$ and is closed under
+  finite sums.
 
-  where $\Pi \ps{i} = \type{n}{M_i}$.
-\end{theorem}
-
-\begin{corollary}
-  Let $\pp$ be a property of linear orders
-  labeled with colors $\vec{C} = \set{C_k}_{k=1}^m$.
-
-  Let $\set {\qq_k}_{k=1}^m$ be a family of (possibly labeled) properties.
-
-  Let $n \in \NN$.
-
-  We can compute the type $\type{n}{\sumv{\pp}{\vec{C}}{\vec{\qq}}}$
-  from the types $\type{n}{\pp}$ and $\type{n}{\qq_k}$ for all $k$.
-\end{corollary}
-
-\begin{proof}
-  Let $\tau$ be an $n$-type of the appropriate signature.
-  
-  Assume we have $\type{n}{\pp}$ and $\type{n}{\qq_k}$ for all $k$.
-\end{proof}
+  That is, $1^+ = \set{1, 2, \ldots}$, and $\pp^+ = \sum_{1^+}^{\pp}$.
+\end{definition}

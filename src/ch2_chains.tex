@@ -1,67 +1,55 @@
-\section{Properties}
+\section{Linear Orders}
+
 % Definition of left/right/bi-directionally cofinal
 \begin{definition}
   Let $M$ be a linear order.
 
   A set $A \subseteq M$ is \emph{left cofinal} in $M$ if for every $x \in M$,
-  there exists $y \in A$ such that $y \le x$.
+  there exists $y \in A$ such that $y < x$.
 
   A set $A \subseteq M$ is \emph{right cofinal} in $M$ if for every $x \in M$,
-  there exists $y \in A$ such that $x \le y$.
+  there exists $y \in A$ such that $x < y$.
 
   A set $A \subseteq M$ is \emph{bi-directionally cofinal} in $M$ if it is both left and right cofinal.
 \end{definition}
 
-% Definitions of special orders
-\begin{definition}
+\begin{lemma}
+  Let $\pp$ be an additive property of linear orders.
+
+  Then $1 \in \pp$.
+\end{lemma}
+
+\begin{note}
+  The above lemma is false if we do not restrict ourselves to linear orders.
+
+  For example, $\ps{1 \uplus 1}^+$ is a property of preorders 
+  which is additive, but does not contain $1$.
+\end{note}
+
+\begin{proof}
+  Let $M \in \pp$ be any linear order.
+
+  Let $x \in M$. Then,
+  $M = \set{y \in M : y < x} + \set{x} + {y \in M : y > x}$.
+
+  We conclude that $\set{x} \in \pp$, thus $1 \in \pp$.
+\end{proof}
+
+\begin{corollary}
+  Let $\pp$ be an additive property of linear orders.
+
   Let $M$ be a linear order.
 
-  Then $M^\ast$ is the dual - the reverse order of $M$.
-\end{definition}
+  Let $x, y \in M$ be any two points in a linear order $M$.
+  Then the following are equivalent:
 
-% Definition of a property
-\begin{definition}
-  A \emph{property} $\pp$ of linear orders is a class of linear orders which
-  is closed under isomorphism.
-\end{definition}
-
-
-% Definition of extension of finitary operations
-\begin{definition}
-  Let $\kappa \ge 0$ be an ordinal.
-
-  Let $\mathbf{op}$ be a $\kappa$-ary operation on linear orders.
-
-  Let $\set{\pp_i}_{i \in \kappa}$ be properties of linear orders.
-
-  Then,
-  \[
-    \mathbf{op} \ps{ \set{\pp_i}_{i \in \kappa} }
-    := \set{ \mathbf{op} \ps{ \set{\pp_i}_{i \in \kappa} } : \forall i \in \kappa, \pp_i \in \pp }
-  \]
-
-  If $\mathbf{op}$ is replaced with a nondeterministic partial operation, 
-  we define the extension of the operation as a deterministic
-  operation which returns the image of the domain under the nondeterministic operation.
-\end{definition}
-
-% Definition of a monotone property
-\begin{definition}
-  A property $\pp$ of linear orders is \emph{monotone} if for every linear order $M$,
-  $M \in \pp$ implies that every suborder of $M$ is in $\pp$.
-\end{definition}
-
-% Definition of a symmetric property
-\begin{definition}
-  A property $\pp$ of linear orders is \emph{symmetric} if for every linear order $M$,
-  $M \in \pp$ iff $M^\ast \in \pp$, i.e., if $\pp^\ast = \pp$.
-\end{definition}
-
-% Definition of an additive property
-\begin{definition}
-  A property $\pp$ of linear orders is an \emph{additive property} if for every linear orders $M_1$ and $M_2$,
-  $M_1 + M_2 \in \pp$ iff $M_1, M_2 \in \pp$, i.e., if $\pp + \pp = \pp$.
-\end{definition}
+  \begin{enumerate}
+    \item $\left(x, y\right) \in \pp$.
+    \item $\left(x, y\right] \in \pp$.
+    \item $\left[x, y\right) \in \pp$.
+    \item $\left[x, y\right] \in \pp$.
+  \end{enumerate}
+\end{corollary}
 
 % Definition of $\bounded{\pp}$
 \begin{definition}
@@ -69,19 +57,6 @@
 
   We define $\bounded{\pp}$ to be the class of linear orders $M$ such that for every $x, y \in M$,
   the bounded subinterval $[x, y]$ is in $\pp$.
-\end{definition}
-
-% Definition of an almost anti-symmetric property
-\begin{definition}
-  A property $\pp$ of linear orders is \emph{almost anti-symmetric}
-  if for every linear order $M$,
-  $M \in \pp$ and $M^\ast \in \pp$ imply that $M$ is finite.
-\end{definition}
-
-% Definition of a good property
-\begin{definition}
-  A property $\pp$ of linear orders is \emph{good} if it is
-  monotone, additive and $\oo \in \pp$.
 \end{definition}
 
 % Definition of a star property
@@ -92,7 +67,6 @@
   for every $J_1, J_2 \in \mathcal{F}$, we have that
   $\bigcup \mathcal{F} \in \pp$.
 \end{definition}
-
 
 % Lemma: $\bounded{\pp}$ is a star property
 \begin{lemma}[Star Lemma]\label{star-lemma}
@@ -144,6 +118,12 @@
   Thus we can define the equivalence relation $\sim_{\pp}$ as above.
 \end{proof}
 
+% Definition of a good property
+\begin{definition}
+  A property $\pp$ of linear orders is \emph{good} if it is
+  monotone, additive and $\oo \in \pp$.
+\end{definition}
+
 % Definition of sum
 \begin{definition}
   Let $I$ be a linear order labeled with colors $\vec{C} = \set{C_k}_{k=1}^m$.
@@ -170,7 +150,7 @@
 
 \begin{lemma}[Union-associativity of sum]
   Let $\ppp$ be a family of properties.
-  
+
   Let $\qq$ be a property.
 
   Then $\sum_{\bigcup \ppp}{\qq} = \bigcup_{\pp \in \ppp}{\sum_{\pp}{\qq}}$.
@@ -180,24 +160,17 @@
   This is obvious from the definition of the sum operation.
 \end{proof}
 
-\begin{definition}
-  Let $\mathcal{C}$ be a property of linear orders.
-
-  A property $\pp$ of linear orders is \emph{$\mathcal{C}$-computable} if
-  $\type{n}{\pp}$ and $\type{n}{\mathcal{C} \setminus \pp}$ are both
-  computable as a function of $n$.
-\end{definition}                                                                                                                                                                                                                                                                                                                                                                                                             
 
 
 \begin{definition}
   Let $\beta \ge \omega$ be a limit ordinal.
 
-  We define $\Gamma_{\beta} := \sum_{\mathbf{Finite}}^{\set{\gamma : \gamma \subseteq \beta^\ast + \beta}}$.
+  We define $\Gamma_{\beta} := \set{\gamma : \gamma \subseteq \beta^\ast + \beta}^+$.
 \end{definition}
 
 \begin{example}
   \[
-    \qqo = \mathbf{Finite} \uplus \set{\omega, \agemo, \oo}
+    \qqo = \set{1, \omega, \agemo}^+
   \]
 \end{example}
 
