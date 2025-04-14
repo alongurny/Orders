@@ -2,21 +2,23 @@
 
 % Definition of extension to types
 \begin{definition}
-  Let $\mathbf{op}$ be a $k$-ary operation on linear orders.
+  Let $\kappa \ge 0$ be an ordinal.
+
+  Let $\mathbf{op}$ be a $\kappa$-ary operation on linear orders.
 
   Suppose that $\mathbf{op}$ is invariant under $\equiv_n$, for some $n \in \NN$.
 
   Then we extend $\mathbf{op}$ to a \emph{partial} operation on types as follows:
   \[
-    \mathbf{op} \ps{\type{n}{M_1}, \ldots, \type{n}{M_k}}
-    := \type{n}{\mathbf{op} \ps{M_1, \ldots, M_k}}
+    \mathbf{op} \ps{ \set{M_i}_{i \in \kappa} }
+    := \type{n}{\mathbf{op} \ps{M_i}_{i \in \kappa}}
   \]
 
   This is well defined because of the invariance. Furthermore, we can
   extend it to a partial operation on sets of types in the obvious way.
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\label{f-lemma}
   Let $\qq$ be a good property of linear orders.
 
   There exists a computable function $f_{\qq} = f: \NN \to \NN$ such that
@@ -36,7 +38,7 @@
   $\type{n}{\qq^{\le k}}$ is computable for every finite $k$.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{ab-lemma}
   There exist global computable functions $a, b : \NN \to \NN$ such that
   for all $n, c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
   \[\type{n}{\qq^{= c_1}} = \type{n}{\qq^{= c_2}}\]
@@ -97,6 +99,26 @@
   So we have proven the induction step, and the lemma follows.
 \end{proof}
 
+\begin{corollary}
+  Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
+
+  Let $s \in \set{1, \omega, \agemo, \oo}$ be a shape.
+
+  Then there exists a computable function $b(n)$ such that
+  for all $c_1, c_2 \in \NN$ such that $c_1, c_2 > a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
+  we have
+  \[\type{n}{\mathcal{S}^{s}_{c_1}} = \type{n}{\mathcal{S}^{s}_{c_2}}\]
+\end{corollary}
+
+\begin{proof}
+  For $s = 1$, it follows from~\cref{f-lemma}, since $\mathcal{S}^{1}_{c} = \qq^{< c} = \qq^{\le c-1}$
+  by~\cref{b_alpha-structure-lemma-1}.
+  and $c > a(n) \ge f(n)$ so $c-1 \ge f(n)$ for $c \in \set{c_1, c_2}$.
+
+  For $s \in \set{\omega, \agemo, \oo}$, it follows easily from~\cref{b_alpha-structure-lemma-2}
+  and~\cref{ab-lemma}.
+\end{proof}
+
 \begin{lemma}
   Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
 
@@ -110,17 +132,7 @@
 
 \begin{proof}
   Draft:
-
-  For $\alpha = \omega$:
-
-  For example, for $s = \omega$, if we have an $\omega$-sum
-  of linear orders of rank something, we can change it
-  to be an increasing-to-$\infty$ sequence.
-
-  For the other direction, we take an $\omega$-sum and reduce it modulo
-  $b(n)$ to be between $a(n)$ and $a(n) + b(n)$.
-
-  For other values of $\alpha \ge \omega$ we prove by induction:
+  
 \end{proof}
 
 \begin{definition}
@@ -128,7 +140,8 @@
 
   Let $M$ be a linear order and $x \in M$.
 
-  We define the convex equivalence relation $\sim_\alpha := \sim_{\bounded{\qqo^{< \alpha}}}$,
+  We define the convex equivalence relation: 
+  \[\sim_\alpha := \sim_{\bounded{\qqo^{< \alpha}}}\]
   and $\bs{x}_{\alpha} := \bs{x}_{\bounded{\qqo^{< \alpha}}}$ (that is,
   $\bs{x}_{\alpha}$ is the largest $\bounded{\qqo^{< \alpha}}$-subinterval
   containing $x$ in $M$).
