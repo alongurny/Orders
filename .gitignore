@@ -1,4 +1,8 @@
+# Ignore everything first
 **/*
+
+# Main output
+!Main.pdf
 
 # Homework
 !doc/
