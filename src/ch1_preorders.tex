@@ -83,10 +83,10 @@
 
   Then we define
   \[
-    \sum_{\pp}^{\qq} := \set{\sum_{i \in I}{M_i} : I \in \pp \wedge \forall i \in I. M_i \in \qq}
+    \sum_{\pp}{\qq} := \set{\sum_{i \in I}{M_i} : I \in \pp \wedge \forall i \in I. M_i \in \qq}
   \]
 
-  Furthermore, if $\pp = \set{I}$ is a singleton, we define $\sum_{I}^{\qq} := \sum_{\pp}{\qq}$.
+  Furthermore, if $\pp = \set{I}$ is a singleton, we define $\sum_{I}{\qq} := \sum_{\pp}{\qq}$.
 \end{definition}
 
 \begin{definition}[Kleene plus]
@@ -95,5 +95,5 @@
   We define its Kleene plus as the smallest property of preorders $\pp^+$ which contains $\pp$ and is closed under
   finite sums.
 
-  That is, $1^+ = \set{1, 2, \ldots}$, and $\pp^+ = \sum_{1^+}^{\pp}$.
+  That is, $1^+ = \set{1, 2, \ldots}$, and $\pp^+ = \sum_{1^+}{\pp}$.
 \end{definition}

@@ -14,7 +14,7 @@
 
   Conversely, suppose $M \in \qqo^{\le \alpha}$.
 
-  \emph{If} $M = \sum_{i \in I} M_i$ for some $M_i$ of Hausdorff rank $< \alpha$ for $I \in \qqo$,
+  \emph{If} $M = \sum_{i \in I} M_i$ for some $M_i \in \qqo^{< \alpha}$ for $I \in \qqo$,
   take $x, y \in M$. Then let $x \in M_{i_1}$ and $y \in M_{i_2}$.
 
   Then $[x, y] \subseteq \sum_{i \in [i_1, i_2]} M_i$.
@@ -45,7 +45,7 @@
     \item $\mathcal{S}^{1}_{\alpha} := L_{\alpha} \cap R_{\alpha}$
     \item $\mathcal{S}^{\omega}_{\alpha} := L_{\alpha} \setminus R_{\alpha}$
     \item $\mathcal{S}^{\agemo}_{\alpha} := R_{\alpha} \setminus L_{\alpha}$
-    \item $\mathcal{S}^{\oo}_{\alpha} := B_{\alpha} \setminus (L_{\alpha} \cup R_{\alpha})$
+    \item $\mathcal{S}^{\oo}_{\alpha} := \bounded{\qqo^{< \alpha}} \setminus (L_{\alpha} \cup R_{\alpha})$
   \end{enumerate}
 
   In particular, by the definition,
@@ -58,7 +58,7 @@
   \]
 
   Let $M \in \bounded{\qqo^{< \alpha}}$.
-  
+
   We define \emph{the} $\alpha$-shape
   of $M$ to be the $s \in \set{1, \omega, \agemo, \oo}$
   for which $M \in \mathcal{S}^{s}_{\alpha}$.
@@ -74,7 +74,7 @@
   ($\supseteq$) Let $M \in \qqo^{< \alpha}$.
   Since $\qqo^{< \alpha}$ is additive, $1 + M$ and $M + 1$ are also in $\qqo^{< \alpha}$.
   Therefore, $M \in \mathcal{L}_{\alpha} \cap \mathcal{R}_{\alpha}
-  = \mathcal{S}^{1}_{\alpha}$.
+    = \mathcal{S}^{1}_{\alpha}$.
 
   ($\subseteq$) Let $M \in \mathcal{S}^{1}_{\alpha}$.
   Then $M \in \mathcal{L}_{\alpha}$ and $M \in \mathcal{R}_{\alpha}$,
@@ -98,18 +98,51 @@
 \end{corollary}
 
 \begin{proof}
+  By~\cref{b_alpha-structure-lemma-1}, we can prove, equivalently,
+  that
   \[
-    \mathcal{S}^{1}_{\alpha + \delta}
-    = \qqo^{< \alpha + \delta}
+    \qqo^{< \alpha + \delta} = \sum_{\qqo^{< 1 + \delta}}{\qqo^{< \alpha}}.
   \]
+  We can prove this by induction on $\delta \ge 0$.
+
+  For $\delta = 0$ we need to prove
+  \[
+    \qqo^{< \alpha} = \sum_{\qqo^{< 1}}{\qqo^{< \alpha}}.
+  \]
+
+  Which is true by definition, since $\qqo^{< 1} = \set{1}$. 
+
+  For $\delta = \gamma + 1$, using the induction hypothesis,
+  \[
+    \begin{aligned}
+      \qqo^{< \alpha + \gamma + 1}
+       & = \sum_{\qqo}{\qqo^{< \alpha + \gamma}}                    \\
+       & = \sum_{\qqo}{\sum_{\qqo^{< 1 + \gamma}}{\qqo^{< \alpha}}} \\
+       & = \sum_{\sum_{\qqo}{\qqo^{< 1 + \gamma}}}{\qqo^{< \alpha}} \\
+       & = \sum_{\qqo^{< 1 + \gamma + 1}}{\qqo^{< \alpha}}          \\
+       & = \sum_{\qqo^{1 + \delta}}{\qqo^{< \alpha}}
+    \end{aligned}
+  \]
+
+  For $\delta$ a limit ordinal,
+  \[
+    \begin{aligned}
+      \qqo^{< \alpha + \delta}
+       & = \bigcup_{\gamma < \delta}{\qqo^{< \alpha + \gamma}} \\
+       & = \bigcup_{\gamma < \delta}{\sum_{\qqo^{< 1 + \gamma}}{\qqo^{< \alpha}}} \\
+       & = \sum_{\bigcup_{\gamma < \delta}{\qqo^{< 1 + \gamma}}}{\qqo^{< \alpha}} \\
+       & = \sum_{\qqo^{< 1 + \delta}}{\qqo^{< \alpha}}
+    \end{aligned}
+  \]
+
 \end{proof}
 
 \begin{lemma}\label{b_alpha-structure-lemma-2}
   Let $\alpha > 0$ be an ordinal.
   Let $s \in \set{\omega, \agemo, \oo}$.
 
-  Suppose that 
-  $\alpha = \sup_{i \in s} \ps{\alpha_i + 1}$ for 
+  Suppose that
+  $\alpha = \sup_{i \in s} \ps{\alpha_i + 1}$ for
   ordinals $\alpha_i > 0$ for all $i \in s$.
 
   Then, we have the following:
@@ -120,7 +153,6 @@
 \end{lemma}
 
 \begin{proof}
-  
 \end{proof}
 
 \begin{corollary}

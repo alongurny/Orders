@@ -1,8 +1,9 @@
 \section{Decidability of the rank}
 \begin{definition}
-  A property $\pp$ of linear orders is if
+  A property $\pp$ of preorders is if a
+  \emph{computable} property if
   $\type{n}{\pp}$ is computable as a function of $n$.
-\end{definition}    
+\end{definition}
 
 \begin{theorem}[Decomposition theorem]
   There exists a computable translation $\mathcal{T}$
@@ -35,24 +36,6 @@
   
   Assume we have $\type{n}{\pp}$ and $\type{n}{\qq_k}$ for all $k$.
 \end{proof}
-
-% Definition of extension to types
-\begin{definition}
-  Let $\kappa \ge 0$ be an ordinal.
-
-  Let $\mathbf{op}$ be a $\kappa$-ary operation on linear orders.
-
-  Suppose that $\mathbf{op}$ is invariant under $\equiv_n$, for some $n \in \NN$.
-
-  Then we extend $\mathbf{op}$ to a \emph{partial} operation on types as follows:
-  \[
-    \mathbf{op} \ps{ \set{\type{n}{M_i}}_{i \in \kappa} }
-    := \type{n}{\mathbf{op} \ps {\set{M_i}_{i \in \kappa}}}
-  \]
-
-  This is well defined because of the invariance. Furthermore, we can
-  extend it to a partial operation on sets of types in the obvious way.
-\end{definition}
 
 \begin{lemma}
   There exists a global computable function
@@ -208,8 +191,17 @@
 
 \begin{lemma}
   The property
-  $\cdot \in \qqo^{= \alpha}$ is expressible over intervals
-  in $\mso[\sim_{\alpha}, \sigma_{\alpha}]$
+  $\qqo^{= \alpha}$ is expressible over intervals
+  in $\mso[\sim_{\alpha}, \sigma_{\alpha}]$.
+
+  That is, there exists a formula $\varphi_{\alpha}(\Pi, \Xi)$
+  such that for every linear order $M$ and every $\bounded{\qqo^{< \alpha}}$-subinterval
+  $I$ of $M$, we have
+  \[
+    M, \Pi, \Xi \models \varphi_{\alpha}(\Pi, \Xi) \iff
+    I = \sum_{i \in I} M_i
+    \text{ where } M_i \in \qqo^{= \alpha} \text{ for all } i
+  \]
 \end{lemma}
 
 \begin{proof}
@@ -299,7 +291,9 @@
   that given an $\mso[\sim_{\alpha_k}, \sigma_{\alpha_k}, \ldots, \sim_{\alpha_0}, \sigma_{\alpha_0}]$ formula $\varphi$ of quantifier-depth $n$.
   outputs an $\mso$ formula $\psi(\Pi)$ such that...
 
-  Let $\varphi$ be an $\mso[\sim_{\alpha_k}, \sigma_{\alpha_k}, \ldots, \sim_{\alpha_0}, \sigma_{\alpha_0}]$ formula,
+  Let $\varphi$ be an
+  $\mso[\sim_{\alpha_k}, \sigma_{\alpha_k}, \ldots, \sim_{\alpha_0}, \sigma_{\alpha_0}]$
+  formula,
   and let $n$ be the quantifier-depth of $\varphi$.
 
   WLOG, assume that $\varphi$ is a sentence.

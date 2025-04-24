@@ -30,7 +30,7 @@
   Let $M \in \pp$ be any linear order.
 
   Let $x \in M$. Then,
-  $M = \set{y \in M : y < x} + \set{x} + {y \in M : y > x}$.
+  $M = \set{y \in M : y < x} + \set{x} + \set{y \in M : y > x}$.
 
   We conclude that $\set{x} \in \pp$, thus $1 \in \pp$.
 \end{proof}
@@ -50,6 +50,13 @@
     \item $\left[x, y\right] \in \pp$.
   \end{enumerate}
 \end{corollary}
+
+\begin{proof}
+  This is just applying the definition of an additive property
+  to the intervals $\left[x, y\right]$ and the order $1$.
+\end{proof}
+
+
 
 % Definition of $\bounded{\pp}$
 \begin{definition}
@@ -118,12 +125,6 @@
   Thus we can define the equivalence relation $\sim_{\pp}$ as above.
 \end{proof}
 
-% Definition of a good property
-\begin{definition}
-  A property $\pp$ of linear orders is \emph{good} if it is
-  monotone, additive and $\oo \in \pp$.
-\end{definition}
-
 % Definition of sum
 \begin{definition}
   Let $I$ be a linear order labeled with colors $\vec{C} = \set{C_k}_{k=1}^m$.
@@ -131,7 +132,7 @@
 
   Let $\vec{M} = \set{M_k}_{k=1}^m$ be a family of labeled linear orders.
 
-  Then,
+  Then we define the labeled sum,
   \[\sumv{I}{\vec{C}}{\vec{M}}
     := \sum_{i \in I}{M_{\gamma(i)}}\]
 \end{definition}
@@ -148,7 +149,7 @@
   which holds on linear orders.
 \end{proof}
 
-\begin{lemma}[Union-associativity of sum]
+\begin{lemma}[Sum over a union]
   Let $\ppp$ be a family of properties.
 
   Let $\qq$ be a property.
@@ -159,7 +160,6 @@
 \begin{proof}
   This is obvious from the definition of the sum operation.
 \end{proof}
-
 
 
 \begin{definition}
