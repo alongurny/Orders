@@ -1,12 +1,18 @@
 \section{Preorders}
 
-\begin{definition}[Preorder]
-  A relation $\le$ is a \emph{preorder} if it is reflexive and transitive.
-\end{definition}
+% Definition of a (labeled) preorder
+\begin{definitions}[(Labeled) Preorder]
+  A \emph{preorder} is a a set $M$
+  together with a binary relation $\le$ on $M$ such that
+  $\le$ is reflexive and transitive.
+
+  A \emph{labeled preorder} is a preorder $M$ together with a labeling function
+  $\gamma : M \to C$, where $C$ is a set of labels (colors).
+\end{definitions}
 
 % Definition of a property
 \begin{definition}[Property of preorders]
-  A \emph{property} $\pp$ of preorders is a class of preorders which
+  A \emph{property} $\pp$ of preorders is a class of \emph{labeled} preorders which
   is closed under isomorphism.
 \end{definition}
 
@@ -30,13 +36,13 @@
 
 % Definitions of special preorders.
 \begin{definition}
-  Let $M$ be a preorder.
+  Let $M$ be a (labeled) preorder.
 
-  Then $M^\ast$ is the dual - the reverse preorder of $M$.
+  Then $M^\ast$ is the dual - the reverse (labeled) preorder of $M$.
 \end{definition}
 
 \begin{definition}[Sum of preorders]
-  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders.
+  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of labeled preorders.
 
   The sum $M = \sum_{i \in I} M_i$ is defined as follows:
 
@@ -51,6 +57,8 @@
       \exists i, j \in I. x \in M_i \land y \in M_j \land i < j
     \end{cases}
   \]
+
+  The labels are defined naturally.
 
   If $I = 2$, we define $M_1 + M_2 := \sum_{i \in 2} M_i$.
 \end{definition}
@@ -75,6 +83,7 @@
   Otherwise, $i < k$, and thus $x \le z$, as required.
 \end{proof}
 
+% Definition of sum of two properties
 \begin{definition}
   Let $\pp_1$ and $\pp_2$ be properties of preorders.
 
@@ -84,17 +93,6 @@
   \]
 \end{definition}
 
-\begin{definition}
-  Let $\pp$ and $\qq$ be a property of preorders.
-
-  Then we define
-  \[
-    \sum_{\pp}{\qq} := \set{\sum_{i \in I}{M_i} : I \in \pp \wedge \forall i \in I. M_i \in \qq}
-  \]
-
-  Furthermore, if $\pp = \set{I}$ is a singleton, we define $\sum_{I}{\qq} := \sum_{\pp}{\qq}$.
-\end{definition}
-
 \begin{definition}[Kleene plus]
   Let $\pp$ be a property of preorders.
 
@@ -102,4 +100,79 @@
   finite sums.
 
   That is, $1^+ = \set{1, 2, \ldots}$, and $\pp^+ = \sum_{1^+}{\pp}$.
+\end{definition}
+
+
+\begin{definition}[Sum of a property over a preorder]
+  Let $I$ be a preorder.
+
+  Let $\qq$ be a property of preorders.
+
+  Then we define
+  \[
+    \sum_{I}{\qq} := \set{\sum_{i \in I}{M_i} : \forall i \in I. M_i \in \qq}
+  \]
+\end{definition}
+
+
+\begin{definition}[Sum of a family of properties over a preorder]
+  Let $I$ be a preorder.
+
+  Let $\set{\qq_i}_{i \in I}$ be a family of properties of preorders.
+
+  Then we define
+  \[
+    \sum_{i \in I}{\qq_i} := \set{\sum_{i \in I}{M_i} : \forall i \in I. M_i \in \qq_i}
+  \]
+\end{definition}
+
+\begin{note}
+  By the previous two definitions,
+  \[
+    \sum_{I}{\qq} = \sum_{i \in I}{\qq}
+  \]
+\end{note}
+
+\begin{definition}[Sum of properties over a labeled preorder]
+  Let $I$ be a labeled preorder, with a labeling function $\gamma : I \to \vec{C}$,
+  where $\vec{C}$ is a set of colors.
+
+  Let $\vec{\qq} = \set{\qq_c}_{c \in \vec{C}}$ be a family of properties of preorders,
+  indexed by the colors.
+
+  Then we define
+  \[
+    \sumv{I}{\vec{C}}{\vec{\qq}} := \set{\sum_{i \in I}{M_i} : \forall i \in I. M_i \in \qq_{\gamma(i)}}
+  \]
+\end{definition}
+
+\begin{notes}
+  \begin{enumerate}
+    \item We can see a sum over an unlabeled preorder $I$ as a sum over a labeled preorder
+          with a constant labeling function $\gamma : I \to \set{1}$.
+    \item We can see $P_1 + P_2$ as a sum over $I = \set{1, 2}$, colored
+          with $\gamma(i) = i$.
+  \end{enumerate}
+\end{notes}
+
+\begin{definition}[Sum of a property over a property]
+  Let $\pp$ be a property of unlabeled preorders.
+
+  Let $\qq$ be a property of preorders.
+
+  Then we define,
+  \[
+    \sum_{\pp}{\qq} := \set{\sum_{I}{\qq} : I \in \pp}
+  \]
+\end{definition}
+
+\begin{definition}[Sum of a property over a labeled property]
+  Let $\pp$ be a property of labeled preorders, over a set of colors $\vec{C}$.
+
+  Let $\vec{\qq} = \set{\qq_c}_{c \in \vec{C}}$ be a family of properties of preorders,
+
+  Then we define,
+  \[
+    \sumv{\pp}{\vec{C}}{\vec{\qq}} := \set{\sumv{I}{\vec{C}}{\vec{M}} : I \in \pp}
+  \]
 \end{definition}

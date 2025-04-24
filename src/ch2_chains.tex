@@ -1,5 +1,16 @@
 \section{Linear Orders}
 
+% Definition of a (labeled) linear order
+\begin{definitions}[(Labeled) Linear Order]
+  A \emph{(labeled) linear order} a (labeled) preorder which is symmetric and total.
+\end{definitions}
+
+% Definition of a property
+\begin{definition}[Property of linear orders]
+  A \emph{property} $\pp$ of linear orders is a class of \emph{labeled} linear orders which
+  is closed under isomorphism.
+\end{definition}
+
 % Definition of left/right/bi-directionally cofinal
 \begin{definition}
   Let $M$ be a linear order.
@@ -15,8 +26,8 @@
 
 \begin{lemma}
   Let $\pp$ be an additive property of linear orders.
-
-  Then $1 \in \pp$.
+  
+  Let $M \in \pp$ be a labeled linear order.
 \end{lemma}
 
 \begin{note}
@@ -32,7 +43,7 @@
   Let $x \in M$. Then,
   $M = \set{y \in M : y < x} + \set{x} + \set{y \in M : y > x}$.
 
-  We conclude that $\set{x} \in \pp$, thus $1 \in \pp$.
+  Since $\pp$ is additive, we conclude that $\set{x} \in \pp$.
 \end{proof}
 
 \begin{corollary}
@@ -55,8 +66,6 @@
   This is just applying the definition of an additive property
   to the intervals $\left[x, y\right]$ and the order $1$.
 \end{proof}
-
-
 
 % Definition of $\bounded{\pp}$
 \begin{definition}
@@ -124,18 +133,6 @@
 
   Thus we can define the equivalence relation $\sim_{\pp}$ as above.
 \end{proof}
-
-% Definition of sum
-\begin{definition}
-  Let $I$ be a linear order labeled with colors $\vec{C} = \set{C_k}_{k=1}^m$.
-  Let $\gamma : I \to \vec{C}$ be the coloring function.
-
-  Let $\vec{M} = \set{M_k}_{k=1}^m$ be a family of labeled linear orders.
-
-  Then we define the labeled sum,
-  \[\sumv{I}{\vec{C}}{\vec{M}}
-    := \sum_{i \in I}{M_{\gamma(i)}}\]
-\end{definition}
 
 \begin{lemma}[Associativity of sum]
   Let $\pp_1$, $\pp_2$ and $\pp_3$ be properties.
