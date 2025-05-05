@@ -1,34 +1,5 @@
 \section{\texorpdfstring{$\omega$}{omega}-Hausdorff rank}
 
-\begin{lemma}
-  Let $\alpha > 0$ be an ordinal.
-
-  Let $M$ be a countable linear order.
-
-  Then $M \in \qqo^{\le \alpha}$ iff $M$ is a finite sum of $\bounded{\qqo^{< \alpha}}$-subintervals.
-\end{lemma}
-
-\begin{proof}
-  From the previous lemma, it is clear that if $M$ is a finite sum of $\bounded{\qqo^{< \alpha}}$-subintervals,
-  then $M \in \qqo^{\le \alpha}$, since the rank bound is preserved under finite sums.
-
-  Conversely, suppose $M \in \qqo^{\le \alpha}$.
-
-  \emph{If} $M = \sum_{i \in I} M_i$ for some $M_i \in \qqo^{< \alpha}$ for $I \in \qqo$,
-  take $x, y \in M$. Then let $x \in M_{i_1}$ and $y \in M_{i_2}$.
-
-  Then $[x, y] \subseteq \sum_{i \in [i_1, i_2]} M_i$.
-
-  But the distance between $i_1$ and $i_2$ is at most $1$, so $\sum_{i \in [i_1, i_2]} M_i$ is a finite sum of
-  $\bounded{\qqo^{< \alpha}}$-subintervals.
-
-  So we have proven that each interval which is a $\qqo$-sum of linear orders of
-  $\omega$-rank $< \alpha$ is in $\bounded{\qqo^{< \alpha}}$.
-
-  But generally, $M$ is a finite sum of such $\oo$-sums, so it is a finite sums
-  of $\bounded{\qqo^{< \alpha}}$-subintervals.
-\end{proof}
-
 \begin{definitions}
   Let $\alpha > 0$ be an ordinal.
 
@@ -64,10 +35,6 @@
   for which $M \in \mathcal{S}^{s}_{\alpha}$.
 \end{definitions}
 
-\begin{lemma}
-  
-\end{lemma}
-
 \begin{lemma}\label{b_alpha-structure-lemma-1}
   \[
     \mathcal{S}^{1}_{\alpha} = \qqo^{< \alpha}
@@ -91,56 +58,6 @@
   By monotonicity, $M \in \qqo^{< \alpha}$.
 \end{proof}
 
-\begin{corollary}
-  Let $\alpha > 0$, $\delta \ge 0$ be ordinals.
-
-  Then,
-  \[
-    \mathcal{S}^{1}_{\alpha + \delta}
-    = \sum_{\mathcal{S}^{1}_{1 + \delta}}{\qqo^{< \alpha}}
-  \]
-\end{corollary}
-
-\begin{proof}
-  By~\cref{b_alpha-structure-lemma-1}, we can prove, equivalently,
-  that
-  \[
-    \qqo^{< \alpha + \delta} = \sum_{\qqo^{< 1 + \delta}}{\qqo^{< \alpha}}.
-  \]
-  We can prove this by induction on $\delta \ge 0$.
-
-  For $\delta = 0$ we need to prove
-  \[
-    \qqo^{< \alpha} = \sum_{\qqo^{< 1}}{\qqo^{< \alpha}}.
-  \]
-
-  Which is true by definition, since $\qqo^{< 1} = \set{1}$. 
-
-  For $\delta = \gamma + 1$, using the induction hypothesis,
-  \[
-    \begin{aligned}
-      \qqo^{< \alpha + \gamma + 1}
-       & = \sum_{\qqo}{\qqo^{< \alpha + \gamma}}                    \\
-       & = \sum_{\qqo}{\sum_{\qqo^{< 1 + \gamma}}{\qqo^{< \alpha}}} \\
-       & = \sum_{\sum_{\qqo}{\qqo^{< 1 + \gamma}}}{\qqo^{< \alpha}} \\
-       & = \sum_{\qqo^{< 1 + \gamma + 1}}{\qqo^{< \alpha}}          \\
-       & = \sum_{\qqo^{1 + \delta}}{\qqo^{< \alpha}}
-    \end{aligned}
-  \]
-
-  For $\delta$ a limit ordinal,
-  \[
-    \begin{aligned}
-      \qqo^{< \alpha + \delta}
-       & = \bigcup_{\gamma < \delta}{\qqo^{< \alpha + \gamma}} \\
-       & = \bigcup_{\gamma < \delta}{\sum_{\qqo^{< 1 + \gamma}}{\qqo^{< \alpha}}} \\
-       & = \sum_{\bigcup_{\gamma < \delta}{\qqo^{< 1 + \gamma}}}{\qqo^{< \alpha}} \\
-       & = \sum_{\qqo^{< 1 + \delta}}{\qqo^{< \alpha}}
-    \end{aligned}
-  \]
-
-\end{proof}
-
 \begin{lemma}\label{b_alpha-structure-lemma}
   Let $\alpha > 0$ be an ordinal.
   Let $s \in \set{1, \omega, \agemo, \oo}$.
@@ -158,6 +75,8 @@
 
 \begin{proof}
   Fur $s = 1$, it follows from~\cref{b_alpha-structure-lemma-1}.
+
+  Otherwise, TBC.
 \end{proof}
 
 \begin{corollary}

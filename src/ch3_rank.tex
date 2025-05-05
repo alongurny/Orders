@@ -20,88 +20,60 @@
   and $\qq^{= \alpha} = \qq^{\le \alpha} - \qq^{< \alpha}$.
 \end{definition}
 
-\begin{observation}
-  Let $qq$ be a property of linear orders.
+\begin{observations}
+  Let $\qq$ be a property of linear orders.
 
-  Then $\qq^{\le 1} = \qq$.
-\end{observation}
-
-
-\begin{lemma}
-  Let $\alpha > 0$, $\delta \ge 0$ be ordinals. Let $\qq$ be a good property.
-
-  Then,
-  \[
-    \qq^{< \alpha + \delta}
-    = \sum_{\qq^{< 1 + \delta}}{\qq^{< \alpha}}
-  \]
-\end{lemma}
-
-\begin{proof}
-  We prove by induction on $\delta \ge 0$.
-
-  For $\delta = 0$, we need to show that $\qq^{< \alpha} = \sum_{1}\qq^{< \alpha}$,
-  which is obviously true.
-
-  For $\delta = \varepsilon + 1$, we have
-  $
-    \qq^{< \alpha + \delta}
-    = \qq^{< \alpha + \varepsilon + 1}
-    = \sum_{\qq}{\qq^{< \alpha + \varepsilon}}
-  $.
-
-  By the induction hypothesis,
-  $
-    \qq^{< \alpha + \varepsilon}
-    = \sum_{\qq^{< 1 + \varepsilon}}{\qq^{< \alpha}}
-  $, and thus we get
-  \[
-    \qq^{< \alpha + \delta} = \sum_{\qq}{\sum_{\qq^{< 1 + \varepsilon}}{\qq^{< \alpha}}}
-  \]
-
-  By associativity,
-  \[\qq^{< \alpha + \delta}
-    = \sum_{\sum_{\qq}{\qq^{< 1 + \varepsilon}}}{\qq^{< \alpha}}
-    = \sum_{\qq^{< 1 + \varepsilon + 1}}{\qq^{< \alpha}}
-    = \sum_{\qq^{< 1 + \delta}}{\qq^{< \alpha}}\]
-
-  For $\delta > 0$ a limit ordinal, note that $\alpha + \delta = \sup_{\varepsilon < \delta}{\alpha + \varepsilon}$,
-  and $1 + \delta = \delta$ since $\delta$ is infinite.
-
-  Then,
-  \[
-    \qq^{< \alpha + \delta}
-    = \bigcup_{\varepsilon < \delta}{\qq^{< \alpha + \varepsilon}}
-    = \bigcup_{\varepsilon < \delta}{\sum_{\qq^{< 1 + \varepsilon}}{\qq^{< \alpha}}}
-    = \sum_{\bigcup_{\varepsilon < \delta}{\qq^{< 1 + \varepsilon}}}{\qq^{< \alpha}}
-    = \sum_{\qq^{< 1 + \delta}}{\qq^{< \alpha}}
-  \]
-
-  where the second equality follows by the induction hypothesis.
-
-\end{proof}
-
-
-
-\begin{lemma}
   Let $\alpha > 0$ be an ordinal.
 
-  Let $\qq$ be a good property.
+  Then,
+  \begin{itemize}
+    \item $\qq^{\le 1} = \qq$
+  \end{itemize}
+\end{observations}
 
-  Then over countable linear orders, $\bounded{\qq^{< \alpha}} \subseteq \qq^{\le \alpha}$.
+\begin{lemma}
+  Let $\qq$ be a property of linear orders.
+
+  Let $\alpha > 0$, $\delta \ge 0$ be ordinals.
+
+  Then,
+  \[
+    \qq^{< \alpha + \delta}
+    = \sum_{\qq^{< 1 + \delta}}{\qq^{< \alpha}}
+  \]
 \end{lemma}
 
 \begin{proof}
-  Let $M \in \bounded{\qq^{< \alpha}}$ be a countable linear order.
+  We shall prove this by induction on $\delta \ge 0$.
 
-  Since $M$ is countable, there exists some $I \subseteq \oo$ and
-  an $I$-sequence $\set{x_k}_{k \in I} \subseteq M$,
-  which is bi-directionally cofinal in $M$.
+  For $\delta = 0$ we need to prove
+  \[
+    \qq^{< \alpha} = \sum_{\qq^{< 1}}{\qq^{< \alpha}}.
+  \]
 
-  That is, $M = \sum_{k \in I} \left[ x_k, x_{k + 1} \right)$.
+  Which is true by definition, since $\qq^{< 1} = \set{1}$.
 
-  Since $I \subseteq \oo \in \qq$, and
-  since the rank of every interval $\left[ x_k, x_{k + 1} \right)$ is $< \alpha$,
-  $M \in \sum_{\qq}{\qq^{< \alpha}} = \qq^{\le \alpha}$.
+  For $\delta = \gamma + 1$, using the induction hypothesis,
+  \[
+    \begin{aligned}
+      \qq^{< \alpha + \gamma + 1}
+       & = \sum_{\qq}{\qq^{< \alpha + \gamma}}                   \\
+       & = \sum_{\qq}{\sum_{\qq^{< 1 + \gamma}}{\qq^{< \alpha}}} \\
+       & = \sum_{\sum_{\qq}{\qq^{< 1 + \gamma}}}{\qq^{< \alpha}} \\
+       & = \sum_{\qq^{< 1 + \gamma + 1}}{\qq^{< \alpha}}         \\
+       & = \sum_{\qq^{1 + \delta}}{\qq^{< \alpha}}
+    \end{aligned}
+  \]
+
+  For $\delta$ a limit ordinal, using the induction hypothesis,
+  \[
+    \begin{aligned}
+      \qq^{< \alpha + \delta}
+       & = \bigcup_{\gamma < \delta}{\qq^{< \alpha + \gamma}}                   \\
+       & = \bigcup_{\gamma < \delta}{\sum_{\qq^{< 1 + \gamma}}{\qq^{< \alpha}}} \\
+       & = \sum_{\bigcup_{\gamma < \delta}{\qq^{< 1 + \gamma}}}{\qq^{< \alpha}} \\
+       & = \sum_{\qq^{< 1 + \delta}}{\qq^{< \alpha}}
+    \end{aligned}
+  \]
 
 \end{proof}
