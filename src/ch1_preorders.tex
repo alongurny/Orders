@@ -1,5 +1,11 @@
 \section{Preorders}
 
+We begin by studying the properties of preorders.
+Basically, we define a \emph{property} as a class which is 
+close under isomorphism. We then define
+the sum operation on preorders. This will be used
+to create new properties from old ones.
+
 % Definition of a (labeled) preorder
 \begin{definitions}[(Labeled) Preorder]
   A \emph{preorder} is a a set $M$
@@ -22,23 +28,11 @@
   $M \in \pp$ implies that every suborder of $M$ is in $\pp$.
 \end{definition}
 
-% Definition of an additive property
-\begin{definition}
-  A property $\pp$ of preorders is an \emph{additive property} if for every preorders $M_1$ and $M_2$,
-  $M_1 + M_2 \in \pp$ iff $M_1, M_2 \in \pp$, i.e., if $\pp + \pp = \pp$.
-\end{definition}
-
-% Definition of a good property
-\begin{definition}
-  A property $\pp$ of preorders is a \emph{good property} if it is monotone and additive,
-  and $\omega^\ast + \omega \in \pp$.
-\end{definition}
-
 % Definitions of special preorders.
 \begin{definition}
   Let $M$ be a (labeled) preorder.
 
-  Then $M^\ast$ is the dual - the reverse (labeled) preorder of $M$.
+  Then $M^\ast$ is the dual/reverse (labeled) preorder of $M$.
 \end{definition}
 
 \begin{definition}[Sum of preorders]
@@ -91,6 +85,12 @@
   \[
     \pp_1 + \pp_2 := \set{M_1 + M_2 : M_1 \in \pp_1 \wedge M_2 \in \pp_2}
   \]
+\end{definition}
+
+% Definition of an additive property
+\begin{definition}
+  A property $\pp$ of preorders is an \emph{additive property} if for every preorders $M_1$ and $M_2$,
+  $M_1 + M_2 \in \pp$ iff $M_1, M_2 \in \pp$.
 \end{definition}
 
 \begin{definition}[Kleene plus]

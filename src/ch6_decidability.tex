@@ -1,43 +1,4 @@
 \section{Decidability of the rank}
-\begin{definition}
-  A property $\pp$ of preorders is if a
-  \emph{computable} property if
-  $\type{n}{\pp}$ is computable as a function of $n$.
-\end{definition}
-
-\begin{theorem}[Decomposition theorem]
-  There exists a computable translation $\mathcal{T}$
-  from $MSO$ formulae $\varphi \ps{\vec{X}}$,
-
-  such that for any $M = \sum_{i \in I} M_i$, and formula $\varphi$,
-  if $n$ is the quantifier-depth of $\varphi$,
-  then
-  \[
-    M, \vec{X} \models \varphi \iff I, \Pi \models \mathcal{T} {\varphi}
-  \]
-
-  where $\Pi \ps{i} = \type{n}{M_i}$.
-\end{theorem}
-
-\begin{lemma}
-  There exists a global computable function
-  $h : \NN \to \NN$ such that the following holds.
-
-  Let $\set{C_i}_{i=1}^k$ be a finite set of colors.
-
-  Let $\pp$ be a property of linear orders, labeled
-  by the colors $\set{C_i}_{i=1}^k$.
-
-  Let $\set{\qq_i}_{i=1}^k$ be a finite set of properties of linear orders.
-
-  Then $\type{n}{\sumv{\pp}{\vec{C}}{\vec{\qq}}}$ is 
-  a computable function of $\type{h(n)}{\pp}$
-  and $\type{n}{\vec{\qq}} = \set{\type{n}{\qq_i}}_{i=1}^k$.
-\end{lemma}
-
-\begin{proof}
-  TBC.
-\end{proof}
 
 \begin{lemma}\label{f-lemma}
   Let $\qq$ be a good property of linear orders.
@@ -136,7 +97,7 @@
   by~\cref{b_alpha-structure-lemma-1}.
   and $c > a(n) \ge f(n)$ so $c-1 \ge f(n)$ for $c \in \set{c_1, c_2}$.
 
-  For $s \in \set{\omega, \agemo, \oo}$, it follows easily from~\cref{b_alpha-structure-lemma-2}
+  For $s \in \set{\omega, \agemo, \oo}$, it follows easily from~\cref{b_alpha-structure-lemma}
   and~\cref{ab-lemma}.
 \end{proof}
 
@@ -257,74 +218,27 @@
 
 \end{proof}
 
+\begin{definition}
+  Let $\alpha_1, \ldots, \alpha_k$ be ordinals.
+
+  We define $C \bs{\alpha_1, \ldots, \alpha_k}$ as the class of 
+  countable linear orders, labeled with
+  $\pi_{\alpha_i}$ and $\sigma_{\alpha_i}$ for $1 \le i \le k$.
+\end{definition}
+
 \begin{theorem}
-  Suppose $\alpha_k > \alpha_{k - 1} > \ldots > \alpha_0 > 0$ are ordinals.
+  Let $\alpha_1, \ldots, \alpha_k$ be ordinals.
 
-  Then there is an oracle reduction from SAT for $\mso[
-      \sim_{\alpha_k}, \sigma_{\alpha_k}, \ldots, \sim_{\alpha_0}, \sigma_{\alpha_0}]$,
+  Let $\alpha$ be an ordinal such that $\alpha < \alpha_i$
+  for all $1 \le i \le k$.
 
-  to SAT for $\mso[
-      \sim_{\delta_{k-1}}, \sigma_{\delta_{k-1}}, \ldots, \sim_{\delta_0}, \sigma_{\delta_0}]$.
+  Let $\delta_i > 0$ for $1 \le i \le k$ be such that
+  $\alpha_i = \alpha + \delta_i$.
 
-  where $\alpha_0 + \delta_i = \alpha_{i + 1}$ for $0 \le i < k$.
+
+  
+  Let $\pp$ be the class of countable linear orders,
+
+  Then $C_0 = \sum_{\pp}{C_1}$.
+
 \end{theorem}
-
-\begin{proof}
-  By the decomposition theorem, there exists a translation,
-  that given an $\mso[\sim_{\alpha_k}, \sigma_{\alpha_k}, \ldots, \sim_{\alpha_0}, \sigma_{\alpha_0}]$ formula $\varphi$ of quantifier-depth $n$.
-  outputs an $\mso$ formula $\psi(\Pi)$ such that...
-
-  Let $\varphi$ be an
-  $\mso[\sim_{\alpha_k}, \sigma_{\alpha_k}, \ldots, \sim_{\alpha_0}, \sigma_{\alpha_0}]$
-  formula,
-  and let $n$ be the quantifier-depth of $\varphi$.
-
-  WLOG, assume that $\varphi$ is a sentence.
-
-  First, let us calculate the sets
-  $\type{n}{\qqo^{< \alpha}}$,
-  and 
-
-  Now we create the formulae:
-  \[\theta_s(\Pi, \Xi) := \set{i : \bigvee_{\tau \in S_s}{\Xi(\Pi(i)) = s}}\]
-  \[L(\Pi, \Xi) := \theta_{\omega}(\Pi, \Xi) \vee \theta_{\oo}(\Pi, \Xi)\]
-  \[R(\Pi, \Xi) := \theta_{\agemo}(\Pi, \Xi) \vee \theta_{\oo}(\Pi, \Xi)\]
-
-  We create the formula $\chi(\Pi, \Xi)$ as follows:
-
-  \[\chi := \Pi = domain(\Xi) \wedge \forall i, i'. i' = i + 1 \implies {i \in R(\Pi, \Xi) \vee i' \in L(\Pi, \Xi)}\]
-
-  Now we claim that $\varphi$ is satisfiable in $\mso[\sim_{\alpha}, \sigma_{\alpha}]$
-  iff $\psi \land \chi$ is satisfiable in $\mso$.
-
-  If $\varphi$ is satisfiable, then there exists a model $M$ of $\varphi$.
-
-  Let $M = \sum_{i \in I} M_i$ be the decomposition of $M$
-  where $I = \sim_{\alpha}$ and $M_i$ are the $\sim_{\alpha}$-equivalence classes.
-
-  By the decomposition theorem, $\Psi$ holds
-  in $I, \Pi := \type{n}{\cdot}$.
-
-  We claim that $\chi$ holds in $I, \Pi := \type{n}{\cdot}$.
-
-  It follows from the star property of $\sim_{\alpha}$ that the constraint holds.
-
-  Conversely, suppose $\psi \land \chi$ is satisfiable in $\mso$.
-
-  Let $I, \Pi := T$ be a model of $\psi \land \chi$.
-
-  Let us take a model $M_i$ with the appropriate type.
-  Now define $M := \sum_{i \in I} M_i$.
-
-  We claim that each $M_i$ is a \emph{maximum} $\bounded{\qqo^{< \alpha}}$-subinterval
-  of $M$.
-
-  Suppose $[M_i, M_j]$ is a $\bounded{\qqo^{< \alpha}}$-subinterval of $M$.
-
-  In particular, it has a rank, so it is scattered. So in particular,
-  $[i, j] \subseteq I$ is a scattered interval.
-
-  If $i = j$ we are done. Otherwise, let $i'$, $j'$ be such that $i \le i' < j' \le j$,
-  and $j' = i' + 1$.  But it cannot be the case by the constraint.
-
-\end{proof}

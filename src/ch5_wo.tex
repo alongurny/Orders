@@ -1,3 +1,43 @@
 \section{WO-Hausdorff rank}
 
-TBC.
+\begin{definition}
+    A property $\pp$ of preorders is called a
+    \emph{computable} property if
+    $\type{n}{\pp}$ is computable as a function of $n$.
+\end{definition}
+
+\begin{theorem}[Decomposition theorem]
+    There exists a computable translation $\mathcal{T}$
+    from $MSO$ formulae to $MSO$ formulae,
+
+    such that for any $M = \sum_{i \in I} M_i$,
+    formula $\varphi \ps{\vec{X}}$,
+    vector $\vec{A}$ of the same length as $\vec{X}$,
+    if $n$ is the quantifier-depth of $\varphi$,
+    then
+    \[
+        M, \vec{X} := \vec{A} \models \varphi \iff I, \Pi \models \mathcal{T} {\varphi}
+    \]
+
+    where $\Pi \ps{i} = \type{n}{M_i}$.
+\end{theorem}
+
+\begin{lemma}
+  There exists a global computable function
+  $h : \NN \to \NN$ such that the following holds.
+
+  Let $\set{C_i}_{i=1}^k$ be a finite set of colors.
+
+  Let $\pp$ be a property of linear orders, labeled
+  by the colors $\set{C_i}_{i=1}^k$.
+
+  Let $\set{\qq_i}_{i=1}^k$ be a finite set of properties of linear orders.
+
+  Then $\type{n}{\sumv{\pp}{\vec{C}}{\vec{\qq}}}$ is 
+  a computable function of $\type{h(n)}{\pp}$
+  and $\type{n}{\vec{\qq}} = \set{\type{n}{\qq_i}}_{i=1}^k$.
+\end{lemma}
+
+\begin{proof}
+  TBC.
+\end{proof}

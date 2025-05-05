@@ -11,6 +11,33 @@
   is closed under isomorphism.
 \end{definition}
 
+% Definition of an interval, subintervals and bounded subintervals
+\begin{definition}{Subintervals}
+Let $M$ be a linear order,
+and let $x, y \in M$, such that $x \le y$.
+
+Then we define the \emph{bounded subintervals} $[x, y]$,
+$(x, y]$, $[x, y)$ and $(x, y)$ as usual.
+
+We also define the \emph{semi-bounded subintervals} $(-\infty, x]$,
+$[x, \infty)$, $(-\infty, x)$ and $(x, \infty)$ as usual.
+
+We also define \emph{the unbounded subinterval} $(-\infty, \infty)$ as the whole linear order $M$,
+as usual.
+
+A \emph{subinterval} is either 
+a bounded subinterval, a semi-bounded subinterval or the unbounded subinterval.
+
+If $x > y$ then we define the intervals as follows:
+\begin{align*}
+  [x, y] & := [y, x] \\
+  (x, y] & := (y, x] \\
+  [x, y) & := [y, x) \\
+  (x, y) & := (y, x)
+\end{align*}
+
+\end{definition}
+
 % Definition of left/right/bi-directionally cofinal
 \begin{definition}
   Let $M$ be a linear order.
@@ -26,14 +53,14 @@
 
 \begin{lemma}
   Let $\pp$ be an additive property of linear orders.
-  
-  Let $M \in \pp$ be a labeled linear order.
+
+  Then $1 \in \pp$.
 \end{lemma}
 
 \begin{note}
   The above lemma is false if we do not restrict ourselves to linear orders.
 
-  For example, $\ps{1 \uplus 1}^+$ is a property of preorders 
+  For example, $\ps{1 \uplus 1}^+$ is a property of preorders
   which is additive, but does not contain $1$.
 \end{note}
 
@@ -41,12 +68,13 @@
   Let $M \in \pp$ be any linear order.
 
   Let $x \in M$. Then,
-  $M = \set{y \in M : y < x} + \set{x} + \set{y \in M : y > x}$.
+  $M = (-\infty, x) + \set{x} + (x, \infty)$,
+  where $(-\infty, x)$ and/or $(x, \infty)$ may be empty.
 
   Since $\pp$ is additive, we conclude that $\set{x} \in \pp$.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{additive-endpoints}
   Let $\pp$ be an additive property of linear orders.
 
   Let $M$ be a linear order.
@@ -55,25 +83,54 @@
   Then the following are equivalent:
 
   \begin{enumerate}
-    \item $\left(x, y\right) \in \pp$.
-    \item $\left(x, y\right] \in \pp$.
-    \item $\left[x, y\right) \in \pp$.
-    \item $\left[x, y\right] \in \pp$.
+    \item $(x, y) \in \pp$
+    \item $(x, y] \in \pp$
+    \item $[x, y) \in \pp$
+    \item $[x, y] \in \pp$
   \end{enumerate}
 \end{corollary}
 
 \begin{proof}
   This is just applying the definition of an additive property
-  to the intervals $\left[x, y\right]$ and the order $1$.
+  to the orders $[x, y]$ and $1$.
+\end{proof}
+
+\begin{corollary}\label{additive-transitivity}
+  Let $\pp$ be an additive property of linear orders.
+
+  Let $M$ be a linear order.
+
+  Let $x, y, z \in M$ be any three points in a linear order $M$,
+  such that $[x, y] \in \pp$ and $[y, z] \in \pp$.
+
+  Then $[x, z] \in \pp$.
+\end{corollary}
+
+\begin{proof}
+  If $y \in [x, z]$, then $[x, z] = [x, y] + (y, z]$,
+  and $(y, z] \in \pp$ by~\cref{additive-endpoints}.
+
+  Otherwise, either $x \in [y, z]$ or $z \in [x, y]$.
+  WLOG, suppose $z \in [x, y]$.
+
+  Then $[x, y] = [x, z] + (z, y]$,
+  so $[x, z] \in \pp$ by the fact that $\pp$ is additive.
 \end{proof}
 
 % Definition of $\bounded{\pp}$
-\begin{definition}
+\begin{definitions}
   Let $\pp$ be a property of linear orders.
 
-  We define $\bounded{\pp}$ to be the class of linear orders $M$ such that for every $x, y \in M$,
-  the bounded subinterval $[x, y]$ is in $\pp$.
-\end{definition}
+  We define the following properties of linear orders:
+  \begin{itemize}
+    \item $\bounded{\pp}$ is the class of linear orders $M$ such that for every $x, y \in M$,
+          the bounded subinterval $[x, y]$ is in $\pp$.
+    \item $\lb{\pp}$ is the class of linear orders $M$ such that for every $x \in M$,
+          the left-bounded ray $[x, \infty) = \set{y \in M : x \le y}$ is in $\pp$.
+    \item $\rb{\pp}$ is the class of linear orders $M$ such that for every $x \in M$,
+          the right-bounded ray $(-\infty, x] = \set{y \in M : y \le x}$ is in $\pp$.
+  \end{itemize}
+\end{definitions}
 
 % Definition of a star property
 \begin{definition}
@@ -83,31 +140,6 @@
   for every $J_1, J_2 \in \mathcal{F}$, we have that
   $\bigcup \mathcal{F} \in \pp$.
 \end{definition}
-
-% Lemma: $\bounded{\pp}$ is a star property
-\begin{lemma}[Star Lemma]\label{star-lemma}
-  Let $\pp$ be an additive property of linear orders.
-
-  Then the property $\bounded{\pp}$ is a star property.
-\end{lemma}
-
-% Proof of the star lemma
-\begin{proof}
-  Let $M$ be a linear order,
-  and let $\mathcal{F} \subseteq \bounded{\pp}$ be a family of subintervals of $M$.
-
-  Let $[x, y] \subseteq \bigcup \mathcal{F}$ be any bounded subinterval. We need to prove
-  it is in $\pp$.
-
-  Suppose $x \in J_1$ and $y \in J_2$ for $J_1, J_2 \in \mathcal{F}$.
-
-  Since $J_1 \cap J_2 \ne \emptyset$, we can take $z \in J_1 \cap J_2$.
-
-  Then $[x, z] \subseteq J_1$ and $[z, y] \subseteq J_2$,
-  and thus by $\bounded{\pp}$, $[x, z], [z, y] \in \pp$.
-  However, $\pp$ is additive. Since $[x, y]$ is either the sum
-  or difference of $[x, z]$ and $[z, y]$, we have that $[x, y] \in \pp$.
-\end{proof}
 
 % Partition according to a star property
 \begin{lemma}
@@ -132,6 +164,79 @@
   $J$ is the largest $\pp$-subinterval containing $x$.
 
   Thus we can define the equivalence relation $\sim_{\pp}$ as above.
+\end{proof}
+
+% Lemma: $\bounded{\pp}$ is a star property
+\begin{lemma}[Star Lemma]\label{star-lemma}
+  Let $\pp$ be an additive property of linear orders.
+
+  Then the property $\bounded{\pp}$ is a star property.
+\end{lemma}
+
+% Proof of the star lemma
+\begin{proof}
+  Let $M$ be a linear order,
+  and let $\mathcal{F} \subseteq \bounded{\pp}$ be a family of subintervals of $M$.
+
+  Let $[x, y] \subseteq \bigcup \mathcal{F}$ be any bounded subinterval. We need to prove
+  it is in $\pp$.
+
+  Suppose $x \in J_1$ and $y \in J_2$ for $J_1, J_2 \in \mathcal{F}$.
+
+  Since $J_1 \cap J_2 \ne \emptyset$, we can take $z \in J_1 \cap J_2$.
+
+  Then $[x, z] \subseteq J_1$ and $[z, y] \subseteq J_2$,
+  and thus by the definition of $\bounded{\pp}$, $[x, z], [z, y] \in \pp$.
+  Since $\pp$ is additive, by~\cref{additive-transitivity}, we have $[x, y] \in \pp$.
+\end{proof}
+
+\begin{lemma}\label{bounded-properties}
+  Let $\pp$ be an additive property of linear orders.
+
+  Then,
+  \begin{itemize}
+    \item $\bounded{\pp} = \set{M : 1 + M + 1 \in \pp}$
+    \item $\lb{\pp} = \set{M : M + 1 \in \pp}$
+    \item $\rb{\pp} = \set{M : 1 + M \in \pp}$
+    \item $\pp = \lb{\pp} \cap \rb{\pp}$
+  \end{itemize}
+\end{lemma}
+
+\begin{proof}
+  TBC.
+\end{proof}
+
+\begin{lemma}
+  Let $\pp$ be an additive property of linear orders.
+
+  Then,
+  \[
+    \begin{aligned}
+      \bounded{\pp} & = \pp                                                            \\
+                    & \uplus \ps{\lb{\pp} \setminus \rb{\pp}}                          \\
+                    & \uplus \ps{\rb{\pp} \setminus \lb{\pp}}                          \\
+                    & \uplus \ps{ \bounded{\pp} \setminus \ps{\lb{\pp} \cup \rb{\pp}}}
+    \end{aligned}
+  \]
+\end{lemma}
+
+\begin{proof}
+  By~\cref{bounded-properties}, we conclude that
+  $\lb{\pp}, \rb{\pp} \subseteq \bounded{\pp}$,
+  since $M + 1 \in \pp$ and $1 + M \in \pp$ both imply $1 + M + 1 \in \pp$.
+
+  Thus,
+  \[
+    \begin{aligned}
+      \bounded{\pp} & = \ps{\lb{\pp} \cap \rb{\pp}}                                                      \\
+                    & \uplus \ps{\lb{\pp} \setminus \rb{\pp}}                          \\
+                    & \uplus \ps{\rb{\pp} \setminus \lb{\pp}}                          \\
+                    & \uplus \ps{ \bounded{\pp} \setminus \ps{\lb{\pp} \cup \rb{\pp}}}
+    \end{aligned}
+  \]
+
+  Since by~\cref{bounded-properties} $\pp = \lb{\pp} \cap \rb{\pp}$,
+  we conclude what we wanted to prove.
 \end{proof}
 
 \begin{lemma}[Associativity of sum]
