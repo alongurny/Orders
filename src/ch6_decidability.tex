@@ -1,137 +1,19 @@
 \section{Decidability of the rank}
 
-\begin{lemma}\label{f-lemma}
-  Let $\qq$ be a good property of linear orders.
-
-  There exists a computable function $f_{\qq} = f: \NN \to \NN$ such that
-  for all $n \in \NN$, and all $a \in \NN$ such that $a \ge f(n)$,
-  $\type{n}{\qq^{\le a}} = \type{n}{\qq^{\le f(n)}}$.
-
-  Equivalently, every linear order of finite rank is $n$-equivalent to some linear order of rank $\le f(n)$.
-\end{lemma}
-
-\begin{proof}
-  Since there are only finitely many $n$-types,
-  and the $\omega$-sequence \[\braces{\type{n}{\qq^{\le k}}}_{k \in \omega}\]
-  is monotone,
-  there must be some $k$ where the sequence stabilizes.
-
-  This point $k$ is computable as a function of $n$, because
-  $\type{n}{\qq^{\le k}}$ is computable for every finite $k$.
-\end{proof}
-
-\begin{lemma}\label{ab-lemma}
-  There exist global computable functions $a, b : \NN \to \NN$ such that
-  for all $n, c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
-  \[\type{n}{\qq^{= c_1}} = \type{n}{\qq^{= c_2}}\]
-
-  Equivalently, the sequence $\braces{\type{n}{\qq^{k}}}_{k \in \omega}$
-  is ultimately periodic for all $n \in \NN$. Furthermore, the starting point and the period
-  itself can be computed as a function of $n$.
-\end{lemma}
-
-\begin{proof}
-  Let $n \in \NN$.
-
-  Since there are only finitely many sets of $n$-types,
-  there exist (and can be computed)
-  some $a(n) > f(n)$, $a(n) + b(n)$ such that
-
-  \[\type{n}{\qq^{= a(n)}} = \type{n}{\qq^{= a(n) + b(n)}}\]
-
-  holds for every $s$.
-
-  We shall prove by induction that for all $c \ge a(n)$,
-
-  \[\type{n}{\qq^{= c}} = \type{n}{\qq^{= c + b(n)}}\]
-
-  This will complete the proof.
-
-  The base case $c = a(n)$ has been proven in the beginning.
-
-  Suppose the induction hypothesis holds for $c$.
-
-  Let $M$ be of rank $c + 1$.
-
-  Write $M = \sum_{i \in I} M_i$ where $M_i \in \qqo^{< c + 1}$,
-  and $M_i \in \qqo^{= c}$ infinitely many times.
-
-  By the induction hypothesis,
-  if $M_i \in \qqo^{= c}$, we can find $N_i \equiv_n M_i$ with $N_i \in \qqo^{= c + b(n)}$.
-  Setting $N_i := M_i$ for all other $i$, we conclude that $N := \sum_{i \in I} N_i$
-  is $n$-equivalent to $M$.
-
-  However, clearly $N \in \qqo^{= c + b(n) + 1}$. So overall,
-  \[\type{n}{\qq^{= c + 1}} \subseteq \type{n}{\qq^{= c + b(n) + 1}}\]
-
-  Conversely, suppose $M$ is of rank $c + b(n) + 1$.
-  Write $M$ = $\sum_{i \in I} M_i$ where $M_i \in \qqo^{< c + b(n) + 1}$,
-  and $M_i \in \qqo^{= c + b(n)}$ infinitely many times.
-
-  By the induction hypothesis,
-  we can find for all $i$ such that $M_i \in \qqo^{= c + b(n)}$ some
-  $N_i \equiv_n M_i$ with $N_i \in \qqo^{= c}$.
-  Furthermore, since $c \ge a(n) > f(n)$, we can
-  find $N_i \equiv_n M_i$ with $N_i \in \qqo^{\le f(n) < c}$ for all other $i$.
-
-  We conclude that $N := \sum_{i \in I} N_i$ is $n$-equivalent to $M$.
-  However, clearly $N \in \qqo^{= c + 1}$. So overall,
-  \[\type{n}{\qq^{= c + b(n) + 1}} \subseteq \type{n}{\qq^{= c + 1}}\]
-
-  So we have proven the induction step, and the lemma follows.
-\end{proof}
-
-\begin{corollary}
-  Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
-
-  Let $s \in \set{1, \omega, \agemo, \oo}$ be a shape.
-
-  Then there exists a computable function $b(n)$ such that
-  for all $c_1, c_2 \in \NN$ such that $c_1, c_2 > a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
-  we have
-  \[\type{n}{\mathcal{S}^{s}_{c_1}} = \type{n}{\mathcal{S}^{s}_{c_2}}\]
-\end{corollary}
-
-\begin{proof}
-  For $s = 1$, it follows from~\cref{f-lemma}, since $\mathcal{S}^{1}_{c} = \qq^{< c} = \qq^{\le c-1}$
-  by~\cref{b_alpha-structure-lemma-1}.
-  and $c > a(n) \ge f(n)$ so $c-1 \ge f(n)$ for $c \in \set{c_1, c_2}$.
-
-  For $s \in \set{\omega, \agemo, \oo}$, it follows easily from~\cref{b_alpha-structure-lemma}
-  and~\cref{ab-lemma}.
-\end{proof}
-
-\begin{lemma}
-  Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
-
-  Let $s \in \set{1, \omega, \agemo, \oo}$ be a shape.
-
-  \[\type{n}{\mathcal{S}^{s}_{\alpha}} = \bigcup_{c < b(n)}{\mathcal{S}^{s}_{a(n) + c}                                                                                                                                                                                                                                                                                                                                                                                                                                       }\]
-
-  In particular, $\type{n}{\mathcal{S}^{s}_{\alpha}}$ can be
-  computed, and is independent of the choice of $\alpha \ge \omega$.
-\end{lemma}
-
-\begin{proof}
-  TBC.
-  
-\end{proof}
-
 \begin{definition}
   Let $\alpha \ge \omega$ be an ordinal.
 
   Let $M$ be a linear order and $x \in M$.
 
-  We define the convex equivalence relation: 
-  \[\sim_\alpha := \sim_{\bounded{\qqo^{< \alpha}}}\]
-  and $\bs{x}_{\alpha} := \bs{x}_{\bounded{\qqo^{< \alpha}}}$ (that is,
-  $\bs{x}_{\alpha}$ is the largest $\bounded{\qqo^{< \alpha}}$-subinterval
+  We define the convex equivalence relation:
+  \[\sim_\alpha := \sim_{\bounded{\qqo^{\alpha}}}\]
+  and $\bs{x}_{\alpha} := \bs{x}_{\bounded{\qqo^{\alpha}}}$ (that is,
+  $\bs{x}_{\alpha}$ is the largest $\bounded{\qqo^{\alpha}}$-subinterval
   containing $x$ in $M$).
 
   We define $\sigma_{\alpha} \parens{M}$ as
   the $\alpha$-shape of $M$.
 \end{definition}
-
 
 \begin{lemma}
   The property
@@ -139,7 +21,7 @@
   in $\mso[\sim_{\alpha}, \sigma_{\alpha}]$.
 
   That is, there exists a formula $\varphi_{\alpha}(\Pi, \Xi)$
-  such that for every linear order $M$ and every $\bounded{\qqo^{< \alpha}}$-subinterval
+  such that for every linear order $M$ and every $\bounded{\qqo^{\alpha}}$-subinterval
   $I$ of $M$, we have
   \[
     M, \Pi, \Xi \models \varphi_{\alpha}(\Pi, \Xi) \iff
@@ -204,10 +86,10 @@
   Let us take a model $M_i$ with the appropriate type.
   Now define $M := \sum_{i \in I} M_i$.
 
-  We claim that each $M_i$ is a \emph{maximum} $\bounded{\qqo^{< \alpha}}$-subinterval
+  We claim that each $M_i$ is a \emph{maximum} $\bounded{\qqo^{\alpha}}$-subinterval
   of $M$.
 
-  Suppose $[M_i, M_j]$ is a $\bounded{\qqo^{< \alpha}}$-subinterval of $M$.
+  Suppose $[M_i, M_j]$ is a $\bounded{\qqo^{\alpha}}$-subinterval of $M$.
 
   In particular, it has a rank, so it is scattered. So in particular,
   $[i, j] \subseteq I$ is a scattered interval.
@@ -221,7 +103,7 @@
 \begin{definition}
   Let $\alpha_1, \ldots, \alpha_k$ be ordinals.
 
-  We define $C \bs{\alpha_1, \ldots, \alpha_k}$ as the class of 
+  We define $C \bs{\alpha_1, \ldots, \alpha_k}$ as the class of
   countable linear orders, labeled with
   $\pi_{\alpha_i}$ and $\sigma_{\alpha_i}$ for $1 \le i \le k$.
 \end{definition}
@@ -236,9 +118,53 @@
   $\alpha_i = \alpha + \delta_i$.
 
 
-  
+
   Let $\pp$ be the class of countable linear orders,
 
   Then $C_0 = \sum_{\pp}{C_1}$.
 
 \end{theorem}
+
+
+
+\begin{definition}
+  A property $\pp$ of preorders is called a
+  \emph{computable} property if
+  $\type{n}{\pp}$ is computable as a function of $n$.
+\end{definition}
+
+\begin{theorem}[Decomposition theorem]
+  There exists a computable translation $\mathcal{T}$
+  from $MSO$ formulae to $MSO$ formulae,
+
+  such that for any $M = \sum_{i \in I} M_i$,
+  formula $\varphi \ps{\vec{X}}$,
+  vector $\vec{A}$ of the same length as $\vec{X}$,
+  if $n$ is the quantifier-depth of $\varphi$,
+  then
+  \[
+    M, \vec{X} := \vec{A} \models \varphi \iff I, \Pi \models \mathcal{T} {\varphi}
+  \]
+
+  where $\Pi \ps{i} = \type{n}{M_i}$.
+\end{theorem}
+
+\begin{lemma}
+  There exists a global computable function
+  $h : \NN \to \NN$ such that the following holds.
+
+  Let $\set{C_i}_{i=1}^k$ be a finite set of colors.
+
+  Let $\pp$ be a property of linear orders, labeled
+  by the colors $\set{C_i}_{i=1}^k$.
+
+  Let $\set{\qq_i}_{i=1}^k$ be a finite set of properties of linear orders.
+
+  Then $\type{n}{\sumv{\pp}{\vec{C}}{\vec{\qq}}}$ is
+  a computable function of $\type{h(n)}{\pp}$
+  and $\type{n}{\vec{\qq}} = \set{\type{n}{\qq_i}}_{i=1}^k$.
+\end{lemma}
+
+\begin{proof}
+  TBC.
+\end{proof}

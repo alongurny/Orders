@@ -11,6 +11,7 @@
         "satisfiability",
         "subinterval",
         "subintervals",
+        "supremum",
         "WLOG"
     ],
     "files.exclude": {

@@ -1,7 +1,7 @@
 \section{Linear Orders}
 
 % Definition of a (labeled) linear order
-\begin{definitions}[(Labeled) Linear Order]
+\begin{definitions}[(Labeled) linear order]
   A \emph{(labeled) linear order} a (labeled) preorder which is symmetric and total.
 \end{definitions}
 
@@ -51,28 +51,50 @@ If $x > y$ then we define the intervals as follows:
   A set $A \subseteq M$ is \emph{bi-directionally cofinal} in $M$ if it is both left and right cofinal.
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\label{additive-interval}
   Let $\pp$ be an additive property of linear orders.
 
-  Then $1 \in \pp$.
+  Let $M \in \pp$ be a linear order.
+
+  Let $x, y \in M$ be any two points in a linear order $M$.
+
+  Then, $[x, y] \in \pp$.
 \end{lemma}
 
+\begin{proof}
+  WLOG, suppose $x \le y$.
+
+  Note that,
+  \[
+    M = (-\infty, \infty) = (-\infty, x) + [x, y] + (y, \infty)
+  \]
+
+  when $(-\infty, x)$ and/or $(y, \infty)$ may be empty.
+
+  Since $\pp$ is an additive property, we conclude that $[x, y] \in \pp$.
+\end{proof}
+
+\begin{corollary}\label{additive-1}
+  Let $\pp$ be a nontrivial additive property of linear orders.
+
+  Then $1 \in \pp$.
+\end{corollary}
+
+\begin{proof}
+  Let $M \in \pp$ be any linear order and let
+  $x \in M$ be any point in $M$.
+  
+  Apply~\cref{additive-interval} to the linear order $M$,
+  and the points $x$ and $x$, to conclude that
+  $[x, x] \equiv 1 \in \pp$.
+\end{proof}
+
 \begin{note}
-  The above lemma is false if we do not restrict ourselves to linear orders.
+  Note that~\cref{additive-1} is false if we do not restrict ourselves to linear orders.
 
   For example, $\ps{1 \uplus 1}^+$ is a property of preorders
   which is additive, but does not contain $1$.
 \end{note}
-
-\begin{proof}
-  Let $M \in \pp$ be any linear order.
-
-  Let $x \in M$. Then,
-  $M = (-\infty, x) + \set{x} + (x, \infty)$,
-  where $(-\infty, x)$ and/or $(x, \infty)$ may be empty.
-
-  Since $\pp$ is additive, we conclude that $\set{x} \in \pp$.
-\end{proof}
 
 \begin{corollary}\label{additive-endpoints}
   Let $\pp$ be an additive property of linear orders.
@@ -194,19 +216,53 @@ If $x > y$ then we define the intervals as follows:
   Let $\pp$ be an additive property of linear orders.
 
   Then,
-  \begin{itemize}
-    \item $\bounded{\pp} = \set{M : 1 + M + 1 \in \pp}$
-    \item $\lb{\pp} = \set{M : M + 1 \in \pp}$
-    \item $\rb{\pp} = \set{M : 1 + M \in \pp}$
-    \item $\pp = \lb{\pp} \cap \rb{\pp}$
-  \end{itemize}
+  \begin{enumerate}
+    \item $\lb{\pp} = \set{M : M + 1 \in \bounded{\pp}}$
+    \item $\rb{\pp} = \set{M : 1 + M \in \bounded{\pp}}$
+    \item $\pp = \lb{\pp} \cap \rb{\pp} = \set{M : 1 + M + 1 \in \bounded{\pp}}$
+  \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-  TBC.
+  Let $M$ be a linear order.
+
+  \begin{enumerate}
+    % M + 1 case
+    \item
+      Suppose $M + \set{\infty} \in \bounded{\pp}$.
+      Then for every $x \in M$, we have $[x, \infty] \in \pp$,
+      and thus $[x, \infty) \in \pp$.
+      Therefore, $M \in \lb{\pp}$.
+      
+      Conversely, if $M \in \lb{\pp}$, 
+      let $x, y \in M$ be any two points in $M + 1$.
+
+      If $y < \infty$, then $[x, y] \subseteq [x, \infty)$.
+      Since $[x, \infty) \in \pp$, we conclude that $[x, y] \in \pp$.
+      Otherwise, if $y = \infty$, then $[x, y] = [x, \infty] = 
+      [x, \infty) + \set{infty}$, and thus $[x, y] \in \pp$.
+
+    % 1 + M case
+    \item
+      The second case is dual to the first case.
+
+    % 1 + M + 1 case
+    \item
+      We will show a triple inclusion.
+
+      If $M \in \pp$, then by additivity,
+      $1 + M \in \pp$ and $M + 1 \in \pp$, 
+      and thus $M \in \lb{\pp} \cap \rb{\pp}$.
+
+      If $M \in \lb{\pp} \cap \rb{\pp}$, then by~\cref{star-lemma},
+      $1 + M + 1 \in \bounded{\pp}$.
+
+      If $1 + M + 1 \in \bounded{\pp}$, then $M$ is a bounded
+      subinterval of $1 + M + 1$, so $M \in \bounded{\pp}$.
+  \end{enumerate}
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{bounded-decomposition}
   Let $\pp$ be an additive property of linear orders.
 
   Then,
@@ -251,7 +307,7 @@ If $x > y$ then we define the intervals as follows:
   which holds on linear orders.
 \end{proof}
 
-\begin{lemma}[Sum over a union]
+\begin{lemma}[Sum and union commute]
   Let $\ppp$ be a family of properties.
 
   Let $\qq$ be a property.

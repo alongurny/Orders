@@ -1,13 +1,13 @@
 \section{Preorders}
 
 We begin by studying the properties of preorders.
-Basically, we define a \emph{property} as a class which is 
+Basically, we define a \emph{property} as a class which is
 close under isomorphism. We then define
 the sum operation on preorders. This will be used
 to create new properties from old ones.
 
 % Definition of a (labeled) preorder
-\begin{definitions}[(Labeled) Preorder]
+\begin{definitions}[(Labeled) preorder]
   A \emph{preorder} is a a set $M$
   together with a binary relation $\le$ on $M$ such that
   $\le$ is reflexive and transitive.
@@ -44,13 +44,10 @@ to create new properties from old ones.
 
   Let $\le_i$ be the preorder on $M_i$.
 
-  The order is defined as follows:
-  \[
-    x \le y \iff \begin{cases}
-      \exists i \in I. x, y \in M_i \land x \le_i y \\
-      \exists i, j \in I. x \in M_i \land y \in M_j \land i < j
-    \end{cases}
-  \]
+  Let $x \in M_i$ and $y \in M_j$.
+
+  Then we define $x \le y$ iff either 
+  $i = j$ and $x \le_i y$ or $i < j$.
 
   The labels are defined naturally.
 

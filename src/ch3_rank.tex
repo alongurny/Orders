@@ -1,45 +1,37 @@
 
 \section{General Hausdorff Rank}
 
-% Definition of the Hausdorff rank
+% Definition of the Hausdorff power
 \begin{definition}
   Let $\qq$ be a property of linear orders.
 
-  We define a property $\qq^{< \alpha}$
-  for every ordinal $\alpha > 0$ as follows:
+  We define a property $\qq^{\alpha}$
+  for every ordinal $\alpha \ge 0$ as follows:
 
   \begin{itemize}
-    \item For $\alpha = 1$, $\qq^{< 1} = \set{1}$.
-    \item For $1 < \alpha = \gamma + 1$,
-          \[\qq^{< \alpha} = \sum_{\qq}{\qq^{< \gamma}}\]
+    \item For $\alpha = 0$, $\qq^{0} = \set{1}$.
+    \item For $\alpha = \gamma + 1$,
+          \[\qq^{\alpha} = \sum_{\qq}{\qq^{\gamma}}\]
     \item For $\alpha$ a limit ordinal,
-          \[\qq^{< \alpha} = \bigcup_{\beta < \alpha} \qq^{< \beta}\]
+          \[\qq^{\alpha} = \bigcup_{\beta < \alpha} \qq^{\beta}\]
   \end{itemize}
-
-  We define further $\qq^{\le \alpha} = \qq^{< \alpha + 1}$
-  and $\qq^{= \alpha} = \qq^{\le \alpha} - \qq^{< \alpha}$.
 \end{definition}
 
-\begin{observations}
+\begin{example}
   Let $\qq$ be a property of linear orders.
 
-  Let $\alpha > 0$ be an ordinal.
+  Then $\qq^{1} = \qq$.
+\end{example}
 
-  Then,
-  \begin{itemize}
-    \item $\qq^{\le 1} = \qq$
-  \end{itemize}
-\end{observations}
-
-\begin{lemma}
+\begin{lemma}\label{sum-of-ranks}
   Let $\qq$ be a property of linear orders.
 
-  Let $\alpha > 0$, $\delta \ge 0$ be ordinals.
+  Let $\alpha \ge 0$, $\delta \ge 0$ be ordinals.
 
   Then,
   \[
-    \qq^{< \alpha + \delta}
-    = \sum_{\qq^{< 1 + \delta}}{\qq^{< \alpha}}
+    \qq^{\alpha + \delta}
+    = \sum_{\qq^{\delta}}{\qq^{\alpha}}
   \]
 \end{lemma}
 
@@ -48,32 +40,58 @@
 
   For $\delta = 0$ we need to prove
   \[
-    \qq^{< \alpha} = \sum_{\qq^{< 1}}{\qq^{< \alpha}}.
+    \qq^{\alpha} = \sum_{\qq^0}{\qq^{\alpha}}.
   \]
 
-  Which is true by definition, since $\qq^{< 1} = \set{1}$.
+  Which is true by definition, since $\qq^0 = \set{1}$.
 
   For $\delta = \gamma + 1$, using the induction hypothesis,
   \[
     \begin{aligned}
-      \qq^{< \alpha + \gamma + 1}
-       & = \sum_{\qq}{\qq^{< \alpha + \gamma}}                   \\
-       & = \sum_{\qq}{\sum_{\qq^{< 1 + \gamma}}{\qq^{< \alpha}}} \\
-       & = \sum_{\sum_{\qq}{\qq^{< 1 + \gamma}}}{\qq^{< \alpha}} \\
-       & = \sum_{\qq^{< 1 + \gamma + 1}}{\qq^{< \alpha}}         \\
-       & = \sum_{\qq^{1 + \delta}}{\qq^{< \alpha}}
+      \qq^{\alpha + \delta}
+       & = \qq^{\alpha + \gamma + 1}                     \\
+       & = \sum_{\qq}{\qq^{\alpha + \gamma}}             \\
+       & = \sum_{\qq}{\sum_{\qq^{\gamma}}{\qq^{\alpha}}} \\
+       & = \sum_{\sum_{\qq}{\qq^{\gamma}}}{\qq^{\alpha}} \\
+       & = \sum_{\qq^{\gamma + 1}}{\qq^{\alpha}}         \\
+       & = \sum_{\qq^{\delta}}{\qq^{\alpha}}
     \end{aligned}
   \]
 
   For $\delta$ a limit ordinal, using the induction hypothesis,
   \[
     \begin{aligned}
-      \qq^{< \alpha + \delta}
-       & = \bigcup_{\gamma < \delta}{\qq^{< \alpha + \gamma}}                   \\
-       & = \bigcup_{\gamma < \delta}{\sum_{\qq^{< 1 + \gamma}}{\qq^{< \alpha}}} \\
-       & = \sum_{\bigcup_{\gamma < \delta}{\qq^{< 1 + \gamma}}}{\qq^{< \alpha}} \\
-       & = \sum_{\qq^{< 1 + \delta}}{\qq^{< \alpha}}
+      \qq^{\alpha + \delta}
+       & = \bigcup_{\gamma < \delta}{\qq^{\alpha + \gamma}}             \\
+       & = \bigcup_{\gamma < \delta}{\sum_{\qq^{\gamma}}{\qq^{\alpha}}} \\
+       & = \sum_{\bigcup_{\gamma < \delta}{\qq^{\gamma}}}{\qq^{\alpha}} \\
+       & = \sum_{\qq^{\delta}}{\qq^{\alpha}}
     \end{aligned}
   \]
 
 \end{proof}
+
+% Definition of the Hausdorff rank
+\begin{definition}
+  Let $\qq$ be a property of linear orders.
+
+  Let $M$ be a linear order, such that
+  $M \in \ps{\qq^{\alpha}}^+$ for some ordinal $\alpha$.
+  
+  We define the \emph{$\qq$-Hausdorff rank} of $M$ as
+  \[
+    \hrank{\qq}{M} = \sup \set{\beta : M \notin \ps{\qq^{\beta}}^{+}}
+  \]
+  
+  where the supremum is taken over all ordinals $\beta$.
+  (Recall that the supremum of the empty set is defined to be $0$.)
+
+\end{definition}
+
+\begin{example}
+  Let $\qq$ be a property of linear orders.
+
+  Let $M$ be a linear order.
+
+  Then $\hrank{\qq}{M} = 0$ if and only $M$ is finite.
+\end{example}

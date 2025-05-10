@@ -1,66 +1,22 @@
 \section{\texorpdfstring{$\omega$}{omega}-Hausdorff rank}
 
 \begin{definitions}
-  Let $\alpha > 0$ be an ordinal.
-
-  Let $M$ be a linear order.
+  Let $\alpha \ge 0$
 
   We define:
   \begin{enumerate}
-    \item $\mathcal{L}_{\alpha} := \set{M \in \bounded{\qqo^{< \alpha}} : 1 + M \in \bounded{\qqo^{< \alpha}}}$
-    \item $\mathcal{R}_{\alpha} := \set{M \in \bounded{\qqo^{< \alpha}} : M + 1 \in \bounded{\qqo^{< \alpha}}}$
+    \item $\mathcal{S}^{1}_{\alpha} := \bounded{\qqo^{\alpha}}$
+    \item $\mathcal{S}^{\omega}_{\alpha} := \lb{\qqo^{\alpha}} \setminus \rb{\qqo^{\alpha}}$
+    \item $\mathcal{S}^{\agemo}_{\alpha} := \rb{\qqo^{\alpha}} \setminus \lb{\qqo^{\alpha}}$
+    \item $\mathcal{S}^{\oo}_{\alpha} := \bounded{\qqo^{\alpha}} \setminus \ps { \lb {\qqo^{\alpha}} \cup \rb{\qqo^{\alpha}} }$
   \end{enumerate}
 
-  And then:
-  \begin{enumerate}
-    \item $\mathcal{S}^{1}_{\alpha} := L_{\alpha} \cap R_{\alpha}$
-    \item $\mathcal{S}^{\omega}_{\alpha} := L_{\alpha} \setminus R_{\alpha}$
-    \item $\mathcal{S}^{\agemo}_{\alpha} := R_{\alpha} \setminus L_{\alpha}$
-    \item $\mathcal{S}^{\oo}_{\alpha} := \bounded{\qqo^{< \alpha}} \setminus (L_{\alpha} \cup R_{\alpha})$
-  \end{enumerate}
-
-  In particular, by the definition,
-  \[
-    \bounded{\qqo^{< \alpha}}
-    = \mathcal{S}^{1}_{\alpha}
-    \uplus \mathcal{S}^{\omega}_{\alpha}
-    \uplus \mathcal{S}^{\agemo}_{\alpha}
-    \uplus \mathcal{S}^{\oo}_{\alpha}
-  \]
-
-  Let $M \in \bounded{\qqo^{< \alpha}}$.
-
-  We define \emph{the} $\alpha$-shape
-  of $M$ to be the $s \in \set{1, \omega, \agemo, \oo}$
-  for which $M \in \mathcal{S}^{s}_{\alpha}$.
+  The names will soon be justified.
 \end{definitions}
 
-\begin{lemma}\label{b_alpha-structure-lemma-1}
-  \[
-    \mathcal{S}^{1}_{\alpha} = \qqo^{< \alpha}
-  \]
-\end{lemma}
-
-\begin{proof}
-  ($\supseteq$) Let $M \in \qqo^{< \alpha}$.
-  Since $\qqo^{< \alpha}$ is additive, $1 + M$ and $M + 1$ are also in $\qqo^{< \alpha}$.
-  Therefore, $M \in \mathcal{L}_{\alpha} \cap \mathcal{R}_{\alpha}
-    = \mathcal{S}^{1}_{\alpha}$.
-
-  ($\subseteq$) Let $M \in \mathcal{S}^{1}_{\alpha}$.
-  Then $M \in \mathcal{L}_{\alpha}$ and $M \in \mathcal{R}_{\alpha}$,
-  so $1 + M, M + 1 \in \bounded{\qqo^{< \alpha}}$.
-
-  By~\cref{star-lemma}, $\bounded{\qqo^{< \alpha}}$ is a star property.
-  So $1 + M + 1 \in \bounded{\qqo^{< \alpha}}$. Since it is by itself
-  an interval, it is in $\qqo^{< \alpha}$.
-
-  By monotonicity, $M \in \qqo^{< \alpha}$.
-\end{proof}
-
 \begin{lemma}\label{b_alpha-structure-lemma}
-  Let $\alpha > 0$ be an ordinal.
-  Let $s \in \set{1, \omega, \agemo, \oo}$.
+  Let $\alpha \ge 0$ be an ordinal.
+  Let $s \in \set{\omega, \agemo, \oo}$.
 
   Suppose that
   $\alpha = \sup_{i \in s} \ps{\alpha_i + 1}$ for
@@ -69,39 +25,40 @@
   Then, we have the following:
 
   \[
-    \mathcal{S}^{s}_{\alpha} = \sum_{i \in s}{\qqo^{< \alpha_i}}
+    \mathcal{S}^{s}_{\alpha} = \sum_{i \in s}{\qqo^{\alpha_i}}
   \]
 \end{lemma}
 
 \begin{proof}
-  Fur $s = 1$, it follows from~\cref{b_alpha-structure-lemma-1}.
-
-  Otherwise, TBC.
+  TBC.
 \end{proof}
 
 \begin{corollary}
-  Let $\alpha > 0$, $\delta \ge 0$ be ordinals.
+  Let $\alpha \ge 0$, $\delta \ge 0$ be ordinals.
 
-  Let $s \in \set{\omega, \agemo, \oo}$
+  Let $s \in \set{1, \omega, \agemo, \oo}$
 
   Then,
 
   \[
     \mathcal{S}^{s}_{\alpha + \delta}
-    = \sum_{\mathcal{S}^{s}_{1 + \delta}}{\qqo^{< \alpha}}
+    = \sum_{\mathcal{S}^{s}_{\delta}}{\qqo^{\alpha}}
   \]
 \end{corollary}
 
 \begin{proof}
-  Suppose that $\delta = \sup_{i \in s} \ps{\delta_i + 1}$.
 
-  Then $\alpha + \delta = \sup_{i \in s} \ps{\alpha_i + 1 + \delta_i}$.
+  For $s = 1$, it follows from~\cref{sum-of-ranks}.
+
+  Otherwise, suppose that $\delta = \sup_{i \in s} \ps{\delta_i + 1}$.
+
+  Then $\alpha + \delta = \sup_{i \in s} \ps{\alpha_i + \delta_i + 1}$.
 
   \[
     \mathcal{S}^{s}_{\alpha + \delta}
-    = \sum_{i \in s}{\mathcal{S}^{s}_{\alpha + \delta_i}}
-    = \sum_{i \in s}\sum_{\qqo^{< 1 + \delta_i}}{\qqo^{< \alpha}}
-    = \sum_{\sum_{i \in s}{\qqo^{< 1 + \delta_i}}}{\qqo^{< \alpha}}
-    = \sum_{\mathcal{S}^{s}_{1 + \delta}}{\qqo^{< \alpha}}
+    = \sum_{i \in s}{\mathcal{S}^{s}_{\alpha + \delta_i + 1}}
+    = \sum_{i \in s}\sum_{\qqo^{\delta_i + 1}}{\qqo^{\alpha}}
+    = \sum_{\sum_{i \in s}{\qqo^{\delta_i + 1}}}{\qqo^{\alpha}}
+    = \sum_{\mathcal{S}^{s}_{\delta}}{\qqo^{\alpha}}
   \]
 \end{proof}
