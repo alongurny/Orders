@@ -13,28 +13,28 @@
 
 % Definition of an interval, subintervals and bounded subintervals
 \begin{definition}{Subintervals}
-Let $M$ be a linear order,
-and let $x, y \in M$, such that $x \le y$.
+  Let $M$ be a linear order,
+  and let $x, y \in M$, such that $x \le y$.
 
-Then we define the \emph{bounded subintervals} $[x, y]$,
-$(x, y]$, $[x, y)$ and $(x, y)$ as usual.
+  Then we define the \emph{bounded subintervals} $[x, y]$,
+  $(x, y]$, $[x, y)$ and $(x, y)$ as usual.
 
-We also define the \emph{semi-bounded subintervals} $(-\infty, x]$,
-$[x, \infty)$, $(-\infty, x)$ and $(x, \infty)$ as usual.
+          We also define the \emph{semi-bounded subintervals} $(-\infty, x]$,
+  $[x, \infty)$, $(-\infty, x)$ and $(x, \infty)$ as usual.
 
-We also define \emph{the unbounded subinterval} $(-\infty, \infty)$ as the whole linear order $M$,
-as usual.
+  We also define \emph{the unbounded subinterval} $(-\infty, \infty)$ as the whole linear order $M$,
+  as usual.
 
-A \emph{subinterval} is either 
-a bounded subinterval, a semi-bounded subinterval or the unbounded subinterval.
+  A \emph{subinterval} is either
+  a bounded subinterval, a semi-bounded subinterval or the unbounded subinterval.
 
-If $x > y$ then we define the intervals as follows:
-\begin{align*}
-  [x, y] & := [y, x] \\
-  (x, y] & := (y, x] \\
-  [x, y) & := [y, x) \\
-  (x, y) & := (y, x)
-\end{align*}
+  If $x > y$ then we define the intervals as follows:
+  \begin{align*}
+    [x, y] & := [y, x] \\
+    (x, y] & := (y, x] \\
+    [x, y) & := [y, x) \\
+    (x, y) & := (y, x)
+  \end{align*}
 
 \end{definition}
 
@@ -83,7 +83,7 @@ If $x > y$ then we define the intervals as follows:
 \begin{proof}
   Let $M \in \pp$ be any linear order and let
   $x \in M$ be any point in $M$.
-  
+
   Apply~\cref{additive-interval} to the linear order $M$,
   and the points $x$ and $x$, to conclude that
   $[x, x] \equiv 1 \in \pp$.
@@ -140,7 +140,7 @@ If $x > y$ then we define the intervals as follows:
 \end{proof}
 
 % Definition of $\bounded{\pp}$
-\begin{definitions}
+\begin{definitions}\label{bounded-definitions}
   Let $\pp$ be a property of linear orders.
 
   We define the following properties of linear orders:
@@ -229,36 +229,38 @@ If $x > y$ then we define the intervals as follows:
   \begin{enumerate}
     % M + 1 case
     \item
-      Suppose $M + \set{\infty} \in \bounded{\pp}$.
-      Then for every $x \in M$, we have $[x, \infty] \in \pp$,
-      and thus $[x, \infty) \in \pp$.
-      Therefore, $M \in \lb{\pp}$.
-      
-      Conversely, if $M \in \lb{\pp}$, 
-      let $x, y \in M$ be any two points in $M + 1$.
+          Suppose $M + \set{\infty} \in \bounded{\pp}$.
+          Then for every $x \in M$, we have $[x, \infty] \in \pp$,
+          and thus $[x, \infty) \in \pp$.
+          Therefore, $M \in \lb{\pp}$.
 
-      If $y < \infty$, then $[x, y] \subseteq [x, \infty)$.
-      Since $[x, \infty) \in \pp$, we conclude that $[x, y] \in \pp$.
-      Otherwise, if $y = \infty$, then $[x, y] = [x, \infty] = 
-      [x, \infty) + \set{infty}$, and thus $[x, y] \in \pp$.
+          Conversely, if $M \in \lb{\pp}$,
+          let $x, y \in M$ be any two points in $M + 1$.
 
-    % 1 + M case
+          If $y < \infty$, then $[x, y] \subseteq [x, \infty)$.
+          Since $[x, \infty) \in \pp$, we conclude that $[x, y] \in \pp$.
+          Otherwise, if $y = \infty$, then $[x, y] = [x, \infty] =
+            [x, \infty) + \set{\infty}$, and thus $[x, y] \in \pp$.
+
+          % 1 + M case
     \item
-      The second case is dual to the first case.
+          The second case is dual to the first case.
 
-    % 1 + M + 1 case
+          % 1 + M + 1 case
     \item
-      We will show a triple inclusion.
+          We will show a triple inclusion.
 
-      If $M \in \pp$, then by additivity,
-      $1 + M \in \pp$ and $M + 1 \in \pp$, 
-      and thus $M \in \lb{\pp} \cap \rb{\pp}$.
+          If $M \in \pp$, then by additivity,
+          $1 + M \in \pp$ and $M + 1 \in \pp$,
+          and thus $M \in \lb{\pp} \cap \rb{\pp}$.
 
-      If $M \in \lb{\pp} \cap \rb{\pp}$, then by~\cref{star-lemma},
-      $1 + M + 1 \in \bounded{\pp}$.
+          If $M \in \lb{\pp} \cap \rb{\pp}$, then by~\cref{star-lemma},
+          $1 + M + 1 \in \bounded{\pp}$.
 
-      If $1 + M + 1 \in \bounded{\pp}$, then $M$ is a bounded
-      subinterval of $1 + M + 1$, so $M \in \bounded{\pp}$.
+          If $1 + M + 1 \in \bounded{\pp}$, then $M$ is a bounded
+          subinterval of $1 + M + 1$, so $M \in \bounded{\pp}$.
+
+    \item TBC.
   \end{enumerate}
 \end{proof}
 
@@ -284,7 +286,7 @@ If $x > y$ then we define the intervals as follows:
   Thus,
   \[
     \begin{aligned}
-      \bounded{\pp} & = \ps{\lb{\pp} \cap \rb{\pp}}                                                      \\
+      \bounded{\pp} & = \ps{\lb{\pp} \cap \rb{\pp}}                                    \\
                     & \uplus \ps{\lb{\pp} \setminus \rb{\pp}}                          \\
                     & \uplus \ps{\rb{\pp} \setminus \lb{\pp}}                          \\
                     & \uplus \ps{ \bounded{\pp} \setminus \ps{\lb{\pp} \cup \rb{\pp}}}
@@ -294,6 +296,30 @@ If $x > y$ then we define the intervals as follows:
   Since by~\cref{bounded-properties} $\pp = \lb{\pp} \cap \rb{\pp}$,
   we conclude what we wanted to prove.
 \end{proof}
+
+\begin{lemma}
+  Let $\pp$ be a property of linear orders.
+
+  Let $M \in \bounded{\pp}$ be a linear order.
+
+  Let $x \in M$ be a non-extreme point in $M$.
+
+  Then $[x, \infty) \in \lb{\pp}$ and $(-\infty, x] \in \rb{\pp}$.
+
+  Furthermore, $[x, \infty) \in \rb{\pp}$ iff $M \in \rb{\pp}$,
+          and $(-\infty, x] \in \lb{\pp}$ iff $M \in \lb{\pp}$.
+\end{lemma}
+
+\begin{proof}
+  This follows immediately from~\cref{bounded-definitions}.
+\end{proof}
+
+\begin{corollary}\label{bounded-is-right-plus-left}
+  \[
+    \bounded{\pp} \setminus \ps{\lb{\pp} \cup \rb{\pp}}
+    = \ps{\lb{\pp} \setminus \rb{\pp}} + \ps{\rb{\pp} \setminus \lb{\pp}}
+  \]
+\end{corollary}
 
 \begin{lemma}[Associativity of sum]
   Let $\pp_1$, $\pp_2$ and $\pp_3$ be properties.
@@ -325,9 +351,11 @@ If $x > y$ then we define the intervals as follows:
 
 
 \begin{definition}
-  Let $\beta \ge \omega$ be a limit ordinal.
+  Let $\gamma \ge \omega$ be a limit ordinal.
 
-  We define $\Gamma_{\beta} := \set{\gamma : \gamma \subseteq \beta^\ast + \beta}^+$.
+  We define $\Gamma_{\gamma} := \set{\beta : \beta \subseteq \gamma^\ast + \gamma}^+$.
+
+  We define $\qqo := \Gamma_{\omega}$.
 \end{definition}
 
 \begin{example}
@@ -337,7 +365,7 @@ If $x > y$ then we define the intervals as follows:
 \end{example}
 
 \begin{observation}
-  Let $\beta \ge \omega$ be a limit ordinal.
+  Let $\gamma \ge \omega$ be a limit ordinal.
 
-  Then $\Gamma_{\beta}$ is a monotone, additive property of linear orders.
+  Then $\Gamma_{\gamma}$ is a monotone, additive property of linear orders.
 \end{observation}

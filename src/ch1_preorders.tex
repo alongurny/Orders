@@ -131,15 +131,15 @@ to create new properties from old ones.
 \end{note}
 
 \begin{definition}[Sum of properties over a labeled preorder]
-  Let $I$ be a labeled preorder, with a labeling function $\gamma : I \to \vec{C}$,
-  where $\vec{C}$ is a set of colors.
+  Let $I$ be a labeled preorder, with a labeling function $\gamma : I \to C$,
+  where $C$ is a set of colors.
 
-  Let $\vec{\qq} = \set{\qq_c}_{c \in \vec{C}}$ be a family of properties of preorders,
-  indexed by the colors.
+  Let $F$ be a function (or a lambda expression) assigning each color
+  $c \in C$ a property of preorders.
 
   Then we define
   \[
-    \sumv{I}{\vec{C}}{\vec{\qq}} := \set{\sum_{i \in I}{M_i} : \forall i \in I. M_i \in \qq_{\gamma(i)}}
+    \sum_{I}{F} := \set{\sum_{i \in I}{M_i} : \forall i \in I. M_i \in F \ps{\gamma(i)}}
   \]
 \end{definition}
 
@@ -166,10 +166,11 @@ to create new properties from old ones.
 \begin{definition}[Sum of a property over a labeled property]
   Let $\pp$ be a property of labeled preorders, over a set of colors $\vec{C}$.
 
-  Let $\vec{\qq} = \set{\qq_c}_{c \in \vec{C}}$ be a family of properties of preorders,
+  Let $F$ be a function (or a lambda expression) assigning each color
+  $c \in C$ a property of preorders.
 
   Then we define,
   \[
-    \sumv{\pp}{\vec{C}}{\vec{\qq}} := \set{\sumv{I}{\vec{C}}{\vec{M}} : I \in \pp}
+    \sum_{\pp}{F} := \set{\sum_{I}{F} : I \in \pp}
   \]
 \end{definition}

@@ -10,13 +10,12 @@
 \end{definition}
 
 \begin{lemma}\label{f-lemma}
-    Let $\qq$ be a property of preorders.
+    Let $\qq$ be a property of preorders,
+    labeled with finitely many colors.
 
     There exists a computable function $f_{\qq} = f: \NN \to \NN$ such that
     for all $n \in \NN$, and all $a \in \NN$ such that $a \ge f(n)$,
     $\type{n}{\qq^{a}} = \type{n}{\qq^{f(n)}}$.
-
-    Equivalently, every preorders of finite rank is $n$-equivalent to some preorder of rank $\le f(n)$.
 \end{lemma}
 
 \begin{proof}
@@ -33,10 +32,6 @@
     There exist global computable functions $a, b : \NN \to \NN$ such that
     for all $n, c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
     \[\type{n}{\qq^{= c_1}} = \type{n}{\qq^{= c_2}}\]
-
-    Equivalently, the sequence $\braces{\type{n}{\qq^{k}}}_{k \in \omega}$
-    is ultimately periodic for all $n \in \NN$. Furthermore, the starting point and the period
-    itself can be computed as a function of $n$.
 \end{lemma}
 
 \begin{proof}
@@ -44,11 +39,11 @@
 
     Since there are only finitely many sets of $n$-types,
     there exist (and can be computed)
-    some $a(n) > f(n)$, $a(n) + b(n)$ such that
+    some $a(n) \ge f(n)$, $a(n) + b(n)$ such that
 
-    \[\type{n}{\qq^{= a(n)}} = \type{n}{\qq^{= a(n) + b(n)}}\]
-
-    holds for every $s$.
+    \[
+        \type{n}{\qq^{= a(n)}} = \type{n}{\qq^{= a(n) + b(n)}}
+    \]
 
     We shall prove by induction that for all $c \ge a(n)$,
 
@@ -56,35 +51,35 @@
 
     This will complete the proof.
 
-    The base case $c = a(n)$ has been proven in the beginning.
+    The base case $c = a(n)$ is by the definition of $a(n)$ and $b(n)$.
 
     Suppose the induction hypothesis holds for $c$.
 
-    Let $M$ be of rank $c + 1$.
+    Let $M \in \qq^{= c + 1}$.
 
-    Write $M = \sum_{i \in I} M_i$ where $M_i \in \qqo^{< c + 1}$,
-    and $M_i \in \qqo^{= c}$ infinitely many times.
+    Write $M = \sum_{i \in I} M_i$ where $M_i \in \qq^{< c + 1}$,
+    and $M_i \in \qq^{= c}$ infinitely many times.
 
     By the induction hypothesis,
-    if $M_i \in \qqo^{= c}$, we can find $N_i \equiv_n M_i$ with $N_i \in \qqo^{= c + b(n)}$.
+    if $M_i \in \qq^{= c}$, we can find $N_i \equiv_n M_i$ with $N_i \in \qq^{= c + b(n)}$.
     Setting $N_i := M_i$ for all other $i$, we conclude that $N := \sum_{i \in I} N_i$
     is $n$-equivalent to $M$.
 
-    However, clearly $N \in \qqo^{= c + b(n) + 1}$. So overall,
+    However, clearly $N \in \qq^{= c + b(n) + 1}$. So overall,
     \[\type{n}{\qq^{= c + 1}} \subseteq \type{n}{\qq^{= c + b(n) + 1}}\]
 
-    Conversely, suppose $M$ is of rank $c + b(n) + 1$.
-    Write $M$ = $\sum_{i \in I} M_i$ where $M_i \in \qqo^{< c + b(n) + 1}$,
-    and $M_i \in \qqo^{= c + b(n)}$ infinitely many times.
+    Conversely, suppose $M \in \qq^{= c + b(n) + 1}$.
+    Write $M$ = $\sum_{i \in I} M_i$ where $M_i \in \qq^{< c + b(n) + 1}$,
+    and $M_i \in \qq^{= c + b(n)}$ infinitely many times.
 
     By the induction hypothesis,
-    we can find for all $i$ such that $M_i \in \qqo^{= c + b(n)}$ some
-    $N_i \equiv_n M_i$ with $N_i \in \qqo^{= c}$.
-    Furthermore, since $c \ge a(n) > f(n)$, we can
-    find $N_i \equiv_n M_i$ with $N_i \in \qqo^{f(n) < c}$ for all other $i$.
+    we can find for all $i$ such that $M_i \in \qq^{= c + b(n)}$ some
+    $N_i \equiv_n M_i$ with $N_i \in \qq^{= c}$.
+    Furthermore, since $c \ge a(n) \ge f(n)$, we can
+    find $N_i \equiv_n M_i$ with $N_i \in \qq^{f(n)} \subseteq \qq^{c}$ for all other $i$.
 
     We conclude that $N := \sum_{i \in I} N_i$ is $n$-equivalent to $M$.
-    However, clearly $N \in \qqo^{= c + 1}$. So overall,
+    However, clearly $N \in \qq^{= c + 1}$. So overall,
     \[\type{n}{\qq^{= c + b(n) + 1}} \subseteq \type{n}{\qq^{= c + 1}}\]
 
     So we have proven the induction step, and the lemma follows.
@@ -96,15 +91,15 @@
     Let $s \in \set{1, \omega, \agemo, \oo}$ be a shape.
 
     Then there exists a computable function $b(n)$ such that
-    for all $c_1, c_2 \in \NN$ such that $c_1, c_2 > a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
+    for all $c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
     we have
     \[\type{n}{\mathcal{S}^{s}_{c_1}} = \type{n}{\mathcal{S}^{s}_{c_2}}\]
 \end{corollary}
 
 \begin{proof}
     For $s = 1$, it follows from~\cref{f-lemma},
-    since $\mathcal{S}^{1}_{c} = \qq^{< c} = \qq^{c-1}$.
-    and $c > a(n) \ge f(n)$ so $c-1 \ge f(n)$ for $c \in \set{c_1, c_2}$.
+    since $\mathcal{S}^{1}_{c} = \qq^{c}$
+    and $c \ge a(n) \ge f(n)$ for $c \in \set{c_1, c_2}$.
 
     For $s \in \set{\omega, \agemo, \oo}$, it follows easily from~\cref{b_alpha-structure-lemma}
     and~\cref{ab-lemma}.
@@ -112,10 +107,28 @@
 
 \begin{lemma}
     Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
+    \[
+        \type{n}{\mathcal{S}^{1}_{\alpha}}
+        = \type{n}{\bigcup_{c < a(n) + b(n)} {\Omega^{= c}}}
+    \]
 
-    Let $s \in \set{1, \omega, \agemo, \oo}$ be a shape.
+    In particular, $\type{n}{\mathcal{S}^{1}_{\alpha}}$ can be
+    computed, and is independent of the choice of $\alpha \ge \omega$.
+\end{lemma}
 
-    \[\type{n}{\mathcal{S}^{s}_{\alpha}} = \bigcup_{c < b(n)}{\mathcal{S}^{s}_{a(n) + c}                                                                                                                                                                                                                                                                                                                                                                                                                                       }\]
+\begin{proof}
+    TBC.
+\end{proof}
+
+\begin{lemma}
+    Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
+
+    Let $s \in \set{\omega, \agemo, \oo}$ be a shape.
+
+    \[
+        \type{n}{\mathcal{S}^{s}_{\alpha}}
+        = \type{n}{\sum_{s} {\bigcup_{c < b(n)}{\qqo^{= a(n) + c}}}}
+    \]
 
     In particular, $\type{n}{\mathcal{S}^{s}_{\alpha}}$ can be
     computed, and is independent of the choice of $\alpha \ge \omega$.
@@ -123,5 +136,23 @@
 
 \begin{proof}
     TBC.
+\end{proof}
 
+
+\begin{lemma}
+    Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
+
+    Let $\delta > 0$ be an ordinal.
+
+    \[
+        \type{n}{\mathcal{S}^{1}_{\alpha + \delta}}
+        = \type{n}{\bigcup_{c < a(n) + b(n)} {\Omega^{= c}}}
+    \]
+
+    In particular, $\type{n}{\mathcal{S}^{1}_{\alpha}}$ can be
+    computed, and is independent of the choice of $\alpha \ge \omega$.
+\end{lemma}
+
+\begin{proof}
+    TBC.
 \end{proof}

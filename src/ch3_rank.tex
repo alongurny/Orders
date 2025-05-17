@@ -6,7 +6,7 @@
   Let $\qq$ be a property of linear orders.
 
   We define a property $\qq^{\alpha}$
-  for every ordinal $\alpha \ge 0$ as follows:
+  for every ordinal $\alpha$ as follows:
 
   \begin{itemize}
     \item For $\alpha = 0$, $\qq^{0} = \set{1}$.
@@ -26,7 +26,7 @@
 \begin{lemma}\label{sum-of-ranks}
   Let $\qq$ be a property of linear orders.
 
-  Let $\alpha \ge 0$, $\delta \ge 0$ be ordinals.
+  Let $\alpha, \delta$ be ordinals.
 
   Then,
   \[
@@ -71,18 +71,27 @@
 
 \end{proof}
 
+% Definition of exact power
+\begin{definition}
+  Let $\qq$ be a property of linear orders.
+
+  Let $\alpha$ be an ordinal.
+
+  We define $\qq^{= \alpha} := \qq^{\alpha + 1} \setminus \qq^{\alpha}$.
+\end{definition}
+
 % Definition of the Hausdorff rank
 \begin{definition}
   Let $\qq$ be a property of linear orders.
 
   Let $M$ be a linear order, such that
   $M \in \ps{\qq^{\alpha}}^+$ for some ordinal $\alpha$.
-  
+
   We define the \emph{$\qq$-Hausdorff rank} of $M$ as
   \[
     \hrank{\qq}{M} = \sup \set{\beta : M \notin \ps{\qq^{\beta}}^{+}}
   \]
-  
+
   where the supremum is taken over all ordinals $\beta$.
   (Recall that the supremum of the empty set is defined to be $0$.)
 

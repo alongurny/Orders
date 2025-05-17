@@ -31,8 +31,7 @@
         {
             "name": "latexmk",
             "tools": [
-                "latexmk",
-                "pdf"
+                "latexmk"
             ]
         },
         {
@@ -41,11 +40,12 @@
                 "pdflatex",
                 "bibtex",
                 "pdflatex",
-                "pdflatex",
-                "pdf"
+                "pdflatex"
             ]
         }
     ],
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.latex.autoBuild.run": "onFileChange",
     // "latex-workshop.latex.autoClean.run": "onBuilt",
     "latex-workshop.formatting.latex": "latexindent",
@@ -66,7 +66,7 @@
             "name": "pdflatex",
             "command": "pdflatex",
             "args": [
-                "-synctex=1",
+                "-synctex=-1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
                 "%DOC%"
@@ -80,14 +80,6 @@
                 "%DOCFILE%"
             ],
             "env": {}
-        },
-        {
-            "name": "pdf",
-            "command": "mv",
-            "args": [
-                "%DOCFILE%.pdf",
-                "%WORKSPACE_FOLDER%/"
-            ]
         }
     ],
     "cSpell.enabledFileTypes": {
