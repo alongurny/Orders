@@ -1,14 +1,44 @@
 \section{Decidability of the rank}
 
+% $\alpha$ predicate
 \begin{definition}
-  Let $\alpha$ be an ordinal.
+  Let $\qq$ be a property of linear orders.
+
+  Let $M$ be a linear order.
+
+  We define the predicate $\mathcal{I}_{\qq} \ps{J}$ as
+  true in $M$ iff $J$ is a $\qq$-subinterval of $M$.
+\end{definition}
+
+\begin{lemma}
+  Let $\alpha > 0$ be an ordinal.
+
+  The predicates $\mathcal{I}_{\qqo^{\le \alpha}}$ and $\mathcal{I}_{\qqo^{= \alpha}}$
+  are $\mso$-expressible over $\mso[\mathcal{I}_{\qqo^{< \alpha}}]$.
+\end{lemma}
+
+\begin{proof}
+  Obviously, \[
+    \mathcal{I}_{\qqo^{= \alpha}}
+    \iff \mathcal{I}_{\qqo^{\le \alpha}} \wedge \neg \mathcal{I}_{\qqo^{< \alpha}}
+  \]
+
+  So it is enough to express $\mathcal{I}_{\qqo^{\le \alpha}}$.
+
+  Now, $J$ is a $\qqo^{\le \alpha}$-subinterval of $M$ iff
+  $J \in \sum_{\Omega}{\qqo^{< \alpha}}$. But this can be expressed, since it is expressible
+  to check whether an arbitrary subset is in $\Omega$.
+\end{proof}
+
+\begin{definition}
+  Let $\alpha > 0$ be an ordinal.
 
   Let $M$ be a linear order and $x \in M$.
 
   We define the convex equivalence relation:
   \[\sim_\alpha := \sim_{\bounded{\qqo^{\alpha}}}\]
   and $\bs{x}_{\alpha} := \bs{x}_{\bounded{\qqo^{\alpha}}}$.
-  
+
   That is,
   $\bs{x}_{\alpha}$ is the largest $\bounded{\qqo^{\alpha}}$-subinterval
   containing $x$ in $M$.
@@ -17,38 +47,71 @@
   the $\alpha$-shape of $\bs{x}_{\alpha}$.
 \end{definition}
 
+\begin{definition}
+  Let $\alpha > 0$ be an ordinal.
+
+  The predicate $\pi_{\alpha}(x)$ is defined as the representation of
+  the convex equivalence relation $\sim_{\alpha}$.
+\end{definition}
+
+\begin{definition}
+  Let $\alpha > 0$ be an ordinal.
+
+  The function $\sigma_{\alpha}(x)$ is defined as the $\alpha$-shape of
+  the convex equivalence class $\bs{x}_{\alpha}$.
+\end{definition}
+
+\begin{lemma}
+  Let $\alpha > 0$ be an ordinal.
+
+  The predicate $\mathcal{I}_{\qqo^{< \alpha}}$ is $\mso$-expressible over
+  $\mso[\pi_{\alpha}, \sigma_{\alpha}]$.
+\end{lemma}
+
+\begin{proof}
+  It can be proven that an interval $J$ is a $\qqo^{< \alpha}$-subinterval of $M$ iff
+  it is contained in a single $\sim_{\alpha}$-equivalence class $K$, such that:
+  \begin{itemize}
+    \item If $K \notin \lb{\qqo^{< \alpha}}$, then $J$ is bounded in $K$ on the left.
+    \item If $K \notin \rb{\qqo^{< \alpha}}$, then $J$ is bounded in $K$ on the right.
+  \end{itemize}
+
+  Since $\lb{\qqo^{< \alpha}}$ and $\rb{\qqo^{< \alpha}}$ are expressible,
+  this finishes the proof.
+\end{proof}
+
 % Sum of computable properties over a computable index
 \begin{theorem}\label{computable-sum}
-    Let $\pp$ be a computable property of linear orders,
-    labeled with finitely many colors $C$.
+  Let $\pp$ be a computable property of linear orders,
+  labeled with finitely many colors $C$.
 
-    Let $F$ be a function assigning
-    to each color in $C$ a computable
-    property of linear orders, labeled with
-    finitely many colors.
+  Let $F$ be a function assigning
+  to each color in $C$ a computable
+  property of linear orders, labeled with
+  finitely many colors.
 
-    Then the sum $\sum_{\pp}{F}$ is a computable
-    property of linear orders.
+  Then the sum $\sum_{\pp}{F}$ is a computable
+  property of linear orders.
 \end{theorem}
 
 \begin{proof}
-    We will use the decomposition theorem.
-    Let $\tau(X_1, \ldots, X_m)$ be an $n$-type.
+  We will use the decomposition theorem.
+  Let $\tau(X_1, \ldots, X_m)$ be an $n$-type.
 
-    Then we can compute a formula $\psi(\xi)$ (where
-    $\xi$ has the type of a coloring whose range is
-    the set of $n$-types) such that
-    for any linear order $M = \sum_{i \in I} M_i$,
+  Then we can compute a formula $\psi(\xi)$ (where
+  $\xi$ has the type of a coloring whose range is
+  the set of $n$-types) such that
+  for any linear order $M = \sum_{i \in I} M_i$,
 
-    and any given $A_1, \ldots, A_m \subseteq M$,
-    \[
-        M \models \tau(A_1, \ldots, A_m)
-        \iff I \models \psi(\Xi)
-    \]
+  and any given $A_1, \ldots, A_m \subseteq M$,
+  \[
+    M \models \tau(A_1, \ldots, A_m)
+    \iff I \models \psi(\Xi)
+  \]
 
-    where $\Xi$ is the coloring assigning $i \in I$ the $n$-type of $M_i$.
+  where $\Xi$ is the coloring assigning $i \in I$ the $n$-type of $M_i$.
 
-    TBC.
+  TBC.
 \end{proof}
 
 \begin{theorem}
