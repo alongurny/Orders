@@ -16,8 +16,7 @@
 \end{definition}
 
 \begin{lemma}\label{f-lemma}
-    Let $\qq$ be a property of preorders,
-    labeled with finitely many colors.
+    Let $\qq$ be a property of preorders.
 
     There exists a computable function $f_{\qq} = f: \NN \to \NN$ such that
     for every $n \in \NN$ and every ordinal $\alpha \ge f(n)$,
@@ -90,7 +89,7 @@
 
     Let $\set{\alpha_i}_{i \in \omega}$ be an $\omega$-sequence of ordinals
     such that $a(n) \le \alpha_i$ for all $i \in \omega$,
-    and $\sup_{i \in \omega} {\alpha_i + 1} = \alpha$.
+    and $\sup_{i \in \omega} \ps{\alpha_i + 1} = \alpha$.
 
     Then $\qq^{= \alpha} = \sum_{\qq}{\bigcup_{i \in \omega} \qq^{= \alpha_i}}$ and thus,
     \begin{align*}
@@ -123,7 +122,7 @@
 \begin{proof}
     There exists a sequence $\set{\alpha_i}_{i \in s}$ such that
     $a(n) \le \alpha_i$ for all $i \in s$,
-    and $\sup_{i \in s} {\alpha_i + 1} = \alpha$.
+    and $\sup_{i \in s} \ps{\alpha_i + 1} = \alpha$.
 
     Then $\mathcal{S}^{s}_{\alpha} = \sum_{i \in s} \qqo^{= \alpha_i}$,
     and thus,

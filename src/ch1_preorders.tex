@@ -6,19 +6,18 @@ close under isomorphism. We then define
 the sum operation on preorders. This will be used
 to create new properties from old ones.
 
-% Definition of a (labeled) preorder
-\begin{definitions}[(Labeled) preorder]
+% Definition of a preorder
+\begin{definitions} [Preorder]
   A \emph{preorder} is a a set $M$
   together with a binary relation $\le$ on $M$ such that
-  $\le$ is reflexive and transitive.
-
-  A \emph{labeled preorder} is a preorder $M$ together with a labeling function
-  $\gamma : M \to C$, where $C$ is a set of labels (colors).
+  $\le$ is reflexive and transitive,
+  possibly endowed with monadic predicates (labels)
+  over some first-order monadic signature.
 \end{definitions}
 
 % Definition of a property
 \begin{definition}[Property of preorders]
-  A \emph{property} $\pp$ of preorders is a class of \emph{labeled} preorders which
+  A \emph{property} $\pp$ of preorders is a class of preorders which
   is closed under isomorphism.
 \end{definition}
 
@@ -30,13 +29,14 @@ to create new properties from old ones.
 
 % Definitions of special preorders.
 \begin{definition}
-  Let $M$ be a (labeled) preorder.
+  Let $M$ be a preorder.
 
-  Then $M^\ast$ is the dual/reverse (labeled) preorder of $M$.
+  Then $M^\ast$ is the dual/reverse preorder of $M$.
 \end{definition}
 
 \begin{definition}[Sum of preorders]
-  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of labeled preorders.
+  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders over
+  a disjoint signature (i.e., for every $i \in I$, $I$ and $M_i$ have disjoint sets of labels).
 
   The sum $M = \sum_{i \in I} M_i$ is defined as follows:
 
@@ -46,16 +46,17 @@ to create new properties from old ones.
 
   Let $x \in M_i$ and $y \in M_j$.
 
-  Then we define $x \le y$ iff either 
+  Then we define $x \le y$ iff either
   $i = j$ and $x \le_i y$ or $i < j$.
 
-  The labels are defined naturally.
+  The labels are inherited from either $I$ or the $M_i$'s.
 
   If $I = 2$, we define $M_1 + M_2 := \sum_{i \in 2} M_i$.
 \end{definition}
 
 \begin{lemma}
-  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders.
+  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders,
+  over a disjoint signature.
 
   Then $M = \sum_{i \in I} M_i$ is a preorder.
 \end{lemma}
@@ -82,6 +83,8 @@ to create new properties from old ones.
   \[
     \pp_1 + \pp_2 := \set{M_1 + M_2 : M_1 \in \pp_1 \wedge M_2 \in \pp_2}
   \]
+
+  The labels are inherited from either $\pp_1$ or $\pp_2$.
 \end{definition}
 
 % Definition of an additive property
@@ -115,62 +118,31 @@ to create new properties from old ones.
 \begin{definition}[Sum of a family of properties over a preorder]
   Let $I$ be a preorder.
 
-  Let $\set{\qq_i}_{i \in I}$ be a family of properties of preorders.
+  Let $\set{\qq_i}_{i \in I}$ be a family of properties of preorders
+  over a disjoint signature.
 
   Then we define
   \[
     \sum_{i \in I}{\qq_i} := \set{\sum_{i \in I}{M_i} : \forall i \in I. M_i \in \qq_i}
   \]
+
+  The labels are inherited from either $I$ or the $\qq_i$'s.
 \end{definition}
 
 \begin{note}
-  By the previous two definitions,
+  By the previous two definitions, if $I$ has no labels,
   \[
     \sum_{I}{\qq} = \sum_{i \in I}{\qq}
   \]
 \end{note}
 
-\begin{definition}[Sum of properties over a labeled preorder]
-  Let $I$ be a labeled preorder, with a labeling function $\gamma : I \to C$,
-  where $C$ is a set of colors.
-
-  Let $F$ be a function (or a lambda expression) assigning each color
-  $c \in C$ a property of preorders.
-
-  Then we define
-  \[
-    \sum_{I}{F} := \set{\sum_{i \in I}{M_i} : \forall i \in I. M_i \in F \ps{\gamma(i)}}
-  \]
-\end{definition}
-
-\begin{notes}
-  \begin{enumerate}
-    \item We can see a sum over an unlabeled preorder $I$ as a sum over a labeled preorder
-          with a constant labeling function $\gamma : I \to \set{1}$.
-    \item We can see $P_1 + P_2$ as a sum over $I = \set{1, 2}$, colored
-          with $\gamma(i) = i$.
-  \end{enumerate}
-\end{notes}
-
 \begin{definition}[Sum of a property over a property]
-  Let $\pp$ be a property of unlabeled preorders.
+  Let $\pp$ be a property of preorders.
 
-  Let $\qq$ be a property of preorders.
+  Let $\qq$ be a property of preorders over a disjoint signature.
 
   Then we define,
   \[
     \sum_{\pp}{\qq} := \set{\sum_{I}{\qq} : I \in \pp}
-  \]
-\end{definition}
-
-\begin{definition}[Sum of a property over a labeled property]
-  Let $\pp$ be a property of labeled preorders, over a set of colors $\vec{C}$.
-
-  Let $F$ be a function (or a lambda expression) assigning each color
-  $c \in C$ a property of preorders.
-
-  Then we define,
-  \[
-    \sum_{\pp}{F} := \set{\sum_{I}{F} : I \in \pp}
   \]
 \end{definition}
