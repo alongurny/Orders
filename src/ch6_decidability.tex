@@ -6,28 +6,30 @@
 
   Let $M$ be a linear order.
 
-  We define the predicate $\mathcal{I}_{\qq} \ps{J}$ as
+  We define the predicate $\mathbf{Int}_{\qq} \ps{J}$ as
   true in $M$ iff $J$ is a $\qq$-subinterval of $M$.
 \end{definition}
 
 \begin{lemma}
   Let $\alpha > 0$ be an ordinal.
 
-  The predicates $\mathcal{I}_{\qqo^{\le \alpha}}$ and $\mathcal{I}_{\qqo^{= \alpha}}$
-  are $\mso$-expressible over $\mso[\mathcal{I}_{\qqo^{< \alpha}}]$.
+  Then predicates $\mathbf{Int}_{\qqo^{\le \alpha}}$, $\mathbf{Int}_{\qqo^{= \alpha}}$
+  are expressible in $\mso[\mathbf{Int}_{\qqo^{< \alpha}}]$.
 \end{lemma}
 
 \begin{proof}
   Obviously, \[
-    \mathcal{I}_{\qqo^{= \alpha}}
-    \iff \mathcal{I}_{\qqo^{\le \alpha}} \wedge \neg \mathcal{I}_{\qqo^{< \alpha}}
+    \mathbf{Int}_{\qqo^{= \alpha}}
+    \iff \mathbf{Int}_{\qqo^{\le \alpha}} \wedge \neg \mathbf{Int}_{\qqo^{< \alpha}}
   \]
 
-  So it is enough to express $\mathcal{I}_{\qqo^{\le \alpha}}$.
+  So it is enough to express $\mathbf{Int}_{\qqo^{\le \alpha}}$.
 
   Now, $J$ is a $\qqo^{\le \alpha}$-subinterval of $M$ iff
-  $J \in \sum_{\Omega}{\qqo^{< \alpha}}$. But this can be expressed, since it is expressible
-  to check whether an arbitrary subset is in $\Omega$.
+  $J \in \sum_{\qqo}{\qqo^{< \alpha}}$.
+
+  But this can be expressed in $\mso$ since it is expressible
+  to check whether an arbitrary subset is in $\qqo$.
 \end{proof}
 
 \begin{definition}
@@ -43,41 +45,39 @@
   $\bs{x}_{\alpha}$ is the largest $\bounded{\qqo^{\alpha}}$-subinterval
   containing $x$ in $M$.
 
-  We define $\sigma_{\alpha} \parens{x}$ as
+  We define $\sigma_{\alpha} \ps{x}$ as
   the $\alpha$-shape of $\bs{x}_{\alpha}$.
 \end{definition}
 
-\begin{definition}
-  Let $\alpha > 0$ be an ordinal.
+\begin{lemma}\label{alpha-expressible}
+  Let $M$ be a linear order and $\alpha > 0$ an ordinal.
 
-  The predicate $\pi_{\alpha}(x)$ is defined as the representation of
-  the convex equivalence relation $\sim_{\alpha}$.
-\end{definition}
+  Let $J \subseteq M$ be an interval.
 
-\begin{definition}
-  Let $\alpha > 0$ be an ordinal.
-
-  The function $\sigma_{\alpha}(x)$ is defined as the $\alpha$-shape of
-  the convex equivalence class $\bs{x}_{\alpha}$.
-\end{definition}
-
-\begin{lemma}
-  Let $\alpha > 0$ be an ordinal.
-
-  The predicate $\mathcal{I}_{\qqo^{< \alpha}}$ is $\mso$-expressible over
-  $\mso[\pi_{\alpha}, \sigma_{\alpha}]$.
-\end{lemma}
-
-\begin{proof}
-  It can be proven that an interval $J$ is a $\qqo^{< \alpha}$-subinterval of $M$ iff
+  Then $J \in \qqo^{< \alpha}$ iff
   it is contained in a single $\sim_{\alpha}$-equivalence class $K$, such that:
   \begin{itemize}
-    \item If $K \notin \lb{\qqo^{< \alpha}}$, then $J$ is bounded in $K$ on the left.
-    \item If $K \notin \rb{\qqo^{< \alpha}}$, then $J$ is bounded in $K$ on the right.
+    \item Either $K \in \lb{\qqo^{< \alpha}}$ or
+          there exists some $x \in K$ such that $x < J$.
+    \item Either $K \in \rb{\qqo^{< \alpha}}$ or
+          there exists some $x \in K$ such that $x > J$.
   \end{itemize}
+\end{lemma}
 
-  Since $\lb{\qqo^{< \alpha}}$ and $\rb{\qqo^{< \alpha}}$ are expressible,
-  this finishes the proof.
+\begin{corollary}
+  Let $\alpha > 0$ be an ordinal.
+
+  The predicate $\mathbf{Int}_{\qqo^{< \alpha}}$ is $\mso$-expressible over
+  $\mso[\sim_{\alpha}, \sigma_{\alpha}]$.
+\end{corollary}
+
+\begin{proof}
+  By definition, we can express $\bs{x}_{\alpha} \in \lb{\qqo^{< \alpha}}$ via
+  $\sigma_{\alpha} \ps{x} \in \set{1, \omega}$
+  and $\bs{x}_{\alpha} \in \rb{\qqo^{< \alpha}}$ via
+  $\sigma_{\alpha} \ps{x} \in \set{1, \agemo}$.
+
+  Now it follows from~\cref{alpha-expressible}.
 \end{proof}
 
 % Sum of computable properties over a computable index
@@ -117,26 +117,73 @@
 \begin{theorem}
   Let $\alpha$ be an ordinal.
 
-  Let $C$ be the class of
-  all countable linear orders labeled
-  with $\bs{\cdot}_{\alpha}$ and $\sigma_{\alpha}$.
+  Let $P$, $L$ and $R$ be
+  first-order unary predicates.
 
-  Let $D_s$ for $s \in \set{1, \omega, \agemo, \oo}$ be the
-  class $\mathcal{S}^{s}_{\alpha}$,
-  labeled (trivially) with $\bs{\cdot}_{\alpha}$ and $\sigma_{\alpha}$.
+  Let $C$ be the class of
+  all countable linear orders labeled with $P$, $L$ and $R$,
+  such that $P$ represents $\sim_{\alpha}$,
+  $L_{\alpha} \ps{x} \iff \bs{x}_{\alpha} \in \lb{\qqo^{< \alpha}}$ and
+  $R_{\alpha} \ps{x} \iff \bs{x}_{\alpha} \in \rb{\qqo^{< \alpha}}$.
 
   Let $\mathbf{G}$ be the class of all countable linear orders $I$,
-  labeled with a coloring function $\gamma$
-  whose range is $\set{1, \omega, \agemo, \oo}$,
-  such that for pair $i, j \in I$ such that $j$ is the successor of $i$,
-  either $\gamma(i) \in \set{\omega, \oo}$
-  or $\gamma(j) \in \set{\agemo, \oo}$.
+  labeled with a $P$, $L$ and $R$,
+  such that for every pair $i, i' \in I$ such that $i'$ is the successor of $i$,
+  $P(i) \ne P(i')$,
+  and either $R(i) = 0$ or $L(i') = 0$.
 
-  Then, $C = \sum_{\mathbf{G}} \bs{s \mapsto D_s}$.
+  Let $\sigma(i) \in \set{1, \omega, \agemo, \oo}$ be such that
+  $L(i) = 1$ iff $\sigma(i) \in \set{1, \omega}$ and
+  $R(i) = 1$ iff $\sigma(i) \in \set{1, \agemo}$.
+
+  Then, $C = \sum_{\mathbf{G}} \bs{i \mapsto \mathcal{S}^{\sigma(i)}_{\alpha}}$.
 \end{theorem}
 
 \begin{proof}
-  TBC.
+  ($\subseteq$) Let $M$ be a countable linear order labeled with $P$, $L$ and $R$ as above.
+
+  Let $I = M / \sim_{\alpha}$ be the quotient of $M$ by the equivalence relation $\sim_{\alpha}$.
+
+  Then $M = \sum_{i \in I} M_i$,
+  where $\set{M_i}_{i \in I}$ are the $\sim_{\alpha}$-equivalence class of $I$.
+
+  Then for each $i \in I$, $M_i \in \bounded{\qqo^{< \alpha}}$,
+  and by definition $\sigma(i) = \sigma_{\alpha} \ps{M_i}$.
+
+  Let $i'$ be the successor of $i$ in $I$.
+
+  Then $P(i) \ne P(i')$ since $P$ represents $\sim_{\alpha}$.
+
+  Furthermore, suppose $R(i) = L(i') = 1$ holds.
+  Then $M_i \in \rb{\qqo^{< \alpha}}$ and $M_{i'} \in \lb{\qqo^{< \alpha}}$.
+  so $M_i$ and $M_{i'}$ are the same $\sim_{\alpha}$-equivalence class of $M$,
+  which is a contradiction.
+  
+  Thus either $R(i) = 0$ or $L(i') = 0$.
+
+  ($\supseteq$) Let $M = \sum_{i \in I} M_i$ be a linear order
+  such that $I \in \mathbf{G}$ and $M_i \in \mathcal{S}^{\sigma(i)}_{\alpha}$ for each $i \in I$.
+
+  In particular $M_i \in \bounded{\qqo^{< \alpha}}$ for each $i \in I$, so it is contained
+  in a single $\sim_{\alpha}$-equivalence class of $M$.
+
+  Suppose that there exist distinct $j ,k \in I$ (WLOG, $j < k$) such that
+  $M_j$ and $M_k$ are in the same $\sim_{\alpha}$-equivalence class.
+
+  Let $x \in M_j$ and $y \in M_k$.
+  Then $[x, y] \in \qqo^{< \alpha}$, 
+  and thus $[j, k] \in \qqo^{< \alpha}$,
+  and in particular it is sparse.
+  
+  Then there exist some $j', k' \in I$ such that $j < j' < k' < k$,
+  and $k'$ is the successor of $j'$ in $I$.
+
+  Then $M_{j'}$ and $M_{k'}$ are in the same $\sim_{\alpha}$-equivalence class.
+  Thus it must be the case that $M_{j'} \in \rb{\qqo^{< \alpha}}$ and $M_{k'} \in \lb{\qqo^{< \alpha}}$,
+  which implies $R(j') = L(k') = 1$, which is a contradiction.
+
+  Thus $\set{M_i}_{i \in I}$ are pairwise distinct $\sim_{\alpha}$-equivalence classes,
+  so we are done.
 \end{proof}
 
 \begin{theorem}
@@ -145,8 +192,8 @@
   Let $\alpha_i = \alpha + \delta_i$ for $i = 1, \ldots, k$.
 
   Let $C$ be the class of all countable linear orders
-  labeled with $\bs{\cdot}_{\alpha}$ and $\sigma_{\alpha}$,
-  and $\bs{\cdot}_{\alpha_i}$ and $\sigma_{\alpha_i}$ for $i = 1, \ldots, k$.
+  labeled with $\pi_{\alpha}$ and $\sigma_{\alpha}$,
+  and $\pi_{\alpha_i}$ and $\sigma_{\alpha_i}$ for $i = 1, \ldots, k$.
 
   Let $\mathbf{G}$ be the class of all countable linear orders $I$,
   labeled with a coloring function $\gamma$

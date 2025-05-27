@@ -20,18 +20,18 @@
     labeled with finitely many colors.
 
     There exists a computable function $f_{\qq} = f: \NN \to \NN$ such that
-    for all $n \in \NN$, and all $a \in \NN$ such that $a \ge f(n)$,
-    $\type{n}{\qq^{a}} = \type{n}{\qq^{f(n)}}$.
+    for every $n \in \NN$ and every ordinal $\alpha \ge f(n)$,
+    $\type{n}{\qq^{< \alpha}} = \type{n}{\qq^{f(n)}}$.
 \end{lemma}
 
 \begin{proof}
     Since there are only finitely many $n$-types,
-    and the $\omega$-sequence \[\braces{\type{n}{\qq^{k}}}_{k \in \omega}\]
+    and the ordinal sequence \[\braces{\type{n}{\qq^{< \kappa}}}_{\kappa}\]
     is monotone,
-    there must be some $k$ where the sequence stabilizes.
+    there must be some minimal $\kappa_0 \in \omega$ where the sequence stabilizes.
 
-    This point $k$ is computable as a function of $n$, because
-    $\type{n}{\qq^{k}}$ is computable for every finite $k$.
+    This $\kappa_0$ is computable as a function of $n$, because
+    $\type{n}{\qq^{< \kappa}}$ is computable for every finite $\kappa$.
 \end{proof}
 
 \begin{lemma}\label{ab-lemma}
@@ -51,47 +51,12 @@
         \type{n}{\qq^{= a(n)}} = \type{n}{\qq^{= a(n) + b(n)}}
     \]
 
-    We shall prove by induction that for all $c \ge a(n)$,
-
+    By induction if follows that for all $c \ge a(n)$,
     \[\type{n}{\qq^{= c}} = \type{n}{\qq^{= c + b(n)}}\]
-
-    This will complete the proof.
-
-    The base case $c = a(n)$ is by the definition of $a(n)$ and $b(n)$.
-
-    Suppose the induction hypothesis holds for $c$.
-
-    Let $M \in \qq^{= c + 1}$.
-
-    Write $M = \sum_{i \in I} M_i$ where $M_i \in \qq^{< c + 1}$,
-    and $M_i \in \qq^{= c}$ infinitely many times.
-
-    By the induction hypothesis,
-    if $M_i \in \qq^{= c}$, we can find $N_i \equiv_n M_i$ with $N_i \in \qq^{= c + b(n)}$.
-    Setting $N_i := M_i$ for all other $i$, we conclude that $N := \sum_{i \in I} N_i$
-    is $n$-equivalent to $M$.
-
-    However, clearly $N \in \qq^{= c + b(n) + 1}$. So overall,
-    \[\type{n}{\qq^{= c + 1}} \subseteq \type{n}{\qq^{= c + b(n) + 1}}\]
-
-    Conversely, suppose $M \in \qq^{= c + b(n) + 1}$.
-    Write $M$ = $\sum_{i \in I} M_i$ where $M_i \in \qq^{< c + b(n) + 1}$,
-    and $M_i \in \qq^{= c + b(n)}$ infinitely many times.
-
-    By the induction hypothesis,
-    we can find for all $i$ such that $M_i \in \qq^{= c + b(n)}$ some
-    $N_i \equiv_n M_i$ with $N_i \in \qq^{= c}$.
-    Furthermore, since $c \ge a(n) \ge f(n)$, we can
-    find $N_i \equiv_n M_i$ with $N_i \in \qq^{f(n)} \subseteq \qq^{c}$ for all other $i$.
-
-    We conclude that $N := \sum_{i \in I} N_i$ is $n$-equivalent to $M$.
-    However, clearly $N \in \qq^{= c + 1}$. So overall,
-    \[\type{n}{\qq^{= c + b(n) + 1}} \subseteq \type{n}{\qq^{= c + 1}}\]
-
-    So we have proven the induction step, and the lemma follows.
+    since $\qq^{= c + 1} = \sum_{\qq} \qq^{= c}$.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{s-alpha-finite}
     Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
 
     Let $s \in \set{1, \omega, \agemo, \oo}$ be a shape.
@@ -104,7 +69,7 @@
 
 \begin{proof}
     For $s = 1$, it follows from~\cref{f-lemma},
-    since $\mathcal{S}^{1}_{c} = \qq^{c}$
+    since $\mathcal{S}^{1}_{c} = \qq^{< c}$
     and $c \ge a(n) \ge f(n)$ for $c \in \set{c_1, c_2}$.
 
     For $s \in \set{\omega, \agemo, \oo}$, it follows easily from~\cref{b_alpha-structure-lemma}
@@ -112,21 +77,36 @@
 \end{proof}
 
 \begin{lemma}
-    Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
+    For every $n \in \NN$ and for every ordinal $\alpha \ge \omega$,
     \[
-        \type{n}{\mathcal{S}^{1}_{\alpha}}
-        = \type{n}{\bigcup_{c < a(n) + b(n)} {\Omega^{= c}}}
+        \type{n}{\qq^{= \alpha}} = \type{n}{\bigcup_{c < b(n)}{\qq^{= a(n) + c}}}
     \]
-
-    In particular, $\type{n}{\mathcal{S}^{1}_{\alpha}}$ can be
-    computed, and is independent of the choice of $\alpha \ge \omega$.
+    In particular, $\type{n}{\qq^{= \alpha}}$ can be computed,
+    and is independent of the choice of $\alpha \ge \omega$.
 \end{lemma}
 
 \begin{proof}
-    TBC.
+    By induction on $\alpha \ge \omega$.
+
+    Let $\set{\alpha_i}_{i \in \omega}$ be an $\omega$-sequence of ordinals
+    such that $a(n) \le \alpha_i$ for all $i \in \omega$,
+    and $\sup_{i \in \omega} {\alpha_i + 1} = \alpha$.
+
+    Then $\qq^{= \alpha} = \sum_{\qq}{\bigcup_{i \in \omega} \qq^{= \alpha_i}}$ and thus,
+    \begin{align*}
+        \type{n}{\qq^{= \alpha}}
+        &= \type{n}{\sum_{\qq} \bigcup_{i \in \omega} \qq^{= \alpha_i}} \\
+        &= \type{n}{\sum_{\qq} \bigcup_{i \in \omega} \bigcup_{c < b(n)}{\qq^{= a(n) + c}}} \\
+        &= \type{n}{\sum_{\qq} \bigcup_{c < b(n)}{\qq^{= a(n) + c}}} \\
+        &= \type{n}{\bigcup_{c < b(n)}{\sum_{\qq} \qq^{= a(n) + c}}} \\
+        &= \type{n}{\bigcup_{c < b(n)}{\qq^{= a(n) + c + 1}}} \\
+        &= \type{n}{\bigcup_{c < b(n)}{\qq^{= a(n) + c}}}
+    \end{align*}
+
+    where the last transition is because $\type{n}{\qq^{= a(n)}} = \type{n}{\qq^{= a(n) + b(n)}}$.
 \end{proof}
 
-\begin{lemma}
+\begin{corollary}
     Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
 
     Let $s \in \set{\omega, \agemo, \oo}$ be a shape.
@@ -138,27 +118,26 @@
 
     In particular, $\type{n}{\mathcal{S}^{s}_{\alpha}}$ can be
     computed, and is independent of the choice of $\alpha \ge \omega$.
-\end{lemma}
+\end{corollary}
 
 \begin{proof}
-    TBC.
+    There exists a sequence $\set{\alpha_i}_{i \in s}$ such that
+    $a(n) \le \alpha_i$ for all $i \in s$,
+    and $\sup_{i \in s} {\alpha_i + 1} = \alpha$.
+
+    Then $\mathcal{S}^{s}_{\alpha} = \sum_{i \in s} \qqo^{= \alpha_i}$,
+    and thus,
+    \begin{align*}
+        \type{n}{\mathcal{S}^{s}_{\alpha}}
+        &= \type{n}{\sum_{i \in s} \qqo^{= \alpha_i}} \\
+        &= \type{n}{\sum_{s} \bigcup_{c < b(n)}{\qqo^{= a(n) + c}}} \\
+        &= \type{n}{\bigcup_{c < b(n)}{\sum_{s} \qqo^{= a(n) + c}}} \\
+        &= \type{n}{\bigcup_{c < b(n)}{\mathcal{S}^{s}_{a(n) + c + 1}}} \\
+        &= \type{n}{\bigcup_{c < b(n)}{\mathcal{S}^{s}_{a(n) + c}}} \\
+    \end{align*}
+
+    where the last transition is by~\cref{s-alpha-finite}.
+
 \end{proof}
 
 
-\begin{lemma}
-    Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
-
-    Let $\delta > 0$ be an ordinal.
-
-    \[
-        \type{n}{\mathcal{S}^{1}_{\alpha + \delta}}
-        = \type{n}{\bigcup_{c < a(n) + b(n)} {\Omega^{= c}}}
-    \]
-
-    In particular, $\type{n}{\mathcal{S}^{1}_{\alpha}}$ can be
-    computed, and is independent of the choice of $\alpha \ge \omega$.
-\end{lemma}
-
-\begin{proof}
-    TBC.
-\end{proof}
