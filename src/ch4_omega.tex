@@ -5,32 +5,32 @@
 
   We define:
   \begin{enumerate}
-    \item $\mathcal{S}^{1}_{\alpha} := \qqo^{\alpha}$
-    \item $\mathcal{S}^{\omega}_{\alpha} := \lb{\qqo^{\alpha}} \setminus \rb{\qqo^{\alpha}}$
-    \item $\mathcal{S}^{\agemo}_{\alpha} := \rb{\qqo^{\alpha}} \setminus \lb{\qqo^{\alpha}}$
-    \item $\mathcal{S}^{\oo}_{\alpha} := \bounded{\qqo^{\alpha}} \setminus \ps { \lb {\qqo^{\alpha}} \cup \rb{\qqo^{\alpha}} }$
+    \item $\mathcal{S}^{1}_{\alpha} := \qqo^{< \alpha}$
+    \item $\mathcal{S}^{\omega}_{\alpha} := \rb{\qqo^{< \alpha}} \setminus \lb{\qqo^{< \alpha}}$
+    \item $\mathcal{S}^{\agemo}_{\alpha} := \lb{\qqo^{< \alpha}} \setminus \rb{\qqo^{< \alpha}}$
+    \item $\mathcal{S}^{\oo}_{\alpha} := \bounded{\qqo^{< \alpha}} \setminus \ps { \lb {\qqo^{< \alpha}} \cup \rb{\qqo^{< \alpha}} }$
   \end{enumerate}
 
   The names will soon be justified.
 \end{definitions}
 
-\begin{lemma}
+\begin{lemma}\label{bounded-structure}
   Let $\alpha > 0$ be an ordinal.
 
   Then,
   \begin{enumerate}
-    \item $\lb{\qqo^{\alpha}} = \sum_{\omega}{\qqo^{\alpha}}$.
-    \item $\rb{\qqo^{\alpha}} = \sum_{\agemo}{\qqo^{\alpha}}$.
-    \item $\bounded{\qqo^{\alpha}} = \sum_{\oo}{\qqo^{\alpha}}$.
+    \item $\rb{\qqo^{< \alpha}} = \sum_{\omega}{\qqo^{< \alpha}}$.
+    \item $\lb{\qqo^{< \alpha}} = \sum_{\agemo}{\qqo^{< \alpha}}$.
+    \item $\bounded{\qqo^{< \alpha}} = \sum_{\oo}{\qqo^{< \alpha}}$.
   \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-  Let us prove the first part.
-  ($\supseteq$) Let $M \in \sum_{\omega}{\qqo^{\alpha}}$ be a linear order.
+  1. Let us prove the first part.
+  ($\supseteq$) Let $M \in \sum_{\omega}{\qqo^{< \alpha}}$ be a linear order.
 
   Let $M = \sum_{i \in \omega} M_i$ be the decomposition of $M$,
-  where $M_i \in \qqo^{\alpha}$.
+  where $M_i \in \qqo^{< \alpha}$.
 
   Let $x, y \in M$ be any two points in $M$. WLOG $x \le y$.
 
@@ -38,83 +38,107 @@
 
   Since $i$ and $j$ have a finite distance in $\omega$,
   we conclude $[x, y] \subseteq M_i + \ldots + M_j$,
-  and thus $[x, y] \subseteq \ps{\qqo^{\alpha}}^+ = \qqo^{{\alpha}}$.
+  and thus $[x, y] \subseteq \ps{\qqo^{< \alpha}}^+ = \qqo^{{\alpha}}$.
 
-  ($\subseteq$) Let $M \in \bounded{\qqo^{\alpha}}$ be a linear order.
+  ($\subseteq$) Let $M \in \rb{\qqo^{< \alpha}}$ be a linear order.
 
-  Since $M$ is countable, let $\set{x_i}_{i \in \omega} M$ be a bidirectionally cofinal
+  Since $M$ is countable, let $\set{x_i}_{i \in \omega} M$ be a right cofinal
   $\omega$-sequence in $M$.
 
-  Then $M = \sum_{i \in \omega} M_i$ where $M_i = [x_i, x_{i'})$ for $i'$
-  the successor of $i$ in $I$.
+  Let $M_0 = (-\infty, x_0]$ and and $M_i = (x_{i-1}, x_{i}]$ for $i > 0$.
 
-  But $M_i$ is a bounded interval and thus $M_i \in \qqo^{\alpha}$, so $M \in \sum_{\omega}{\qqo^{\alpha}}$.
+  Then $M = \sum_{i \in \omega} M_i$.
 
-  The second part is symmetric.
+  But $M_i$ is a right-bounded interval and thus $M_i \in \qqo^{< \alpha}$, so $M \in \sum_{\omega}{\qqo^{< \alpha}}$.
 
-  The third part follows from~\cref{bounded-is-right-plus-left}:
+  2. The second part is symmetric.
+
+  3. The third part follows from~\cref{bounded-is-right-plus-left}:
   \[
     \begin{aligned}
-      \bounded{\qqo^{\alpha}}
-       & = \rb{\qqo^{\alpha}} + \lb{\qqo^{\alpha}}                     \\
-       & = \sum_{\agemo}{\qqo^{\alpha}} + \sum_{\omega}{\qqo^{\alpha}} \\
-       & = \sum_{\oo}{\qqo^{\alpha}}
+      \bounded{\qqo^{< \alpha}}
+       & = \rb{\qqo^{< \alpha}} + \lb{\qqo^{< \alpha}}                     \\
+       & = \sum_{\agemo}{\qqo^{< \alpha}} + \sum_{\omega}{\qqo^{< \alpha}} \\
+       & = \sum_{\oo}{\qqo^{< \alpha}}
     \end{aligned}
   \]
 \end{proof}
 
-\begin{lemma}\label{b_alpha-structure-lemma}
+An immediate corollary of~\cref{bounded-structure} is that:
+\begin{corollary}
+  Let $\alpha > 0$ be an ordinal.
+
+  Then $\qqo^{\le \alpha} = \ps{\bounded{\qqo^{< \alpha}}}^+$.
+\end{corollary}
+
+\begin{lemma}\label{shape-structure}
   Let $\alpha > 0$ be an ordinal.
 
   Let $s \in \set{\omega, \agemo, \oo}$.
 
   Suppose that
-  $\alpha = \sup_{i \in s} \ps{\alpha_i + 1}$ for
+  $\alpha = \limsup_{i \in s} \ps{\alpha_i + 1}$ for
   ordinals $\set{\alpha_i}_{i \in s}$.
 
   Then, we have the following:
 
   \[
-    \mathcal{S}^{s}_{\alpha} = \sum_{i \in s}{\qqo^{\alpha_i}}
+    \mathcal{S}^{s}_{\alpha} = \sum_{i \in s}{\qqo^{[\alpha_i, \alpha)}}
   \]
 \end{lemma}
 
+\begin{proof}
+  It is enough to prove the case $s = \omega$,
+  since $s = \agemo$ follows by symmetry,
+  and $s = \oo$ follows by adding the previous two cases.
+
+  ($\supseteq$) Let $M \in \sum_{i \in \omega}{\qqo^{[\alpha_i, \alpha)}}$ be a linear order.
+  Then obviously $M \in \sum_{\omega}{\qqo^{< \alpha}} = \rb{\qqo^{< \alpha}}$.
+  
+  Suppose for the contrary that $M \in \lb{\qqo^{< \alpha}}$.
+  By~\cref{bounded-properties}, $M + 1 \in \bounded{\qqo^{< \alpha}}$.
+
+  ($\subseteq$) Let $M \in \mathcal{S}^{\omega}_{\alpha}$ be a linear order.
+
+  By~\cref{bounded-structure}, $M = \sum_{\omega}{M_i}$ for some $M_i \in \qqo^{< \alpha}$.
+  
+  We will define by induction a new sequence $\set{N_i}_{i \in \omega}$ such that $M = \sum_{i \in \omega} N_i$,
+  where $N_i \in \qqo^{[\alpha_i, \alpha)}$.
+
+  Suppose that $N_j$ is defined for all $j < i$.
+
+  Since $M \notin \lb{\qqo^{< \alpha}}$, $[M_i, \infty) \notin \qqo^{< \alpha}$.
+\end{proof}
+
 \begin{note}
-  For the proof of this lemma, we actually use the fact that
+  For the proof of~\cref{shape-structure}, we actually use the fact that
   we work over $\qqo$. This proof would not have worked over $\Gamma_{\beta}$
   for $\beta > \omega$.
 \end{note}
 
-\begin{proof}
-  TBC.
-\end{proof}
-
 \begin{corollary}
-  Let $\alpha, \delta > 0$ be ordinals.
+  Let $\alpha, \delta > 0$ be limit ordinals.
 
-  Let $s \in \set{1, \omega, \agemo, \oo}$
+  Let $s \in \set{\omega, \agemo, \oo}$
 
   Then,
 
   \[
     \mathcal{S}^{s}_{\alpha + \delta}
-    = \sum_{\mathcal{S}^{s}_{\delta}}{\qqo^{\alpha}}
+    = \sum_{\mathcal{S}^{s}_{\delta}}{\qqo^{= \alpha}}
   \]
 \end{corollary}
 
 \begin{proof}
+  Suppose that $\delta = \limsup_{i \in s} \delta_i$.
 
-  For $s = 1$, it follows from~\cref{sum-of-ranks}.
-
-  Otherwise, suppose that $\delta = \sup_{i \in s} \ps{\delta_i + 1}$.
-
-  Then $\alpha + \delta = \sup_{i \in s} \ps{\alpha_i + \delta_i + 1}$.
+  Then $\alpha + \delta = \limsup_{i \in s} \ps{\alpha_i + \delta_i}$.
 
   \[
     \mathcal{S}^{s}_{\alpha + \delta}
-    = \sum_{i \in s}{\mathcal{S}^{s}_{\alpha + \delta_i + 1}}
-    = \sum_{i \in s}\sum_{\qqo^{\delta_i + 1}}{\qqo^{\alpha}}
-    = \sum_{\sum_{i \in s}{\qqo^{\delta_i + 1}}}{\qqo^{\alpha}}
-    = \sum_{\mathcal{S}^{s}_{\delta}}{\qqo^{\alpha}}
+    = \sum_{i \in s}{\mathcal{S}^{s}_{\alpha + \delta_i}}
+    = \sum_{i \in s}\sum_{\qqo^{= \delta_i}}{\qqo^{= \alpha}}
+    = \sum_{\sum_{i \in s}{\qqo^{= \delta_i}}}{\qqo^{= \alpha}}
+    = \sum_{\mathcal{S}^{s}_{\delta}}{\qqo^{= \alpha}}
   \]
 \end{proof}

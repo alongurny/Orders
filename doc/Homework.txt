@@ -27,7 +27,7 @@ a finite sum of $\omega$ and $-\omega$ of rank $< \alpha$ has rank $\le \alpha$.
 
 
 1. \phi satisfiable in C+[alpha]_{R/L/R+L} decidable.
-2. The same, but in finite sums of the obove.
+2. The same, but in finite sums of the above.
 3. The same, but omega sum of the above.
 
 4. Claim:
