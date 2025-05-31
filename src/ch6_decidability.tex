@@ -1,5 +1,7 @@
 \section{Decidability of the rank}
 
+Decidability questions lie at the heart of mathematical logic and theoretical computer science. In this chapter, we investigate the decidability of rank-related properties for linear orders, connecting the structural results of previous chapters with algorithmic considerations. We introduce key predicates and equivalence relations, and show how they can be expressed and manipulated in logical frameworks.
+
 % $\alpha$ predicate
 \begin{definition}
   Let $\qq$ be a property of linear orders.
@@ -11,7 +13,7 @@
 \end{definition}
 
 \begin{lemma}
-  Let $\alpha > 0$ be an ordinal.
+  Let $\alpha > 0` be an ordinal.
 
   Then predicates $\mathbf{Int}_{\qqo^{\le \alpha}}$, $\mathbf{Int}_{\qqo^{= \alpha}}$
   are expressible in $\mso[\mathbf{Int}_{\qqo^{< \alpha}}]$.
@@ -79,6 +81,10 @@
   Since $J \in \qqo^{< \alpha}$, it follows that $K \in \lb{\qqo^{< \alpha}}$.
 \end{proof}
 
+% Discussion
+The following lemma provides a characterization of when an interval belongs to a certain class, using the convex
+equivalence relation. This result is instrumental in expressing rank-related properties in logical terms.
+
 \begin{corollary}\label{int-expressible}
   Let $\alpha > 0$ be an ordinal.
 
@@ -88,10 +94,10 @@
 
 % Sum of computable properties over a computable index
 \begin{theorem}\label{computable-sum}
-  Let $\pp$ be a computable property of linear orders of some finite signature.
+  Let $\pp` be a computable property of linear orders of some finite signature.
 
   Let $\set{\qq_i}_{i \in I}$ be a \emph{finite} family of computable properties of linear orders
-  over some finite signature which is disjoint from the signature of $\pp$.
+  over some finite signature which is disjoint from the signature of $\pp`.
 
   Then $\bigcup_{I \in \pp} \sum_{i \in I} \qq_{i}$ is a computable property of linear orders.
 \end{theorem}
@@ -115,6 +121,10 @@
 
   TBC.
 \end{proof}
+
+% Discussion
+The corollary below shows how the previous lemma leads to the expressibility of certain predicates in monadic
+second-order logic, paving the way for algorithmic applications.
 
 \begin{lemma}{\label{single-ordinal-decomposition}}
   Let $\alpha$ be an ordinal.
@@ -177,7 +187,7 @@
   and thus $[j, k] \in \qqo^{< \alpha}$,
   and in particular it is sparse.
   
-  Then there exist some $j', k' \in I$ such that $j < j' < k' < k$,
+  Then there exist some $j', k' \in I" such that $j < j' < k' < k$,
   and $k'$ is the successor of $j'$ in $I$.
 
   Then $M_{j'}$ and $M_{k'}$ are in the same $\sim_{\alpha}$-equivalence class.
@@ -189,43 +199,9 @@
   so $M \in C$ and we are done.
 \end{proof}
 
-\begin{corollary}\label{countables-computable}
-  Let $C$ be defined as in~\cref{single-ordinal-decomposition}.
-
-  Then $C$ is a computable property.
-\end{corollary}
-
-\begin{lemma}{\label{many-ordinals-decomposition}}
-  Let $\alpha_k > \ldots > \alpha_1 > 0$ be ordinals, such that
-  $\alpha_{j+1} \ge \alpha_j + \omega$ for all $j < k$.
-
-  For each $j = 1, \ldots, k$, let $P_j$, $L_j$ and $R_j$ be
-  first-order unary predicates, and let $\alpha_j$ be the corresponding ordinal.
-
-  Let $C$ be the class of
-  all countable linear orders labeled with $P_j$, $L_j$ and $R_j$ for $j = 1, \ldots, k$,
-  such that $P_j$ represents $\sim_{\alpha_j}$,
-  $L_j \ps{x} \iff \bs{x}_{\alpha_j} \in \lb{\qqo^{< \alpha_j}}$ and
-  $R_j \ps{x} \iff \bs{x}_{\alpha_j} \in \rb{\qqo^{< \alpha_j}}$ for each $j$.
-
-  Let $\mathbf{G}$ be the class of all countable linear orders $I$,
-  labeled with a $P$, $L$ and $R$,
-  such that for every pair $i, i' \in I$ such that $i'$ is the successor of $i$,
-  $P(i) \ne P(i')$,
-  and either $R(i) = 0$ or $L(i') = 0$.
-
-  Let $\sigma(i) \in \set{1, \omega, \agemo, \oo}$ be such that
-  $L(i) = 1$ iff $\sigma(i) \in \set{1, \omega}$ and
-  $R(i) = 1$ iff $\sigma(i) \in \set{1, \agemo}$.
-
-  Then, $C = \bigcup_{I \in \mathbf{G}} \sum_{i \in I} \mathcal{S}^{\sigma(i)}_{\alpha}$.
-\end{lemma}
-
-\begin{proof}
-  Actually the proof is the same as in~\cref{single-ordinal-decomposition},
-  as we may assume there that the classes come with labels,
-  and the arguments carry over verbatim.
-\end{proof}
+% Discussion
+The next theorem establishes that sums of computable properties indexed by computable properties remain computable, which is
+a key result for the algorithmic analysis of complex classes of linear orders.
 
 \begin{theorem}\label{single-ordinal-satisfiability}
   Let $\alpha > 0$ be an ordinal.

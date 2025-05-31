@@ -1,4 +1,7 @@
 \section{Type Theory}
+
+Type theory provides a framework for analyzing the expressive power of logical languages over classes of structures. In this chapter, we introduce the notion of types for properties of preorders and study their computability. The results here connect the structural properties of orders with logical definability, setting the stage for the study of decidability in the next chapter.
+
 % Types of a property
 \begin{definition}
     Let $\pp$ be a property of preorders.
@@ -33,6 +36,10 @@
     $\type{n}{\qq^{< \kappa}}$ is computable for every finite $\kappa$.
 \end{proof}
 
+% Discussion
+The following lemma establishes the existence of a stabilization function for types, which is a key step in proving
+computability results for properties of preorders.
+
 \begin{lemma}\label{ab-lemma}
     There exist global computable functions $a, b : \NN \to \NN$ such that
     for all $n, c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
@@ -55,8 +62,12 @@
     since $\qq^{= c + 1} = \sum_{\qq} \qq^{= c}$.
 \end{proof}
 
+% Discussion
+The next lemma shows that types stabilize not just for a single property, but uniformly across certain families of
+properties. This uniformity is essential for later results on shapes and their computability.
+
 \begin{corollary}\label{s-alpha-finite}
-    Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
+    Let $n \in \NN$, and let $\alpha \ge \omega` be an ordinal.
 
     Let $s \in \set{1, \omega, \agemo, \oo}$ be a shape.
 
@@ -105,6 +116,10 @@
     where the last transition is because $\type{n}{\qq^{= a(n)}} = \type{n}{\qq^{= a(n) + b(n)}}$.
 \end{proof}
 
+% Discussion
+The corollary below applies the previous lemmas to the specific families of shapes introduced earlier, showing that their
+types also stabilize in a computable way.
+
 \begin{corollary}
     Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
 
@@ -137,6 +152,34 @@
 
     where the last transition is by~\cref{s-alpha-finite}.
 
+\end{proof}
+
+% Discussion
+The next lemma provides an explicit description of the types of exact powers, showing that they can be computed from
+finitely many cases. This result is crucial for the algorithmic analysis of types in infinite settings.
+
+\begin{lemma}
+    Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
+
+    Then there exists a computable function $e(n)$ such that
+    for all $c_1, c_2 \in \NN$ with $c_1, c_2 \ge e(n)$,
+    \[\type{n}{\qq^{= c_1 \cdot \alpha}} = \type{n}{\qq^{= c_2 \cdot \alpha}}\]
+\end{lemma}
+
+\begin{proof}
+    Let $n \in \NN$.
+
+    By~\cref{f-lemma}, there exists $e(n)$ such that
+    for all $c \ge e(n)$,
+    \[\type{n}{\qq^{= c \cdot \alpha}} = \type{n}{\qq^{= c \cdot \alpha + 1}}\]
+
+    Since $\alpha$ is a limit ordinal,
+    $\qq^{= c \cdot \alpha + 1} = \sum_{\beta < \alpha}{\qq^{= c \cdot \beta}}$.
+
+    Thus, by the stability of types under summation,
+    \[\type{n}{\qq^{= c \cdot \alpha + 1}} = \type{n}{\sum_{\beta < \alpha}{\qq^{= c \cdot \beta}}} = \type{n}{\qq^{= c}}\]
+
+    for all $c \ge e(n)$.
 \end{proof}
 
 

@@ -1,5 +1,7 @@
 \section{\texorpdfstring{$\omega$}{omega}-Hausdorff rank}
 
+In this chapter, we focus on the special case of the Hausdorff rank associated with the ordinal $\omega$. This case is of particular interest due to its connections with countable structures and its role in the classification of infinite linear orders. We introduce new families of properties and analyze their relationships, providing tools that will be essential for the study of types and decidability.
+
 \begin{definitions}
   Let $\alpha > 0$ be an ordinal.
 
@@ -62,6 +64,10 @@
   \end{align*}
 \end{proof}
 
+% Discussion
+The next lemma describes the structure of right-bounded, left-bounded, and bounded intervals in terms of sums over $\omega$
+and related index sets. This structural insight is crucial for later results on types and expressibility.
+
 An immediate corollary of~\cref{bounded-structure} is that:
 \begin{corollary}
   Let $\alpha > 0$ be an ordinal.
@@ -115,6 +121,10 @@ An immediate corollary of~\cref{bounded-structure} is that:
   for $\beta > \omega$.
 \end{note}
 
+% Discussion
+The corollary that follows gives an immediate application of the previous lemma, relating the $\le \alpha$ property to
+bounded sums.
+
 \begin{corollary}
   Let $\alpha, \delta > 0$ be limit ordinals.
 
@@ -140,4 +150,28 @@ An immediate corollary of~\cref{bounded-structure} is that:
     = \sum_{\sum_{i \in s}{\qqo^{= \delta_i}}}{\qqo^{= \alpha}}
     = \sum_{\mathcal{S}^{s}_{\delta}}{\qqo^{= \alpha}}
   \]
+\end{proof}
+
+% Discussion
+The next lemma provides a decomposition of shapes in terms of sums over index sets, which will be used in the analysis of
+types and their stabilization properties.
+
+\begin{lemma}\label{decomposition-lemma}
+  Let $\alpha > 0$ be an ordinal.
+
+  Let $s \in \set{\omega, \agemo, \oo}$.
+
+  Suppose that
+  $\alpha = \limsup_{i \in s} \ps{\alpha_i + 1}$ for
+  ordinals $\set{\alpha_i}_{i \in s}$.
+
+  Then, we have the following:
+
+  \[
+    \mathcal{S}^{s}_{\alpha} = \sum_{i \in s}{\qqo^{[\alpha_i, \alpha)}}
+  \]
+\end{lemma}
+
+\begin{proof}
+  This follows immediately from~\cref{shape-structure} and the definitions.
 \end{proof}

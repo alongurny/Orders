@@ -1,5 +1,6 @@
-
 \section{General Hausdorff Rank}
+
+The concept of rank provides a powerful tool for measuring the complexity of linear orders and related structures. In this chapter, we introduce the Hausdorff rank and its generalizations, which allow us to stratify classes of orders according to their structural depth. The results here lay the groundwork for the analysis of types and decidability in subsequent chapters.
 
 % Definition of the Hausdorff power
 \begin{definition}
@@ -23,6 +24,10 @@
   Then $\qq^{< 1} = \qq$.
 \end{example}
 
+% Discussion
+The Hausdorff power construction enables us to build increasingly complex properties by iterating the sum operation. The
+following example illustrates the base case of this construction.
+
 \begin{lemma}\label{sum-of-ranks}
   Let $\qq$ be a property of linear orders.
 
@@ -34,6 +39,10 @@
     = \sum_{\qq^{< \delta}}{\qq^{< \alpha}}
   \]
 \end{lemma}
+
+% Discussion
+The next lemma provides a key formula for decomposing the Hausdorff power, which will be used repeatedly in the analysis of
+ranks.
 
 \begin{proof}
   We shall prove this by induction on $\delta \ge 0$.
@@ -80,6 +89,10 @@
     \item $\qq^{[\alpha, \beta)} := \qq^{< \beta} \setminus \qq^{< \alpha}$
   \end{enumerate}
 \end{definition}
+
+% Discussion
+We now introduce the notion of exact power and the Hausdorff rank itself, which formalize the idea of measuring the
+complexity of a linear order relative to a given property.
 
 % Definition of the Hausdorff rank
 \begin{definition}
