@@ -69,7 +69,14 @@
 \end{lemma}
 
 \begin{proof}
-  TBC.
+  Suppose $J \in \qqo^{< \alpha}$.
+  Then obviously $J$ is contained in a single $\sim_{\alpha}$-equivalence class $K$.
+
+  We will show the first condition, the second is symmetric.
+
+  Suppose that for all $x \in K$, $J \le x$.
+  Then we can write $K = J + J'$.
+  Since $J \in \qqo^{< \alpha}$, it follows that $K \in \lb{\qqo^{< \alpha}}$.
 \end{proof}
 
 \begin{corollary}\label{int-expressible}
@@ -188,6 +195,38 @@
   Then $C$ is a computable property.
 \end{corollary}
 
+\begin{lemma}{\label{many-ordinals-decomposition}}
+  Let $\alpha_k > \ldots > \alpha_1 > 0$ be ordinals, such that
+  $\alpha_{j+1} \ge \alpha_j + \omega$ for all $j < k$.
+
+  For each $j = 1, \ldots, k$, let $P_j$, $L_j$ and $R_j$ be
+  first-order unary predicates, and let $\alpha_j$ be the corresponding ordinal.
+
+  Let $C$ be the class of
+  all countable linear orders labeled with $P_j$, $L_j$ and $R_j$ for $j = 1, \ldots, k$,
+  such that $P_j$ represents $\sim_{\alpha_j}$,
+  $L_j \ps{x} \iff \bs{x}_{\alpha_j} \in \lb{\qqo^{< \alpha_j}}$ and
+  $R_j \ps{x} \iff \bs{x}_{\alpha_j} \in \rb{\qqo^{< \alpha_j}}$ for each $j$.
+
+  Let $\mathbf{G}$ be the class of all countable linear orders $I$,
+  labeled with a $P$, $L$ and $R$,
+  such that for every pair $i, i' \in I$ such that $i'$ is the successor of $i$,
+  $P(i) \ne P(i')$,
+  and either $R(i) = 0$ or $L(i') = 0$.
+
+  Let $\sigma(i) \in \set{1, \omega, \agemo, \oo}$ be such that
+  $L(i) = 1$ iff $\sigma(i) \in \set{1, \omega}$ and
+  $R(i) = 1$ iff $\sigma(i) \in \set{1, \agemo}$.
+
+  Then, $C = \bigcup_{I \in \mathbf{G}} \sum_{i \in I} \mathcal{S}^{\sigma(i)}_{\alpha}$.
+\end{lemma}
+
+\begin{proof}
+  Actually the proof is the same as in~\cref{single-ordinal-decomposition},
+  as we may assume there that the classes come with labels,
+  and the arguments carry over verbatim.
+\end{proof}
+
 \begin{theorem}\label{single-ordinal-satisfiability}
   Let $\alpha > 0$ be an ordinal.
 
@@ -212,25 +251,4 @@
   Thus we can compute $\type{n}{C}$ and $\type{n}{\varphi'}$,
   and thus we can compute whether $\varphi$ is satisfiable over all countable linear orders,
   by seeing if these sets intersect.
-\end{proof}
-
-\begin{theorem}
-  Let $\alpha, \delta_1, \ldots, \delta_k$ be ordinals.
-
-  Let $\alpha_i = \alpha + \delta_i$ for $i = 1, \ldots, k$.
-
-  Let $C$ be the class of all countable linear orders
-  labeled with $\pi_{\alpha}$ and $\sigma_{\alpha}$,
-  and $\pi_{\alpha_i}$ and $\sigma_{\alpha_i}$ for $i = 1, \ldots, k$.
-
-  Let $\mathbf{G}$ be the class of all countable linear orders $I$,
-  labeled with a coloring function $\gamma$
-  whose range is $\set{1, \omega, \agemo, \oo}$,
-  such that for pair $i, j \in I$ such that $j$ is the successor of $i$,
-  either $\gamma(i) \in \set{\omega, \oo}$
-  or $\gamma(j) \in \set{\agemo, \oo}$.
-\end{theorem}
-
-\begin{proof}
-  TBC.
 \end{proof}

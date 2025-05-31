@@ -266,14 +266,12 @@
   Let $\pp$ be an additive property of linear orders.
 
   Then,
-  \[
-    \begin{aligned}
-      \bounded{\pp} & = \pp                                                            \\
-                    & \uplus \ps{\lb{\pp} \setminus \rb{\pp}}                          \\
-                    & \uplus \ps{\rb{\pp} \setminus \lb{\pp}}                          \\
-                    & \uplus \ps{ \bounded{\pp} \setminus \ps{\lb{\pp} \cup \rb{\pp}}}
-    \end{aligned}
-  \]
+  \begin{align*}
+    \bounded{\pp} & = \pp                                                            \\
+                  & \uplus \ps{\lb{\pp} \setminus \rb{\pp}}                          \\
+                  & \uplus \ps{\rb{\pp} \setminus \lb{\pp}}                          \\
+                  & \uplus \ps{ \bounded{\pp} \setminus \ps{\lb{\pp} \cup \rb{\pp}}}
+  \end{align*}
 \end{lemma}
 
 \begin{proof}
@@ -282,20 +280,54 @@
   since $M + 1 \in \pp$ and $1 + M \in \pp$ both imply $1 + M + 1 \in \pp$.
 
   Thus,
-  \[
-    \begin{aligned}
-      \bounded{\pp} & = \ps{\lb{\pp} \cap \rb{\pp}}                                    \\
-                    & \uplus \ps{\lb{\pp} \setminus \rb{\pp}}                          \\
-                    & \uplus \ps{\rb{\pp} \setminus \lb{\pp}}                          \\
-                    & \uplus \ps{ \bounded{\pp} \setminus \ps{\lb{\pp} \cup \rb{\pp}}}
-    \end{aligned}
-  \]
+  \begin{align*}
+    \bounded{\pp} & = \ps{\lb{\pp} \cap \rb{\pp}}                                    \\
+                  & \uplus \ps{\lb{\pp} \setminus \rb{\pp}}                          \\
+                  & \uplus \ps{\rb{\pp} \setminus \lb{\pp}}                          \\
+                  & \uplus \ps{ \bounded{\pp} \setminus \ps{\lb{\pp} \cup \rb{\pp}}}
+  \end{align*}
 
   Since by~\cref{bounded-properties} $\pp = \lb{\pp} \cap \rb{\pp}$,
   we conclude what we wanted to prove.
 \end{proof}
 
+\begin{lemma}
+  Let $\pp$ be an additive property of linear orders.
+
+  Let $M, M_1, M_2$ be linear orders such that
+  $M = M_1 + M_2$.
+
+  Then,
+  \begin{enumerate}
+    \item
+    $M \in \bounded{\pp} \iff M_1 \in \lb{\pp} \wedge M_2 \in \rb{\pp}$
+    \item $M \in \lb{\pp} \iff M_1 \in \lb{\pp} \wedge M_2 \in \pp$
+    \item $M \in \rb{\pp} \iff M_1 \in \pp \wedge M_2 \in \rb{\pp}$
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  From~\cref{bounded-properties}, we know that
+  \begin{enumerate}
+    \item 
+  \begin{align*}
+    M \in \bounded{\pp}
+     & \iff M_1 + M_2 \in \bounded{\pp}                                \\
+     & \iff M_1 + 1 \in \bounded{\pp} \wedge 1 + M_2 \in \bounded{\pp} \\
+     & \iff M_1 \in \lb{\pp} \wedge M_2 \in \rb{\pp}
+  \end{align*}
+  where the second transition follows from the star lemma~\cref{star-lemma}.
+  \item TBC.
+  \item TBC.
+  \end{enumerate}
+
+\end{proof}
+
 \begin{corollary}\label{bounded-is-right-plus-left}
+  Let $\pp$ be an additive property of linear orders.
+
+  Then,
+
   \[
     \bounded{\pp} \setminus \ps{\lb{\pp} \cup \rb{\pp}}
     = \ps{\lb{\pp} \setminus \rb{\pp}} + \ps{\rb{\pp} \setminus \lb{\pp}}

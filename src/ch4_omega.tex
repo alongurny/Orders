@@ -54,14 +54,12 @@
   2. The second part is symmetric.
 
   3. The third part follows from~\cref{bounded-is-right-plus-left}:
-  \[
-    \begin{aligned}
-      \bounded{\qqo^{< \alpha}}
-       & = \rb{\qqo^{< \alpha}} + \lb{\qqo^{< \alpha}}                     \\
-       & = \sum_{\agemo}{\qqo^{< \alpha}} + \sum_{\omega}{\qqo^{< \alpha}} \\
-       & = \sum_{\oo}{\qqo^{< \alpha}}
-    \end{aligned}
-  \]
+  \begin{align*}
+    \bounded{\qqo^{< \alpha}}
+     & = \lb{\qqo^{< \alpha}} + \rb{\qqo^{< \alpha}}                     \\
+     & = \sum_{\agemo}{\qqo^{< \alpha}} + \sum_{\omega}{\qqo^{< \alpha}} \\
+     & = \sum_{\oo}{\qqo^{< \alpha}}
+  \end{align*}
 \end{proof}
 
 An immediate corollary of~\cref{bounded-structure} is that:
@@ -94,20 +92,21 @@ An immediate corollary of~\cref{bounded-structure} is that:
 
   ($\supseteq$) Let $M \in \sum_{i \in \omega}{\qqo^{[\alpha_i, \alpha)}}$ be a linear order.
   Then obviously $M \in \sum_{\omega}{\qqo^{< \alpha}} = \rb{\qqo^{< \alpha}}$.
-  
+
   Suppose for the contrary that $M \in \lb{\qqo^{< \alpha}}$.
-  By~\cref{bounded-properties}, $M + 1 \in \bounded{\qqo^{< \alpha}}$.
+  TBC.
 
   ($\subseteq$) Let $M \in \mathcal{S}^{\omega}_{\alpha}$ be a linear order.
 
   By~\cref{bounded-structure}, $M = \sum_{\omega}{M_i}$ for some $M_i \in \qqo^{< \alpha}$.
-  
+
   We will define by induction a new sequence $\set{N_i}_{i \in \omega}$ such that $M = \sum_{i \in \omega} N_i$,
   where $N_i \in \qqo^{[\alpha_i, \alpha)}$.
 
   Suppose that $N_j$ is defined for all $j < i$.
 
   Since $M \notin \lb{\qqo^{< \alpha}}$, $[M_i, \infty) \notin \qqo^{< \alpha}$.
+  TBC.
 \end{proof}
 
 \begin{note}
