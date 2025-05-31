@@ -17,8 +17,12 @@ abstract way. The following definition formalizes this idea.
   is closed under isomorphism.
 \end{definition}
 
+% Discussion
+Intervals and subintervals are fundamental in the study of linear orders, as they allow us to focus on local structure and
+analyze how properties behave under restriction. The next definition introduces the various types of subintervals.
+
 % Definition of an interval, subintervals and bounded subintervals
-\begin{definition}{Subintervals}
+\begin{definition}[Subintervals]
   Let $M$ be a linear order,
   and let $x, y \in M$, such that $x \le y$.
 
@@ -45,8 +49,8 @@ abstract way. The following definition formalizes this idea.
 \end{definition}
 
 % Discussion
-Intervals and subintervals are fundamental in the study of linear orders, as they allow us to focus on local structure and
-analyze how properties behave under restriction. The next definition introduces the various types of subintervals.
+Cofinality concepts help us understand the 'ends' of a linear order and play a crucial role in the classification of infinite
+orders. The following definitions introduce left, right, and bi-directional cofinality.
 
 % Definition of left/right/bi-directionally cofinal
 \begin{definition}
@@ -62,9 +66,8 @@ analyze how properties behave under restriction. The next definition introduces 
 \end{definition}
 
 % Discussion
-Cofinality concepts help us understand the 'ends' of a linear order and play a crucial role in the classification of infinite
-orders. The following definitions introduce left, right, and bi-directional cofinality.
-
+The next lemma shows that additive properties are preserved when passing to intervals, which is a key feature for many
+structural results about linear orders.
 \begin{lemma}\label{additive-interval}
   Let $\pp$ be an additive property of linear orders.
 
@@ -74,10 +77,6 @@ orders. The following definitions introduce left, right, and bi-directional cofi
 
   Then, $[x, y] \in \pp$.
 \end{lemma}
-
-% Discussion
-The next lemma shows that additive properties are preserved when passing to intervals, which is a key feature for many
-structural results about linear orders.
 
 \begin{proof}
   WLOG, suppose $x \le y$.
@@ -92,15 +91,15 @@ structural results about linear orders.
   Since $\pp$ is an additive property, we conclude that $[x, y] \in \pp$.
 \end{proof}
 
+% Discussion
+The following corollary demonstrates that any nontrivial additive property must contain the singleton order, highlighting the
+minimal elements in such classes.
+
 \begin{corollary}\label{additive-1}
   Let $\pp$ be a nontrivial additive property of linear orders.
 
   Then $1 \in \pp$.
 \end{corollary}
-
-% Discussion
-The following corollary demonstrates that any nontrivial additive property must contain the singleton order, highlighting the
-minimal elements in such classes.
 
 \begin{proof}
   Let $M \in \pp$ be any linear order and let
@@ -264,8 +263,7 @@ The note below clarifies the limitations of the previous result, emphasizing the
 
           If $y < \infty$, then $[x, y] \subseteq [x, \infty)$.
           Since $[x, \infty) \in \pp$, we conclude that $[x, y] \in \pp$.
-          Otherwise, if $y = \infty$, then $[x, y] = [x, \infty] =
-            [x, \infty) + \set{\infty}$, and thus $[x, y] \in \pp$.
+          Otherwise, if $y = \infty$, then $[x, y] = [x, \infty] = [x, \infty) + \set{\infty}$, and thus $[x, y] \in \pp$.
 
           % 1 + M case
     \item

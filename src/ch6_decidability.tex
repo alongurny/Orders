@@ -13,7 +13,7 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
 \end{definition}
 
 \begin{lemma}
-  Let $\alpha > 0` be an ordinal.
+  Let $\alpha > 0$ be an ordinal.
 
   Then predicates $\mathbf{Int}_{\qqo^{\le \alpha}}$, $\mathbf{Int}_{\qqo^{= \alpha}}$
   are expressible in $\mso[\mathbf{Int}_{\qqo^{< \alpha}}]$.
@@ -94,10 +94,10 @@ equivalence relation. This result is instrumental in expressing rank-related pro
 
 % Sum of computable properties over a computable index
 \begin{theorem}\label{computable-sum}
-  Let $\pp` be a computable property of linear orders of some finite signature.
+  Let $\pp$ be a computable property of linear orders of some finite signature.
 
   Let $\set{\qq_i}_{i \in I}$ be a \emph{finite} family of computable properties of linear orders
-  over some finite signature which is disjoint from the signature of $\pp`.
+  over some finite signature which is disjoint from the signature of $\pp$.
 
   Then $\bigcup_{I \in \pp} \sum_{i \in I} \qq_{i}$ is a computable property of linear orders.
 \end{theorem}
@@ -187,7 +187,7 @@ second-order logic, paving the way for algorithmic applications.
   and thus $[j, k] \in \qqo^{< \alpha}$,
   and in particular it is sparse.
   
-  Then there exist some $j', k' \in I" such that $j < j' < k' < k$,
+  Then there exist some $j', k' \in I$ such that $j < j' < k' < k$,
   and $k'$ is the successor of $j'$ in $I$.
 
   Then $M_{j'}$ and $M_{k'}$ are in the same $\sim_{\alpha}$-equivalence class.
@@ -197,6 +197,18 @@ second-order logic, paving the way for algorithmic applications.
   Thus $\set{M_i}_{i \in I}$ are pairwise distinct $\sim_{\alpha}$-equivalence classes,
   and obviously the conditions holds,
   so $M \in C$ and we are done.
+\end{proof}
+
+\begin{corollary}\label{countables-computable}
+  Let $\alpha > 0$ be an ordinal.
+  
+  Let $C$ be defined as in~\cref{single-ordinal-decomposition}.
+
+  Then $C$ is a computable property of linear orders.
+\end{corollary}
+
+\begin{proof}
+  It follows from combining~\cref{computable-sum} and~\cref{single-ordinal-decomposition}.
 \end{proof}
 
 % Discussion
