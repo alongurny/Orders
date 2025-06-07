@@ -16,6 +16,9 @@
         "supremum",
         "WLOG"
     ],
+    "cSpell.enabledFileTypes": {
+        "sty": false,
+    },
     "files.exclude": {
         "**/.git": true, // this is a default value
         "**/.DS_Store": true, // this is a default value
@@ -84,7 +87,4 @@
             "env": {}
         }
     ],
-    "cSpell.enabledFileTypes": {
-        "tex": false
-    },
 }

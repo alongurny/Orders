@@ -2,7 +2,7 @@
 
 In this chapter, we focus on the special case of the Hausdorff rank associated with the ordinal $\omega$. This case is of particular interest due to its connections with countable structures and its role in the classification of infinite linear orders. We introduce new families of properties and analyze their relationships, providing tools that will be essential for the study of types and decidability.
 
-\begin{definitions}
+\begin{definitions}\label{bounded-definitions}
   Let $\alpha > 0$ be an ordinal.
 
   We define:
@@ -69,25 +69,29 @@ The next lemma describes the structure of right-bounded, left-bounded, and bound
 and related index sets. This structural insight is crucial for later results on types and expressibility.
 
 An immediate corollary of~\cref{bounded-structure} is that:
-\begin{corollary}
+\begin{corollary}\label{le-alpha-corollary}
   Let $\alpha > 0$ be an ordinal.
 
-  Then $\qqo^{\le \alpha} = \ps{\bounded{\qqo^{< \alpha}}}^+$.
+  Then,
+  \begin{enumerate}
+    \item $\qqo^{\le \alpha} = \ps{\bounded{\qqo^{< \alpha}}}^+$
+    \item $\qqo^{= \alpha}
+            = \ps{
+              \mathcal{S}^{\omega^\ast}_{\alpha}
+              \uplus \mathcal{S}^{\omega}_{\alpha}
+            }^+$
+  \end{enumerate}
 \end{corollary}
 
-\begin{lemma}\label{shape-structure}
-  Let $\alpha > 0$ be an ordinal.
+\begin{lemma}\label{shape-structure-successor}
+  Let $\alpha$ be an ordinal.
 
   Let $s \in \set{\omega, \agemo, \oo}$.
-
-  Suppose that
-  $\alpha = \limsup_{i \in s} \ps{\alpha_i + 1}$ for
-  ordinals $\set{\alpha_i}_{i \in s}$.
 
   Then, we have the following:
 
   \[
-    \mathcal{S}^{s}_{\alpha} = \sum_{i \in s}{\qqo^{[\alpha_i, \alpha)}}
+    \mathcal{S}^{s}_{\alpha + 1} = \sum_{i \in s}{\qqo^{= \alpha}}
   \]
 \end{lemma}
 
@@ -96,28 +100,105 @@ An immediate corollary of~\cref{bounded-structure} is that:
   since $s = \agemo$ follows by symmetry,
   and $s = \oo$ follows by adding the previous two cases.
 
-  ($\supseteq$) Let $M \in \sum_{i \in \omega}{\qqo^{[\alpha_i, \alpha)}}$ be a linear order.
-  Then obviously $M \in \sum_{\omega}{\qqo^{< \alpha}} = \rb{\qqo^{< \alpha}}$.
+  ($\subseteq$) Let $M \in \mathcal{S}^{\omega}_{\alpha + 1}$.
 
-  Suppose for the contrary that $M \in \lb{\qqo^{< \alpha}}$.
-  TBC.
+  By~\cref{bounded-structure} and~\cref{le-alpha-corollary}
+  \[
+    \rb{\qqo^{< \alpha + 1}}
+    = \sum_{\omega}{\qqo^{< \alpha + 1}}
+    = \sum_{\omega}{\qqo^{\le \alpha}}
+    = \sum_{\omega}{\ps{\bounded{\qqo^{< \alpha}}}^+}
+    = \sum_{\omega}{\bounded{\qqo^{< \alpha}}}
+  \]
 
-  ($\subseteq$) Let $M \in \mathcal{S}^{\omega}_{\alpha}$ be a linear order.
+  since by~\cref{bounded-definitions}, $M \in \rb{\qqo^{< \alpha + 1}}$,
+  we conclude that $M = \sum_{i \in \omega}{M_i}$ for a sequence
+  $\set{M_i}_{i \in \omega} \subseteq \bounded{\qqo^{< \alpha}}$.
 
-  By~\cref{bounded-structure}, $M = \sum_{\omega}{M_i}$ for some $M_i \in \qqo^{< \alpha}$.
+  If $M_i \in \qqo^{= \alpha}$ held for only finitely many $i \in \omega$,
+  we would have $M \in \qqo^{\le \alpha}$, which is a contradiction
+  to $M \notin \lb{\qqo^{< \alpha}}$.
 
-  We will define by induction a new sequence $\set{N_i}_{i \in \omega}$ such that $M = \sum_{i \in \omega} N_i$,
-  where $N_i \in \qqo^{[\alpha_i, \alpha)}$.
+  Thus, $M_i \in \qqo^{= \alpha}$ holds
+  for infinitely many $i \in \omega$, and thus (by adjoining $M_i \in \qqo^{< \alpha}$
+  to the next $\qqo^{= \alpha}$ one) we conclude $M \in \sum_{\omega}{\qqo^{= \alpha}}$.
 
-  Suppose that $N_j$ is defined for all $j < i$.
+  ($\supseteq$) Let $M \in \sum_{\omega}{\qqo^{= \alpha}}$.
 
-  Since $M \notin \lb{\qqo^{< \alpha}}$, $[M_i, \infty) \notin \qqo^{< \alpha}$.
-  TBC.
+  Since $M \in \sum_{\omega} {\qqo^{< \alpha + 1}}$, by~\cref{bounded-structure},
+  $M \in \rb{\qqo^{< \alpha + 1}}$.
+
+  By~\cref{le-alpha-corollary},
+  \[
+    M \in \sum_{\omega}{\qqo^{= \alpha}}
+    = \sum_{\omega} \ps{ \mathcal{S}^{\omega^\ast}_{\alpha} \uplus \mathcal{S}^{\omega}_{\alpha} }^+
+    = \sum_{\omega} \ps{ \mathcal{S}^{\omega^\ast}_{\alpha} \uplus \mathcal{S}^{\omega}_{\alpha} }
+  \]
+
+  Suppose $M = \sum_{i \in \omega}{M_i}$ where $M_i \in \mathcal{S}^{s_i}_{\alpha}$
+  for $s_i \in {\omega^\ast, \omega}$. By the pigeonhole principle,
+  suppose eventually $s_i = s$. WLOG, eventually $s_i = \omega$. WLOG,
+  $s_i = \omega$ for all $i \in \omega$, so $M \in \sum_{\omega} \mathcal{S}^{\omega}_{\alpha}$.
+
+  Suppose by contradiction $M = \qqo^{\le \alpha} = \ps{\bounded{\qqo^{< \alpha}}}^+$.
+  In particular, by the pigeonhole principle, there exists some $N \in \omega$
+  such that $\sum_{N \le i < \omega} M_i \in \bounded{\qqo^{< \alpha}}$,
+  which is a contradiction because it follows that $M_{N+1} \in \qqo{< \alpha}$ as it is bounded
+  between $M_N$ and $M_{N+2}$.
+\end{proof}
+
+\begin{lemma}\label{shape-structure-limit}
+  Let $\set{\alpha_i}_{i \in \omega}$ be a strictly
+  increasing ordinal sequence, and let $\alpha = \sup_{\alpha_i}$.
+
+  Then,
+  \[
+    \mathcal{S}^{s}_{\alpha} = \sum_{i \in s}{\qqo^{[\alpha_i, \alpha)}}
+  \]
+\end{lemma}
+
+\begin{proof}
+  Again, it is enough to prove for $s = \omega$.
+  ($\subseteq$) Let $M \in \mathcal{S}^{\omega}_{\alpha}$.
+  Let ${y_i}_{i < \omega}$ be a right cofinal $\omega$-sequence in $M$.
+
+  Thus we can choose some $x_0$ far enough such that $(-\infty, x_0] \in \qqo^{[\alpha_0, \alpha)}$,
+  and $x_0 > y_0$.
+  Now by induction we choose $x_1$ such that $(x_0, x_1] \in \qqo^{[\alpha_1, \alpha)}$,
+  and $x_1 > y_1$.
+
+  By iterating $\omega$ times we get an $\omega$-sequence $\set{M_i}_{i \in \omega}$
+  such that $M = \sum_{i \in \omega} M_i$ and $M_i \in \qqo^{[\alpha_i, \alpha)}$,
+  where $M_i = (x_{i-1}, x_i]$ (where $x_{-1} := -\infty$).
+
+
+  ($\supseteq$) Let $M \in \sum_{i \in \omega}{\qqo^{[\alpha_i, \alpha)}}$.
+  It is obvious that $M \in \rb{\qqo^{< \alpha}}$ since every right-bounded
+  ray is in $\qqo^{\le \alpha_i}$ for some $i \in \omega$.
+
+  However, $M \notin \qqo^{< \alpha_i}$ for any $i \in \omega$, so $M \notin \qqo^{< \alpha}$.
+
+
+\end{proof}
+
+\begin{lemma}\label{shape-structure}
+  Let $\set{\alpha_i}_{i \in \omega}$ be a non-decreasing ordinal sequence,
+  and let $\alpha = \sup_{\alpha_i + 1}$.
+
+  Then,
+  \[
+    \mathcal{S}^{s}_{\alpha} = \sum_{i \in s}{\qqo^{= \alpha_i}}
+  \]
+\end{lemma}
+
+\begin{proof}
+  It is just a way to write~\cref{shape-structure-successor} and~\cref{shape-structure-limit}
+  together more succinctly.
 \end{proof}
 
 \begin{note}
   For the proof of~\cref{shape-structure}, we actually use the fact that
-  we work over $\qqo$. This proof would not have worked over $\Gamma_{\beta}$
+  we work over $\qqo = \Gamma_{\omega}$. This proof would not have worked over $\Gamma_{\beta}$
   for $\beta > \omega$.
 \end{note}
 
@@ -139,9 +220,11 @@ bounded sums.
 \end{corollary}
 
 \begin{proof}
-  Suppose that $\delta = \limsup_{i \in s} \delta_i$.
+  Suppose that $\delta = \sup_{i \in s} \delta_i$,
+  where $\set{\delta_i}_{i \in s}$ is an increasing $s$-sequence
+  of ordinals.
 
-  Then $\alpha + \delta = \limsup_{i \in s} \ps{\alpha_i + \delta_i}$.
+  Then $\alpha + \delta = \sup_{i \in s} \ps{\alpha_i + \delta_i}$.
 
   \[
     \mathcal{S}^{s}_{\alpha + \delta}
@@ -150,28 +233,4 @@ bounded sums.
     = \sum_{\sum_{i \in s}{\qqo^{= \delta_i}}}{\qqo^{= \alpha}}
     = \sum_{\mathcal{S}^{s}_{\delta}}{\qqo^{= \alpha}}
   \]
-\end{proof}
-
-% Discussion
-The next lemma provides a decomposition of shapes in terms of sums over index sets, which will be used in the analysis of
-types and their stabilization properties.
-
-\begin{lemma}\label{decomposition-lemma}
-  Let $\alpha > 0$ be an ordinal.
-
-  Let $s \in \set{\omega, \agemo, \oo}$.
-
-  Suppose that
-  $\alpha = \limsup_{i \in s} \ps{\alpha_i + 1}$ for
-  ordinals $\set{\alpha_i}_{i \in s}$.
-
-  Then, we have the following:
-
-  \[
-    \mathcal{S}^{s}_{\alpha} = \sum_{i \in s}{\qqo^{[\alpha_i, \alpha)}}
-  \]
-\end{lemma}
-
-\begin{proof}
-  This follows immediately from~\cref{shape-structure} and the definitions.
 \end{proof}
