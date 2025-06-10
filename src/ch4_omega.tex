@@ -64,10 +64,6 @@ In this chapter, we focus on the special case of the Hausdorff rank associated w
   \end{align*}
 \end{proof}
 
-% Discussion
-The next lemma describes the structure of right-bounded, left-bounded, and bounded intervals in terms of sums over $\omega$
-and related index sets. This structural insight is crucial for later results on types and expressibility.
-
 An immediate corollary of~\cref{bounded-structure} is that:
 \begin{corollary}\label{le-alpha-corollary}
   Let $\alpha > 0$ be an ordinal.
@@ -187,7 +183,7 @@ An immediate corollary of~\cref{bounded-structure} is that:
 
   Then,
   \[
-    \mathcal{S}^{s}_{\alpha} = \sum_{i \in s}{\qqo^{= \alpha_i}}
+    \mathcal{S}^{s}_{\alpha} = \sum_{i \in s}{\qqo^{[\alpha_i, \alpha)}}
   \]
 \end{lemma}
 
@@ -197,40 +193,7 @@ An immediate corollary of~\cref{bounded-structure} is that:
 \end{proof}
 
 \begin{note}
-  For the proof of~\cref{shape-structure}, we actually use the fact that
+  In the proof of~\cref{shape-structure}, we actually use the fact that
   we work over $\qqo = \Gamma_{\omega}$. This proof would not have worked over $\Gamma_{\beta}$
   for $\beta > \omega$.
 \end{note}
-
-% Discussion
-The corollary that follows gives an immediate application of the previous lemma, relating the $\le \alpha$ property to
-bounded sums.
-
-\begin{corollary}
-  Let $\alpha, \delta > 0$ be limit ordinals.
-
-  Let $s \in \set{\omega, \agemo, \oo}$
-
-  Then,
-
-  \[
-    \mathcal{S}^{s}_{\alpha + \delta}
-    = \sum_{\mathcal{S}^{s}_{\delta}}{\qqo^{= \alpha}}
-  \]
-\end{corollary}
-
-\begin{proof}
-  Suppose that $\delta = \sup_{i \in s} \delta_i$,
-  where $\set{\delta_i}_{i \in s}$ is an increasing $s$-sequence
-  of ordinals.
-
-  Then $\alpha + \delta = \sup_{i \in s} \ps{\alpha_i + \delta_i}$.
-
-  \[
-    \mathcal{S}^{s}_{\alpha + \delta}
-    = \sum_{i \in s}{\mathcal{S}^{s}_{\alpha + \delta_i}}
-    = \sum_{i \in s}\sum_{\qqo^{= \delta_i}}{\qqo^{= \alpha}}
-    = \sum_{\sum_{i \in s}{\qqo^{= \delta_i}}}{\qqo^{= \alpha}}
-    = \sum_{\mathcal{S}^{s}_{\delta}}{\qqo^{= \alpha}}
-  \]
-\end{proof}

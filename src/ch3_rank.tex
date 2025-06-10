@@ -24,10 +24,6 @@ The concept of rank provides a powerful tool for measuring the complexity of lin
   Then $\qq^{< 1} = \qq$.
 \end{example}
 
-% Discussion
-The Hausdorff power construction enables us to build increasingly complex properties by iterating the sum operation. The
-following example illustrates the base case of this construction.
-
 \begin{lemma}\label{sum-of-ranks}
   Let $\qq$ be a property of linear orders.
 
@@ -39,10 +35,6 @@ following example illustrates the base case of this construction.
     = \sum_{\qq^{< \delta}}{\qq^{< \alpha}}
   \]
 \end{lemma}
-
-% Discussion
-The next lemma provides a key formula for decomposing the Hausdorff power, which will be used repeatedly in the analysis of
-ranks.
 
 \begin{proof}
   We shall prove this by induction on $\delta \ge 0$.
@@ -89,10 +81,6 @@ ranks.
     \item $\qq^{[\alpha, \beta)} := \qq^{< \beta} \setminus \qq^{< \alpha}$
   \end{enumerate}
 \end{definition}
-
-% Discussion
-We now introduce the notion of exact power and the Hausdorff rank itself, which formalize the idea of measuring the
-complexity of a linear order relative to a given property.
 
 % Definition of the Hausdorff rank
 \begin{definition}

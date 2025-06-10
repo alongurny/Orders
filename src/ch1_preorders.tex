@@ -1,10 +1,4 @@
 \section{Preorders}
-
-Preorders form the foundational structure upon which more complex order-theoretic concepts are built. In this chapter, we
-introduce the basic definitions and properties of preorders, setting the stage for the study of linear orders, ranks, and types
-in subsequent chapters. We motivate the study of preorders by highlighting their role as a generalization of partial and linear
-orders, and by showing how properties and operations on preorders can be systematically developed.
-
 We begin by studying the properties of preorders. Basically, we define a \emph{property} as a class which is close under
 isomorphism. We then define the sum operation on preorders. This will be used to create new properties from old ones.
 
@@ -17,19 +11,11 @@ isomorphism. We then define the sum operation on preorders. This will be used to
   over some first-order monadic signature.
 \end{definitions}
 
-% Discussion
-The notion of a property of preorders allows us to classify preorders according to structural features that are preserved under
-isomorphism. This abstraction is crucial for developing general results that apply to broad classes of structures.
-
 % Definition of a property
 \begin{definition}[Property of preorders]
   A \emph{property} $\pp$ of preorders is a class of preorders which
   is closed under isomorphism.
 \end{definition}
-
-% Discussion
-Monotonicity is a natural strengthening of the notion of a property, ensuring that substructures inherit the property. This is
-particularly useful when analyzing how properties behave under restrictions to suborders.
 
 % Definition of a monotone property
 \begin{definition}
@@ -43,10 +29,6 @@ particularly useful when analyzing how properties behave under restrictions to s
 
   Then $M^\ast$ is the dual/reverse preorder of $M$.
 \end{definition}
-
-% Discussion
-The sum operation on preorders is a key construction that enables us to build larger preorders from smaller ones. The following
-definitions and lemmas formalize this operation and explore its basic properties.
 
 \begin{definition}[Sum of preorders]
   Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders over
@@ -89,10 +71,6 @@ definitions and lemmas formalize this operation and explore its basic properties
   Otherwise, $i < k$, and thus $x \le z$, as required.
 \end{proof}
 
-% Discussion
-The next lemma confirms that the sum of preorders, as defined, indeed yields a preorder. This is essential for ensuring that our
-constructions remain within the intended class of structures.
-
 % Definition of sum of two properties
 \begin{definition}
   Let $\pp_1$ and $\pp_2$ be properties of preorders.
@@ -105,19 +83,11 @@ constructions remain within the intended class of structures.
   The labels are inherited from either $\pp_1$ or $\pp_2$.
 \end{definition}
 
-% Discussion
-We now extend the sum operation to properties of preorders, allowing us to combine classes of structures in a systematic way.
-This leads to the notion of additive properties, which are stable under sums.
-
 % Definition of an additive property
 \begin{definition}
   A property $\pp$ of preorders is an \emph{additive property} if for every preorders $M_1$ and $M_2$,
   $M_1 + M_2 \in \pp$ iff $M_1, M_2 \in \pp$.
 \end{definition}
-
-% Discussion
-The Kleene plus operation captures the idea of closure under finite sums, which is a recurring theme in the study of algebraic
-structures. It provides a convenient way to generate new properties from existing ones.
 
 \begin{definition}[Kleene plus]
   Let $\pp$ be a property of preorders.
@@ -172,7 +142,3 @@ structures. It provides a convenient way to generate new properties from existin
     \sum_{\pp}{\qq} := \set{\sum_{I}{\qq} : I \in \pp}
   \]
 \end{definition}
-
-% Discussion
-Finally, we generalize the sum operation to families of properties and to sums indexed by properties themselves. These
-generalizations will be useful in later chapters when we analyze more complex constructions.

@@ -7,19 +7,11 @@ Linear orders are a central object of study in order theory, providing a natural
   A \emph{linear order} a preorder which is symmetric and total.
 \end{definitions}
 
-% Discussion
-Properties of linear orders, like those of preorders, allow us to classify and study these structures in a general and
-abstract way. The following definition formalizes this idea.
-
 % Definition of a property
 \begin{definition}[Property of linear orders]
   A \emph{property} $\pp$ of linear orders is a class of linear orders which
   is closed under isomorphism.
 \end{definition}
-
-% Discussion
-Intervals and subintervals are fundamental in the study of linear orders, as they allow us to focus on local structure and
-analyze how properties behave under restriction. The next definition introduces the various types of subintervals.
 
 % Definition of an interval, subintervals and bounded subintervals
 \begin{definition}[Subintervals]
@@ -48,10 +40,6 @@ analyze how properties behave under restriction. The next definition introduces 
 
 \end{definition}
 
-% Discussion
-Cofinality concepts help us understand the 'ends' of a linear order and play a crucial role in the classification of infinite
-orders. The following definitions introduce left, right, and bi-directional cofinality.
-
 % Definition of left/right/bi-directionally cofinal
 \begin{definition}
   Let $M$ be a linear order.
@@ -65,9 +53,6 @@ orders. The following definitions introduce left, right, and bi-directional cofi
   A set $A \subseteq M$ is \emph{bi-directionally cofinal} in $M$ if it is both left and right cofinal.
 \end{definition}
 
-% Discussion
-The next lemma shows that additive properties are preserved when passing to intervals, which is a key feature for many
-structural results about linear orders.
 \begin{lemma}\label{additive-interval}
   Let $\pp$ be an additive property of linear orders.
 
@@ -91,10 +76,6 @@ structural results about linear orders.
   Since $\pp$ is an additive property, we conclude that $[x, y] \in \pp$.
 \end{proof}
 
-% Discussion
-The following corollary demonstrates that any nontrivial additive property must contain the singleton order, highlighting the
-minimal elements in such classes.
-
 \begin{corollary}\label{additive-1}
   Let $\pp$ be a nontrivial additive property of linear orders.
 
@@ -116,9 +97,6 @@ minimal elements in such classes.
   For example, $\ps{1 \uplus 1}^+$ is a property of preorders
   which is additive, but does not contain $1$.
 \end{note}
-
-% Discussion
-The note below clarifies the limitations of the previous result, emphasizing the importance of the linearity assumption.
 
 \begin{corollary}\label{additive-endpoints}
   Let $\pp$ be an additive property of linear orders.

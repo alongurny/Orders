@@ -16,6 +16,8 @@ Type theory provides a framework for analyzing the expressive power of logical l
 \begin{definition}
     A property $\pp$ of preorders is \emph{computable} if
     $n \mapsto \type{n}{\pp}$ is a computable function.
+
+    Equivalently, satisfiability of$\mso$ over $\pp$ is decidable.
 \end{definition}
 
 \begin{lemma}\label{f-lemma}
@@ -35,10 +37,6 @@ Type theory provides a framework for analyzing the expressive power of logical l
     This $\kappa_0$ is computable as a function of $n$, because
     $\type{n}{\qq^{< \kappa}}$ is computable for every finite $\kappa$.
 \end{proof}
-
-% Discussion
-The following lemma establishes the existence of a stabilization function for types, which is a key step in proving
-computability results for properties of preorders.
 
 \begin{lemma}\label{ab-lemma}
     There exist global computable functions $a, b : \NN \to \NN$ such that
@@ -62,10 +60,6 @@ computability results for properties of preorders.
     since $\qq^{= c + 1} = \sum_{\qq} \qq^{= c}$.
 \end{proof}
 
-% Discussion
-The next lemma shows that types stabilize not just for a single property, but uniformly across certain families of
-properties. This uniformity is essential for later results on shapes and their computability.
-
 \begin{corollary}\label{s-alpha-finite}
     Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
 
@@ -79,7 +73,7 @@ properties. This uniformity is essential for later results on shapes and their c
 
 \begin{proof}
     For $s = 1$, it follows from~\cref{f-lemma},
-    since $\mathcal{S}^{1}_{c} = \qq^{< c}$
+    since $\mathcal{S}^{1}_{c} = \qqo^{< c}$
     and $c \ge a(n) \ge f(n)$ for $c \in \set{c_1, c_2}$.
 
     For $s \in \set{\omega, \agemo, \oo}$, it follows easily from~\cref{shape-structure}
@@ -87,25 +81,31 @@ properties. This uniformity is essential for later results on shapes and their c
 \end{proof}
 
 \begin{lemma}
-    For every $n \in \NN$ and for every ordinal $\alpha \ge \omega$,
+    For every $n \in \NN$ and for every pair of ordinals $\alpha \ge \omega$,
+    $\beta > \alpha$,
     \[
-        \type{n}{\qq^{= \alpha}} = \type{n}{\bigcup_{c < b(n)}{\qq^{= a(n) + c}}}
+        \type{n}{\qq^{[\alpha, \beta)}} = \type{n}{\bigcup_{c < b(n)}{\qq^{= a(n) + c}}}
     \]
     In particular, $\type{n}{\qq^{= \alpha}}$ can be computed,
     and is independent of the choice of $\alpha \ge \omega$.
 \end{lemma}
 
 \begin{proof}
-    By induction on $\alpha \ge \omega$.
+    It is enough to prove that
+    \[
+        \type{n}{\qq^{= \alpha}} = \type{n}{\bigcup_{c < b(n)}{\qq^{= a(n) + c}}}
+    \]
+
+    We thus proceed by induction on $\alpha \ge \omega$.
 
     Let $\set{\alpha_i}_{i \in \omega}$ be an increasing $\omega$-sequence of ordinals
     such that $a(n) \le \alpha_i$ for all $i \in \omega$,
     and $\sup_{i \in \omega} \ps{\alpha_i + 1} = \alpha$.
 
-    Then $\qq^{= \alpha} = \sum_{\qq}{\bigcup_{i \in \omega} \qq^{= \alpha_i}}$ and thus,
+    Then $\qq^{= \alpha} = \sum_{\qq}{\bigcup_{i \in \omega} \qq^{[\alpha_i, \alpha)}}$ and thus,
     \begin{align*}
         \type{n}{\qq^{= \alpha}}
-         & = \type{n}{\sum_{\qq} \bigcup_{i \in \omega} \qq^{= \alpha_i}}                     \\
+         & = \type{n}{\sum_{\qq} \bigcup_{i \in \omega} \qq^{[\alpha_i, \alpha)}}             \\
          & = \type{n}{\sum_{\qq} \bigcup_{i \in \omega} \bigcup_{c < b(n)}{\qq^{= a(n) + c}}} \\
          & = \type{n}{\sum_{\qq} \bigcup_{c < b(n)}{\qq^{= a(n) + c}}}                        \\
          & = \type{n}{\bigcup_{c < b(n)}{\sum_{\qq} \qq^{= a(n) + c}}}                        \\
@@ -115,10 +115,6 @@ properties. This uniformity is essential for later results on shapes and their c
 
     where the last transition is because $\type{n}{\qq^{= a(n)}} = \type{n}{\qq^{= a(n) + b(n)}}$.
 \end{proof}
-
-% Discussion
-The corollary below applies the previous lemmas to the specific families of shapes introduced earlier, showing that their
-types also stabilize in a computable way.
 
 \begin{corollary}
     Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
@@ -153,10 +149,6 @@ types also stabilize in a computable way.
     where the last transition is by~\cref{s-alpha-finite}.
 
 \end{proof}
-
-% Discussion
-The next lemma provides an explicit description of the types of exact powers, showing that they can be computed from
-finitely many cases. This result is crucial for the algorithmic analysis of types in infinite settings.
 
 \begin{lemma}
     Let $n \in \NN$, and let $\alpha \ge \omega$ be an ordinal.
