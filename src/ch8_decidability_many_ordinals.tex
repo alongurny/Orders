@@ -1,0 +1,41 @@
+\section{Decidability of the rank - Many Ordinals Version}
+
+\begin{lemma}{\label{many-ordinal-decomposition}}
+  Let $\alpha$ be an ordinal.
+
+  Let $k \in \NN$ and let $\alpha_1, \ldots, \alpha_k$ be ordinals.
+
+  Suppose that...
+
+  Then,
+  \[
+    \cnt \bs{\alpha, \alpha_1, \ldots, \alpha_k}
+    = \sum_{I \in \mathbf{Good}_{\alpha}} \sum_{i \in I} \sigma_\alpha(i) \bs{\alpha_1, \ldots, \alpha_k}
+  \]
+\end{lemma}
+
+\begin{proof}
+  TBC.
+\end{proof}
+
+\begin{corollary}\label{countables-computable-many-ordinals}
+  Let $\alpha_1, \ldots, \alpha_k$ be ordinals.
+
+  Then $\cnt \bs{\alpha_1, \ldots, \alpha_k}$ is a computable class of linear orders.
+\end{corollary}
+
+\begin{proof}
+  Since $\mathbf{Good}_{\alpha}$ is clearly computable,
+  it follows from combining~\cref{computable-sum} and~\cref{many-ordinal-decomposition}.
+\end{proof}
+
+\begin{theorem}\label{many-ordinals-satisfiability}
+  Let $\alpha_1, \ldots, \alpha_k$ be ordinals.
+
+  Then satisfiability of $\mso[\Int{\alpha_1}, \ldots, \Int{\alpha_k}]$-formulae
+  over $\cnt$ is decidable.
+\end{theorem}
+
+\begin{proof}
+  TBC.
+\end{proof}

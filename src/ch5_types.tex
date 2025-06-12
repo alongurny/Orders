@@ -34,8 +34,7 @@ Type theory provides a framework for analyzing the expressive power of logical l
     is monotone,
     there must be some minimal $\kappa_0 \in \om$ where the sequence stabilizes.
 
-    This $\kappa_0$ is computable as a function of $n$, because
-    $\type{n}{\hh{\qq}{< \kappa}}$ is computable for every finite $\kappa$.
+    This $\kappa_0$ is computable as a function of $n$ by successive iteration.
 \end{proof}
 
 \begin{lemma}\label{ab-lemma}
@@ -56,21 +55,24 @@ Type theory provides a framework for analyzing the expressive power of logical l
     \]
 
     By induction if follows that for all $c \ge a(n)$,
-    \[\type{n}{\hh{\qq}{= c}} = \type{n}{\hh{\qq}{= c + b(n)}}\]
+    \[
+        \type{n}{\hh{\qq}{= c}} = \type{n}{\hh{\qq}{= c + b(n)}}
+    \]
     since $\hh{\qq}{= c + 1} = \sum_{\qq} \hh{\qq}{= c}$.
 \end{proof}
 
-\begin{corollary}\label{s-alpha-finite}
+\begin{corollary}\label{right-major-computable}
     Let $n \in \NN$, and let $\alpha \ge \om$ be an ordinal.
 
-    Then there exists a computable function $b(n)$ such that
-    for all $c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
+    Then for all $c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
     we have
     \[\type{n}{\rmj{c_1}} = \type{n}{\rmj{c_2}}\]
 \end{corollary}
 
 \begin{proof}
-    It follows easily from~\cref{right-major-decomposition} and~\cref{ab-lemma}.
+    By~\cref{right-major-successor-decomposition}, $\rmj{c} = \sum_{\om}{\ho{= c}}$.
+
+    Then it follows immediately from~\cref{ab-lemma}.
 \end{proof}
 
 \begin{lemma}
@@ -100,9 +102,9 @@ Type theory provides a framework for analyzing the expressive power of logical l
         \type{n}{\hh{\qq}{= \alpha}}
          & = \type{n}{\sum_{\qq} \bigcup_{i \in \om} \hh{\qq}{[\alpha_i, \alpha)}}             \\
          & = \type{n}{\sum_{\qq} \bigcup_{i \in \om} \bigcup_{c < b(n)}{\hh{\qq}{= a(n) + c}}} \\
-         & = \type{n}{\sum_{\qq} \bigcup_{c < b(n)}{\hh{\qq}{= a(n) + c}}}                        \\
-         & = \type{n}{\bigcup_{c < b(n)}{\sum_{\qq} \hh{\qq}{= a(n) + c}}}                        \\
-         & = \type{n}{\bigcup_{c < b(n)}{\hh{\qq}{= a(n) + c + 1}}}                               \\
+         & = \type{n}{\sum_{\qq} \bigcup_{c < b(n)}{\hh{\qq}{= a(n) + c}}}                     \\
+         & = \type{n}{\bigcup_{c < b(n)}{\sum_{\qq} \hh{\qq}{= a(n) + c}}}                     \\
+         & = \type{n}{\bigcup_{c < b(n)}{\hh{\qq}{= a(n) + c + 1}}}                            \\
          & = \type{n}{\bigcup_{c < b(n)}{\hh{\qq}{= a(n) + c}}}
     \end{align*}
 
@@ -130,13 +132,12 @@ Type theory provides a framework for analyzing the expressive power of logical l
     and thus,
     \begin{align*}
         \type{n}{\rmj{\alpha}}
-         & = \type{n}{\sum_{i \in \om} \ho{= \alpha_i}}                \\
-         & = \type{n}{\sum_{\om} \bigcup_{c < b(n)}{\ho{= a(n) + c}}}  \\
-         & = \type{n}{\bigcup_{c < b(n)}{\sum_{\om} \ho{= a(n) + c}}}  \\
-         & = \type{n}{\bigcup_{c < b(n)}{\rmj{a(n) + c + 1}}} \\
-         & = \type{n}{\bigcup_{c < b(n)}{\rmj{a(n) + c}}}     \\
+         & = \type{n}{\sum_{i \in \om} \ho{= \alpha_i}}               \\
+         & = \type{n}{\sum_{\om} \bigcup_{c < b(n)}{\ho{= a(n) + c}}} \\
+         & = \type{n}{\bigcup_{c < b(n)}{\sum_{\om} \ho{= a(n) + c}}} \\
+         & = \type{n}{\bigcup_{c < b(n)}{\rmj{a(n) + c + 1}}}         \\
+         & = \type{n}{\bigcup_{c < b(n)}{\rmj{a(n) + c}}}             \\
     \end{align*}
 
-    where the last transition is by~\cref{s-alpha-finite}.
-
+    where the last transition is by~\cref{right-major-computable}.
 \end{proof}

@@ -1,34 +1,31 @@
 \section{Decidability of the rank}
 
-Decidability questions lie at the heart of mathematical logic and theoretical computer science. In this chapter, we investigate the decidability of rank-related classes for linear orders, connecting the structural results of previous chapters with algorithmic considerations. We introduce key predicates and equivalence relations, and show how they can be expressed and manipulated in logical frameworks.
-
-% $\alpha$ predicate
 \begin{definition}
   Let $\qq$ be a class of linear orders.
 
-  Let $M$ be a linear order.
+  Let $M$ be a linear order, and let $J \subseteq M$ be a subset of $M$.
 
-  We define the predicate $\mathbf{Int}_{\qq} \ps{J}$ as
+  We define the predicate $\Int{\qq} \ps{J}$ as
   true in $M$ iff $J$ is a $\qq$-subinterval of $M$.
 \end{definition}
 
 \begin{lemma}
   Let $\alpha > 0$ be an ordinal.
 
-  Then predicates $\mathbf{Int}_{\ho{\le \alpha}}$, $\mathbf{Int}_{\ho{= \alpha}}$
-  are expressible in $\mso[\mathbf{Int}_{\ho{< \alpha}}]$.
+  Then predicates $\Int{\ho{\le \alpha}}$, $\Int{\ho{= \alpha}}$
+  are expressible in $\mso[\Int{\ho{< \alpha}}]$.
 \end{lemma}
 
 \begin{proof}
   Obviously, \[
-    \mathbf{Int}_{\ho{= \alpha}}
-    \iff \mathbf{Int}_{\ho{\le \alpha}} \wedge \neg \mathbf{Int}_{\ho{< \alpha}}
+    \Int{\ho{= \alpha}}
+    \iff \Int{\ho{\le \alpha}} \wedge \neg \Int{\ho{< \alpha}}
   \]
 
-  So it is enough to express $\mathbf{Int}_{\ho{\le \alpha}}$.
+  So it is enough to express $\Int{\ho{\le \alpha}}$.
 
   Now, $J$ is a $\ho{\le \alpha}$-subinterval of $M$ iff
-  $J \in \sum_{\Om}{\ho{< \alpha}}$.
+  $J$ is a subinterval of $M$ and $J \in \sum_{\Om}{\ho{< \alpha}}$.
 
   But this can be expressed in $\mso$ since it is expressible
   to check whether an arbitrary subset is in $\Om$.
@@ -96,7 +93,7 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
   Let $P_{\alpha}$ be any predicate representing $\sim_{\alpha}$,
   let $L_{\alpha} = \mathbf{L}_{\alpha}$ and $R_{\alpha} = \mathbf{R}_{\alpha}$.
 
-  Then $\mathbf{Int}_{\ho{< \alpha}}$ is $\mso$-expressible over
+  Then $\Int{\ho{< \alpha}}$ is $\mso$-expressible over
   $\mso[P_{\alpha}, L_{\alpha}, R_{\alpha}]$.
 \end{corollary}
 
@@ -148,22 +145,41 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
   over $\pp$. So we are done.
 \end{proof}
 
+\begin{definition}
+  Let $\alpha$ be an ordinal.
+
+  We define the $\mso[P_\alpha, L_\alpha, R_\alpha]$ formula $\good{\alpha}$ as follows:
+  $\good{\alpha}$ is true in a linear order $I$ iff
+  for every pair $i, i' \in M$ such that $i'$ is the successor of $i$, the following conditions hold:
+  \begin{itemize}
+    \item $P_\alpha(i) \ne P_\alpha(i')$
+    \item $R_\alpha(i) = 0$ or $L_\alpha(i') = 0$
+  \end{itemize}
+
+  We further define the class
+  \[
+    \mathbf{Good}_{\alpha} := \set{I \in \cnt [P_\alpha, L_\alpha, R_\alpha] : I \models \good{\alpha}}
+  \]
+
+  as the class of all $\good{\alpha}$ linear orders.
+\end{definition}
+
+\begin{definition}
+  Let $\alpha$ be an ordinal.
+
+  We define the class of linear orders
+  $\cnt \bs{\alpha}$ as the class of all linear orders
+  labeled with $P_\alpha$, $L_\alpha$ and $R_\alpha$
+  such that $P_\alpha$ represents the equivalence relation $\sim_{\alpha}$,
+  $L_\alpha = \mathbf{L}_{\alpha}$, and $R_\alpha = \mathbf{R}_{\alpha}$.
+\end{definition}
+
 \begin{lemma}{\label{single-ordinal-decomposition}}
   Let $\alpha$ be an ordinal.
 
-  Let $C$ be the class of
-  all countable linear orders labeled with $P_\alpha$ which represents $\sim_{\alpha}$,
-  $L_{\alpha} = \mathbf{L}_{\alpha}$ and $R_{\alpha} = \mathbf{R}_{\alpha}$,
-
-  Let $\mathbf{G}_{\alpha}$ be the class of all countable linear orders $I$,
-  labeled with a $P_\alpha$, $L_\alpha$ and $R_\alpha$,
-  such that for every pair $i, i' \in I$ such that $i'$ is the successor of $i$,
-  $P_\alpha(i) \ne P_\alpha(i')$,
-  and either $R_\alpha(i) = 0$ or $L_\alpha(i') = 0$.
-
   Then,
   \[
-    C = \sum_{I \in \mathbf{G}_{\alpha}} \sum_{i \in I} \sigma_\alpha(i)
+    \cnt \bs{\alpha} = \sum_{I \in \mathbf{Good}_{\alpha}} \sum_{i \in I} \sigma_\alpha(i)
   \]
 \end{lemma}
 
@@ -190,7 +206,7 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
   Thus either $R_\alpha(i) = 0$ or $L_\alpha(i') = 0$.
 
   ($\supseteq$) Let $M = \sum_{i \in I} M_i$ be a linear order
-  such that $I \in \mathbf{G}_{\alpha}$ and $M_i \in \sigma_\alpha(i)$ for each $i \in I$.
+  such that $I \in \mathbf{Good}_{\alpha}$ and $M_i \in \sigma_\alpha(i)$ for each $i \in I$.
 
   In particular $M_i \in \bounded{\ho{< \alpha}}$ for each $i \in I$, so it is contained
   in a single $\sim_{\alpha}$-equivalence class of $M$.
@@ -218,26 +234,27 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
 \begin{corollary}\label{countables-computable}
   Let $\alpha > 0$ be an ordinal.
 
-  Let $C$ be defined as in~\cref{single-ordinal-decomposition}.
-
-  Then $C$ is a computable class of linear orders.
+  Then $\cnt \bs{\alpha}$ is a computable class of linear orders.
 \end{corollary}
 
 \begin{proof}
-  Since $\mathbf{G}_{\alpha}$ is clearly computable,
+  Since $\mathbf{Good}_{\alpha}$ is clearly computable,
   it follows from combining~\cref{computable-sum} and~\cref{single-ordinal-decomposition}.
 \end{proof}
 
 \begin{theorem}\label{single-ordinal-satisfiability}
   Let $\alpha > 0$ be an ordinal.
 
-  Satisfiability of $\mso[\mathbf{Int}_{\ho{< \alpha}}]$
+  Satisfiability of $\mso[\Int{\ho{< \alpha}}]$
   over all countable linear orders is decidable.
 \end{theorem}
 
 \begin{proof}
   First, by~\cref{int-expressible}, we can convert
-  any formula in $\mso[\mathbf{Int}_{\ho{< \alpha}}]$
-  is equisatisfiable over $C$ to a formula in $\mso[P_\alpha, L_\alpha, R_\alpha]$,
-  which is decidable by~\cref{countables-computable}.
+  any formula $\varphi$ in $\mso[\Int{\ho{< \alpha}}]$
+  to a formula $\varphi'$ in $\mso \bs{P_\alpha, L_\alpha, R_\alpha}$
+  such that $\varphi$ is satisfiable over $\cnt$
+  iff $\varphi'$ is satisfiable over $\cnt \bs{\alpha}$.
+
+  This is decidable by~\cref{countables-computable}.
 \end{proof}
