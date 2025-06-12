@@ -47,12 +47,21 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
   $\bs{x}_{\alpha}$ is the largest $\bounded{\ho{< \alpha}}$-subinterval
   containing $x$ in $M$.
 
-  We define $\sigma_{\alpha} \ps{x}$ as
-  the $\alpha$-shape of $\bs{x}_{\alpha}$.
-
   We define
-  $L_{\alpha} \ps{x} = \mathbf{1}_{\bs{x}_{\alpha} \in \lb{\ho{< \alpha}}}$ and
-  $R_{\alpha} \ps{x} = \mathbf{1}_{\bs{x}_{\alpha} \in \rb{\ho{< \alpha}}}$.
+  $\mathbf{L}_{\alpha} \ps{x} = \mathbf{1}_{\lb{\ho{< \alpha}}} \ps{\bs{x}_{\alpha}}$ and
+  $\mathbf{R}_{\alpha} \ps{x} = \mathbf{1}_{\rb{\ho{< \alpha}}} \ps{\bs{x}_{\alpha}}$
+
+  (where $\mathbf{1}_{A}$ is the indicator function of a set $A$).
+
+  We define the \emph{the $\alpha$-shape}, $\sigma_{\alpha} \ps{x}$ as follows:
+  \[
+    \sigma_{\alpha} \ps{x} := \begin{cases}
+      \ho{< \alpha} & \text{if } \mathbf{L}_{\alpha} \ps{x} = \mathbf{R}_{\alpha} \ps{x} = 0    \\
+      \rmj{\alpha}  & \text{if } \mathbf{L}_{\alpha} \ps{x} = 0, \mathbf{R}_{\alpha} \ps{x} = 1 \\
+      \lmj{\alpha}  & \text{if } \mathbf{L}_{\alpha} \ps{x} = 1, \mathbf{R}_{\alpha} \ps{x} = 0 \\
+      \bmj{\alpha}  & \text{if } \mathbf{L}_{\alpha} \ps{x} = \mathbf{R}_{\alpha} \ps{x} = 1
+    \end{cases}
+  \]
 \end{definition}
 
 \begin{lemma}\label{alpha-expressible}
@@ -84,8 +93,11 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
 \begin{corollary}\label{int-expressible}
   Let $\alpha > 0$ be an ordinal.
 
-  The predicate $\mathbf{Int}_{\ho{< \alpha}}$ is $\mso$-expressible over
-  $\mso[\bs{\cdot}_{\alpha}, L_{\alpha}, R_{\alpha}]$.
+  Let $P_{\alpha}$ be any predicate representing $\sim_{\alpha}$,
+  let $L_{\alpha} = \mathbf{L}_{\alpha}$ and $R_{\alpha} = \mathbf{R}_{\alpha}$.
+
+  Then $\mathbf{Int}_{\ho{< \alpha}}$ is $\mso$-expressible over
+  $\mso[P_{\alpha}, L_{\alpha}, R_{\alpha}]$.
 \end{corollary}
 
 % Sum of computable classes over a computable index
@@ -139,34 +151,24 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
 \begin{lemma}{\label{single-ordinal-decomposition}}
   Let $\alpha$ be an ordinal.
 
-  Let $P$, $L$ and $R$ be
-  first-order unary predicates.
-
   Let $C$ be the class of
-  all countable linear orders labeled with $P$, $L$ and $R$,
-  such that $P$ represents $\sim_{\alpha}$,
-  $L_{\alpha} \ps{x} \iff \bs{x}_{\alpha} \in \lb{\ho{< \alpha}}$ and
-  $R_{\alpha} \ps{x} \iff \bs{x}_{\alpha} \in \rb{\ho{< \alpha}}$.
+  all countable linear orders labeled with $P_\alpha$ which represents $\sim_{\alpha}$,
+  $L_{\alpha} = \mathbf{L}_{\alpha}$ and $R_{\alpha} = \mathbf{R}_{\alpha}$,
 
-  Let $\mathbf{G}$ be the class of all countable linear orders $I$,
-  labeled with a $P$, $L$ and $R$,
+  Let $\mathbf{G}_{\alpha}$ be the class of all countable linear orders $I$,
+  labeled with a $P_\alpha$, $L_\alpha$ and $R_\alpha$,
   such that for every pair $i, i' \in I$ such that $i'$ is the successor of $i$,
-  $P(i) \ne P(i')$,
-  and either $R(i) = 0$ or $L(i') = 0$.
+  $P_\alpha(i) \ne P_\alpha(i')$,
+  and either $R_\alpha(i) = 0$ or $L_\alpha(i') = 0$.
 
-  Let $\sigma(i)$ be defined as follows:
+  Then,
   \[
-    \sigma(i) := \begin{cases}
-      \ho{< \alpha} & \text{if } L(i) = R(i) = 0 \\
-      \rmj{\ho{< \alpha}} & \text{if } L(i) = 0 \wedge R(i) = 1 \\
-      \lmj{\ho{< \alpha}} & \text{if } L(i) = 1 \wedge R(i) = 0 \\
-      \bmj{\ho{< \alpha}} & \text{if } L(i) = R(i) = 1
-    \end{cases}
+    C = \sum_{I \in \mathbf{G}_{\alpha}} \sum_{i \in I} \sigma_\alpha(i)
   \]
 \end{lemma}
 
 \begin{proof}
-  ($\subseteq$) Let $M$ be a countable linear order labeled with $P$, $L$ and $R$ as above.
+  ($\subseteq$) Let $M$ be a countable linear order labeled with $P_\alpha$, $L_\alpha$ and $R_\alpha$ as above.
 
   Let $I = M / \sim_{\alpha}$ be the quotient of $M$ by the equivalence relation $\sim_{\alpha}$.
 
@@ -174,21 +176,21 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
   where $\set{M_i}_{i \in I}$ are the $\sim_{\alpha}$-equivalence class of $I$.
 
   Then for each $i \in I$, $M_i \in \bounded{\ho{< \alpha}}$,
-  and by definition $\sigma(i) = \sigma_{\alpha} \ps{M_i}$.
+  and by definition $\sigma_\alpha(i) = \sigma_{\alpha} \ps{M_i}$.
 
   Let $i'$ be the successor of $i$ in $I$.
 
-  Then $P(i) \ne P(i')$ since $P$ represents $\sim_{\alpha}$.
+  Then $P_\alpha(i) \ne P_\alpha(i')$ since $P_\alpha$ represents $\sim_{\alpha}$.
 
-  Furthermore, suppose $R(i) = L(i') = 1$ holds.
+  Furthermore, suppose $R_\alpha(i) = L_\alpha(i') = 1$ holds.
   Then $M_i \in \rb{\ho{< \alpha}}$ and $M_{i'} \in \lb{\ho{< \alpha}}$.
   so $M_i$ and $M_{i'}$ are the same $\sim_{\alpha}$-equivalence class of $M$,
   which is a contradiction.
 
-  Thus either $R(i) = 0$ or $L(i') = 0$.
+  Thus either $R_\alpha(i) = 0$ or $L_\alpha(i') = 0$.
 
   ($\supseteq$) Let $M = \sum_{i \in I} M_i$ be a linear order
-  such that $I \in \mathbf{G}$ and $M_i \in \mathcal{S}^{\sigma(i)}_{\alpha}$ for each $i \in I$.
+  such that $I \in \mathbf{G}_{\alpha}$ and $M_i \in \sigma_\alpha(i)$ for each $i \in I$.
 
   In particular $M_i \in \bounded{\ho{< \alpha}}$ for each $i \in I$, so it is contained
   in a single $\sim_{\alpha}$-equivalence class of $M$.
@@ -206,7 +208,7 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
 
   Then $M_{j'}$ and $M_{k'}$ are in the same $\sim_{\alpha}$-equivalence class.
   Thus it must be the case that $M_{j'} \in \rb{\ho{< \alpha}}$ and $M_{k'} \in \lb{\ho{< \alpha}}$,
-  which implies $R(j') = L(k') = 1$, which is a contradiction.
+  which implies $R_\alpha(j') = L_\alpha(k') = 1$, which is a contradiction.
 
   Thus $\set{M_i}_{i \in I}$ are pairwise distinct $\sim_{\alpha}$-equivalence classes,
   and obviously the conditions holds,
@@ -222,7 +224,7 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
 \end{corollary}
 
 \begin{proof}
-  Since $\gg$ is clearly computable,
+  Since $\mathbf{G}_{\alpha}$ is clearly computable,
   it follows from combining~\cref{computable-sum} and~\cref{single-ordinal-decomposition}.
 \end{proof}
 
@@ -236,14 +238,6 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
 \begin{proof}
   First, by~\cref{int-expressible}, we can convert
   any formula in $\mso[\mathbf{Int}_{\ho{< \alpha}}]$
-  to an equivalent formula $\varphi$ in $\mso[\bs{\cdot}_{\alpha}, L_{\alpha}, R_{\alpha}]$.
-
-  Now, we shall replace every occurrence of $\bs{\cdot}_{\alpha}$ in $\varphi$ with $P$,
-  every occurrence of $L_{\alpha}$ with $L$,
-  and every occurrence of $R_{\alpha}$ with $R$,
-  getting a new formula $\varphi'$.
-
-  Then, satisfiability of $\varphi$ over all countable linear orders,
-  amounts to satisfiability of $\varphi'$ over $C$,
-  which is computable by~\cref{countables-computable}.
+  is equisatisfiable over $C$ to a formula in $\mso[P_\alpha, L_\alpha, R_\alpha]$,
+  which is decidable by~\cref{countables-computable}.
 \end{proof}
