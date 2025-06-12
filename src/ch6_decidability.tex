@@ -1,10 +1,10 @@
 \section{Decidability of the rank}
 
-Decidability questions lie at the heart of mathematical logic and theoretical computer science. In this chapter, we investigate the decidability of rank-related properties for linear orders, connecting the structural results of previous chapters with algorithmic considerations. We introduce key predicates and equivalence relations, and show how they can be expressed and manipulated in logical frameworks.
+Decidability questions lie at the heart of mathematical logic and theoretical computer science. In this chapter, we investigate the decidability of rank-related classes for linear orders, connecting the structural results of previous chapters with algorithmic considerations. We introduce key predicates and equivalence relations, and show how they can be expressed and manipulated in logical frameworks.
 
 % $\alpha$ predicate
 \begin{definition}
-  Let $\qq$ be a property of linear orders.
+  Let $\qq$ be a class of linear orders.
 
   Let $M$ be a linear order.
 
@@ -15,23 +15,23 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
 \begin{lemma}
   Let $\alpha > 0$ be an ordinal.
 
-  Then predicates $\mathbf{Int}_{\qqo^{\le \alpha}}$, $\mathbf{Int}_{\qqo^{= \alpha}}$
-  are expressible in $\mso[\mathbf{Int}_{\qqo^{< \alpha}}]$.
+  Then predicates $\mathbf{Int}_{\ho{\le \alpha}}$, $\mathbf{Int}_{\ho{= \alpha}}$
+  are expressible in $\mso[\mathbf{Int}_{\ho{< \alpha}}]$.
 \end{lemma}
 
 \begin{proof}
   Obviously, \[
-    \mathbf{Int}_{\qqo^{= \alpha}}
-    \iff \mathbf{Int}_{\qqo^{\le \alpha}} \wedge \neg \mathbf{Int}_{\qqo^{< \alpha}}
+    \mathbf{Int}_{\ho{= \alpha}}
+    \iff \mathbf{Int}_{\ho{\le \alpha}} \wedge \neg \mathbf{Int}_{\ho{< \alpha}}
   \]
 
-  So it is enough to express $\mathbf{Int}_{\qqo^{\le \alpha}}$.
+  So it is enough to express $\mathbf{Int}_{\ho{\le \alpha}}$.
 
-  Now, $J$ is a $\qqo^{\le \alpha}$-subinterval of $M$ iff
-  $J \in \sum_{\qqo}{\qqo^{< \alpha}}$.
+  Now, $J$ is a $\ho{\le \alpha}$-subinterval of $M$ iff
+  $J \in \sum_{\Om}{\ho{< \alpha}}$.
 
   But this can be expressed in $\mso$ since it is expressible
-  to check whether an arbitrary subset is in $\qqo$.
+  to check whether an arbitrary subset is in $\Om$.
 \end{proof}
 
 \begin{definition}
@@ -40,19 +40,19 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
   Let $M$ be a linear order and $x \in M$.
 
   We define the convex equivalence relation:
-  \[\sim_\alpha := \sim_{\bounded{\qqo^{< \alpha}}}\]
-  and $\bs{x}_{\alpha} := \bs{x}_{\bounded{\qqo^{< \alpha}}}$.
+  \[\sim_\alpha := \sim_{\bounded{\ho{< \alpha}}}\]
+  and $\bs{x}_{\alpha} := \bs{x}_{\bounded{\ho{< \alpha}}}$.
 
   That is,
-  $\bs{x}_{\alpha}$ is the largest $\bounded{\qqo^{< \alpha}}$-subinterval
+  $\bs{x}_{\alpha}$ is the largest $\bounded{\ho{< \alpha}}$-subinterval
   containing $x$ in $M$.
 
   We define $\sigma_{\alpha} \ps{x}$ as
   the $\alpha$-shape of $\bs{x}_{\alpha}$.
 
   We define
-  $L_{\alpha} \ps{x} = \mathbf{1}_{\bs{x}_{\alpha} \in \lb{\qqo^{< \alpha}}}$ and
-  $R_{\alpha} \ps{x} = \mathbf{1}_{\bs{x}_{\alpha} \in \rb{\qqo^{< \alpha}}}$.
+  $L_{\alpha} \ps{x} = \mathbf{1}_{\bs{x}_{\alpha} \in \lb{\ho{< \alpha}}}$ and
+  $R_{\alpha} \ps{x} = \mathbf{1}_{\bs{x}_{\alpha} \in \rb{\ho{< \alpha}}}$.
 \end{definition}
 
 \begin{lemma}\label{alpha-expressible}
@@ -60,45 +60,45 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
 
   Let $J \subseteq M$ be an interval.
 
-  Then $J \in \qqo^{< \alpha}$ iff
+  Then $J \in \ho{< \alpha}$ iff
   it is contained in a single $\sim_{\alpha}$-equivalence class $K$, such that:
   \begin{itemize}
-    \item Either $K \in \lb{\qqo^{< \alpha}}$ or
+    \item Either $K \in \lb{\ho{< \alpha}}$ or
           there exists some $x \in K$ such that $x < J$.
-    \item Either $K \in \rb{\qqo^{< \alpha}}$ or
+    \item Either $K \in \rb{\ho{< \alpha}}$ or
           there exists some $x \in K$ such that $x > J$.
   \end{itemize}
 \end{lemma}
 
 \begin{proof}
-  Suppose $J \in \qqo^{< \alpha}$.
+  Suppose $J \in \ho{< \alpha}$.
   Then obviously $J$ is contained in a single $\sim_{\alpha}$-equivalence class $K$.
 
   We will show the first condition, the second is symmetric.
 
   Suppose that for all $x \in K$, $J \le x$.
   Then we can write $K = J + J'$.
-  Since $J \in \qqo^{< \alpha}$, it follows that $K \in \lb{\qqo^{< \alpha}}$.
+  Since $J \in \ho{< \alpha}$, it follows that $K \in \lb{\ho{< \alpha}}$.
 \end{proof}
 
 \begin{corollary}\label{int-expressible}
   Let $\alpha > 0$ be an ordinal.
 
-  The predicate $\mathbf{Int}_{\qqo^{< \alpha}}$ is $\mso$-expressible over
+  The predicate $\mathbf{Int}_{\ho{< \alpha}}$ is $\mso$-expressible over
   $\mso[\bs{\cdot}_{\alpha}, L_{\alpha}, R_{\alpha}]$.
 \end{corollary}
 
-% Sum of computable properties over a computable index
+% Sum of computable classes over a computable index
 \begin{theorem}\label{computable-sum}
-  Let $\pp$ be a computable property of linear orders of some finite signature,
+  Let $\pp$ be a computable class of linear orders of some finite signature,
   including $C_1, \ldots, C_k$.
 
-  Let $\qqq$ be a \emph{finite} set of computable properties of linear orders
+  Let $\qqq$ be a \emph{finite} set of computable classes of linear orders
   over some finite signature which is disjoint from the signature of $\pp$.
 
   Let $F : 2^k \to \qqq$ be any function.
 
-  Then $\bigcup_{I \in \pp} \sum_{i \in I} F(C_1(i), \ldots, C_k(i))$ is a computable property of linear orders.
+  Then $\bigcup_{I \in \pp} \sum_{i \in I} F(C_1(i), \ldots, C_k(i))$ is a computable class of linear orders.
 \end{theorem}
 
 \begin{proof}
@@ -130,7 +130,7 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
   \end{align*}
   is satisfiable over $\pp$.
 
-  Since $\qqq$ has only computable properties, We can pre-compute $\type{n}{F(\vec{c})}$
+  Since $\qqq$ has only computable classes, We can pre-compute $\type{n}{F(\vec{c})}$
   for any value $\vec{c} \in 2^k$ so we can actually write the formula above in
   $\mso$. Furthermore, since $\pp$ is computable, we can check whether it is satisfiable
   over $\pp$. So we are done.
@@ -145,8 +145,8 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
   Let $C$ be the class of
   all countable linear orders labeled with $P$, $L$ and $R$,
   such that $P$ represents $\sim_{\alpha}$,
-  $L_{\alpha} \ps{x} \iff \bs{x}_{\alpha} \in \lb{\qqo^{< \alpha}}$ and
-  $R_{\alpha} \ps{x} \iff \bs{x}_{\alpha} \in \rb{\qqo^{< \alpha}}$.
+  $L_{\alpha} \ps{x} \iff \bs{x}_{\alpha} \in \lb{\ho{< \alpha}}$ and
+  $R_{\alpha} \ps{x} \iff \bs{x}_{\alpha} \in \rb{\ho{< \alpha}}$.
 
   Let $\mathbf{G}$ be the class of all countable linear orders $I$,
   labeled with a $P$, $L$ and $R$,
@@ -154,11 +154,15 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
   $P(i) \ne P(i')$,
   and either $R(i) = 0$ or $L(i') = 0$.
 
-  Let $\sigma(i) \in \set{1, \omega, \agemo, \oo}$ be such that
-  $L(i) = 1$ iff $\sigma(i) \in \set{1, \omega}$ and
-  $R(i) = 1$ iff $\sigma(i) \in \set{1, \agemo}$.
-
-  Then, $C = \bigcup_{I \in \mathbf{G}} \sum_{i \in I} \mathcal{S}^{\sigma(i)}_{\alpha}$.
+  Let $\sigma(i)$ be defined as follows:
+  \[
+    \sigma(i) := \begin{cases}
+      \ho{< \alpha} & \text{if } L(i) = R(i) = 0 \\
+      \rmj{\ho{< \alpha}} & \text{if } L(i) = 0 \wedge R(i) = 1 \\
+      \lmj{\ho{< \alpha}} & \text{if } L(i) = 1 \wedge R(i) = 0 \\
+      \bmj{\ho{< \alpha}} & \text{if } L(i) = R(i) = 1
+    \end{cases}
+  \]
 \end{lemma}
 
 \begin{proof}
@@ -169,7 +173,7 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
   Then $M = \sum_{i \in I} M_i$,
   where $\set{M_i}_{i \in I}$ are the $\sim_{\alpha}$-equivalence class of $I$.
 
-  Then for each $i \in I$, $M_i \in \bounded{\qqo^{< \alpha}}$,
+  Then for each $i \in I$, $M_i \in \bounded{\ho{< \alpha}}$,
   and by definition $\sigma(i) = \sigma_{\alpha} \ps{M_i}$.
 
   Let $i'$ be the successor of $i$ in $I$.
@@ -177,7 +181,7 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
   Then $P(i) \ne P(i')$ since $P$ represents $\sim_{\alpha}$.
 
   Furthermore, suppose $R(i) = L(i') = 1$ holds.
-  Then $M_i \in \rb{\qqo^{< \alpha}}$ and $M_{i'} \in \lb{\qqo^{< \alpha}}$.
+  Then $M_i \in \rb{\ho{< \alpha}}$ and $M_{i'} \in \lb{\ho{< \alpha}}$.
   so $M_i$ and $M_{i'}$ are the same $\sim_{\alpha}$-equivalence class of $M$,
   which is a contradiction.
 
@@ -186,22 +190,22 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
   ($\supseteq$) Let $M = \sum_{i \in I} M_i$ be a linear order
   such that $I \in \mathbf{G}$ and $M_i \in \mathcal{S}^{\sigma(i)}_{\alpha}$ for each $i \in I$.
 
-  In particular $M_i \in \bounded{\qqo^{< \alpha}}$ for each $i \in I$, so it is contained
+  In particular $M_i \in \bounded{\ho{< \alpha}}$ for each $i \in I$, so it is contained
   in a single $\sim_{\alpha}$-equivalence class of $M$.
 
   Suppose that there exist distinct $j ,k \in I$ such that $j < k$, and
   $M_j, M_k$ are in the same $\sim_{\alpha}$-equivalence class.
 
   Let $x \in M_j$ and $y \in M_k$.
-  Then $[x, y] \in \qqo^{< \alpha}$,
-  and thus $[j, k] \in \qqo^{< \alpha}$,
+  Then $[x, y] \in \ho{< \alpha}$,
+  and thus $[j, k] \in \ho{< \alpha}$,
   and in particular it is sparse.
 
   Then there exist some $j', k' \in I$ such that $j < j' < k' < k$,
   and $k'$ is the successor of $j'$ in $I$.
 
   Then $M_{j'}$ and $M_{k'}$ are in the same $\sim_{\alpha}$-equivalence class.
-  Thus it must be the case that $M_{j'} \in \rb{\qqo^{< \alpha}}$ and $M_{k'} \in \lb{\qqo^{< \alpha}}$,
+  Thus it must be the case that $M_{j'} \in \rb{\ho{< \alpha}}$ and $M_{k'} \in \lb{\ho{< \alpha}}$,
   which implies $R(j') = L(k') = 1$, which is a contradiction.
 
   Thus $\set{M_i}_{i \in I}$ are pairwise distinct $\sim_{\alpha}$-equivalence classes,
@@ -214,7 +218,7 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
 
   Let $C$ be defined as in~\cref{single-ordinal-decomposition}.
 
-  Then $C$ is a computable property of linear orders.
+  Then $C$ is a computable class of linear orders.
 \end{corollary}
 
 \begin{proof}
@@ -225,80 +229,18 @@ Decidability questions lie at the heart of mathematical logic and theoretical co
 \begin{theorem}\label{single-ordinal-satisfiability}
   Let $\alpha > 0$ be an ordinal.
 
-  Satisfiability of $\mso[\mathbf{Int}_{\qqo^{< \alpha}}]$
+  Satisfiability of $\mso[\mathbf{Int}_{\ho{< \alpha}}]$
   over all countable linear orders is decidable.
 \end{theorem}
 
 \begin{proof}
   First, by~\cref{int-expressible}, we can convert
-  any formula in $\mso[\mathbf{Int}_{\qqo^{< \alpha}}]$
+  any formula in $\mso[\mathbf{Int}_{\ho{< \alpha}}]$
   to an equivalent formula $\varphi$ in $\mso[\bs{\cdot}_{\alpha}, L_{\alpha}, R_{\alpha}]$.
 
   Now, we shall replace every occurrence of $\bs{\cdot}_{\alpha}$ in $\varphi$ with $P$,
   every occurrence of $L_{\alpha}$ with $L$,
   and every occurrence of $R_{\alpha}$ with $R$,
-  getting a new formula $\varphi'$.
-
-  Then, satisfiability of $\varphi$ over all countable linear orders,
-  amounts to satisfiability of $\varphi'$ over $C$,
-  which is computable by~\cref{countables-computable}.
-\end{proof}
-
-\begin{lemma}\label{many-ordinals-decomposition}
-  Let $\alpha_0, \ldots, \alpha_k$,
-  such that $\alpha_{i} \ge \alpha_{i - 1} + \omega$ for $i > 0$.
-
-  Let $P_1, L_1, R_1, \ldots, P_k, L_k, R_k$.
-  first-order unary predicates.
-
-  Let $C$ be the class of
-  all countable linear orders labeled with $P_j$, $L_j$ and $R_j$,
-  such that for every quadruple $\alpha, P, L, R$,
-  $P$ represents $\sim_{\alpha}$,
-  $L_{\alpha} \ps{x} \iff \bs{x}_{\alpha} \in \lb{\qqo^{< \alpha}}$ and
-  $R_{\alpha} \ps{x} \iff \bs{x}_{\alpha} \in \rb{\qqo^{< \alpha}}$.
-
-  Let $\mathbf{G}$ be the class of all countable linear orders $I$,
-  labeled with a $P_j$, $L_j$ and $R_j$,
-  such that for every triplet $P, L, R$,
-  that for every pair $i, i' \in I$ such that $i'$ is the successor of $i$,
-  $P(i) \ne P(i')$,
-  and either $R(i) = 0$ or $L(i') = 0$.
-
-  For every triplet, let $\sigma_j = \sigma$ be such That
-  $\sigma(i) \in \set{1, \omega, \agemo, \oo}$ and
-  $L(i) = 1$ iff $\sigma(i) \in \set{1, \omega}$ and
-  $R(i) = 1$ iff $\sigma(i) \in \set{1, \agemo}$.
-
-  Then, $C = \bigcup_{I \in \mathbf{G}} \sum_{i \in I} \mathcal{S}^{\sigma_0(i)}_{\alpha_0}$.
-  Furthermore, its $\mso$ theory is independent of the choice of
-  $\alpha_0, \ldots, \alpha_k$.
-\end{lemma}
-
-
-\begin{theorem}\label{many-ordinals-satisfiability}
-  Let $\alpha_k > \ldots > \alpha_1 > 0$ be ordinals.
-
-  Satisfiability of $\mso[\mathbf{Int}_{\qqo^{< \alpha_1}}, \ldots, \mathbf{Int}_{\qqo^{< \alpha_k}}]$
-  over all countable linear orders is decidable.
-\end{theorem}
-
-\begin{proof}
-  First, by~\cref{int-expressible}, we can convert
-  any formula in
-  \[
-    \mso[\mathbf{Int}_{\qqo^{< \alpha_1}}, \ldots, \mathbf{Int}_{\qqo^{< \alpha_k}}]
-  \]
-  to an equivalent formula $\varphi$ in
-  \[
-    \mso[\bs{\cdot}_{\alpha_1}, L_{\alpha_1}, R_{\alpha_1}],
-    \ldots,
-    \mso[\bs{\cdot}_{\alpha_k}, L_{\alpha_k}, R_{\alpha_k}]
-  \]
-
-  Now, we shall replace every occurrence of $\bs{\cdot}_{\alpha_i}$ in $\varphi$ with $P_i$,
-  every occurrence of $L_{\alpha_i}$ with $L_i$,
-  and every occurrence of $R_{\alpha_i}$ with $R_i$,
   getting a new formula $\varphi'$.
 
   Then, satisfiability of $\varphi$ over all countable linear orders,

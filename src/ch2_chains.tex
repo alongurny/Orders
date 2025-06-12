@@ -1,15 +1,16 @@
 \section{Linear Orders}
 
-Linear orders are a central object of study in order theory, providing a natural setting for the analysis of sequences, intervals, and order types. In this chapter, we build upon the foundation of preorders to introduce linear orders, explore their properties, and develop tools for analyzing their structure. The concepts introduced here will be essential for understanding ranks, types, and decidability in later chapters.
+In this chapter we focus on linear orders, also known as total orders
+or chains.
 
 % Definition of a linear order
 \begin{definitions}[Linear order]
-  A \emph{linear order} a preorder which is symmetric and total.
+  A \emph{linear order} is a preorder which is symmetric and total.
 \end{definitions}
 
-% Definition of a property
-\begin{definition}[Property of linear orders]
-  A \emph{property} $\pp$ of linear orders is a class of linear orders which
+% Definition of a class
+\begin{definition}[class of linear orders]
+  A \emph{class} $\pp$ of linear orders is a class of linear orders which
   is closed under isomorphism.
 \end{definition}
 
@@ -54,11 +55,11 @@ Linear orders are a central object of study in order theory, providing a natural
 \end{definition}
 
 \begin{lemma}\label{additive-interval}
-  Let $\pp$ be an additive property of linear orders.
+  Let $\pp$ be an additive class of linear orders.
 
   Let $M \in \pp$ be a linear order.
 
-  Let $x, y \in M$ be any two points in a linear order $M$.
+  Let $x, y \in M$ be any two points in $M$.
 
   Then, $[x, y] \in \pp$.
 \end{lemma}
@@ -73,11 +74,11 @@ Linear orders are a central object of study in order theory, providing a natural
 
   when $(-\infty, x)$ and/or $(y, \infty)$ may be empty.
 
-  Since $\pp$ is an additive property, we conclude that $[x, y] \in \pp$.
+  Since $\pp$ is an additive class, we conclude that $[x, y] \in \pp$.
 \end{proof}
 
 \begin{corollary}\label{additive-1}
-  Let $\pp$ be a nontrivial additive property of linear orders.
+  Let $\pp$ be a nontrivial additive class of linear orders.
 
   Then $1 \in \pp$.
 \end{corollary}
@@ -94,12 +95,12 @@ Linear orders are a central object of study in order theory, providing a natural
 \begin{note}
   Note that~\cref{additive-1} is false if we do not restrict ourselves to linear orders.
 
-  For example, $\ps{1 \uplus 1}^+$ is a property of preorders
+  For example, $\ps{1 \uplus 1}^+$ is a class of preorders
   which is additive, but does not contain $1$.
 \end{note}
 
 \begin{corollary}\label{additive-endpoints}
-  Let $\pp$ be an additive property of linear orders.
+  Let $\pp$ be an additive class of linear orders.
 
   Let $M$ be a linear order.
 
@@ -115,12 +116,12 @@ Linear orders are a central object of study in order theory, providing a natural
 \end{corollary}
 
 \begin{proof}
-  This is just applying the definition of an additive property
+  This is just applying the definition of an additive class
   to the orders $[x, y]$ and $1$.
 \end{proof}
 
 \begin{corollary}\label{additive-transitivity}
-  Let $\pp$ be an additive property of linear orders.
+  Let $\pp$ be an additive class of linear orders.
 
   Let $M$ be a linear order.
 
@@ -143,9 +144,9 @@ Linear orders are a central object of study in order theory, providing a natural
 
 % Definition of $\bounded{\pp}$
 \begin{definitions}
-  Let $\pp$ be a property of linear orders.
+  Let $\pp$ be a class of linear orders.
 
-  We define the following properties of linear orders:
+  We define the following classes of linear orders:
   \begin{itemize}
     \item $\bounded{\pp}$ is the class of linear orders $M$ such that for every $x, y \in M$,
           the bounded subinterval $[x, y]$ is in $\pp$.
@@ -156,18 +157,18 @@ Linear orders are a central object of study in order theory, providing a natural
   \end{itemize}
 \end{definitions}
 
-% Definition of a star property
+% Definition of a star class
 \begin{definition}
-  A property $\pp$ of linear orders is a \emph{star property} if
+  a class $\pp$ of linear orders is a \emph{star class} if
   for every linear orders $M$, and every family $\mathcal{F} \subseteq \pp$
   of subintervals of $M$ such that $J_1 \cap J_2 \ne \emptyset$
   for every $J_1, J_2 \in \mathcal{F}$, we have that
   $\bigcup \mathcal{F} \in \pp$.
 \end{definition}
 
-% Partition according to a star property
+% Partition according to a star class
 \begin{lemma}
-  Let $\pp$ be a star property.
+  Let $\pp$ be a star class.
 
   Then for every linear order $M$,
   and every point $x \in M$, there exists a largest subinterval $J \subseteq M$ such that
@@ -190,11 +191,11 @@ Linear orders are a central object of study in order theory, providing a natural
   Thus we can define the equivalence relation $\sim_{\pp}$ as above.
 \end{proof}
 
-% Lemma: $\bounded{\pp}$ is a star property
+% Lemma: $\bounded{\pp}$ is a star class
 \begin{lemma}[Star Lemma]\label{star-lemma}
-  Let $\pp$ be an additive property of linear orders.
+  Let $\pp$ be an additive class of linear orders.
 
-  Then the property $\bounded{\pp}$ is a star property.
+  Then the class $\bounded{\pp}$ is a star class.
 \end{lemma}
 
 % Proof of the star lemma
@@ -214,8 +215,8 @@ Linear orders are a central object of study in order theory, providing a natural
   Since $\pp$ is additive, by~\cref{additive-transitivity}, we have $[x, y] \in \pp$.
 \end{proof}
 
-\begin{lemma}\label{bounded-properties}
-  Let $\pp$ be an additive property of linear orders.
+\begin{lemma}\label{bounded-classes}
+  Let $\pp$ be an additive class of linear orders.
 
   Then,
   \begin{enumerate}
@@ -264,7 +265,7 @@ Linear orders are a central object of study in order theory, providing a natural
 \end{proof}
 
 \begin{lemma}
-  Let $\pp$ be an additive property of linear orders.
+  Let $\pp$ be an additive class of linear orders.
 
   Then,
   \begin{align*}
@@ -276,7 +277,7 @@ Linear orders are a central object of study in order theory, providing a natural
 \end{lemma}
 
 \begin{proof}
-  By~\cref{bounded-properties}, we conclude that
+  By~\cref{bounded-classes}, we conclude that
   $\lb{\pp}, \rb{\pp} \subseteq \bounded{\pp}$,
   since $M + 1 \in \pp$ and $1 + M \in \pp$ both imply $1 + M + 1 \in \pp$.
 
@@ -288,12 +289,12 @@ Linear orders are a central object of study in order theory, providing a natural
                   & \uplus \ps{ \bounded{\pp} \setminus \ps{\lb{\pp} \cup \rb{\pp}}}
   \end{align*}
 
-  Since by~\cref{bounded-properties} $\pp = \lb{\pp} \cap \rb{\pp}$,
+  Since by~\cref{bounded-classes} $\pp = \lb{\pp} \cap \rb{\pp}$,
   we conclude what we wanted to prove.
 \end{proof}
 
 \begin{lemma}
-  Let $\pp$ be an additive property of linear orders.
+  Let $\pp$ be an additive class of linear orders.
 
   Let $M, M_1, M_2$ be linear orders such that
   $M = M_1 + M_2$.
@@ -306,7 +307,7 @@ Linear orders are a central object of study in order theory, providing a natural
 \end{lemma}
 
 \begin{proof}
-  From~\cref{bounded-properties}, we know that
+  From~\cref{bounded-classes}, we know that
   \begin{enumerate}
     \item 
   \begin{align*}
@@ -319,8 +320,8 @@ Linear orders are a central object of study in order theory, providing a natural
 
 \end{proof}
 
-\begin{corollary}\label{bounded-is-right-plus-left}
-  Let $\pp$ be an additive property of linear orders.
+\begin{corollary}\label{bounded-is-left-plus-right}
+  Let $\pp$ be an additive class of linear orders.
 
   Then,
 
@@ -331,7 +332,7 @@ Linear orders are a central object of study in order theory, providing a natural
 \end{corollary}
 
 \begin{lemma}[Associativity of sum]
-  Let $\pp_1$, $\pp_2$ and $\pp_3$ be properties.
+  Let $\pp_1$, $\pp_2$ and $\pp_3$ be classes.
 
   Then $\sum_{\pp_1}{\sum_{\pp_2}{\pp_3}} = \sum_{\sum_{\pp_1}{\pp_2}}{\pp_3}$.
 \end{lemma}
@@ -343,9 +344,9 @@ Linear orders are a central object of study in order theory, providing a natural
 \end{proof}
 
 \begin{lemma}[Sum and union commute]
-  Let $\ppp$ be a family of properties.
+  Let $\ppp$ be a family of classes.
 
-  Let $\qq$ be a property.
+  Let $\qq$ be a class.
 
   Then $\sum_{\bigcup \ppp}{\qq} = \bigcup_{\pp \in \ppp}{\sum_{\pp}{\qq}}$.
 \end{lemma}
@@ -357,24 +358,3 @@ Linear orders are a central object of study in order theory, providing a natural
 \begin{definition}
   We define $\cnt$ as the class of all countable linear orders.
 \end{definition}
-
-
-\begin{definition}
-  Let $\gamma \ge \omega$ be a limit ordinal.
-
-  We define $\Gamma_{\gamma} := \set{\beta : \beta \subseteq \gamma^\ast + \gamma}^+$.
-
-  We define $\qqo := \Gamma_{\omega}$.
-\end{definition}
-
-\begin{example}
-  \[
-    \qqo = \set{1, \omega, \agemo}^+
-  \]
-\end{example}
-
-\begin{observation}
-  Let $\gamma \ge \omega$ be a limit ordinal.
-
-  Then $\Gamma_{\gamma}$ is a monotone, additive property of linear orders.
-\end{observation}

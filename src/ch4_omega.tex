@@ -1,199 +1,185 @@
-\section{\texorpdfstring{$\omega$}{omega}-Hausdorff rank}
+\section{\texorpdfstring{$\om$}{omega}-Hausdorff rank}
 
-In this chapter, we focus on the special case of the Hausdorff rank associated with the ordinal $\omega$. This case is of particular interest due to its connections with countable structures and its role in the classification of infinite linear orders. We introduce new families of properties and analyze their relationships, providing tools that will be essential for the study of types and decidability.
+In this chapter, we focus on the special case of the Hausdorff rank associated with the ordinal $\om$. This case is of particular interest due to its connections with countable structures and its role in the classification of infinite linear orders. We introduce new families of classes and analyze their relationships, providing tools that will be essential for the study of types and decidability.
 
-\begin{definitions}\label{bounded-definitions}
+\begin{definition}\label{bounded-definitions}
   Let $\alpha > 0$ be an ordinal.
 
   We define:
   \begin{enumerate}
-    \item $\mathcal{S}^{1}_{\alpha} := \qqo^{< \alpha}$
-    \item $\mathcal{S}^{\omega}_{\alpha} := \rb{\qqo^{< \alpha}} \setminus \lb{\qqo^{< \alpha}}$
-    \item $\mathcal{S}^{\agemo}_{\alpha} := \lb{\qqo^{< \alpha}} \setminus \rb{\qqo^{< \alpha}}$
-    \item $\mathcal{S}^{\oo}_{\alpha} := \bounded{\qqo^{< \alpha}} \setminus \ps { \lb {\qqo^{< \alpha}} \cup \rb{\qqo^{< \alpha}} }$
+    \item (Right $\alpha$-Major) $\rmj{\alpha} := \rb{\ho{< \alpha}} \setminus \lb{\ho{< \alpha}}$
+    \item (Left $\alpha$-Major) $\lmj{\alpha} := \lb{\ho{< \alpha}} \setminus \rb{\ho{< \alpha}}$
+    \item (Bounded $\alpha$-Major) $\bmj{\alpha} := \bounded{\ho{< \alpha}} \setminus \ps{ \lb{\ho{< \alpha}} \cup \rb{\ho{< \alpha}} }$
   \end{enumerate}
+\end{definition}
 
-  The names will soon be justified.
-\end{definitions}
+\begin{note}
+  Obviously $\lmj{\alpha} = \rmj{\alpha}^\ast$ by symmetry.
+
+  By~\cref{bounded-is-left-plus-right}, $\bmj{\alpha} = \lmj{\alpha} + \rmj{\alpha}$.
+
+  Also, by the definition:
+  \[
+    \bounded{\ho{< \alpha}} = \ho{< \alpha} \uplus \lmj{\alpha}
+    \uplus \rmj{\alpha} \uplus \bmj{\alpha}
+  \]
+\end{note}
 
 \begin{lemma}\label{bounded-structure}
   Let $\alpha > 0$ be an ordinal.
 
-  Then,
-  \begin{enumerate}
-    \item $\rb{\qqo^{< \alpha}} = \sum_{\omega}{\qqo^{< \alpha}}$.
-    \item $\lb{\qqo^{< \alpha}} = \sum_{\agemo}{\qqo^{< \alpha}}$.
-    \item $\bounded{\qqo^{< \alpha}} = \sum_{\oo}{\qqo^{< \alpha}}$.
-  \end{enumerate}
+  Then $\rb{\ho{< \alpha}} = \sum_{\om}{\ho{< \alpha}}$.
 \end{lemma}
 
 \begin{proof}
-  1. Let us prove the first part.
-  ($\supseteq$) Let $M \in \sum_{\omega}{\qqo^{< \alpha}}$ be a linear order.
+  ($\supseteq$) Let $M \in \sum_{\om}{\ho{< \alpha}}$ be a linear order.
 
-  Let $M = \sum_{i \in \omega} M_i$ be the decomposition of $M$,
-  where $M_i \in \qqo^{< \alpha}$.
+  Let $M = \sum_{i \in \om} M_i$ be the decomposition of $M$,
+  where $M_i \in \ho{< \alpha}$.
 
   Let $x, y \in M$ be any two points in $M$. WLOG $x \le y$.
 
-  Suppose $x \in M_i$ and $y \in M_j$ for $i, j \in \omega$.
+  Suppose $x \in M_i$ and $y \in M_j$ for $i, j \in \om$.
 
-  Since $i$ and $j$ have a finite distance in $\omega$,
+  Since $i$ and $j$ have a finite distance in $\om$,
   we conclude $[x, y] \subseteq M_i + \ldots + M_j$,
-  and thus $[x, y] \subseteq \ps{\qqo^{< \alpha}}^+ = \qqo^{{\alpha}}$.
+  and thus $[x, y] \subseteq \ps{\ho{< \alpha}}^+ = \ho{{\alpha}}$.
 
-  ($\subseteq$) Let $M \in \rb{\qqo^{< \alpha}}$ be a linear order.
+  ($\subseteq$) Let $M \in \rb{\ho{< \alpha}}$ be a linear order.
 
-  Since $M$ is countable, let $\set{x_i}_{i \in \omega} M$ be a right cofinal
-  $\omega$-sequence in $M$.
+  Since $M$ is countable, let $\set{x_i}_{i \in \om} M$ be a right cofinal
+  $\om$-sequence in $M$.
 
   Let $M_0 = (-\infty, x_0]$ and and $M_i = (x_{i-1}, x_{i}]$ for $i > 0$.
 
-  Then $M = \sum_{i \in \omega} M_i$.
+  Then $M = \sum_{i \in \om} M_i$.
 
-  But $M_i$ is a right-bounded interval and thus $M_i \in \qqo^{< \alpha}$, so $M \in \sum_{\omega}{\qqo^{< \alpha}}$.
-
-  2. The second part is symmetric.
-
-  3. The third part follows from~\cref{bounded-is-right-plus-left}:
-  \begin{align*}
-    \bounded{\qqo^{< \alpha}}
-     & = \lb{\qqo^{< \alpha}} + \rb{\qqo^{< \alpha}}                     \\
-     & = \sum_{\agemo}{\qqo^{< \alpha}} + \sum_{\omega}{\qqo^{< \alpha}} \\
-     & = \sum_{\oo}{\qqo^{< \alpha}}
-  \end{align*}
+  But $M_i$ is a right-bounded interval and thus $M_i \in \ho{< \alpha}$, so $M \in \sum_{\om}{\ho{< \alpha}}$.
 \end{proof}
 
-An immediate corollary of~\cref{bounded-structure} is that:
+An immediate corollary of~\cref{bounded-structure} is that "major" is a good name.
 \begin{corollary}\label{le-alpha-corollary}
   Let $\alpha > 0$ be an ordinal.
 
   Then,
   \begin{enumerate}
-    \item $\qqo^{\le \alpha} = \ps{\bounded{\qqo^{< \alpha}}}^+$
-    \item $\qqo^{= \alpha}
-            = \ps{
-              \mathcal{S}^{\omega^\ast}_{\alpha}
-              \uplus \mathcal{S}^{\omega}_{\alpha}
-            }^+$
+    \item $\ho{\le \alpha} = \ps{\bounded{\ho{< \alpha}}}^+$
+    \item $\ho{= \alpha} = \ps{ \lmj{\alpha} \uplus \rmj{\alpha} }^+$
   \end{enumerate}
 \end{corollary}
 
-\begin{lemma}\label{shape-structure-successor}
+\begin{lemma}\label{right-major-successor-decomposition}
   Let $\alpha$ be an ordinal.
-
-  Let $s \in \set{\omega, \agemo, \oo}$.
 
   Then, we have the following:
 
   \[
-    \mathcal{S}^{s}_{\alpha + 1} = \sum_{i \in s}{\qqo^{= \alpha}}
+    \rmj{\alpha + 1} = \sum_{\om}{\ho{= \alpha}}
   \]
 \end{lemma}
 
 \begin{proof}
-  It is enough to prove the case $s = \omega$,
-  since $s = \agemo$ follows by symmetry,
-  and $s = \oo$ follows by adding the previous two cases.
-
-  ($\subseteq$) Let $M \in \mathcal{S}^{\omega}_{\alpha + 1}$.
+  ($\subseteq$) Let $M \in \rmj{\alpha + 1}$.
 
   By~\cref{bounded-structure} and~\cref{le-alpha-corollary}
   \[
-    \rb{\qqo^{< \alpha + 1}}
-    = \sum_{\omega}{\qqo^{< \alpha + 1}}
-    = \sum_{\omega}{\qqo^{\le \alpha}}
-    = \sum_{\omega}{\ps{\bounded{\qqo^{< \alpha}}}^+}
-    = \sum_{\omega}{\bounded{\qqo^{< \alpha}}}
+    \rb{\ho{< \alpha + 1}}
+    = \sum_{\om}{\ho{< \alpha + 1}}
+    = \sum_{\om}{\ho{\le \alpha}}
+    = \sum_{\om}{\ps{\bounded{\ho{< \alpha}}}^+}
+    = \sum_{\om}{\bounded{\ho{< \alpha}}}
   \]
 
-  since by~\cref{bounded-definitions}, $M \in \rb{\qqo^{< \alpha + 1}}$,
-  we conclude that $M = \sum_{i \in \omega}{M_i}$ for a sequence
-  $\set{M_i}_{i \in \omega} \subseteq \bounded{\qqo^{< \alpha}}$.
+  since by~\cref{bounded-definitions}, $M \in \rb{\ho{< \alpha + 1}}$,
+  we conclude that $M = \sum_{i \in \om}{M_i}$ for a sequence
+  $\set{M_i}_{i \in \om} \subseteq \bounded{\ho{< \alpha}}$.
 
-  If $M_i \in \qqo^{= \alpha}$ held for only finitely many $i \in \omega$,
-  we would have $M \in \qqo^{\le \alpha}$, which is a contradiction
-  to $M \notin \lb{\qqo^{< \alpha}}$.
+  If $M_i \in \ho{= \alpha}$ held for only finitely many $i \in \om$,
+  we would have $M \in \ho{\le \alpha}$, which is a contradiction
+  to $M \notin \lb{\ho{< \alpha}}$.
 
-  Thus, $M_i \in \qqo^{= \alpha}$ holds
-  for infinitely many $i \in \omega$, and thus (by adjoining $M_i \in \qqo^{< \alpha}$
-  to the next $\qqo^{= \alpha}$ one) we conclude $M \in \sum_{\omega}{\qqo^{= \alpha}}$.
+  Thus, $M_i \in \ho{= \alpha}$ holds
+  for infinitely many $i \in \om$, and thus (by adjoining $M_i \in \ho{< \alpha}$
+  to the next $\ho{= \alpha}$ one) we conclude $M \in \sum_{\om}{\ho{= \alpha}}$.
 
-  ($\supseteq$) Let $M \in \sum_{\omega}{\qqo^{= \alpha}}$.
+  ($\supseteq$) Let $M \in \sum_{\om}{\ho{= \alpha}}$.
 
-  Since $M \in \sum_{\omega} {\qqo^{< \alpha + 1}}$, by~\cref{bounded-structure},
-  $M \in \rb{\qqo^{< \alpha + 1}}$.
+  Since $M \in \sum_{\om} {\ho{< \alpha + 1}}$, by~\cref{bounded-structure},
+  $M \in \rb{\ho{< \alpha + 1}}$.
 
   By~\cref{le-alpha-corollary},
   \[
-    M \in \sum_{\omega}{\qqo^{= \alpha}}
-    = \sum_{\omega} \ps{ \mathcal{S}^{\omega^\ast}_{\alpha} \uplus \mathcal{S}^{\omega}_{\alpha} }^+
-    = \sum_{\omega} \ps{ \mathcal{S}^{\omega^\ast}_{\alpha} \uplus \mathcal{S}^{\omega}_{\alpha} }
+    M \in \sum_{\om}{\ho{= \alpha}}
+    = \sum_{\om} \ps{ \lmj{\alpha} \uplus \rmj{\alpha} }^+
+    = \sum_{\om} \ps{ \lmj{\alpha} \uplus \rmj{\alpha} }
   \]
 
-  Suppose $M = \sum_{i \in \omega}{M_i}$ where $M_i \in \mathcal{S}^{s_i}_{\alpha}$
-  for $s_i \in {\omega^\ast, \omega}$. By the pigeonhole principle,
-  suppose eventually $s_i = s$. WLOG, eventually $s_i = \omega$. WLOG,
-  $s_i = \omega$ for all $i \in \omega$, so $M \in \sum_{\omega} \mathcal{S}^{\omega}_{\alpha}$.
+  Suppose $M = \sum_{i \in \om}{M_i}$ where $M_i \in \set{\lmj{\alpha}, \rmj{\alpha}}$.
+  By the pigeonhole principle, there are either
+  infinitely many $M_i \in \lmj{\alpha}$ or infinitely many $M_i \in \rmj{\alpha}$.
+  WLOG, suppose $M_i \in \rmj{\alpha}$ for infinitely many $i \in \om$.
 
-  Suppose by contradiction $M = \qqo^{\le \alpha} = \ps{\bounded{\qqo^{< \alpha}}}^+$.
-  In particular, by the pigeonhole principle, there exists some $N \in \omega$
-  such that $\sum_{N \le i < \omega} M_i \in \bounded{\qqo^{< \alpha}}$,
-  which is a contradiction because it follows that $M_{N+1} \in \qqo{< \alpha}$ as it is bounded
+  Then, since $M_i \in \ho{< \alpha + 1}$, we have $M_i \in \ho{= \alpha}$.
+
+  Suppose by contradiction $M = \ho{\le \alpha} = \ps{\bounded{\ho{< \alpha}}}^+$.
+  In particular, by the pigeonhole principle, there exists some $N \in \om$
+  such that $\sum_{N \le i < \om} M_i \in \bounded{\ho{< \alpha}}$,
+  which is a contradiction because it follows that $M_{N+1} \in \Om{< \alpha}$ as it is bounded
   between $M_N$ and $M_{N+2}$.
 \end{proof}
 
-\begin{lemma}\label{shape-structure-limit}
-  Let $\set{\alpha_i}_{i \in \omega}$ be a strictly
+\begin{lemma}\label{right-major-limit-decomposition}
+  Let $\set{\alpha_i}_{i \in \om}$ be a strictly
   increasing ordinal sequence, and let $\alpha = \sup_{\alpha_i}$.
 
   Then,
   \[
-    \mathcal{S}^{s}_{\alpha} = \sum_{i \in s}{\qqo^{[\alpha_i, \alpha)}}
+    \rmj{\alpha} = \sum_{i \in \om}{\ho{[\alpha_i, \alpha)}}
   \]
 \end{lemma}
 
 \begin{proof}
-  Again, it is enough to prove for $s = \omega$.
-  ($\subseteq$) Let $M \in \mathcal{S}^{\omega}_{\alpha}$.
-  Let ${y_i}_{i < \omega}$ be a right cofinal $\omega$-sequence in $M$.
+  ($\subseteq$) Let $M \in \rmj{\alpha}$.
+  Let ${y_i}_{i < \om}$ be a right cofinal $\om$-sequence in $M$.
 
-  Thus we can choose some $x_0$ far enough such that $(-\infty, x_0] \in \qqo^{[\alpha_0, \alpha)}$,
-  and $x_0 > y_0$.
-  Now by induction we choose $x_1$ such that $(x_0, x_1] \in \qqo^{[\alpha_1, \alpha)}$,
+  Thus we can choose some $x_0$ far enough such that $(-\infty, x_0] \in \ho{[\alpha_0, \alpha)}$,
+          and $x_0 > y_0$.
+          Now by induction we choose $x_1$ such that $(x_0, x_1] \in \ho{[\alpha_1, \alpha)}$,
   and $x_1 > y_1$.
 
-  By iterating $\omega$ times we get an $\omega$-sequence $\set{M_i}_{i \in \omega}$
-  such that $M = \sum_{i \in \omega} M_i$ and $M_i \in \qqo^{[\alpha_i, \alpha)}$,
-  where $M_i = (x_{i-1}, x_i]$ (where $x_{-1} := -\infty$).
+  By iterating $\om$ times we get an $\om$-sequence $\set{M_i}_{i \in \om}$
+  such that $M = \sum_{i \in \om} M_i$ and $M_i \in \ho{[\alpha_i, \alpha)}$,
+          where $M_i = (x_{i-1}, x_i]$ (where $x_{-1} := -\infty$).
 
 
-  ($\supseteq$) Let $M \in \sum_{i \in \omega}{\qqo^{[\alpha_i, \alpha)}}$.
-  It is obvious that $M \in \rb{\qqo^{< \alpha}}$ since every right-bounded
-  ray is in $\qqo^{\le \alpha_i}$ for some $i \in \omega$.
+  ($\supseteq$) Let $M \in \sum_{i \in \om}{\ho{[\alpha_i, \alpha)}}$.
+  It is obvious that $M \in \rb{\ho{< \alpha}}$ since every right-bounded
+  ray is in $\ho{\le \alpha_i}$ for some $i \in \om$.
 
-  However, $M \notin \qqo^{< \alpha_i}$ for any $i \in \omega$, so $M \notin \qqo^{< \alpha}$.
+  However, $M \notin \ho{< \alpha_i}$ for any $i \in \om$, so $M \notin \ho{< \alpha}$.
 
 
 \end{proof}
 
-\begin{lemma}\label{shape-structure}
-  Let $\set{\alpha_i}_{i \in \omega}$ be a non-decreasing ordinal sequence,
+\begin{lemma}\label{right-major-decomposition}
+  Let $\set{\alpha_i}_{i \in \om}$ be a non-decreasing ordinal sequence,
   and let $\alpha = \sup_{\alpha_i + 1}$.
 
   Then,
   \[
-    \mathcal{S}^{s}_{\alpha} = \sum_{i \in s}{\qqo^{[\alpha_i, \alpha)}}
+    \rmj{\alpha} = \sum_{i \in \om}{\ho{[\alpha_i, \alpha)}}
   \]
 \end{lemma}
 
 \begin{proof}
-  It is just a way to write~\cref{shape-structure-successor} and~\cref{shape-structure-limit}
+  It is just a way to
+  write~\cref{right-major-successor-decomposition}
+  and~\cref{right-major-limit-decomposition}
   together more succinctly.
 \end{proof}
 
 \begin{note}
-  In the proof of~\cref{shape-structure}, we actually use the fact that
-  we work over $\qqo = \Gamma_{\omega}$. This proof would not have worked over $\Gamma_{\beta}$
-  for $\beta > \omega$.
+  In the proof of~\cref{right-major-decomposition}, we actually use the fact that
+  we work over $\Om = \Gamma_{\om}$. This proof would not have worked over $\Gamma_{\beta}$
+  for $\beta > \om$.
 \end{note}

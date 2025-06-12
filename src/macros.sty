@@ -41,13 +41,19 @@
 \newcommand{\set}[1]{\braces{#1}}
 
 % Macros
-\newcommand{\hrank}[2]{\mathbf{hrank}_{#1} \ps{#2}}
-\newcommand{\ho}[1]{\hrank{\omega}{#1}}
-\newcommand{\bigforall}{\mbox{\Large $\mathsurround0pt\foralM$}}
+\newcommand{\hh}[2]{\mathbf{H}_{#1}^{#2}}
+\newcommand{\ho}[1]{\hh{}{#1}}
+\newcommand{\hhrank}[2]{\mathbf{hrank}_{#1} \ps{#2}}
+\newcommand{\hrank}[1]{\hhrank{}{#1}}
+\newcommand{\rmj}[1]{\mathbf{RM}_{#1}}
+\newcommand{\lmj}[1]{\mathbf{LM}_{#1}}
+\newcommand{\bmj}[1]{\mathbf{BM}_{#1}}
 
 % Letters
-\newcommand{\agemo}{\omega^\ast}
-\newcommand{\oo}{\agemo + \omega}
+\newcommand{\om}{\omega}
+\newcommand{\mo}{\om^\ast}
+\newcommand{\Om}{\om}
+\newcommand{\oo}{\mo + \om}
 \newcommand{\otp}{\mathbf{otp}}
 \newcommand{\fso}{\mathbf{FSO}}
 \newcommand{\mso}{\mathbf{MSO}}
@@ -72,7 +78,5 @@
 \newcommand{\zero}{\cdot}
 
 \newcommand{\abs}[1]{\left| {#1} \right|}
-
-\newcommand{\qqo}{\Omega}
 
 \newcommand{\from}{\leftarrow}
