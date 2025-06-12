@@ -13,8 +13,9 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 
 % Definition of a class
 \begin{definition}[class of preorders]
-  A \emph{class} $\pp$ of preorders is a class of preorders which
-  is closed under isomorphism.
+  A \emph{class} $\pp$ of preorders is a class of preorders,
+  all defined over the same signature,
+  which is closed under isomorphism.
 \end{definition}
 
 % Definition of a monotone class
@@ -32,7 +33,7 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 
 \begin{definition}[Sum of preorders]
   Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders over
-  a disjoint signature (i.e., for every $i \in I$, $I$ and $M_i$ have disjoint sets of labels).
+  a signature disjoint from that of $I$.
 
   The sum $M = \sum_{i \in I} M_i$ is defined as follows:
 
@@ -51,8 +52,8 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 \end{definition}
 
 \begin{lemma}
-  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders,
-  over a disjoint signature.
+  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders
+  over a signature disjoint from that of $I$.
 
   Then $M = \sum_{i \in I} M_i$ is a preorder.
 \end{lemma}
@@ -73,7 +74,7 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 
 % Definition of sum of two classes
 \begin{definition}
-  Let $\pp_1$ and $\pp_2$ be classes of preorders.
+  Let $\pp_1$ and $\pp_2$ be classes of preorders over the same signature.
 
   Then we define
   \[
@@ -85,7 +86,9 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 
 % Definition of an additive class
 \begin{definition}
-  a class $\pp$ of preorders is an \emph{additive class} if for every preorders $M_1$ and $M_2$,
+  Let $\pp$ be a class of preorders.
+
+  $\pp$ is called an \emph{additive class} if for every preorders $M_1$ and $M_2$,
   $M_1 + M_2 \in \pp$ iff $M_1, M_2 \in \pp$.
 \end{definition}
 
@@ -101,8 +104,8 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 \begin{definition}[Sum of a family of classes over a preorder]
   Let $I$ be a preorder.
 
-  Let $\set{\qq_i}_{i \in I}$ be a family of classes of preorders,
-  each with a signature disjoint from that of $I$.
+  Let $\set{\qq_i}_{i \in I}$ be a family of classes of preorders
+  over the same signature, which is disjoint from that of $I$.
 
   Then we define
   \[
@@ -115,8 +118,8 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 \begin{definition}[Sum of a class over a preorder]
   Let $I$ be a preorder.
 
-  Let $\qq$ be a single class of preorders,
-  with a signature disjoint from that of $I$.
+  Let $\qq$ be a single class of preorders
+  over a signature disjoint from that of $I$.
 
   Then we define
   \[
@@ -126,7 +129,7 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 
 \begin{note}
   Let $I$ be a preorder, and let $\qq$ be a class of preorders
-  with a signature disjoint from that of $I$.
+  over a signature disjoint from that of $I$.
 
   By the previous two definitions,
   \[
@@ -144,3 +147,38 @@ isomorphism. We then define the sum operation on preorders. This will be used to
     \sum_{\pp}{\qq} := \set{\sum_{I}{\qq} : I \in \pp}
   \]
 \end{definition}
+
+\begin{lemma}[Associativity of sum]
+  Let $I$ be a preorder.
+
+  Let $\set{J_i}_{i \in I}$ be a family of mutually disjoint preorders.
+
+  Let $\set{K_j}_{j \in \biguplus_i J_i}$ be a family of preorders.
+
+  Then,
+  \[
+    \sum_{i \in I}{\sum_{j \in J_i}{K_j}} \cong \sum_{j \in \sum_{i \in I}{J_i}}{K_j}
+  \]
+\end{lemma}
+
+\begin{proof}
+  This follows from the definition of the sum operation.
+\end{proof}
+
+\begin{corollary}[Associativity of sum for classes]
+  Let $\pp_1$, $\pp_2$ and $\pp_3$ be classes.
+
+  Then $\sum_{\pp_1}{\sum_{\pp_2}{\pp_3}} = \sum_{\sum_{\pp_1}{\pp_2}}{\pp_3}$.
+\end{corollary}
+
+\begin{lemma}[Sum and union commute]
+  Let $\ppp$ be a family of classes.
+
+  Let $\qq$ be a class.
+
+  Then $\sum_{\bigcup \ppp}{\qq} = \bigcup_{\pp \in \ppp}{\sum_{\pp}{\qq}}$.
+\end{lemma}
+
+\begin{proof}
+  This is obvious from the definition of the sum operation.
+\end{proof}
