@@ -13,8 +13,8 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 
 % Definition of a class
 \begin{definition}[class of preorders]
-  A \emph{class} $\pp$ of preorders is a class of preorders,
-  all defined over the same signature,
+  A \emph{class} $\pp$ of preorders is a collection of preorders,
+  all defined over one signature,
   which is closed under isomorphism.
 \end{definition}
 
@@ -32,8 +32,10 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 \end{definition}
 
 \begin{definition}[Sum of preorders]
-  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders over
-  a signature disjoint from that of $I$.
+  Let $I$ be a preorder.
+
+  Let $\set{M_i}_{i \in I}$ be a family of preorders
+  over some signature.
 
   The sum $M = \sum_{i \in I} M_i$ is defined as follows:
 
@@ -46,14 +48,16 @@ isomorphism. We then define the sum operation on preorders. This will be used to
   Then we define $x \le y$ iff either
   $i = j$ and $x \le_i y$ or $i < j$.
 
-  The labels are inherited from either $I$ or the $M_i$'s.
+  The labels are inherited from the $M_i$'s.
 
   If $I = 2$, we define $M_0 + M_1 := \sum_{i \in 2} M_i$.
 \end{definition}
 
 \begin{lemma}
-  Let $I$ be a preorder, and let $\set{M_i}_{i \in I}$ be a family of preorders
-  over a signature disjoint from that of $I$.
+  Let $I$ be a preorder.
+  
+  Let $\set{M_i}_{i \in I}$ be a family of preorders
+  over some signature.
 
   Then $M = \sum_{i \in I} M_i$ is a preorder.
 \end{lemma}
@@ -74,7 +78,7 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 
 % Definition of sum of two classes
 \begin{definition}
-  Let $\pp_1$ and $\pp_2$ be classes of preorders over the same signature.
+  Let $\pp_1$ and $\pp_2$ be classes of preorders over some signature.
 
   Then we define
   \[
@@ -105,21 +109,20 @@ isomorphism. We then define the sum operation on preorders. This will be used to
   Let $I$ be a preorder.
 
   Let $\set{\qq_i}_{i \in I}$ be a family of classes of preorders
-  over the same signature, which is disjoint from that of $I$.
+  over some signature.
 
   Then we define
   \[
     \sum_{i \in I}{\qq_i} := \set{\sum_{i \in I}{M_i} : \forall i \in I. M_i \in \qq_i}
   \]
 
-  The labels are inherited from either $I$ or the $\qq_i$'s.
+  The labels are inherited from $\qq_i$'s.
 \end{definition}
 
 \begin{definition}[Sum of a class over a preorder]
-  Let $I$ be a preorder.
+  Let $\qq$ be a class of preorders.
 
-  Let $\qq$ be a single class of preorders
-  over a signature disjoint from that of $I$.
+  Let $I$ be a preorder.
 
   Then we define
   \[
@@ -128,8 +131,9 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 \end{definition}
 
 \begin{note}
-  Let $I$ be a preorder, and let $\qq$ be a class of preorders
-  over a signature disjoint from that of $I$.
+  Let $\qq$ be a class of preorders.
+
+  Let $I$ be a preorder.
 
   By the previous two definitions,
   \[
@@ -140,7 +144,7 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 \begin{definition}[Sum of a class over a class]
   Let $\pp$ be a class of preorders.
 
-  Let $\qq$ be a class of preorders over a signature disjoint from that of $\pp$.
+  Let $\qq$ be a class of preorders.
 
   Then we define,
   \[
@@ -151,9 +155,11 @@ isomorphism. We then define the sum operation on preorders. This will be used to
 \begin{lemma}[Associativity of sum]
   Let $I$ be a preorder.
 
-  Let $\set{J_i}_{i \in I}$ be a family of mutually disjoint preorders.
+  Let $\set{J_i}_{i \in I}$ be a family of mutually disjoint preorders
+  over some signature.
 
-  Let $\set{K_j}_{j \in \biguplus_i J_i}$ be a family of preorders.
+  Let $\set{K_j}_{j \in \biguplus_i J_i}$ be a family of preorders
+  over some signature.
 
   Then,
   \[
