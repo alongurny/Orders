@@ -95,8 +95,8 @@ or chains.
 \begin{note}
   Note that~\cref{additive-1} is false if we do not restrict ourselves to linear orders.
 
-  For example, $\ps{1 \uplus 1}^+$ is a class of preorders
-  which is additive, but does not contain $1$.
+  For example, $\ps{\mathbf{1} \uplus \mathbf{1}}^+$ is a class of preorders
+  which is additive, but does not contain $\mathbf{1}$.
 \end{note}
 
 \begin{corollary}\label{additive-endpoints}
@@ -302,20 +302,20 @@ or chains.
   Then,
   \begin{enumerate}
     \item
-    $M \in \bounded{\pp} \iff M_1 \in \lb{\pp} \wedge M_2 \in \rb{\pp}$
+          $M \in \bounded{\pp} \iff M_1 \in \lb{\pp} \wedge M_2 \in \rb{\pp}$
   \end{enumerate}
 \end{lemma}
 
 \begin{proof}
   From~\cref{bounded-classes}, we know that
   \begin{enumerate}
-    \item 
-  \begin{align*}
-    M \in \bounded{\pp}
-     & \iff M_1 + M_2 \in \bounded{\pp}                                \\
-     & \iff M_1 + 1 \in \bounded{\pp} \wedge 1 + M_2 \in \bounded{\pp} \\
-     & \iff M_1 \in \lb{\pp} \wedge M_2 \in \rb{\pp}
-  \end{align*}
+    \item
+          \begin{align*}
+            M \in \bounded{\pp}
+             & \iff M_1 + M_2 \in \bounded{\pp}                                \\
+             & \iff M_1 + 1 \in \bounded{\pp} \wedge 1 + M_2 \in \bounded{\pp} \\
+             & \iff M_1 \in \lb{\pp} \wedge M_2 \in \rb{\pp}
+          \end{align*}
   \end{enumerate}
 
 \end{proof}

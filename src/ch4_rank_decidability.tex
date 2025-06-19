@@ -1,6 +1,4 @@
-\section{Type Theory}
-
-Type theory provides a framework for analyzing the expressive power of logical languages over classes of structures. In this chapter, we introduce the notion of types for classes of preorders and study their computability. The results here connect the structural classes of orders with logical definability, setting the stage for the study of decidability in the next chapter.
+\section{Decidability of the Hausdorff Rank}
 
 % Types of a class
 \begin{definition}
@@ -61,7 +59,7 @@ Type theory provides a framework for analyzing the expressive power of logical l
     since $\hh{\qq}{= c + 1} = \sum_{\qq} \hh{\qq}{= c}$.
 \end{proof}
 
-\begin{corollary}\label{right-major-computable}
+\begin{corollary}\label{rmj-computable}
     Let $n \in \NN$, and let $\alpha \ge \om$ be an ordinal.
 
     Then for all $c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
@@ -70,7 +68,7 @@ Type theory provides a framework for analyzing the expressive power of logical l
 \end{corollary}
 
 \begin{proof}
-    By~\cref{right-major-successor-decomposition}, $\rmj{c} = \sum_{\om}{\ho{= c}}$.
+    By~\cref{rmj-successor-decomposition}, $\rmj{c} = \sum_{\om}{\ho{= c}}$.
 
     Then it follows immediately from~\cref{ab-lemma}.
 \end{proof}
@@ -111,7 +109,7 @@ Type theory provides a framework for analyzing the expressive power of logical l
     where the last transition is because $\type{n}{\hh{\qq}{= a(n)}} = \type{n}{\hh{\qq}{= a(n) + b(n)}}$.
 \end{proof}
 
-\begin{corollary}
+\begin{lemma}
     Let $n \in \NN$, and let $\alpha \ge \om$ be an ordinal.
 
     \[
@@ -121,7 +119,7 @@ Type theory provides a framework for analyzing the expressive power of logical l
 
     In particular, $\type{n}{\rmj{\alpha}}$ can be
     computed, and is independent of the choice of $\alpha \ge \om$.
-\end{corollary}
+\end{lemma}
 
 \begin{proof}
     There exists an increasing $\om$-sequence $\set{\alpha_i}_{i \in \om}$ such that
@@ -139,5 +137,27 @@ Type theory provides a framework for analyzing the expressive power of logical l
          & = \type{n}{\bigcup_{c < b(n)}{\rmj{a(n) + c}}}             \\
     \end{align*}
 
-    where the last transition is by~\cref{right-major-computable}.
+    where the last transition is by~\cref{rmj-computable}.
+\end{proof}
+
+\begin{corollary}
+    Let $n \in \NN$, and let $\alpha \ge \om$ be an ordinal.
+
+    We also have,
+    \[
+        \type{n}{\lmj{\alpha}} = \type{n}{\sum_{\mo} \bigcup_{c < b(n)}{\ho{= a(n) + c}}}
+    \]
+    and
+    \[
+        \type{n}{\bmj{\alpha}} = \type{n}{\sum_{\oo} \bigcup_{c < b(n)}{\ho{= a(n) + c + 1}}}
+    \]
+
+    In particular $\type{n}{\lmj{\alpha}}$ and $\type{n}{\bmj{\alpha}}$ can be computed,
+    and are independent of the choice of $\alpha \ge \om$.
+\end{corollary}
+
+\begin{proof}
+    For $\lmj{\alpha}$, it follows by duality.
+
+    For $\bmj{\alpha}$, it follows since $\bmj{\alpha} = \lmj{\alpha} + \rmj{\alpha}$.
 \end{proof}

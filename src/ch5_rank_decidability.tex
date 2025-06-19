@@ -1,4 +1,5 @@
-\section{Decidability of the rank}
+% % We continue this section.
+% \section{Decidability of the Rank}
 
 \begin{definition}
   Let $\qq$ be a class of linear orders.
@@ -174,12 +175,12 @@
   $L_\alpha = \mathbf{L}_{\alpha}$, and $R_\alpha = \mathbf{R}_{\alpha}$.
 \end{definition}
 
-\begin{lemma}{\label{single-ordinal-decomposition}}
+\begin{lemma}{\label{cnt-decomposition-single-ordinal}}
   Let $\alpha$ be an ordinal.
 
   Then,
   \[
-    \cnt \bs{\alpha} = \sum_{I \in \mathbf{Good}_{\alpha}} \sum_{i \in I} \sigma_\alpha(i)
+    \cnt \bs{\alpha} = \bigcup_{I \in \mathbf{Good}_{\alpha}} \sum_{i \in I} \sigma_\alpha(i)
   \]
 \end{lemma}
 
@@ -192,7 +193,7 @@
   where $\set{M_i}_{i \in I}$ are the $\sim_{\alpha}$-equivalence class of $I$.
 
   Then for each $i \in I$, $M_i \in \bounded{\ho{< \alpha}}$,
-  and by definition $\sigma_\alpha(i) = \sigma_{\alpha} \ps{M_i}$.
+  and by definition $\sigma_\alpha(i) = M_i$.
 
   Let $i'$ be the successor of $i$ in $I$.
 
@@ -231,22 +232,85 @@
   so $M \in C$ and we are done.
 \end{proof}
 
-\begin{corollary}\label{countables-computable}
-  Let $\alpha > 0$ be an ordinal.
+\begin{lemma}\label{ho-decomposition-single-ordinal}
+  Let $\alpha > 0$ be an ordinal
+  and let $\delta \ge \omega$ be a limit ordinal.
 
-  Then $\cnt \bs{\alpha}$ is a computable class of linear orders.
+  Then,
+  \[
+    \ho{< \alpha + \delta} \bs{\alpha} = \bigcup_{I \in \mathbf{Good}_{\alpha} \wedge \ho{< \delta}} \sum_{i \in I} \sigma_{\alpha}(i)
+  \]
+
+\end{lemma}
+
+\begin{proof}
+  ($\subseteq$) Let $M \in \ho{< \alpha + \delta} \bs{\alpha}$. By definition, $M$
+  is a linear order labeled with $P_\alpha, L_\alpha, R_\alpha$ such that the
+  underlying order is in $\ho{< \alpha + \delta}$, $P_\alpha$ represents
+  $\sim_\alpha$, and $L_\alpha, R_\alpha$ are as defined.
+
+  Let $I = M / \sim_\alpha$ be the quotient of $M$ by the equivalence relation
+  $\sim_\alpha$. Then $M = \sum_{i \in I} M_i$, where $M_i$ are the
+  $\sim_\alpha$-equivalence classes. By the definition of $\sim_\alpha$, each
+  $M_i \in \bounded{\ho{< \alpha}}$, and by the definition of $\sigma_\alpha(i)$,
+  $M_i \in \sigma_\alpha(i)$.
+
+  Since $M \in \ho{< \alpha + \delta}$, the quotient $I$ is in $\ho{< \delta}$.
+  For each pair $i, i'$ of consecutive elements in $I$, the labeling ensures that
+  $P_\alpha(i) \ne P_\alpha(i')$ and either $R_\alpha(i) = 0$ or $L_\alpha(i') = 0$,
+  so $I \in \mathbf{Good}_\alpha$. Thus, $M \in \sum_{i \in I} \sigma_\alpha(i)$ for
+  some $I \in \mathbf{Good}_\alpha \wedge \ho{< \delta}$.
+
+  ($\supseteq$) Let $M = \sum_{i \in I} M_i$ where $I \in \mathbf{Good}_\alpha
+    \wedge \ho{< \delta}$ and $M_i \in \sigma_\alpha(i)$ for each $i \in I$. The
+  labeling $P_\alpha, L_\alpha, R_\alpha$ on $M$ is as required by the definition
+  of $\mathbf{Good}_\alpha$, and each $M_i \in \bounded{\ho{< \alpha}}$. Since
+  $I \in \ho{< \delta}$, $M \in \ho{< \alpha + \delta}$. Thus,
+  $M \in \ho{< \alpha + \delta} \bs{\alpha}$.
+
+  Therefore,
+  \[
+    \ho{< \alpha + \delta} \bs{\alpha} =
+    \bigcup_{I \in \mathbf{Good}_{\alpha} \wedge \ho{< \delta}}
+    \sum_{i \in I} \sigma_{\alpha}(i)
+  \]
+\end{proof}
+
+\begin{corollary}\label{rmj-decomposition-single-ordinal}
+  Let $\alpha > 0$ be an ordinal
+  and let $\delta \ge \omega$ be a limit ordinal.
+
+  Then,
+  \[
+    \rmj{\alpha + \delta} \bs{\alpha} = \bigcup_{I \in \mathbf{Good}_{\alpha} \wedge \rmj{\delta}}
+    \sum_{i \in I} \sigma_{\alpha}(i)
+  \]
 \end{corollary}
 
 \begin{proof}
+  It follows from~\cref{ho-decomposition-single-ordinal}
+  together with~\cref{rmj-decomposition}.
+\end{proof}
+
+\begin{lemma}\label{cnt-decidable-single-ordinal}
+  Let $\alpha > 0$ be an ordinal.
+
+  Then $\cnt \bs{\alpha}$ is a computable class of linear orders.
+\end{lemma}
+
+\begin{proof}
   Since $\mathbf{Good}_{\alpha}$ is clearly computable,
-  it follows from combining~\cref{computable-sum} and~\cref{single-ordinal-decomposition}.
+  it follows from combining~\cref{computable-sum}
+  with~\cref{cnt-decomposition-single-ordinal}
+  and the computability of $\ho{< \alpha}$,
+  $\rmj{\alpha}$, $\lmj{\alpha}$ and $\bmj{\alpha}$.
 \end{proof}
 
 \begin{theorem}\label{single-ordinal-satisfiability}
   Let $\alpha > 0$ be an ordinal.
 
   Satisfiability of $\mso[\Int{\ho{< \alpha}}]$
-  over all countable linear orders is decidable.
+  over $\cnt$ is decidable.
 \end{theorem}
 
 \begin{proof}
@@ -256,5 +320,146 @@
   such that $\varphi$ is satisfiable over $\cnt$
   iff $\varphi'$ is satisfiable over $\cnt \bs{\alpha}$.
 
-  This is decidable by~\cref{countables-computable}.
+  This is decidable by~\cref{cnt-decidable-single-ordinal}.
+\end{proof}
+
+We can extend these results to multiple ordinals.
+
+\begin{lemma}\label{extend-lemma-single-ordinal}
+  Let $\alpha$ be an ordinal.
+
+  Let $I$ be a linear order
+  and let $\set{M_i}_{i \in I}$ be a family of linear orders,
+  such that for each pair $i, i' \in I$
+  such that $i'$ is the successor of $i$ in $I$,
+  either $\mathbf{R}_\alpha(M_{i}) = 0$ or $\mathbf{L}_\alpha(M_{i'}) = 0$.
+
+  Then,
+
+  \[
+    \ps { \sum_{i \in I} M_i } \bs{\alpha} = \sum_{i \in I} \ps { M_i \bs{\alpha} }
+  \]
+\end{lemma}
+
+\begin{proof}
+  It is obvious, but TBC.
+\end{proof}
+
+\begin{notation}
+  Let $\alpha_1 < \ldots < \alpha_k$ be ordinals.
+
+  Let $\pp$ be a class of linear orders.
+
+  Then,
+  \[
+    \pp \bs{\alpha_1, \ldots, \alpha_k} := \pp \bs{\alpha_1} \cdots \bs{\alpha_k}
+  \]
+\end{notation}
+
+\begin{corollary}\label{extend-lemma-multiple-ordinals}
+  Let $\alpha_1 < \ldots < \alpha_k < \alpha$ be ordinals.
+
+  Let $I$ be a linear order
+  and let $\set{M_i}_{i \in I}$ be a family of linear orders,
+  such that for each pair $i, i' \in I$
+  such that $i'$ is the successor of $i$ in $I$,
+  either $\mathbf{R}_\alpha(M_{i}) = 0$ or $\mathbf{L}_\alpha(M_{i'}) = 0$.
+
+  Then,
+  \[
+    \ps { \sum_{i \in I} M_i } \bs{\alpha_1, \ldots, \alpha_k, \alpha}
+    = \sum_{i \in I} \ps { M_i \bs{\alpha_1, \ldots, \alpha_k, \alpha} }
+  \]
+\end{corollary}
+
+\begin{proof}
+  If $\mathbf{R}_\alpha(i) = 0$, then in particular
+  $\mathbf{R}_{\alpha_j}(i) = 0$ for all $j \in \bs{k}$,
+  and similarly for $\mathbf{L}_\alpha(i')$.
+
+  So the condition for $\alpha$ implies
+  the similar conditions for $\alpha_1, \ldots, \alpha_k$.
+
+  Now, we can apply~\cref{extend-lemma-single-ordinal} inductively
+  to obtain the result.
+\end{proof}
+
+\begin{lemma}\label{cnt-decomposition-multiple-ordinals}
+  Let $\alpha_1 < \ldots < \alpha_k < \alpha$ be ordinals. Then,
+  \[
+    \cnt \bs{\alpha_1, \ldots, \alpha_k, \alpha}
+    = \bigcup_{I \in \mathbf{Good}_{\alpha}} \sum_{i \in I} \sigma_{\alpha}(i) \bs{\alpha_1, \ldots, \alpha_k}
+  \]
+\end{lemma}
+
+\begin{proof}
+  This is a consequence of~\cref{cnt-decomposition-single-ordinal}
+  and~\cref{extend-lemma-multiple-ordinals}.
+\end{proof}
+
+\begin{lemma}\label{ho-decomposition-multiple-ordinals}
+  Let $\alpha_1 < \ldots < \alpha_k < \alpha$ and $\delta > 1$ be ordinals. Then,
+  \[
+    \ho{< \alpha + \delta} \bs{\alpha_1, \ldots, \alpha_k, \alpha}
+    = \bigcup_{I \in \mathbf{Good}_{\alpha} \wedge \ho{< \delta}}
+    \sum_{i \in I} \sigma_{\alpha}(i) \bs{\alpha_1, \ldots, \alpha_k}
+  \]
+\end{lemma}
+
+\begin{proof}
+  This is a consequence of~\cref{ho-decomposition-single-ordinal}
+  and~\cref{extend-lemma-multiple-ordinals}.
+\end{proof}
+
+\begin{lemma}\label{rmj-decomposition-multiple-ordinals}
+  Let $\alpha_1 < \ldots < \alpha_k < \alpha$ and $\delta$ be ordinals.
+  Then,
+  \[
+    \rmj{\alpha + \delta} \bs{\alpha_1, \ldots, \alpha_k, \alpha}
+    = \bigcup_{I \in \mathbf{Good}_{\alpha} \wedge \rmj{\delta}}
+    \sum_{i \in I} \sigma_{\alpha}(i) \bs{\alpha_1, \ldots, \alpha_k}
+  \]
+\end{lemma}
+
+\begin{proof}
+  This is a consequence of~\cref{rmj-decomposition-single-ordinal}
+  and~\cref{extend-lemma-multiple-ordinals}.
+\end{proof}
+
+\begin{lemma}\label{cnt-decidable-multiple-ordinals}
+  Let $\alpha_1 < \ldots < \alpha_k < \alpha$ be ordinals.
+
+  Then $\cnt \bs{\alpha_1, \ldots, \alpha_k, \alpha}$
+  is a computable class of linear orders.
+\end{lemma}
+
+\begin{proof}
+  Since $\mathbf{Good}_{\alpha}$ is computable,
+  it follows from combining~\cref{computable-sum}
+  with~\cref{cnt-decomposition-multiple-ordinals} and the computability
+  of $\ho{< \alpha} \bs{\alpha_1, \ldots, \alpha_k}$,
+  $\rmj{\alpha} \bs{\alpha_1, \ldots, \alpha_k}$,
+  $\lmj{\alpha} \bs{\alpha_1, \ldots, \alpha_k}$ and
+  $\bmj{\alpha} \bs{\alpha_1, \ldots, \alpha_k}$.
+\end{proof}
+
+\begin{theorem}\label{multiple-ordinals-satisfiability}
+  Let $\alpha_1 < \ldots < \alpha_k$ be ordinals.
+
+  Satisfiability of $\mso[\Int{\ho{< \alpha_1}}, \ldots, \Int{\ho{< \alpha_k}}]$
+  over $\cnt$ is decidable.
+\end{theorem}
+
+\begin{proof}
+  First, by~\cref{int-expressible}, we can convert
+  any formula $\varphi$ in \[
+    \mso[\Int{\ho{< \alpha_1}}, \ldots, \Int{\ho{< \alpha_k}}]
+  \]
+  to a formula $\varphi'$ in \[
+    \mso \bs{P_{\alpha_1}, L_{\alpha_1}, R_{\alpha_1}, \ldots, P_{\alpha_k}, L_{\alpha_k}, R_{\alpha_k}}
+  \]
+  such that $\varphi$ is satisfiable over $\cnt$
+  iff $\varphi'$ is satisfiable over $\cnt \bs{\alpha_1, \ldots, \alpha_k}$.
+
+  This is decidable by~\cref{cnt-decidable-multiple-ordinals} and~\cref{cnt-decomposition-multiple-ordinals}.
 \end{proof}
