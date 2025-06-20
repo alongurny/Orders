@@ -12,6 +12,7 @@
         \item $\varphi$ has at least $2^{\aleph_0}$ models.
         \item $\varphi$ has uncountably many models.
         \item $\varphi$ has an undefinable model.
+        \item $\varphi$ has an undefinable model of finite $\hrank{}$.
     \end{enumerate}
 \end{theorem}
 
@@ -20,6 +21,57 @@
     ($2 \implies 3$) Since there are only countably many
     definable linear orders, if $\varphi$ has uncountably many models,
     then there is an undefinable model.
-    
-    ($3 \implies 1$) TBC.
+
+    ($3 \implies 4$)
+    Let $M$ be an undefinable model of $\varphi$
+    and let $n = \qd{\varphi}$.
+
+    $M$ is $n$-equivalent to some linear order of finite $\hrank{}$,
+    which is obviously undefinable, since $\type{n}{M}$ is not
+    a defining formula.
+
+    ($4 \implies 1$)
+    Let $M$ be an undefinable model of $\varphi$
+    with $\hrank{M} = a$
+    and let $n = \qd{\varphi}$.
+
+    We proceed by induction on $a$.
+
+    If $a = 0$, the claim is vacuously true, since $M = 1$.
+
+    Otherwise, let $M = \sum_{i \in I} M_i$,
+    where $I = M / \sim_{a}$ and $\set{M_i}_{i \in I}$
+    are the equivalence classes of $\sim_{a}$.
+
+    If some $M_i$ is undefinable, then $\type{n}{M_i}$
+    is not a defining formula, so by the induction
+    hypothesis $\type{n}{M_i}$ has at least
+    $2^{\aleph_0}$ models.
+
+    Thus, we can replace $M_i$ with one of these models.
+    The resulting models are all non-isomorphic,
+    since they are distinguishable by the formula saying
+    "the $i$-th equivalence class satisfies $\type{n}{M}$".
+
+    Otherwise, all $M_i$ are definable. Then $I = I_1 + \cdots + I_k$,
+    where $I_j \in \set{1, \om, \mo}$ for all $j \in [k]$.
+
+    Let $N_j = \sum_{i \in I_j} M_i$.
+
+    Let $j \in [k]$. WLOG $I_j = \omega$.
+    Then $(x, y) \mapsto \type{n}{(x, y]}$ (where $x < y$) induces an additive coloring of
+    the $N_j$, so by Shelah's theorem
+    there is a cofinal homogenous set,
+    i.e. $\type{n}{N_j} = \type{n}{(x, y]} \cdot \omega$ for some
+    $x, y \in N_j$. But $(x, y]$ is a a subinterval
+    of a finite sum of definable linear orders,
+    and thus definable itself.
+
+    Therefore, $N_j$ is definable, since
+    definable linear orders are closed under $(\cdot \omega)$.
+
+    Finally, $M = N_1 + \cdots + N_k$ is a finite sum of definable linear orders,
+    and thus definable itself, contrary to the assumption that $M$ is undefinable.
+
+    So we are done.
 \end{proof}
