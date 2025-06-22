@@ -25,59 +25,59 @@
 \end{theorem}
 
 \begin{proof}
-     ($1 \implies 2$) Trivial.
-        ($2 \implies 3$) Since there are only countably many
-        definable linear orders,
-        if $\varphi$ has uncountably many scattered models,
-        then one of them is undefinable.
+    ($1 \implies 2$) Trivial.
+    ($2 \implies 3$) Since there are only countably many
+    definable linear orders,
+    if $\varphi$ has uncountably many scattered models,
+    then one of them is undefinable.
 
-        ($3 \implies 1$)
-        Let $M$ be an undefinable scattered model of $\varphi$
-        with $\alpha = \hrank{M}$.
+    ($3 \implies 1$)
+    Let $M$ be an undefinable scattered model of $\varphi$
+    with $\alpha = \hrank{M}$.
 
-        Let $n = \qd{\varphi}$.
+    Let $n = \qd{\varphi}$.
 
-        We proceed by induction on $\alpha$.
+    We proceed by induction on $\alpha$.
 
-        If $\alpha = 0$, $M$ is definable, contrary to the assumption.
+    If $\alpha = 0$, $M$ is definable, contrary to the assumption.
 
-        Otherwise, let $M = \sum_{i \in I} M_i$,
-        where $I = M / \sim_{\alpha}$ and $\set{M_i}_{i \in I}$
-        are the equivalence classes of $\sim_{\alpha}$.
-        
-        If all $M_i$ are definable. Then $I = I_1 + \cdots + I_k$,
-        where $I_j \in \set{1, \om, \mo}$ for all $j \in [k]$.
+    Otherwise, let $M = \sum_{i \in I} M_i$,
+    where $I = M / \sim_{\alpha}$ and $\set{M_i}_{i \in I}$
+    are the equivalence classes of $\sim_{\alpha}$.
 
-        Let $N_j = \sum_{i \in I_j} M_i$.
+    If all $M_i$ are definable. Then $I = I_1 + \cdots + I_k$,
+    where $I_j \in \set{1, \om, \mo}$ for all $j \in [k]$.
 
-        Let $j \in [k]$. WLOG $I_j = \omega$.
-        Then $(i_1, i_2) \mapsto \type{n}{M_{(i_1, i_2]}}$ (where $i_1 < i_2$)
-        induces an additive coloring of $I_j$, so by Shelah's theorem
-        there is a cofinal homogenous set,
-        i.e. $\type{n}{N_j} = \type{n}{M_{(i_1, i_2]}} \cdot \omega$ for some
-        $i_1, i_2 \in N_j$. But $M_{(i_1, i_2]}$ is a subinterval
-        of a finite sum of definable linear orders,
-        and thus definable itself.
+    Let $N_j = \sum_{i \in I_j} M_i$.
 
-        Therefore, $N_j$ is definable, since
-        definable linear orders are closed under $(\cdot \omega)$.
+    Let $j \in [k]$. WLOG $I_j = \omega$.
+    Then $(i_1, i_2) \mapsto \type{n}{M_{(i_1, i_2]}}$ (where $i_1 < i_2$)
+    induces an additive coloring of $I_j$, so by Shelah's theorem
+    there is a cofinal homogenous set,
+    i.e. $\type{n}{N_j} = \type{n}{M_{(i_1, i_2]}} \cdot \omega$ for some
+    $i_1, i_2 \in N_j$. But $M_{(i_1, i_2]}$ is a subinterval
+    of a finite sum of definable linear orders,
+    and thus definable itself.
 
-        Finally, $M = N_1 + \cdots + N_k$ is a finite sum of definable linear orders,
-        and thus definable itself, contrary to the assumption that $M$ is undefinable.
+    Therefore, $N_j$ is definable, since
+    definable linear orders are closed under $(\cdot \omega)$.
 
-        Thus, some $M_i$ is undefinable, by the induction
-        hypothesis $\type{n}{M_i}$ has at least
-        $2^{\aleph_0}$ models.
+    Finally, $M = N_1 + \cdots + N_k$ is a finite sum of definable linear orders,
+    and thus definable itself, contrary to the assumption that $M$ is undefinable.
 
-        We claim that if $N_1, N_2$ are two different models of $\type{n}{M_i}$,
-        then replacing $M_i$ with $N_1$ or $N_2$ in $M$
-        results in two different models of $\varphi$.
-        This is because any isomorphism must map
-        between the equivalence classes of $\sim_{\alpha}$,
-        and thus must map $N_1$ to $N_2$.
+    Thus, some $M_i$ is undefinable, by the induction
+    hypothesis $\type{n}{M_i}$ has at least
+    $2^{\aleph_0}$ models.
 
-        Thus, we have at least $2^{\aleph_0}$ models of $\varphi$,
-        so we are done.
+    We claim that if $N_1, N_2$ are two different models of $\type{n}{M_i}$,
+    then replacing $M_i$ with $N_1$ or $N_2$ in $M$
+    results in two different models of $\varphi$.
+    This is because any isomorphism must map
+    between the equivalence classes of $\sim_{\alpha}$,
+    and thus must map $N_1$ to $N_2$.
+
+    Thus, we have at least $2^{\aleph_0}$ models of $\varphi$,
+    so we are done.
 \end{proof}
 
 \begin{theorem}\label{undefinable-models}
@@ -104,11 +104,10 @@
     we are done.
 
     Otherwise, $M = \sum_{i \in I} M_i$,
-    where each $M_i$ is scattered and
-    $I \in \set{\eta, 1 + \eta, \eta + 1, 1 + \eta + 1}$
-    (where $\eta = \otp{\qq}$).
-
-    Then $(i_1, i_2) \mapsto \type{n}{M_{(i_1, i_2]}}$ (where $i_1 < i_2$)
+    where each $M_i$ is scattered, and
+    \[I \in \set{\eta, 1 + \eta, \eta + 1, 1 + \eta + 1}\]
+    (where $\eta = \otp{\QQ}$).
+    Then, $(i_1, i_2) \mapsto \type{n}{M_{(i_1, i_2]}}$ (where $i_1 < i_2$)
     induces an additive coloring of $I$, so by Shelah's theorem
     there is a cofinal homogenous set,
     i.e. $\type{n}{M_{(i_1, i_2]}} \cdot (\omega^\ast + \omega)$ for some
