@@ -5,73 +5,115 @@
     by an $\mso$-formula
 \end{definition}
 
+\begin{notation}
+    Let $I$ be a linear order and let $M = \sum_{i \in I} M_i$ be a linear order.
 
-\begin{theorem}
+    Let $J \subseteq I$ be a subinterval.
+
+    Then we denote by $M_J$ the linear order
+    $\sum_{i \in J} M_i$.
+\end{notation}
+
+
+\begin{theorem}\label{undefinable-scattered-models}
+    Let $\varphi$ be an $\mso$-sentence. The following are equivalent:
+    \begin{enumerate}
+        \item $\varphi$ has at least $2^{\aleph_0}$ scattered models.
+        \item $\varphi$ has uncountably many scattered models.
+        \item $\varphi$ has an undefinable scattered model.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+     ($1 \implies 2$) Trivial.
+        ($2 \implies 3$) Since there are only countably many
+        definable linear orders,
+        if $\varphi$ has uncountably many scattered models,
+        then one of them is undefinable.
+
+        ($3 \implies 1$)
+        Let $M$ be an undefinable scattered model of $\varphi$
+        with $\alpha = \hrank{M}$.
+
+        Let $n = \qd{\varphi}$.
+
+        We proceed by induction on $\alpha$.
+
+        If $\alpha = 0$, $M$ is definable, contrary to the assumption.
+
+        Otherwise, let $M = \sum_{i \in I} M_i$,
+        where $I = M / \sim_{\alpha}$ and $\set{M_i}_{i \in I}$
+        are the equivalence classes of $\sim_{\alpha}$.
+        
+        If all $M_i$ are definable. Then $I = I_1 + \cdots + I_k$,
+        where $I_j \in \set{1, \om, \mo}$ for all $j \in [k]$.
+
+        Let $N_j = \sum_{i \in I_j} M_i$.
+
+        Let $j \in [k]$. WLOG $I_j = \omega$.
+        Then $(i_1, i_2) \mapsto \type{n}{M_{(i_1, i_2]}}$ (where $i_1 < i_2$)
+        induces an additive coloring of $I_j$, so by Shelah's theorem
+        there is a cofinal homogenous set,
+        i.e. $\type{n}{N_j} = \type{n}{M_{(i_1, i_2]}} \cdot \omega$ for some
+        $i_1, i_2 \in N_j$. But $M_{(i_1, i_2]}$ is a subinterval
+        of a finite sum of definable linear orders,
+        and thus definable itself.
+
+        Therefore, $N_j$ is definable, since
+        definable linear orders are closed under $(\cdot \omega)$.
+
+        Finally, $M = N_1 + \cdots + N_k$ is a finite sum of definable linear orders,
+        and thus definable itself, contrary to the assumption that $M$ is undefinable.
+
+        Thus, some $M_i$ is undefinable, by the induction
+        hypothesis $\type{n}{M_i}$ has at least
+        $2^{\aleph_0}$ models.
+
+        We claim that if $N_1, N_2$ are two different models of $\type{n}{M_i}$,
+        then replacing $M_i$ with $N_1$ or $N_2$ in $M$
+        results in two different models of $\varphi$.
+        This is because any isomorphism must map
+        between the equivalence classes of $\sim_{\alpha}$,
+        and thus must map $N_1$ to $N_2$.
+
+        Thus, we have at least $2^{\aleph_0}$ models of $\varphi$,
+        so we are done.
+\end{proof}
+
+\begin{theorem}\label{undefinable-models}
     Let $\varphi$ be an $\mso$-sentence. The following are equivalent:
     \begin{enumerate}
         \item $\varphi$ has at least $2^{\aleph_0}$ models.
         \item $\varphi$ has uncountably many models.
         \item $\varphi$ has an undefinable model.
-        \item $\varphi$ has an undefinable model of finite $\hrank{}$.
     \end{enumerate}
 \end{theorem}
 
 \begin{proof}
     ($1 \implies 2$) Trivial.
+
     ($2 \implies 3$) Since there are only countably many
-    definable linear orders, if $\varphi$ has uncountably many models,
-    then there is an undefinable model.
+    definable linear orders,
+    if $\varphi$ has uncountably many models,
+    then one of them is undefinable.
 
-    ($3 \implies 4$)
-    Let $M$ be an undefinable model of $\varphi$
-    and let $n = \qd{\varphi}$.
+    ($3 \implies 1$)
+    Let $M$ be an undefinable model of $\varphi$.
 
-    $M$ is $n$-equivalent to some linear order of finite $\hrank{}$,
-    which is obviously undefinable, since $\type{n}{M}$ is not
-    a defining formula.
+    If $M$ is scattered, then by~\cref{undefinable-scattered-models}
+    we are done.
 
-    ($4 \implies 1$)
-    Let $M$ be an undefinable model of $\varphi$
-    with $\hrank{M} = a$
-    and let $n = \qd{\varphi}$.
+    Otherwise, $M = \sum_{i \in I} M_i$,
+    where each $M_i$ is scattered and
+    $I \in \set{\eta, 1 + \eta, \eta + 1, 1 + \eta + 1}$
+    (where $\eta = \otp{\qq}$).
 
-    We proceed by induction on $a$.
-
-    If $a = 0$, the claim is vacuously true, since $M = 1$.
-
-    Otherwise, let $M = \sum_{i \in I} M_i$,
-    where $I = M / \sim_{a}$ and $\set{M_i}_{i \in I}$
-    are the equivalence classes of $\sim_{a}$.
-
-    If some $M_i$ is undefinable, then $\type{n}{M_i}$
-    is not a defining formula, so by the induction
-    hypothesis $\type{n}{M_i}$ has at least
-    $2^{\aleph_0}$ models.
-
-    Thus, we can replace $M_i$ with one of these models.
-    The resulting models are all non-isomorphic,
-    since they are distinguishable by the formula saying
-    "the $i$-th equivalence class satisfies $\type{n}{M}$".
-
-    Otherwise, all $M_i$ are definable. Then $I = I_1 + \cdots + I_k$,
-    where $I_j \in \set{1, \om, \mo}$ for all $j \in [k]$.
-
-    Let $N_j = \sum_{i \in I_j} M_i$.
-
-    Let $j \in [k]$. WLOG $I_j = \omega$.
-    Then $(x, y) \mapsto \type{n}{(x, y]}$ (where $x < y$) induces an additive coloring of
-    the $N_j$, so by Shelah's theorem
+    Then $(i_1, i_2) \mapsto \type{n}{M_{(i_1, i_2]}}$ (where $i_1 < i_2$)
+    induces an additive coloring of $I$, so by Shelah's theorem
     there is a cofinal homogenous set,
-    i.e. $\type{n}{N_j} = \type{n}{(x, y]} \cdot \omega$ for some
-    $x, y \in N_j$. But $(x, y]$ is a a subinterval
-    of a finite sum of definable linear orders,
-    and thus definable itself.
+    i.e. $\type{n}{M_{(i_1, i_2]}} \cdot (\omega^\ast + \omega)$ for some
+    $i_1, i_2 \in I$.
 
-    Therefore, $N_j$ is definable, since
-    definable linear orders are closed under $(\cdot \omega)$.
-
-    Finally, $M = N_1 + \cdots + N_k$ is a finite sum of definable linear orders,
-    and thus definable itself, contrary to the assumption that $M$ is undefinable.
-
-    So we are done.
+    Of course $M_{(i_1, i_2]}$ is not the only model of $\type{n}{M_{(i_1, i_2]}}$
+    - otherwise, it would be definable, which... TBC.
 \end{proof}
