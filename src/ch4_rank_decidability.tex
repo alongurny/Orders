@@ -11,17 +11,14 @@
 \end{definition}
 
 \begin{lemma}\label{f-lemma}
-    Let $\qq$ be a class of preorders
-    with a computable $\mso$-theory.
-
-    There exists a computable function $f_{\qq} = f: \NN \to \NN$ such that
+    There exists a computable function $f = f: \NN \to \NN$ such that
     for every $n \in \NN$ and every ordinal $\alpha \ge f(n)$,
-    $\type{n}{\hh{\qq}{< \alpha}} = \type{n}{\hh{\qq}{< f(n)}}$.
+    $\type{n}{\ho{< \alpha}} = \type{n}{\ho{< f(n)}}$.
 \end{lemma}
 
 \begin{proof}
     Since there are only finitely many $n$-types,
-    and the ordinal sequence \[\braces{\type{n}{\hh{\qq}{< \kappa}}}_{\kappa}\]
+    and the ordinal sequence \[\braces{\type{n}{\ho{< \kappa}}}_{\kappa}\]
     is monotone,
     there must be some minimal $\kappa_0 \in \om$ where the sequence stabilizes.
 
@@ -31,7 +28,7 @@
 \begin{lemma}\label{ab-lemma}
     There exist global computable functions $a, b : \NN \to \NN$ such that
     for all $n, c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
-    \[\type{n}{\hh{\qq}{= c_1}} = \type{n}{\hh{\qq}{= c_2}}\]
+    \[\type{n}{\ho{= c_1}} = \type{n}{\ho{= c_2}}\]
 \end{lemma}
 
 \begin{proof}
@@ -42,14 +39,14 @@
     some $a(n) \ge f(n)$, $a(n) + b(n)$ such that
 
     \[
-        \type{n}{\hh{\qq}{= a(n)}} = \type{n}{\hh{\qq}{= a(n) + b(n)}}
+        \type{n}{\ho{= a(n)}} = \type{n}{\ho{= a(n) + b(n)}}
     \]
 
     By induction if follows that for all $c \ge a(n)$,
     \[
-        \type{n}{\hh{\qq}{= c}} = \type{n}{\hh{\qq}{= c + b(n)}}
+        \type{n}{\ho{= c}} = \type{n}{\ho{= c + b(n)}}
     \]
-    since $\hh{\qq}{= c + 1} = \sum_{\qq} \hh{\qq}{= c}$.
+    since $\ho{= c + 1} = \sum_{\Om} \ho{= c}$.
 \end{proof}
 
 \begin{corollary}\label{rmj-computable}
@@ -70,16 +67,16 @@
     For every $n \in \NN$ and for every pair of ordinals $\alpha \ge \om$,
     $\beta > \alpha$,
     \[
-        \type{n}{\hh{\qq}{[\alpha, \beta)}} = \type{n}{\bigcup_{c < b(n)}{\hh{\qq}{= a(n) + c}}}
+        \type{n}{\ho{[\alpha, \beta)}} = \type{n}{\bigcup_{c < b(n)}{\ho{= a(n) + c}}}
     \]
-    In particular, $\type{n}{\hh{\qq}{= \alpha}}$ can be computed,
+    In particular, $\type{n}{\ho{= \alpha}}$ can be computed,
     and is independent of the choice of $\alpha \ge \om$.
 \end{lemma}
 
 \begin{proof}
     It is enough to prove that
     \[
-        \type{n}{\hh{\qq}{= \alpha}} = \type{n}{\bigcup_{c < b(n)}{\hh{\qq}{= a(n) + c}}}
+        \type{n}{\ho{= \alpha}} = \type{n}{\bigcup_{c < b(n)}{\ho{= a(n) + c}}}
     \]
 
     We thus proceed by induction on $\alpha \ge \om$.
@@ -88,18 +85,18 @@
     such that $a(n) \le \alpha_i$ for all $i \in \om$,
     and $\sup_{i \in \om} \ps{\alpha_i + 1} = \alpha$.
 
-    Then $\hh{\qq}{= \alpha} = \sum_{\qq}{\bigcup_{i \in \om} \hh{\qq}{[\alpha_i, \alpha)}}$ and thus,
+    Then $\ho{= \alpha} = \sum_{\Om}{\bigcup_{i \in \om} \ho{[\alpha_i, \alpha)}}$ and thus,
     \begin{align*}
-        \type{n}{\hh{\qq}{= \alpha}}
-         & = \type{n}{\sum_{\qq} \bigcup_{i \in \om} \hh{\qq}{[\alpha_i, \alpha)}}             \\
-         & = \type{n}{\sum_{\qq} \bigcup_{i \in \om} \bigcup_{c < b(n)}{\hh{\qq}{= a(n) + c}}} \\
-         & = \type{n}{\sum_{\qq} \bigcup_{c < b(n)}{\hh{\qq}{= a(n) + c}}}                     \\
-         & = \type{n}{\bigcup_{c < b(n)}{\sum_{\qq} \hh{\qq}{= a(n) + c}}}                     \\
-         & = \type{n}{\bigcup_{c < b(n)}{\hh{\qq}{= a(n) + c + 1}}}                            \\
-         & = \type{n}{\bigcup_{c < b(n)}{\hh{\qq}{= a(n) + c}}}
+        \type{n}{\ho{= \alpha}}
+         & = \type{n}{\sum_{\Om} \bigcup_{i \in \om} \ho{[\alpha_i, \alpha)}}             \\
+         & = \type{n}{\sum_{\Om} \bigcup_{i \in \om} \bigcup_{c < b(n)}{\ho{= a(n) + c}}} \\
+         & = \type{n}{\sum_{\Om} \bigcup_{c < b(n)}{\ho{= a(n) + c}}}                     \\
+         & = \type{n}{\bigcup_{c < b(n)}{\sum_{\Om} \ho{= a(n) + c}}}                     \\
+         & = \type{n}{\bigcup_{c < b(n)}{\ho{= a(n) + c + 1}}}                            \\
+         & = \type{n}{\bigcup_{c < b(n)}{\ho{= a(n) + c}}}
     \end{align*}
 
-    where the last transition is because $\type{n}{\hh{\qq}{= a(n)}} = \type{n}{\hh{\qq}{= a(n) + b(n)}}$.
+    where the last transition is because $\type{n}{\ho{= a(n)}} = \type{n}{\ho{= a(n) + b(n)}}$.
 \end{proof}
 
 \begin{lemma}

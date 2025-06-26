@@ -46,13 +46,13 @@
   $\bs{x}_{\alpha}$ is the largest $\bounded{\ho{< \alpha}}$-subinterval
   containing $x$ in $M$.
 
-  We define the predicates $\mathbf{L}_{\alpha}$ and $\mathbf{R}_{\alpha}$ on $M$ as follows:
+  We define the predicates $\mathbf{L}_{\alpha}(x)$ and $\mathbf{R}_{\alpha}(x)$ on $M$ as follows:
 
   \[
-    \mathbf{L}_{\alpha} \ps{x} \in \lb{\ho{< \alpha}} \iff \bs{x}_{\alpha} \in \lb{\ho{< \alpha}}
+    x \in \mathbf{L}_{\alpha} \iff \bs{x}_{\alpha} \in \lb{\ho{< \alpha}}
   \]
   \[
-    \mathbf{R}_{\alpha} \ps{x} \in \rb{\ho{< \alpha}} \iff \bs{x}_{\alpha} \in \rb{\ho{< \alpha}}
+    x \in \mathbf{R}_{\alpha} \iff \bs{x}_{\alpha} \in \rb{\ho{< \alpha}}
   \]
 
   We define the \emph{the $\alpha$-shape}, $\sigma_{\alpha} \ps{x}$ as follows:
@@ -64,6 +64,8 @@
       \bmj{\alpha}  & \text{if } \mathbf{L}_{\alpha} \ps{x} = \mathbf{R}_{\alpha} \ps{x} = 1
     \end{cases}
   \]
+
+  Note that $\sigma_{\alpha}$ is a function from $M$ to classes ("shapes").
 \end{definition}
 
 \begin{lemma}\label{alpha-expressible}

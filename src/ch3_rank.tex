@@ -1,85 +1,59 @@
 \section{The Hausdorff Rank}
 
+\begin{definition}
+  \[
+    \Om = \set{1, \om, \mo}^+
+  \]
+\end{definition}
+
+\begin{observation}
+  Then $\Om$ is a monotone, additive class of linear orders.
+\end{observation}
+
 % Definition of the Hausdorff power
 \begin{definition}
-  Let $\qq$ be a class of linear orders.
-
-  We define a class $\hh{\qq}{< \alpha}$
+  We define a class $\ho{< \alpha}$
   for every ordinal $\alpha$ as follows:
 
   \begin{itemize}
-    \item For $\alpha = 0$, $\hh{\qq}{< 0} = \emptyset$.
-    \item For $\alpha = 1$, $\hh{\qq}{< 1} = \set{1}$.
+    \item For $\alpha = 0$, $\ho{< 0} = \emptyset$.
+    \item For $\alpha = 1$, $\ho{< 1} = \set{1}$.
     \item For $\alpha = \gamma + 1$ where $\gamma > 0$,
-          \[\hh{\qq}{< \alpha} = \sum_{\qq}{\hh{\qq}{< \gamma}}\]
+          \[\ho{< \alpha} = \sum_{\Om}{\ho{< \gamma}}\]
     \item For $\alpha$ a limit ordinal,
-          \[\hh{\qq}{< \alpha} = \bigcup_{\beta < \alpha} \hh{\qq}{< \beta}\]
+          \[\ho{< \alpha} = \bigcup_{\beta < \alpha} \ho{< \beta}\]
   \end{itemize}
 
 \end{definition}
 
-\begin{example}
-  Let $\qq$ be a class of linear orders.
-
-  Then $\hh{\qq}{\le 1} = \qq$.
-\end{example}
-
 % Definition of exact power
 \begin{definition}
-  Let $\qq$ be a class of linear orders.
-
   Let $\alpha, \beta$ be ordinals such that with $0 < \alpha < \beta$.
 
   We define,
   \begin{enumerate}
-    \item $\hh{\qq}{\le \alpha} := \hh{\qq}{< \alpha + 1}$
-    \item $\hh{\qq}{= \alpha} := \hh{\qq}{\le \alpha} \setminus \hh{\qq}{< \alpha}$
-    \item $\hh{\qq}{[\alpha, \beta)} := \hh{\qq}{< \beta} \setminus \hh{\qq}{< \alpha}$
+    \item $\ho{\le \alpha} := \ho{< \alpha + 1}$
+    \item $\ho{= \alpha} := \ho{\le \alpha} \setminus \ho{< \alpha}$
+    \item $\ho{[\alpha, \beta)} := \ho{< \beta} \setminus \ho{< \alpha}$
   \end{enumerate}
 \end{definition}
 
 % Definition of the Hausdorff rank
 \begin{definition}
-  Let $\qq$ be a class of linear orders.
-
-  We define the $\qq$-Hausdorff rank as a \emph{partial} mapping
+  We define the Hausdorff rank as a \emph{partial} mapping
   from linear orders to ordinals, such that
   \[
-    \hhrank{\qq}{M} = \min \set{\alpha : M \in \hh{\qq}{\le \alpha}}
+    \hrank{M} = \min \set{\alpha : M \in \ho{\le \alpha}}
   \]
-
-  Equivalently, $\hhrank{\qq}{M}$, is the unique ordinal $\alpha$ such that
-  $M \in \hh{\qq}{= \alpha}$ (if it exists, otherwise it is undefined).
 
 \end{definition}
 
-
-% Definition of $\Om$
-\begin{definition}
-  Let $\gamma \ge \om$ be a limit ordinal.
-
-  We define $\Gamma_{\gamma} := \set{\beta : \beta \subseteq \gamma^\ast + \gamma}^+$.
-
-  We define $\Om := \Gamma_{\om}$.
-\end{definition}
-
-\begin{example}
-  \[
-    \Om = \set{1, \om, \mo}^+
-  \]
-\end{example}
-
-\begin{observation}
-  Let $\gamma \ge \om$ be a limit ordinal.
-
-  Then $\Gamma_{\gamma}$ is a monotone, additive class of linear orders.
-\end{observation}
 
 
 % Definition of the Hausdorff rank associated with $\om$.
 \begin{notation}
   When we omit the subscript in $\ho{< \alpha}$,
-  we mean $\hh{\Om}{< \alpha}$,
+  we mean $\ho{< \alpha}$,
   and similarly for $\ho{\le \alpha}$, $\ho{= \alpha}$, $\ho{[\alpha, \beta)}$,
   and $\hrank{M}$.
 \end{notation}
