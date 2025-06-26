@@ -42,8 +42,8 @@
     If $\alpha = 0$, $M$ is definable, contrary to the assumption.
 
     Otherwise, let $M = \sum_{i \in I} M_i$,
-    where $I = M / \sim_{\alpha}$ and $\set{M_i}_{i \in I}$
-    are the equivalence classes of $\sim_{\alpha}$.
+    where $I$ is a scattered linear order
+    and each $M_i$ is a scattered linear order with $\hrank{M_i} < \alpha$.
 
     If all $M_i$ are definable. Then $I = I_1 + \cdots + I_k$,
     where $I_j \in \set{1, \om, \mo}$ for all $j \in [k]$.
@@ -107,14 +107,18 @@
     where each $M_i$ is scattered, and
     \[I \in \set{\eta, 1 + \eta, \eta + 1, 1 + \eta + 1}\]
     (where $\eta = \otp{\QQ}$).
-    Then, $(i_1, i_2) \mapsto \type{n}{M_{(i_1, i_2]}}$ (where $i_1 < i_2$)
-    induces an additive coloring of $I$, so by Shelah's theorem
-    there is a cofinal homogenous set,
-    i.e. $\type{n}{M_{(i_1, i_2]}} \cdot (\omega^\ast + \omega)$ for some
-    $i_1, i_2 \in I$.
+    
+    Let us choose one representative of each $n$-type occurring
+    in $\set{\type{n}{M_i}}_{i \in I}$, and replace
+    each $M_i$ with the representative.
+    
+    This results in an $n$-equivalent
+    structure, which in particular is still a model of $\varphi$.
 
-    Of course $M_{(i_1, i_2]}$ is not the only model of $\type{n}{M_{(i_1, i_2]}}$
-    - otherwise, $M$ would be definable by $M = M_{(i_1, i_2]} * \eta$.
+    So WLOG, we can assume that $M$ is an $\eta$-shuffle of
+    finitely many scattered models.
 
-    TBC...
+    If all $M_i$ are definable, then so is $M$, in contrary to the assumption.
+
+    Otherwise, some $M_i$ is undefinable.
 \end{proof}

@@ -130,7 +130,7 @@ In this chapter, we focus on the special case of the Hausdorff rank associated w
 
   Since $i$ and $j$ have a finite distance in $\om$,
   we conclude $[x, y] \subseteq M_i + \ldots + M_j$,
-  and thus $[x, y] \subseteq \ps{\ho{< \alpha}}^+ = \ho{{\alpha}}$.
+  and thus $[x, y] \subseteq \ps{\ho{< \alpha}}^+ = \ho{< \alpha}$.
 
   ($\subseteq$) Let $M \in \rb{\ho{< \alpha}}$ be a linear order.
 
@@ -216,8 +216,7 @@ An immediate corollary of~\cref{bounded-structure} is that "major" is a good nam
 \end{proof}
 
 \begin{lemma}\label{rmj-limit-decomposition}
-  Let $\set{\alpha_i}_{i \in \om}$ be a strictly
-  increasing ordinal sequence, and let $\alpha = \sup_{\alpha_i}$.
+  Let $\set{\alpha_i}_{i \in \om}$ be a non-decreasing ordinal sequence, and let $\alpha = \sup_{i \in \om} {\alpha_i + 1}$.
 
   Then,
   \[
@@ -250,7 +249,7 @@ An immediate corollary of~\cref{bounded-structure} is that "major" is a good nam
 
 \begin{lemma}\label{rmj-decomposition}
   Let $\set{\alpha_i}_{i \in \om}$ be a non-decreasing ordinal sequence,
-  and let $\alpha = \sup_{\alpha_i + 1}$.
+  and let $\alpha = \sup_{i \in \om} {\alpha_i + 1}$.
 
   Then,
   \[
