@@ -10,16 +10,9 @@
     $n$-types satisfiable in $\pp$.
 \end{definition}
 
-% Definition of a computable class
-\begin{definition}
-    a class $\pp$ of preorders is \emph{computable} if
-    $n \mapsto \type{n}{\pp}$ is a computable function.
-
-    Equivalently, satisfiability of $\mso$ over $\pp$ is decidable.
-\end{definition}
-
 \begin{lemma}\label{f-lemma}
-    Let $\qq$ be a class of preorders.
+    Let $\qq$ be a class of preorders
+    with a computable $\mso$-theory.
 
     There exists a computable function $f_{\qq} = f: \NN \to \NN$ such that
     for every $n \in \NN$ and every ordinal $\alpha \ge f(n)$,
