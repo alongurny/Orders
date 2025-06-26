@@ -220,9 +220,9 @@ total orders, intervals and chains.
 
   Then,
   \begin{enumerate}
-    \item $\lb{\pp} = \set{M : M + 1 \in \bounded{\pp}}$
-    \item $\rb{\pp} = \set{M : 1 + M \in \bounded{\pp}}$
-    \item $\pp = \lb{\pp} \cap \rb{\pp} = \set{M : 1 + M + 1 \in \bounded{\pp}}$
+    \item $\lb{\pp} = \set{M : M + \mathbf{1} \in \bounded{\pp}}$
+    \item $\rb{\pp} = \set{M : \mathbf{1} + M \in \bounded{\pp}}$
+    \item $\pp = \lb{\pp} \cap \rb{\pp} = \set{M : \mathbf{1} + M + \mathbf{1} \in \bounded{\pp}}$
   \end{enumerate}
 \end{lemma}
 
@@ -230,7 +230,7 @@ total orders, intervals and chains.
   Let $M$ be a linear order.
 
   \begin{enumerate}
-    % M + 1 case
+    % M + \mathbf{1} case
     \item
           Suppose $M + \set{\infty} \in \bounded{\pp}$.
           Then for every $x \in M$, we have $[x, \infty] \in \pp$,
@@ -238,29 +238,29 @@ total orders, intervals and chains.
           Therefore, $M \in \lb{\pp}$.
 
           Conversely, if $M \in \lb{\pp}$,
-          let $x, y \in M$ be any two points in $M + 1$.
+          let $x, y \in M$ be any two points in $M + \mathbf{1}$.
 
           If $y < \infty$, then $[x, y] \subseteq [x, \infty)$.
           Since $[x, \infty) \in \pp$, we conclude that $[x, y] \in \pp$.
           Otherwise, if $y = \infty$, then $[x, y] = [x, \infty] = [x, \infty) + \set{\infty}$, and thus $[x, y] \in \pp$.
 
-          % 1 + M case
+          % \mathbf{1} + M case
     \item
           The second case is dual to the first case.
 
-          % 1 + M + 1 case
+          % \mathbf{1} + M + \mathbf{1} case
     \item
           We will show a triple inclusion.
 
           If $M \in \pp$, then by additivity,
-          $1 + M \in \pp$ and $M + 1 \in \pp$,
+          $\mathbf{1} + M \in \pp$ and $M + \mathbf{1} \in \pp$,
           and thus $M \in \lb{\pp} \cap \rb{\pp}$.
 
           If $M \in \lb{\pp} \cap \rb{\pp}$, then by~\cref{star-lemma},
-          $1 + M + 1 \in \bounded{\pp}$.
+          $\mathbf{1} + M + \mathbf{1} \in \bounded{\pp}$.
 
-          If $1 + M + 1 \in \bounded{\pp}$, then $M$ is a bounded
-          subinterval of $1 + M + 1$, so $M \in \bounded{\pp}$.
+          If $\mathbf{1} + M + \mathbf{1} \in \bounded{\pp}$, then $M$ is a bounded
+          subinterval of $\mathbf{1} + M + \mathbf{1}$, so $M \in \bounded{\pp}$.
   \end{enumerate}
 \end{proof}
 

@@ -156,62 +156,62 @@ An immediate corollary of~\cref{bounded-structure} is that "major" is a good nam
 \end{corollary}
 
 \begin{lemma}\label{rmj-successor-decomposition}
-  Let $\alpha$ be an ordinal.
+  Let $\alpha = \gamma + 1$ be a successor ordinal for $\gamma > 0$.
 
   Then, we have the following:
 
   \[
-    \rmj{\alpha + 1} = \sum_{\om}{\ho{= \alpha}}
+    \rmj{\alpha} = \sum_{\om}{\ho{= \gamma}}
   \]
 \end{lemma}
 
 \begin{proof}
-  ($\subseteq$) Let $M \in \rmj{\alpha + 1}$.
+  ($\subseteq$) Let $M \in \rmj{\alpha}$.
 
   By~\cref{bounded-structure} and~\cref{le-alpha-corollary}
   \[
-    \rb{\ho{< \alpha + 1}}
-    = \sum_{\om}{\ho{< \alpha + 1}}
-    = \sum_{\om}{\ho{\le \alpha}}
-    = \sum_{\om}{\ps{\bounded{\ho{< \alpha}}}^+}
-    = \sum_{\om}{\bounded{\ho{< \alpha}}}
+    \rb{\ho{< \alpha}}
+    = \rb{\ho{< \alpha}}
+    = \sum_{\om}{\ho{< \alpha}}
+    = \sum_{\om}{\ho{\le \gamma}}
+    = \sum_{\om}{\ps{\bounded{\ho{< \gamma}}}^+}
+    = \sum_{\om}{\bounded{\ho{< \gamma}}}
   \]
 
-  since by~\cref{bounded-definitions}, $M \in \rb{\ho{< \alpha + 1}}$,
+  since by~\cref{bounded-definitions}, $M \in \rb{\ho{< \alpha}}$,
   we conclude that $M = \sum_{i \in \om}{M_i}$ for a sequence
   $\set{M_i}_{i \in \om} \subseteq \bounded{\ho{< \alpha}}$.
 
-  If $M_i \in \ho{= \alpha}$ held for only finitely many $i \in \om$,
-  we would have $M \in \ho{\le \alpha}$, which is a contradiction
-  to $M \notin \lb{\ho{< \alpha}}$.
+  If $M_i \in \ho{= \gamma}$ held for only finitely many $i \in \om$,
+  we would have $M \in \ho{\le \gamma} \subseteq \ho{< \alpha}$, which is a contradiction
+  since $M \notin \lb{\ho{< \alpha}}$.
 
-  Thus, $M_i \in \ho{= \alpha}$ holds
-  for infinitely many $i \in \om$, and thus (by adjoining $M_i \in \ho{< \alpha}$
-  to the next $\ho{= \alpha}$ one) we conclude $M \in \sum_{\om}{\ho{= \alpha}}$.
+  Thus, $M_i \in \ho{= \gamma}$ holds
+  for infinitely many $i \in \om$, and thus (by adjoining $M_i \in \ho{< \gamma}$
+  to the next $\ho{= \gamma}$ one) we conclude $M \in \sum_{\om}{\ho{= \gamma}}$.
 
-  ($\supseteq$) Let $M \in \sum_{\om}{\ho{= \alpha}}$.
+  ($\supseteq$) Let $M \in \sum_{\om}{\ho{= \gamma}}$.
 
-  Since $M \in \sum_{\om} {\ho{< \alpha + 1}}$, by~\cref{bounded-structure},
-  $M \in \rb{\ho{< \alpha + 1}}$.
+  That is, $M \in \ho{[\gamma, \alpha]}$.
 
   By~\cref{le-alpha-corollary},
   \[
-    M \in \sum_{\om}{\ho{= \alpha}}
-    = \sum_{\om} \ps{ \lmj{\alpha} \uplus \rmj{\alpha} }^+
-    = \sum_{\om} \ps{ \lmj{\alpha} \uplus \rmj{\alpha} }
+    M \in \sum_{\om}{\ho{= \gamma}}
+    = \sum_{\om} \ps{ \lmj{\gamma} \uplus \rmj{\gamma} }^+
+    = \sum_{\om} \ps{ \lmj{\gamma} \uplus \rmj{\gamma} }
   \]
 
-  Suppose $M = \sum_{i \in \om}{M_i}$ where $M_i \in \set{\lmj{\alpha}, \rmj{\alpha}}$.
+  Suppose $M = \sum_{i \in \om}{M_i}$ where $M_i \in \set{\lmj{\gamma}, \rmj{\gamma}}$.
   By the pigeonhole principle, there are either
-  infinitely many $M_i \in \lmj{\alpha}$ or infinitely many $M_i \in \rmj{\alpha}$.
-  WLOG, suppose $M_i \in \rmj{\alpha}$ for infinitely many $i \in \om$.
+  infinitely many $M_i \in \lmj{\gamma}$ or infinitely many $M_i \in \rmj{\gamma}$.
+  WLOG, suppose $M_i \in \rmj{\gamma}$ for infinitely many $i \in \om$.
 
-  Then, since $M_i \in \ho{< \alpha + 1}$, we have $M_i \in \ho{= \alpha}$.
+  Then, since $M_i \in \ho{< \gamma + 1}$, we have $M_i \in \ho{= \gamma}$.
 
-  Suppose by contradiction $M = \ho{\le \alpha} = \ps{\bounded{\ho{< \alpha}}}^+$.
+  Suppose by contradiction $M = \ho{\le \gamma} = \ps{\bounded{\ho{< \gamma}}}^+$.
   In particular, by the pigeonhole principle, there exists some $N \in \om$
-  such that $\sum_{N \le i < \om} M_i \in \bounded{\ho{< \alpha}}$,
-  which is a contradiction because it follows that $M_{N+1} \in \Om{< \alpha}$ as it is bounded
+  such that $\sum_{N \le i < \om} M_i \in \bounded{\ho{< \gamma}}$,
+  which is a contradiction because it follows that $M_{N+1} \in \ho{< \gamma}$ as it is bounded
   between $M_N$ and $M_{N+2}$.
 \end{proof}
 
