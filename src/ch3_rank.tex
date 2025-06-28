@@ -7,7 +7,7 @@
 \end{definition}
 
 \begin{observation}
-  Then $\Om$ is a monotone, additive class of linear orders.
+  $\Om$ is a monotone, additive class of linear orders.
 \end{observation}
 
 % Definition of the Hausdorff power
@@ -46,22 +46,12 @@
     \hrank{M} = \min \set{\alpha : M \in \ho{\le \alpha}}
   \]
 
+  Equivalently, \[
+    \hrank{M} = \alpha \iff M \in \ho{= \alpha}
+  \]
+
 \end{definition}
 
-
-
-% Definition of the Hausdorff rank associated with $\om$.
-\begin{notation}
-  When we omit the subscript in $\ho{< \alpha}$,
-  we mean $\ho{< \alpha}$,
-  and similarly for $\ho{\le \alpha}$, $\ho{= \alpha}$, $\ho{[\alpha, \beta)}$,
-  and $\hrank{M}$.
-\end{notation}
-
-
-\section{\texorpdfstring{$\om$}{omega}-Hausdorff rank}
-
-In this chapter, we focus on the special case of the Hausdorff rank associated with the ordinal $\om$. This case is of particular interest due to its connections with countable structures and its role in the classification of infinite linear orders. We introduce new families of classes and analyze their relationships, providing tools that will be essential for the study of types and decidability.
 
 \begin{definition}\label{bounded-definitions}
   Let $\alpha > 0$ be an ordinal.
@@ -79,10 +69,13 @@ In this chapter, we focus on the special case of the Hausdorff rank associated w
 
   By~\cref{bounded-is-left-plus-right}, $\bmj{\alpha} = \lmj{\alpha} + \rmj{\alpha}$.
 
-  Also, by the definition:
+  Also, by the definition and~\cref{bounded-classes},
   \[
     \bounded{\ho{< \alpha}} = \ho{< \alpha} \uplus \lmj{\alpha}
     \uplus \rmj{\alpha} \uplus \bmj{\alpha}
+  \]
+  \[
+    \lmj{\alpha} \uplus \rmj{\alpha} \uplus \bmj{\alpha} \subseteq \ho{= \alpha}
   \]
 \end{note}
 
@@ -118,79 +111,57 @@ In this chapter, we focus on the special case of the Hausdorff rank associated w
   But $M_i$ is a right-bounded interval and thus $M_i \in \ho{< \alpha}$, so $M \in \sum_{\om}{\ho{< \alpha}}$.
 \end{proof}
 
-An immediate corollary of~\cref{bounded-structure} is that "major" is a good name.
+An immediate corollary of~\cref{bounded-structure} is that "major" is a good name, in the sense that every interval of rank $\alpha$ is a finite sum
+of $\alpha$-major and "$\alpha$-minor" (i.e, of rank $< \alpha$) intervals.
+
 \begin{corollary}\label{le-alpha-corollary}
   Let $\alpha > 0$ be an ordinal.
 
   Then,
-  \begin{enumerate}
-    \item $\ho{\le \alpha} = \ps{\bounded{\ho{< \alpha}}}^+$
-    \item $\ho{= \alpha} = \ps{ \lmj{\alpha} \uplus \rmj{\alpha} }^+$
-  \end{enumerate}
+  \[
+    \ho{\le \alpha} = \ps{\bounded{\ho{< \alpha}}}^+
+  \]
 \end{corollary}
 
-\begin{lemma}\label{rmj-successor-decomposition}
-  Let $\alpha = \gamma + 1$ be a successor ordinal for $\gamma > 0$.
-
-  Then, we have the following:
-
-  \[
-    \rmj{\alpha} = \sum_{\om}{\ho{= \gamma}}
-  \]
-\end{lemma}
-
 \begin{proof}
-  ($\subseteq$) Let $M \in \rmj{\alpha}$.
-
-  By~\cref{bounded-structure} and~\cref{le-alpha-corollary}
-  \[
-    \rb{\ho{< \alpha}}
-    = \rb{\ho{< \alpha}}
-    = \sum_{\om}{\ho{< \alpha}}
-    = \sum_{\om}{\ho{\le \gamma}}
-    = \sum_{\om}{\ps{\bounded{\ho{< \gamma}}}^+}
-    = \sum_{\om}{\bounded{\ho{< \gamma}}}
-  \]
-
-  since by~\cref{bounded-definitions}, $M \in \rb{\ho{< \alpha}}$,
-  we conclude that $M = \sum_{i \in \om}{M_i}$ for a sequence
-  $\set{M_i}_{i \in \om} \subseteq \bounded{\ho{< \alpha}}$.
-
-  If $M_i \in \ho{= \gamma}$ held for only finitely many $i \in \om$,
-  we would have $M \in \ho{\le \gamma} \subseteq \ho{< \alpha}$, which is a contradiction
-  since $M \notin \lb{\ho{< \alpha}}$.
-
-  Thus, $M_i \in \ho{= \gamma}$ holds
-  for infinitely many $i \in \om$, and thus (by adjoining $M_i \in \ho{< \gamma}$
-  to the next $\ho{= \gamma}$ one) we conclude $M \in \sum_{\om}{\ho{= \gamma}}$.
-
-  ($\supseteq$) Let $M \in \sum_{\om}{\ho{= \gamma}}$.
-
-  That is, $M \in \ho{[\gamma, \alpha]}$.
-
-  By~\cref{le-alpha-corollary},
-  \[
-    M \in \sum_{\om}{\ho{= \gamma}}
-    = \sum_{\om} \ps{ \lmj{\gamma} \uplus \rmj{\gamma} }^+
-    = \sum_{\om} \ps{ \lmj{\gamma} \uplus \rmj{\gamma} }
-  \]
-
-  Suppose $M = \sum_{i \in \om}{M_i}$ where $M_i \in \set{\lmj{\gamma}, \rmj{\gamma}}$.
-  By the pigeonhole principle, there are either
-  infinitely many $M_i \in \lmj{\gamma}$ or infinitely many $M_i \in \rmj{\gamma}$.
-  WLOG, suppose $M_i \in \rmj{\gamma}$ for infinitely many $i \in \om$.
-
-  Then, since $M_i \in \ho{< \gamma + 1}$, we have $M_i \in \ho{= \gamma}$.
-
-  Suppose by contradiction $M = \ho{\le \gamma} = \ps{\bounded{\ho{< \gamma}}}^+$.
-  In particular, by the pigeonhole principle, there exists some $N \in \om$
-  such that $\sum_{N \le i < \om} M_i \in \bounded{\ho{< \gamma}}$,
-  which is a contradiction because it follows that $M_{N+1} \in \ho{< \gamma}$ as it is bounded
-  between $M_N$ and $M_{N+2}$.
+  By the definition,
+  \begin{align*}
+    \ho{\le \alpha} & = \sum_{\Om}{\ho{< \alpha}}                                                                                                            \\
+                    & = \sum_{\fnt} \ps{ {\ho{< \alpha}} \uplus \sum_{\om}{\ho{< \alpha}} \uplus \sum_{\mo}{\ho{< \alpha}}  \uplus \sum_{\oo}{\ho{< \alpha}}
+    }                                                                                                                                                        \\
+                    & = \sum_{\fnt} \ps{\ho{< \alpha} \uplus \lmj{\alpha}
+    \uplus \rmj{\alpha} \uplus \bmj{\alpha}}                                                                                                                 \\
+                    & = \ps{\bounded{\ho{< \alpha}}}^+
+  \end{align*}
 \end{proof}
 
-\begin{lemma}\label{rmj-limit-decomposition}
-  Let $\set{\alpha_i}_{i \in \om}$ be a non-decreasing ordinal sequence, and let $\alpha = \sup_{i \in \om} {\alpha_i + 1}$.
+\begin{corollary}\label{eq-alpha-corollary}
+  Let $\alpha > 0$ be an ordinal.
+
+  Then,
+  \begin{align*}
+    \ho{= \alpha} & = \ho{\le \alpha}                                          \\
+                  & + (\lmj{\alpha} \uplus \rmj{\alpha} \uplus \bmj{\alpha}) \\
+                  & + \ho{\le \alpha}
+  \end{align*}
+\end{corollary}
+
+\begin{proof}
+  ($\supseteq$) is immediate.
+
+  ($\subseteq$) Let $M \in \ho{= \alpha}$.
+
+  Then $M$ is a finite sum of $\bounded{\ho{< \alpha}}$-intervals by the previous lemma,
+  but not all of them are $\ho{< \alpha}$-intervals,
+  otherwise we would have $M \in \ho{< \alpha}$, which is a contradiction.
+\end{proof}
+
+\begin{lemma}\label{rmj-decomposition}
+  Let $\alpha > 0$ be an ordinal.
+
+  Let $\set{\alpha_i}_{i \in \om}$ be a non-decreasing $\omega$-sequence of ordinals.
+
+  Suppose $\sup_{i \in \om} \ps{\alpha_i + 1} = \alpha$.
 
   Then,
   \[
@@ -200,7 +171,7 @@ An immediate corollary of~\cref{bounded-structure} is that "major" is a good nam
 
 \begin{proof}
   ($\subseteq$) Let $M \in \rmj{\alpha}$.
-  Let ${y_i}_{i < \om}$ be a right cofinal $\om$-sequence in $M$.
+  Let $\set{y_i}_{i < \om}$ be a right cofinal $\om$-sequence in $M$.
 
   Thus we can choose some $x_0$ far enough such that $(-\infty, x_0] \in \ho{[\alpha_0, \alpha)}$,
           and $x_0 > y_0$.
@@ -214,32 +185,28 @@ An immediate corollary of~\cref{bounded-structure} is that "major" is a good nam
 
   ($\supseteq$) Let $M \in \sum_{i \in \om}{\ho{[\alpha_i, \alpha)}}$.
   It is obvious that $M \in \rb{\ho{< \alpha}}$ since every right-bounded
-  ray is in $\ho{\le \alpha_i}$ for some $i \in \om$.
+  ray is a finite sum of $\ho{< \alpha}$-intervals.
 
-  However, $M \notin \ho{< \alpha_i}$ for any $i \in \om$, so $M \notin \ho{< \alpha}$.
+  However, $M \notin \ho{< \alpha_i}$ for any $i \in \om$.
+  If $\alpha$ is a limit ordinal, it implies $M \notin \ho{< \alpha}$,
+  and thus $M \notin \lb{\ho{< \alpha}}$, so we are done.
 
+  Otherwise, $\alpha$ is a successor ordinal. Say $\alpha = \gamma + 1$,
+  and WLOG $\alpha_i = \gamma$ for all $i \in \om$.
 
+  If $\gamma = 0$,
+  then indeed $M = \sum_{\om}{1} = \omega \in \rmj{1}$.
+
+  Otherwise, suppose for the sake of contradiction that $M \in \ho{< \alpha}$.
+  That is, $M \in \ho{\le \gamma} = \ps{\bounded{\ho{< \gamma}}}^+$.
+
+  Then $M$ can be decomposed into a finite sum of $\bounded{\ho{< \gamma}}$-intervals, the last of which contains almost all of the $M_i$,
+  so WLOG $M \in \bounded{\ho{< \gamma}}$.
+
+  In particular $M_1 \in \ho{< \gamma}$, since $M_1$ is bounded between
+  $M_0$ and $M_2$, but $M_1 \in \ho{= \gamma}$ which is a contradiction.
 \end{proof}
 
-\begin{lemma}\label{rmj-decomposition}
-  Let $\set{\alpha_i}_{i \in \om}$ be a non-decreasing ordinal sequence,
-  and let $\alpha = \sup_{i \in \om} {\alpha_i + 1}$.
-
-  Then,
-  \[
-    \rmj{\alpha} = \sum_{i \in \om}{\ho{[\alpha_i, \alpha)}}
-  \]
-\end{lemma}
-
-\begin{proof}
-  It is just a way to
-  write~\cref{rmj-successor-decomposition}
-  and~\cref{rmj-limit-decomposition}
-  together more succinctly.
-\end{proof}
-
-\begin{note}
-  In the proof of~\cref{rmj-decomposition}, we actually use the fact that
-  we work over $\Om = \Gamma_{\om}$. This proof would not have worked over $\Gamma_{\beta}$
-  for $\beta > \om$.
-\end{note}
+Obviously, we can use the decomposition of $\rmj{\alpha}$ to decompose
+$\lmj{\alpha}$ and $\bmj{\alpha}$ as well,
+as $\lmj{\alpha} = \rmj{\alpha}^\ast$ and $\bmj{\alpha} = \lmj{\alpha} + \rmj{\alpha}$.

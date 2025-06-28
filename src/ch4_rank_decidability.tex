@@ -1,5 +1,9 @@
 \section{Decidability of the Hausdorff Rank}
 
+In this chapter, we will try to establish the decidability of the $\mso$-satisfiability
+over the minor and major classes: $\ho{< \alpha}$, $\rmj{= \alpha}$, $\lmj{= \alpha}$, and $\bmj{= \alpha}$,
+for every ordinal $\alpha \ge \om$.
+
 % Types of a class
 \begin{definition}
     Let $\pp$ be a class of preorders.
@@ -10,10 +14,20 @@
     $n$-types satisfiable in $\pp$.
 \end{definition}
 
-\begin{lemma}\label{f-lemma}
-    There exists a computable function $f = f: \NN \to \NN$ such that
+\begin{definition}
+    Let $\pp_1$ and $\pp_2$ be classes of preorders.
+
+    Let $n \in \NN$.
+
+    Then we say that $\pp_1$ and $\pp_2$ are \emph{$n$-equivalent},
+    denoted $\pp_1 \equiv_n \pp_2$,
+    if $\type{n}{\pp_1} = \type{n}{\pp_2}$.
+\end{definition}
+
+\begin{lemma}\label{minor-computable}
+    There exists a computable function $f: \NN \to \NN$ such that
     for every $n \in \NN$ and every ordinal $\alpha \ge f(n)$,
-    $\type{n}{\ho{< \alpha}} = \type{n}{\ho{< f(n)}}$.
+    $\ho{< \alpha} \equiv_n \ho{< f(n)}$.
 \end{lemma}
 
 \begin{proof}
@@ -22,132 +36,122 @@
     is monotone,
     there must be some minimal $\kappa_0 \in \om$ where the sequence stabilizes.
 
-    This $\kappa_0$ is computable as a function of $n$ by successive iteration.
+    This $\kappa_0$ is computable as a function of $n$ by
+    exhaustive search.
 \end{proof}
 
 \begin{lemma}\label{ab-lemma}
     There exist global computable functions $a, b : \NN \to \NN$ such that
     for all $n, c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
-    \[\type{n}{\ho{= c_1}} = \type{n}{\ho{= c_2}}\]
+    $\ho{= c_1} \equiv_n \ho{= c_2}$.
 \end{lemma}
 
 \begin{proof}
     Let $n \in \NN$.
 
     Since there are only finitely many sets of $n$-types,
-    there exist (and can be computed)
+    there exist (and can be computed by exhaustive search)
     some $a(n) \ge f(n)$, $a(n) + b(n)$ such that
 
     \[
-        \type{n}{\ho{= a(n)}} = \type{n}{\ho{= a(n) + b(n)}}
+        \ho{= a(n)} \equiv_n \ho{= a(n) + b(n)}
     \]
 
     By induction if follows that for all $c \ge a(n)$,
     \[
-        \type{n}{\ho{= c}} = \type{n}{\ho{= c + b(n)}}
+        \ho{= c} \equiv_n \ho{= c + b(n)}
     \]
     since $\ho{= c + 1} = \sum_{\Om} \ho{= c}$.
 \end{proof}
 
-\begin{corollary}\label{rmj-computable}
-    Let $n \in \NN$, and let $\alpha \ge \om$ be an ordinal.
+\begin{note}
+    Actually we can give explicit formulas
+    for some pair of $a(n)$ and $b(n)$ (not necessarily minimal),
+    but there is no need to do so in this thesis.
+\end{note}
 
-    Then for all $c_1, c_2 \in \NN$ such that $c_1, c_2 \ge a(n)$ and $c_1 \equiv c_2 \mod b(n)$,
-    we have
-    \[\type{n}{\rmj{c_1}} = \type{n}{\rmj{c_2}}\]
-\end{corollary}
-
-\begin{proof}
-    By~\cref{rmj-successor-decomposition}, $\rmj{c} = \sum_{\om}{\ho{= c}}$.
-
-    Then it follows immediately from~\cref{ab-lemma}.
-\end{proof}
-
-\begin{lemma}
-    For every $n \in \NN$ and for every pair of ordinals $\alpha \ge \om$,
-    $\beta > \alpha$,
+\begin{lemma}\label{major-computable}
+    For every $n \in \NN$ and for every ordinal $\alpha \ge \om$,
     \[
-        \type{n}{\ho{[\alpha, \beta)}} = \type{n}{\bigcup_{c < b(n)}{\ho{= a(n) + c}}}
+        \rmj{\alpha} \equiv_n \sum_{\om} \ho{[a(n), a(n) + b(n)]}
     \]
-    In particular, $\type{n}{\ho{= \alpha}}$ can be computed,
+    \[
+        \lmj{\alpha} \equiv_n \sum_{\mo} \ho{[a(n), a(n) + b(n)]}
+    \]
+    \[
+        \bmj{\alpha} \equiv_n \sum_{\oo} \ho{[a(n), a(n) + b(n)]}
+    \]
+    \[
+        \ho{= \alpha} \equiv_n \ho{[a(n), a(n) + b(n)]}
+    \]
+    In particular, $\type{n}{\rmj{= \alpha}}$ can be computed,
     and is independent of the choice of $\alpha \ge \om$.
 \end{lemma}
 
 \begin{proof}
-    It is enough to prove that
+    We proceed by induction on $\alpha \ge \om$.
+
+    For $\alpha = \om$, let $\set{\alpha_i}_{i \in \om}$ be an increasing $\om$-sequence of (finite) ordinals
+    such that $a(n) \le \alpha_i$ for all $i \in \om$, and $\sup_{i \in \om} \alpha_i = \om$.
+
+    By~\cref{ab-lemma}, we conclude for all $i \in \om$,
     \[
-        \type{n}{\ho{= \alpha}} = \type{n}{\bigcup_{c < b(n)}{\ho{= a(n) + c}}}
+        \type{n}{\ho{[\alpha_i, \om)}} = \type{n}{\ho{[a(n), a(n) + b(n))}}
     \]
 
-    We thus proceed by induction on $\alpha \ge \om$.
-
-    Let $\set{\alpha_i}_{i \in \om}$ be an increasing $\om$-sequence of ordinals
-    such that $a(n) \le \alpha_i$ for all $i \in \om$,
-    and $\sup_{i \in \om} \ps{\alpha_i + 1} = \alpha$.
-
-    Then $\ho{= \alpha} = \sum_{\Om}{\bigcup_{i \in \om} \ho{[\alpha_i, \alpha)}}$ and thus,
-    \begin{align*}
-        \type{n}{\ho{= \alpha}}
-         & = \type{n}{\sum_{\Om} \bigcup_{i \in \om} \ho{[\alpha_i, \alpha)}}             \\
-         & = \type{n}{\sum_{\Om} \bigcup_{i \in \om} \bigcup_{c < b(n)}{\ho{= a(n) + c}}} \\
-         & = \type{n}{\sum_{\Om} \bigcup_{c < b(n)}{\ho{= a(n) + c}}}                     \\
-         & = \type{n}{\bigcup_{c < b(n)}{\sum_{\Om} \ho{= a(n) + c}}}                     \\
-         & = \type{n}{\bigcup_{c < b(n)}{\ho{= a(n) + c + 1}}}                            \\
-         & = \type{n}{\bigcup_{c < b(n)}{\ho{= a(n) + c}}}
-    \end{align*}
-
-    where the last transition is because $\type{n}{\ho{= a(n)}} = \type{n}{\ho{= a(n) + b(n)}}$.
-\end{proof}
-
-\begin{lemma}
-    Let $n \in \NN$, and let $\alpha \ge \om$ be an ordinal.
+    Then $\rmj{\om} = \sum_{\om} \ho{[\alpha_i, \om)}$
+    by~\cref{rmj-decomposition},
+    so $\rmj{\om} \equiv_n \sum_{\om} \ho{[a(n), a(n) + b(n))}$.
 
     \[
-        \type{n}{\rmj{\alpha}}
-        = \type{n}{\sum_{\om} {\bigcup_{c < b(n)}{\ho{= a(n) + c}}}}
-    \]
-
-    In particular, $\type{n}{\rmj{\alpha}}$ can be
-    computed, and is independent of the choice of $\alpha \ge \om$.
-\end{lemma}
-
-\begin{proof}
-    There exists an increasing $\om$-sequence $\set{\alpha_i}_{i \in \om}$ such that
-    $a(n) \le \alpha_i$ for all $i \in \om$,
-    and $\sup_{i \in \om} \ps{\alpha_i + 1} = \alpha$.
-
-    Then $\rmj{\alpha} = \sum_{i \in \om} \ho{= \alpha_i}$,
-    and thus,
-    \begin{align*}
-        \type{n}{\rmj{\alpha}}
-         & = \type{n}{\sum_{i \in \om} \ho{= \alpha_i}}               \\
-         & = \type{n}{\sum_{\om} \bigcup_{c < b(n)}{\ho{= a(n) + c}}} \\
-         & = \type{n}{\bigcup_{c < b(n)}{\sum_{\om} \ho{= a(n) + c}}} \\
-         & = \type{n}{\bigcup_{c < b(n)}{\rmj{a(n) + c + 1}}}         \\
-         & = \type{n}{\bigcup_{c < b(n)}{\rmj{a(n) + c}}}             \\
-    \end{align*}
-
-    where the last transition is by~\cref{rmj-computable}.
-\end{proof}
-
-\begin{corollary}
-    Let $n \in \NN$, and let $\alpha \ge \om$ be an ordinal.
-
-    We also have,
-    \[
-        \type{n}{\lmj{\alpha}} = \type{n}{\sum_{\mo} \bigcup_{c < b(n)}{\ho{= a(n) + c}}}
+        \lmj{\om} \equiv_n \sum_{\mo} \ho{[a(n), a(n) + b(n))}
     \]
     and
     \[
-        \type{n}{\bmj{\alpha}} = \type{n}{\sum_{\oo} \bigcup_{c < b(n)}{\ho{= a(n) + c + 1}}}
+        \bmj{\om} \equiv_n \sum_{\oo} \ho{[a(n), a(n) + b(n))}
+    \]
+    and $\ho{\le \om} \equiv_n \ho{< f(n)}$.
+
+    Thus, by~\cref{eq-alpha-corollary},
+    \[
+        \ho{= \om}  \equiv_n \ho{< f(n)} +
+        \ps{\sum_{\set{\om, \mo, \oo}} \ho{[a(n), a(n) + b(n))}}
+        + \ho{< f(n)}
     \]
 
-    In particular $\type{n}{\lmj{\alpha}}$ and $\type{n}{\bmj{\alpha}}$ can be computed,
-    and are independent of the choice of $\alpha \ge \om$.
-\end{corollary}
+    But also,
+    \[
+        \ho{[a(n), a(n) + b(n))} \equiv_n \ho{< f(n)}
+        + \ps{\sum_{\set{\om, \mo, \oo}} \ho{[a(n), a(n) + b(n))}}
+        + \ho{< f(n)}
+    \]
 
-\begin{proof}
-    For $\lmj{\alpha}$, it follows by duality.
+    Thus $\ho{= \om} \equiv_n \ho{[a(n), a(n) + b(n))}$ as required.
 
-    For $\bmj{\alpha}$, it follows since $\bmj{\alpha} = \lmj{\alpha} + \rmj{\alpha}$.
+    Now, for $\alpha > \om$, we can take a set $\set{\alpha_i}_{i \in \om}$ of ordinals
+    such that $\om \le \alpha_i$ for all $i \in \om$,
+    and $\sup_{i \in \om} \ps{\alpha_i + 1} = \alpha$.
+
+    By the induction hypothesis,
+    \[
+        \ho{[\alpha_i, \alpha)} \equiv_n \ho{[a(n), a(n) + b(n))}
+    \]
+
+    Then $\rmj{= \alpha} = \sum_{i \in \om} \ho{[\alpha_i, \alpha)}$,
+    and thus \[
+        \rmj{= \alpha} \equiv_n \sum_{\om} \ho{[a(n), a(n) + b(n))}
+    \]
+    as required.
+
+    Again, the corollary for $\lmj{= \alpha}$ and $\bmj{= \alpha}$
+    is immediate.
+
+    Similarly, we have by~\cref{eq-alpha-corollary},
+    \[
+        \ho{= \alpha} \equiv_n \ho{< f(n)}
+        + \ps{\sum_{\set{\om, \mo, \oo}} \ho{[a(n), a(n) + b(n))}}
+        + \ho{< f(n)}
+    \]
+    and thus $\ho{= \alpha} \equiv_n \ho{= \omega}$,
+    so we are done.
 \end{proof}

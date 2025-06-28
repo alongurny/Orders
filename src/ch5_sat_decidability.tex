@@ -1,5 +1,5 @@
 % % We continue this section.
-% \section{Decidability of the Rank}
+\section{Decidability of the Satisfiability Problem}
 
 \begin{definition}
   Let $\qq$ be a class of linear orders.
@@ -177,10 +177,12 @@
 \end{definition}
 
 \begin{definition}
-  Let $\alpha$ be an ordinal.
+  Let $\alpha > 0$ be an ordinal.
+
+  Let $\qq$ be a class of linear orders.
 
   We define the class of linear orders
-  $\cnt \bs{\alpha}$ as the class of all linear orders
+  $\qq \bs{\alpha}$ as the class of all linear orders in $\qq$,
   labeled with $P_\alpha$, $L_\alpha$ and $R_\alpha$
   such that $P_\alpha$ represents the equivalence relation $\sim_{\alpha}$,
   $L_\alpha = \mathbf{L}_{\alpha}$, and $R_\alpha = \mathbf{R}_{\alpha}$.
@@ -245,7 +247,7 @@
 
 \begin{lemma}\label{ho-decomposition-single-ordinal}
   Let $\alpha > 0$ be an ordinal
-  and let $\delta \ge \omega$ be a limit ordinal.
+  and let $\delta \ge \om$ be a limit ordinal.
 
   Then,
   \[
@@ -289,7 +291,7 @@
 
 \begin{corollary}\label{rmj-decomposition-single-ordinal}
   Let $\alpha > 0$ be an ordinal
-  and let $\delta \ge \omega$ be a limit ordinal.
+  and let $\delta \ge \om$ be a limit ordinal.
 
   Then,
   \[
