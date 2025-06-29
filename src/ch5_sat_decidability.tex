@@ -1,5 +1,7 @@
 % % We continue this section.
-\section{Decidability of the Satisfiability Problem}
+\section{Decidability of the the MSO Theory}
+
+\subsection{Single Ordinal}
 
 \begin{definition}
   Let $\qq$ be a class of linear orders.
@@ -58,10 +60,10 @@
   We define the \emph{the $\alpha$-shape}, $\sigma_{\alpha} \ps{x}$ as follows:
   \[
     \sigma_{\alpha} \ps{x} := \begin{cases}
-      \ho{< \alpha} & \text{if } \mathbf{L}_{\alpha} \ps{x} = \mathbf{R}_{\alpha} \ps{x} = 0    \\
-      \rmj{\alpha}  & \text{if } \mathbf{L}_{\alpha} \ps{x} = 0, \mathbf{R}_{\alpha} \ps{x} = 1 \\
-      \lmj{\alpha}  & \text{if } \mathbf{L}_{\alpha} \ps{x} = 1, \mathbf{R}_{\alpha} \ps{x} = 0 \\
-      \bmj{\alpha}  & \text{if } \mathbf{L}_{\alpha} \ps{x} = \mathbf{R}_{\alpha} \ps{x} = 1
+      \ho{< \alpha} & \text{if } x \in \mathbf{L}_{\alpha} \cap \mathbf{R}_{\alpha}      \\
+      \rmj{\alpha}  & \text{if } x \in \mathbf{R}_{\alpha} \setminus \mathbf{L}_{\alpha} \\
+      \lmj{\alpha}  & \text{if } x \in \mathbf{L}_{\alpha} \setminus \mathbf{R}_{\alpha} \\
+      \bmj{\alpha}  & \text{if } x \notin \mathbf{L}_{\alpha} \cup \mathbf{R}_{\alpha}
     \end{cases}
   \]
 
@@ -245,6 +247,26 @@
   so $M \in C$ and we are done.
 \end{proof}
 
+\begin{theorem}\label{single-ordinal-satisfiability}
+  Let $\alpha > 0$ be an ordinal.
+
+  Satisfiability of $\mso[\Int{\ho{< \alpha}}]$
+  over $\cnt$ is decidable.
+\end{theorem}
+
+\begin{proof}
+  First, by~\cref{int-expressible}, we can convert
+  any formula $\varphi$ in $\mso[\Int{\ho{< \alpha}}]$
+  to a formula $\varphi'$ in $\mso \bs{P_\alpha, L_\alpha, R_\alpha}$
+  such that $\varphi$ is satisfiable over $\cnt$
+  iff $\varphi'$ is satisfiable over $\cnt \bs{\alpha}$.
+
+  This is decidable by~\cref{cnt-decidable-single-ordinal}.
+\end{proof}
+
+\subsection{Multiple Ordinals}
+We can extend the results from the previous subsection to multiple ordinals.
+
 \begin{lemma}\label{ho-decomposition-single-ordinal}
   Let $\alpha > 0$ be an ordinal
   and let $\delta \ge \om$ be a limit ordinal.
@@ -317,23 +339,6 @@
   with~\cref{cnt-decomposition-single-ordinal}
   and the computability of $\ho{< \alpha}$,
   $\rmj{\alpha}$, $\lmj{\alpha}$ and $\bmj{\alpha}$.
-\end{proof}
-
-\begin{theorem}\label{single-ordinal-satisfiability}
-  Let $\alpha > 0$ be an ordinal.
-
-  Satisfiability of $\mso[\Int{\ho{< \alpha}}]$
-  over $\cnt$ is decidable.
-\end{theorem}
-
-\begin{proof}
-  First, by~\cref{int-expressible}, we can convert
-  any formula $\varphi$ in $\mso[\Int{\ho{< \alpha}}]$
-  to a formula $\varphi'$ in $\mso \bs{P_\alpha, L_\alpha, R_\alpha}$
-  such that $\varphi$ is satisfiable over $\cnt$
-  iff $\varphi'$ is satisfiable over $\cnt \bs{\alpha}$.
-
-  This is decidable by~\cref{cnt-decidable-single-ordinal}.
 \end{proof}
 
 We can extend these results to multiple ordinals.
@@ -443,6 +448,7 @@ We can extend these results to multiple ordinals.
   Let $\alpha_1 < \ldots < \alpha_k < \alpha$ be ordinals.
 
   Then the $\mso$-theory of $\cnt \bs{\alpha_1, \ldots, \alpha_k, \alpha}$
+  is decidable.
 \end{lemma}
 
 \begin{proof}

@@ -43,3 +43,55 @@
     It is immediate.
 \end{proof}
 
+\begin{lemma}
+    Then $\varphi$ be an $\le \aleph_0$-ambiguous $\mso$-formula.
+    Then every scattered model
+    of $\varphi$ is in $\ho{< \omega}$.
+\end{lemma}
+\begin{proof}
+    Let $n = \qd {\varphi}$.
+
+    Let $M$ be a scattered model of $\varphi$.
+
+    If $M \in \ho{\ge \omega}$,
+    then for every ordinal $\omega \le \alpha < \omega_1$,
+    there is some $N \in \ho{= \alpha}$
+    such that $N \equiv_n M$.
+
+    This means that $\varphi$ has at least one model
+    of every rank between $\omega$ and $\omega_1$,
+    which in particular means uncountably many models.
+\end{proof}
+
+\begin{lemma}
+    Let $\varphi$ be an $\mso$-formula.
+
+    Then $\varphi$ is $\le \aleph_0$-ambiguous
+    iff it has only definable models.
+\end{lemma}
+
+\begin{proof}
+    ($\impliedby$) Since there are only countably many definable models,
+    if $\varphi$ has only definable models,
+    then it has at most countably many models.
+
+    ($\implies$) Suppose $\varphi$ is $\le \aleph_0$-ambiguous.
+    By the previous lemma, every scattered model has
+    finite rank, so we will prove first, by $\omega$-induction
+    on the rank, that every scattered model of $\varphi$ is definable.
+
+    Let $M$ be a scattered model of $\varphi$. If $\hrank{M} = 0$,
+    then $M = 1$, so it is in particular definable.
+
+    Otherwise, let $\hrank{M} = \alpha$, and let
+    $I = M / \sim_\alpha$, and $\set{M_i}_{i \in I}$
+    be the equivalence classes of $M$ under $\sim_\alpha$.
+
+    Also, $\hrank{I} = \alpha - 1$.
+
+    By the composition theorem, there is a formula
+    $\psi(\vec{Y})$ such that $M \models \varphi$ iff $I \models \psi(\vec{Q})$,
+    where $Q_\tau = \set{ i \in I : M_i \models \tau }$ for 
+    every $n$-type $\tau$.
+
+\end{proof}
