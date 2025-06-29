@@ -247,6 +247,42 @@
   so $M \in C$ and we are done.
 \end{proof}
 
+\begin{lemma}\label{cnt-decidable-single-ordinal}
+  Let $\alpha > 0$ be an ordinal.
+
+  Then the $\mso$-theory of $\cnt \bs{\alpha}$ is computable.
+\end{lemma}
+
+\begin{proof}
+  Since $\mathbf{Good}_{\alpha}$ is clearly computable,
+  it follows from combining~\cref{computable-sum}
+  with~\cref{cnt-decomposition-single-ordinal}
+  and the computability of $\ho{< \alpha}$,
+  $\rmj{\alpha}$, $\lmj{\alpha}$ and $\bmj{\alpha}$.
+\end{proof}
+
+\begin{theorem}\label{single-ordinal-satisfiability}
+  Let $\alpha > 0$ be an ordinal.
+
+  Satisfiability of $\mso[\Int{\ho{< \alpha}}]$
+  over $\cnt$ is decidable.
+\end{theorem}
+
+\begin{proof}
+  First, by~\cref{int-expressible}, we can convert
+  any formula $\varphi$ in $\mso[\Int{\ho{< \alpha}}]$
+  to a formula $\varphi'$ in $\mso \bs{P_\alpha, L_\alpha, R_\alpha}$
+  such that $\varphi$ is satisfiable over $\cnt$
+  iff $\varphi'$ is satisfiable over $\cnt \bs{\alpha}$.
+
+  This is decidable by~\cref{cnt-decidable-single-ordinal}.
+\end{proof}
+
+\subsection{Multiple Ordinals}
+We can extend the results from the previous subsection to multiple ordinals.
+
+
+
 \begin{lemma}\label{ho-decomposition-single-ordinal}
   Let $\alpha > 0$ be an ordinal
   and let $\delta \ge \om$ be a limit ordinal.
@@ -307,39 +343,6 @@
   together with~\cref{rmj-decomposition}.
 \end{proof}
 
-\begin{lemma}\label{cnt-decidable-single-ordinal}
-  Let $\alpha > 0$ be an ordinal.
-
-  Then the $\mso$-theory of $\cnt \bs{\alpha}$ is computable.
-\end{lemma}
-
-\begin{proof}
-  Since $\mathbf{Good}_{\alpha}$ is clearly computable,
-  it follows from combining~\cref{computable-sum}
-  with~\cref{cnt-decomposition-single-ordinal}
-  and the computability of $\ho{< \alpha}$,
-  $\rmj{\alpha}$, $\lmj{\alpha}$ and $\bmj{\alpha}$.
-\end{proof}
-
-\begin{theorem}\label{single-ordinal-satisfiability}
-  Let $\alpha > 0$ be an ordinal.
-
-  Satisfiability of $\mso[\Int{\ho{< \alpha}}]$
-  over $\cnt$ is decidable.
-\end{theorem}
-
-\begin{proof}
-  First, by~\cref{int-expressible}, we can convert
-  any formula $\varphi$ in $\mso[\Int{\ho{< \alpha}}]$
-  to a formula $\varphi'$ in $\mso \bs{P_\alpha, L_\alpha, R_\alpha}$
-  such that $\varphi$ is satisfiable over $\cnt$
-  iff $\varphi'$ is satisfiable over $\cnt \bs{\alpha}$.
-
-  This is decidable by~\cref{cnt-decidable-single-ordinal}.
-\end{proof}
-
-\subsection{Multiple Ordinals}
-We can extend the results from the previous subsection to multiple ordinals.
 The first lemma we shall use is the "extension lemma".
 
 \begin{lemma}\label{extend-lemma-single-ordinal}
